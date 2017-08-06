@@ -1,0 +1,21 @@
+\contentsline {section}{Signed Declaration}{3}
+\contentsline {section}{Introduction}{4}
+\contentsline {section}{Description of the Problem}{4}
+\contentsline {section}{Methodology}{5}
+\contentsline {section}{Literature Study}{5}
+\contentsline {section}{Pseudocode Notation}{7}
+\contentsline {section}{Classical Heuristics}{7}
+\contentsline {subsection}{Constructive Heuristics}{7}
+\contentsline {subsubsection}{The Greedy Algorithm}{8}
+\contentsline {subsubsection}{The Fast Greedy Algorithm}{8}
+\contentsline {subsubsection}{The Stingy Algorithm}{8}
+\contentsline {subsection}{Computational Results - Constructive Heuristics}{8}
+\contentsline {subsection}{Local Search}{8}
+\contentsline {subsubsection}{The Interchange Algorithm}{8}
+\contentsline {subsubsection}{The Fast Interchange Algorithm}{8}
+\contentsline {subsubsection}{The Alternate Algorithm}{8}
+\contentsline {subsection}{Computational Results - Local Search}{8}
+\contentsline {section}{Conclusion}{8}
+\contentsline {section}{References}{9}
+\contentsline {section}{Index of Terms}{10}
+\contentsline {section}{Index of Authors}{11}

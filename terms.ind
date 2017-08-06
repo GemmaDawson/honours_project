@@ -1,0 +1,72 @@
+\begin{theindex}
+
+  \item algorithm, 4, 5
+
+  \indexspace
+
+  \item Beasley's test problem dataset, 5, 6
+
+  \indexspace
+
+  \item constructive heuristic, 7
+
+  \indexspace
+
+  \item greedy algorithm, 5
+  \item greedy interchange algorithm, 6
+
+  \indexspace
+
+  \item heuristic, 4, 6
+  \item heuristic concentration, 6
+  \item heuristics, 5
+    \subitem constructive, 5
+    \subitem greedy algorithm, 5
+    \subitem local search, 5
+
+  \indexspace
+
+  \item integer programme, 5
+  \item integer programming, 6
+
+  \indexspace
+
+  \item linear programme
+    \subitem branch-and-bound, 5
+  \item linear programming, 5
+  \item local search, 5
+
+  \indexspace
+
+  \item mathematical programming, 6
+  \item metaheuristic, 4
+  \item metaheuristics, 5
+    \subitem simulated annealing, 6
+    \subitem tabu search, 6
+    \subitem variable neighbourhood search, 6
+
+  \indexspace
+
+  \item NP-hard, 5
+
+  \indexspace
+
+  \item p-median problem, 4
+
+  \indexspace
+
+  \item R (programming language), 5
+
+  \indexspace
+
+  \item simulated annealing, 6
+
+  \indexspace
+
+  \item tabu search, 6
+
+  \indexspace
+
+  \item variable neighbourhood search, 6
+
+\end{theindex}
