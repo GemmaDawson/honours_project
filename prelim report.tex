@@ -15,6 +15,7 @@
 \usepackage{multirow} % multirows for tables
 \usepackage{array}	% vertically centre contents in table cells
 \usepackage{imakeidx} %add index
+\usepackage[linesnumbered,ruled]{algorithm2e} %pretty pseudocode
 \lstset{language=R, basicstyle=\ttfamily} % To add R code in appendix
 \graphicspath{ {C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/02 Preliminary Report/} } %folder name where images are contained in the current directory
 \DeclareMathSymbol{,}{0}{letters}{"3B}
@@ -124,38 +125,93 @@
 	ADD MORE ABOUT THE ALGORITHMS USED IN THIS REPORT
 	
 	\section{Heuristics and Metaheuristics}
+		explain DIFFERENCES
 	
-	\section{Pseudocode Notation}
-	For each algorithm examined in this study, a pseudocode will be presented using notation given below.  This notation is the same as to that used by Whitaker \index[authors]{Whitaker, R. A.} \cite{WHIT83}.
+	\subsection{Pseudocode Notation}
+	For each algorithm examined in this study, a pseudocode will be presented using notation given below.  This notation is the same as to that used by Whitaker \index[authors]{Whitaker, R. A.}\cite{WHIT83}.
 	\begin{align*}
 	G &: \text{the problem network}\\
 	n &: \text{the number of nodes within the network}\\
 	m &: \text{the number of nodes nodes that are available to be assigned as a median}\\
 	p &: \text{the number of medians by required by the solution}\\
 	M &: \text{the set of nodes that are available to be assigned as a median}\\
-	P* &: \text{the set of medians where } P^{*} \subset M\\
+	P^{*} &: \text{the set of medians where } P^{*} \subset M\\
 	P &: \text{the set of nodes not in the solution median set where } P \subset M \text{ and } P \cup P^{*} = M\\
-	S* &: \text{objective function value for supplying the network } G\\
-	k &: \text{an iteration parameter XXXXX}\\
-	\infty &: \text{an arbitrarily large number XXXXXX}\\
+	S^{*} &: \text{objective function value for supplying the network } G\\
+	k &: \text{an iteration parameter}\\
+	\infty &: \text{an arbitrarily large number}\\
 	d_{ij} &: \text{the cost of travelling from node \emph{i} to potential median \emph{j}}\\
 	u_{i}^{k} &: \text{the cost of travelling from node \emph{i} to the closest median \emph{j} where } j \in P^{*} \text{ during iteration } k\\
 	w_{i}^{k} &: \text{the cost of travelling from node \emph{i} to the second closest median \emph{j} where } j \in P* \text{ during iteration } k\\
 	c_{j}^{k} &: \text{the potential value of \emph{S*} if node \emph{j} is added to the median set \emph{P*} during iteration \emph{k}}\\
 	S_{r} &: \text{the value of \emph{S*} after adding node \emph{r} to the median set \emph{P*}}\\
 	S_{rt} &: \text{the potential increase (or decrease) to S* resulting from the interchange of node \emph{r} with median \emph{t}}\\
-	I, J, K_{j} &: \text{subsets of the \emph{n} nodes as defined XXXXXDEFINE THESE!XXXXX}\\
-	a, b, z, q &: \text{indices and parameters as defined XXXXDEFINE!XXXX}\\
+	I \text{, } J \text{, } K_{j} &: \text{subsets of the \emph{n} nodes as defined XXXXXDEFINE THESE!XXXXX}\\
+	a \text{, } b \text{, } z \text{, } q &: \text{indices and parameters as defined XXXXDEFINE!XXXX}\\
 	\emptyset &: \text{an empty set}	
 	\end{align*}
 	
-
 
 	\section{Classical Heuristics}
 	\subsection{Constructive Heuristics}
 	A constructive heuristic\index[terms]{constructive heuristic} is a technique that starts with an empty solution and each iteration extends this solution until a complete solution has been found.  Within the context of the unconstrained \emph{p}-median problem, for each iteration of the algorithm, a median is identified by some deterministic method and added to the current solution.  This process continues until the solution contains \emph{p} entries.
 	
 	\subsubsection{The Greedy Algorithm}
+	The greedy algorithm \index[terms]{greedy algorithm} is a simple recursive algorithm that starts with an empty median set and adds a node to the median set with each iteration of the algorithm.  The node that that is added to the median set is the one that decreases the objective function value the most when compared to the other nodes that are not already designated as a median XXXXXXXXXXREPHRASEXXXXXXXXXXXXXXXX.
+	
+	The pseudocode \index[terms]{greedy algorithm! pseudocode} for this algorithm is given below:
+
+	\begin{algorithm}[H]
+		\KwData{Cost Matrix}
+		\KwResult{\emph{P}* populated with the set of nodes designated as the solution medians}
+		
+		\BlankLine
+		{\bfseries Step 0}: Initialization \\
+		Set $P^{*} = \emptyset$; \emph{k} = 1; and $u_i^1 = \infty$\\
+		
+		\BlankLine
+		{\bfseries Step 1}: For all nodes that are not already designated as a median, find the sum of the minimum between the cost of travelling to the closet node that is not a median and the cost of travelling to the closest median.
+		\begin{equation*}
+		c_j^k = \sum_{i=1}^{n}\min(d_{ij} \text{, } u_i^k) \quad \forall j \in M \text{, } j \notin P^*
+		\end{equation*}
+		
+		\BlankLine
+		{\bfseries Step 2}: Determine which free node has the smallest objective function value, XXXXXXXXXXXXXXXXXXXX
+		\begin{equation*}
+		S_r = \min_{j \in P*}(c_j^k) \quad \text{for } r \in M \text{, } r \notin P^*
+		\end{equation*}
+		
+		\BlankLine
+		{\bfseries Step 3}: Add node \emph{r} to the set of medians and then determine if the algorithm has completed the number of required iterations.
+		\begin{equation*}
+		P^* = P^* \cup r
+		\end{equation*}\\
+		\eIf{$k = p$}{
+			go to Step 5\;
+		}{
+			go to Step 4\;
+		}
+			
+		\BlankLine
+		{\bfseries Step 4}: Increase the value of iteration parameter and update the cost of travelling from any node to its closet median given that node $r$ has been added to the median set.
+		\begin{align*}
+		k &= k+1\\
+		u_i^k &= \min(d_{ir} \text{, } u_i^{k-1}) \quad \text{for } i = 1,2,3 \dots
+		\end{align*}
+		
+		
+				
+		\BlankLine
+		{\bfseries Step 5}: Once \emph{p} iterations are complete, set the final objective function value equal to the current iteration's objective function value and STOP.
+		\begin{align*}
+		S^{*} = S_r 
+		\end{align*}
+				
+		\caption{The Greedy Algorithm}
+	\end{algorithm}
+		
+	
+	
 	
 	
 	\subsubsection{The Fast Greedy Algorithm}
