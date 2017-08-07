@@ -14,17 +14,14 @@ Sstar <- data_frame()
 
 for (i in 1:40){
   #load relevant list
-  datafile <- str_c(pmedfolder, i, ".rds")
-  x <- read_rds(datafile)
-  rm(datafile)
+  x <- read_rds(str_c(pmedfolder, i, ".rds"))
   
   # STEP 0
   Pstar <- vector(mode = "numeric", length=x$p)
   
   c <- data_frame()
   c[1:x$vertices,1] <- 0
-  c[1:x$vertices,2] <- 0
-  
+
   u <- data_frame()
   u[1:x$vertices,1] <- 0
   u[1:x$vertices,2] <- Inf
@@ -34,14 +31,13 @@ for (i in 1:40){
   tic()  
   for (k in 1:x$p){
     #STEP 1
-    #For each vertex that is not already a median, find the minimum of d & c to every other node
-    #^Change this explaination
+    #For each node that was reassigned in the previous iteration,
+    #Assess whether there could be a further decrease
     
     for (j in seq_along(1:nrow(I))){
       v = as.numeric(I[j,1])
       c[v,k+1] <- sum(pmin(x$distancematrix[,v], u$V2)) + c[v,k] - sum(pmin(x$distancematrix[,v], u$V1))
     }
-    c[,k+2]=c[,k+1]
     
     #Remove all nodes that are assigned as facilities
     c[Pstar,k+1] <- NA
@@ -65,12 +61,15 @@ for (i in 1:40){
     u[,2] <- pmin(u$V1, x$distancematrix[,r])
     
     #Update I
+    #I contains nodes that have been reassigned
     I <- data_frame(which(x$distancematrix[,r] < u[,1]))
     
   }
   print(i)
   tt <- toc()
-  Sstar <- data_frame(x$problem, x$p, x$vertices, x$edges, x$opt, S, tt$toc-tt$tic)
+  x$Fast_Greedy_sol <- S
+  x$Fast_Greedy_time <- tt$toc-tt$tic
+  # Sstar <- data_frame(x$problem, x$p, x$vertices, x$edges, x$opt, S, tt$toc-tt$tic)
   #^^^Check this works & then add to Greedy1
 }
 
