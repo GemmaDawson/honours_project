@@ -1,42 +1,57 @@
-\indexentry{p-median problem}{4}
-\indexentry{heuristic}{4}
-\indexentry{metaheuristic}{4}
-\indexentry{p-median problem}{4}
-\indexentry{algorithm}{4}
-\indexentry{R (programming language)}{5}
-\indexentry{algorithm}{5}
-\indexentry{Beasley's test problem dataset}{5}
-\indexentry{integer programme}{5}
-\indexentry{linear programming}{5}
-\indexentry{linear programme!branch-and-bound}{5}
-\indexentry{NP-hard}{5}
-\indexentry{heuristics}{5}
-\indexentry{metaheuristics}{5}
-\indexentry{heuristics!constructive}{5}
-\indexentry{greedy algorithm}{5}
-\indexentry{heuristics!greedy algorithm}{5}
-\indexentry{local search}{5}
+\indexentry{p-median problem}{1}
+\indexentry{heuristic}{1}
+\indexentry{metaheuristic}{1}
+\indexentry{p-median problem}{1}
+\indexentry{algorithm}{1}
+\indexentry{R (programming language)}{2}
+\indexentry{algorithm}{2}
+\indexentry{Beasley's test problem dataset}{2}
+\indexentry{integer programme}{2}
+\indexentry{linear programming}{2}
+\indexentry{linear programme!branch-and-bound}{2}
+\indexentry{NP-hard}{2}
+\indexentry{heuristic}{2}
+\indexentry{metaheuristics}{2}
+\indexentry{heuristic!constructive}{2}
+\indexentry{greedy algorithm}{2}
+\indexentry{heuristic!greedy algorithm}{2}
+\indexentry{local search}{2}
+\indexentry{heuristic!local search}{2}
+\indexentry{mathematical programming}{3}
+\indexentry{tabu search}{3}
+\indexentry{metaheuristic!tabu search}{3}
+\indexentry{variable neighbourhood search}{3}
+\indexentry{metaheuristic!variable neighbourhood search}{3}
+\indexentry{simulated annealing}{3}
+\indexentry{metaheuristic!simulated annealing}{3}
+\indexentry{metaheuristic!simulated annealing}{3}
+\indexentry{variable neighbourhood search}{3}
+\indexentry{metaheuristic!variable neighbourhood search}{3}
+\indexentry{heuristic concentration}{3}
+\indexentry{tabu search}{3}
+\indexentry{metaheuristic!tabu search}{3}
+\indexentry{greedy interchange algorithm}{3}
+\indexentry{Beasley's test problem dataset}{3}
+\indexentry{tabu search}{3}
+\indexentry{metaheuristic!tabu search}{3}
+\indexentry{heuristic}{3}
+\indexentry{integer programming}{3}
+\indexentry{heuristic}{3}
+\indexentry{p-median}{3}
+\indexentry{heuristic}{3}
+\indexentry{heuristic!classical heuristic}{3}
+\indexentry{heuristic!metaheuristic}{3}
+\indexentry{constructive heuristic}{4}
+\indexentry{heuristic!constructive}{4}
+\indexentry{greedy algorithm}{4}
+\indexentry{heuristic!greedy algorithm}{4}
+\indexentry{greedy algorithm! pseudocode}{5}
+\indexentry{heuristic!fast greedy algorithm}{5}
+\indexentry{constructive heuristic!fast greedy algorithm}{5}
+\indexentry{fast greedy algorithm}{5}
+\indexentry{fast greedy algorithm! pseudocode}{5}
+\indexentry{heuristics!stingy algorithm}{5}
+\indexentry{stingy algorithm}{5}
+\indexentry{constructive heuristic!stingy algorithm}{5}
 \indexentry{heuristics!local search}{5}
-\indexentry{mathematical programming}{6}
-\indexentry{tabu search}{6}
-\indexentry{metaheuristics!tabu search}{6}
-\indexentry{variable neighbourhood search}{6}
-\indexentry{metaheuristics!variable neighbourhood search}{6}
-\indexentry{simulated annealing}{6}
-\indexentry{metaheuristics!simulated annealing}{6}
-\indexentry{metaheuristics!simulated annealing}{6}
-\indexentry{variable neighbourhood search}{6}
-\indexentry{metaheuristics!variable neighbourhood search}{6}
-\indexentry{heuristic concentration}{6}
-\indexentry{tabu search}{6}
-\indexentry{metaheuristics!tabu search}{6}
-\indexentry{greedy interchange algorithm}{6}
-\indexentry{Beasley's test problem dataset}{6}
-\indexentry{tabu search}{6}
-\indexentry{metaheuristics!tabu search}{6}
-\indexentry{heuristic}{6}
-\indexentry{integer programming}{6}
-\indexentry{heuristic}{6}
-\indexentry{constructive heuristic}{7}
-\indexentry{greedy algorithm}{8}
-\indexentry{greedy algorithm! pseudocode}{8}
+\indexentry{local search}{5}

@@ -1,22 +1,27 @@
-\contentsline {section}{Signed Declaration}{3}
-\contentsline {section}{Introduction}{4}
-\contentsline {section}{Description of the Problem}{4}
-\contentsline {section}{Methodology}{5}
-\contentsline {section}{Literature Study}{5}
-\contentsline {section}{Heuristics and Metaheuristics}{6}
-\contentsline {subsection}{Pseudocode Notation}{7}
-\contentsline {section}{Classical Heuristics}{7}
-\contentsline {subsection}{Constructive Heuristics}{7}
-\contentsline {subsubsection}{The Greedy Algorithm}{8}
-\contentsline {subsubsection}{The Fast Greedy Algorithm}{10}
-\contentsline {subsubsection}{The Stingy Algorithm}{10}
-\contentsline {subsection}{Computational Results - Constructive Heuristics}{10}
-\contentsline {subsection}{Local Search}{10}
-\contentsline {subsubsection}{The Interchange Algorithm}{10}
-\contentsline {subsubsection}{The Fast Interchange Algorithm}{10}
-\contentsline {subsubsection}{The Alternate Algorithm}{10}
-\contentsline {subsection}{Computational Results - Local Search}{10}
-\contentsline {section}{Conclusion}{10}
-\contentsline {section}{References}{11}
-\contentsline {section}{Index of Terms}{12}
-\contentsline {section}{Index of Authors}{13}
+\contentsline {section}{Introduction}{1}
+\contentsline {section}{Description of the Problem}{1}
+\contentsline {section}{Methodology}{2}
+\contentsline {section}{Literature Study}{2}
+\contentsline {section}{Classical Heuristics and Metaheuristics}{3}
+\contentsline {subsection}{Overview}{3}
+\contentsline {subsection}{Pseudocode Notation}{4}
+\contentsline {section}{Classical Heuristics: Constructive}{4}
+\contentsline {subsection}{The Greedy Algorithm}{4}
+\contentsline {subsubsection}{Pseudocode}{5}
+\contentsline {subsection}{The Fast Greedy Algorithm}{5}
+\contentsline {subsubsection}{Pseudocode}{5}
+\contentsline {subsection}{The Stingy Algorithm}{5}
+\contentsline {subsubsection}{Pseudocode}{5}
+\contentsline {subsection}{Computational Results}{5}
+\contentsline {section}{Classical Heuristics: Local Search}{5}
+\contentsline {subsection}{The Interchange Algorithm}{8}
+\contentsline {subsubsection}{Pseudocode}{8}
+\contentsline {subsection}{The Fast Interchange Algorithm}{8}
+\contentsline {subsubsection}{Pseudocode}{8}
+\contentsline {subsection}{The Alternate Algorithm}{8}
+\contentsline {subsubsection}{Pseudocode}{8}
+\contentsline {subsection}{Computational Results}{8}
+\contentsline {section}{Conclusion}{8}
+\contentsline {section}{References}{9}
+\contentsline {section}{Index of Terms}{10}
+\contentsline {section}{Index of Authors}{11}

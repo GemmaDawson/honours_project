@@ -1,6 +1,6 @@
-ranmin <- function(x)
-  if(length(which(x==min(x, na.rm = T)))==1){
-    which.min(x)
+ranmin <- function(y)
+  if(length(which(y==min(y, na.rm = T)))==1){
+    which.min(as.matrix(y))
   } else{
-    sample(which(x==min(x, na.rm = T)),1)  
+    sample(which(y==min(y, na.rm = T)),1)  
   }

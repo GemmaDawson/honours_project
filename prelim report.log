@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.20)  6 AUG 2017 16:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.20)  19 AUG 2017 16:09
 entering extended mode
 **"prelim report.tex"
 ("prelim report.tex"
@@ -631,59 +631,43 @@ Package: multicol 2014/10/28 v1.8i multicolumn formatting (FMi)
 \colbreak@box=\box71
 \mc@col@check@num=\count158
 ))
-("C:\Program Files\MiKTeX 2.9\tex\latex\algorithm2e\algorithm2e.sty"
-Package: algorithm2e 2013/01/06 v5.00 algorithms environments
-\c@AlgoLine=\count159
+("C:\Program Files\MiKTeX 2.9\tex\latex\algorithms\algorithm.sty"
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
 
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count159
+\float@exts=\toks26
+\float@box=\box72
+\@float@everytoks=\toks27
+\@floatcapt=\box73
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\tools\xspace.sty"
-Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+\@float@every@algorithm=\toks28
+\c@algorithm=\count160
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\relsize.sty"
-Package: relsize 2003/07/04 ver 3.1
+("C:\Program Files\MiKTeX 2.9\tex\latex\algorithmicx\algpseudocode.sty"
+Package: algpseudocode 
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\algorithmicx\algorithmicx.sty"
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count161
+\c@ALG@rem=\count162
+\c@ALG@nested=\count163
+\ALG@tlm=\skip72
+\ALG@thistlm=\skip73
+\c@ALG@Lnr=\count164
+\c@ALG@blocknr=\count165
+\c@ALG@storecount=\count166
+\c@ALG@tmpcounter=\count167
+\ALG@tmplength=\skip74
 )
-********************************************************
-Package `algorithm2e' Release 5.0 -- january 06 2013 --
-- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
-- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
-subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
-- Author: Christophe Fiorio (cfiorio@um2.fr)
-********************************************************
-\skiptotal=\skip72
-\skiplinenumber=\skip73
-\skiprule=\skip74
-\skiphlne=\skip75
-\skiptext=\skip76
-\skiplength=\skip77
-\algomargin=\skip78
-\skipalgocfslide=\skip79
-\algowidth=\dimen172
-\inoutsize=\dimen173
-\inoutindent=\dimen174
-\interspacetitleruled=\dimen175
-\interspacealgoruled=\dimen176
-\interspacetitleboxruled=\dimen177
-\algocf@inoutbox=\box72
-\algocf@inputbox=\box73
-\AlCapSkip=\skip80
-\AlCapHSkip=\skip81
-\algoskipindent=\skip82
-\algocf@nlbox=\box74
-\algocf@hangingbox=\box75
-\algocf@untilbox=\box76
-\algocf@skipuntil=\skip83
-\algocf@capbox=\box77
-\algoheightruledefault=\skip84
-\algoheightrule=\skip85
-\algotitleheightruledefault=\skip86
-\algotitleheightrule=\skip87
-\c@algocfline=\count160
-\c@algocfproc=\count161
-\c@algocf=\count162
-\algocf@algoframe=\box78
-\algocf@algobox=\box79
+Document Style - pseudocode environments for use with the `algorithmicx' style
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2014/09/06 1.5e listings language file
 )
@@ -699,18 +683,18 @@ Writing index file terms.idx
 \authors@idxfile=\write4
 Writing index file authors.idx
 ("prelim report.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -746,117 +730,137 @@ LaTeX Font Info:    ... okay on input line 34.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \celsius on input line 34.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 34.
+LaTeX Info: Redefining \celsius on input line 40.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 40.
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 34.
-Package gensymb Info: Using \Omega for \ohm on input line 34.
+LaTeX Info: Redefining \ohm on input line 40.
+Package gensymb Info: Using \Omega for \ohm on input line 40.
 
 Package gensymb Warning: Not defining \micro.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count163
-\scratchdimen=\dimen178
-\scratchbox=\box80
-\nofMPsegments=\count164
-\nofMParguments=\count165
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count166
-\MPscratchDim=\dimen179
-\MPnumerator=\count167
-\makeMPintoPDFobject=\count168
-\everyMPtoPDFconversion=\toks27
+\scratchcounter=\count168
+\scratchdimen=\dimen172
+\scratchbox=\box74
+\nofMPsegments=\count169
+\nofMParguments=\count170
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count171
+\MPscratchDim=\dimen173
+\MPnumerator=\count172
+\makeMPintoPDFobject=\count173
+\everyMPtoPDFconversion=\toks30
 )
-\c@lstlisting=\count169
+\c@lstlisting=\count174
  <unisa.png, id=1, 537.57487pt x 118.90729pt>
 File: unisa.png Graphic file (type png)
  <use unisa.png>
-Package pdftex.def Info: unisa.png used on input line 53.
+Package pdftex.def Info: unisa.png used on input line 60.
 (pdftex.def)             Requested size: 341.43306pt x 75.52342pt.
-LaTeX Font Info:    Try loading font information for U+msa on input line 53.
+LaTeX Font Info:    Try loading font information for U+msa on input line 60.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 53.
+LaTeX Font Info:    Try loading font information for U+msb on input line 60.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./unisa.png>] ("prelim re
-port.toc")
-\tf@toc=\write5
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./unisa.png>]
+<signature.png, id=12, 122.70844pt x 51.19125pt>
+File: signature.png Graphic file (type png)
+ <use signature.png>
+Package pdftex.def Info: signature.png used on input line 69.
+(pdftex.def)             Requested size: 113.81102pt x 47.48082pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 72--74
+
+ []
+
+[2 <./signature.png>] ("prelim report.toc")
+\tf@toc=\write5
+ [3]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 25.2842pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2] [3] [4]
+[1]
 
 Package imakeidx Warning: Undefined index file `"prelim report"' on input line 
-115.
+134.
 
-[5]
-
-Package imakeidx Warning: Undefined index file `"prelim report"' on input line 
-121.
-
+[2]
 
 Package imakeidx Warning: Undefined index file `"prelim report"' on input line 
-121.
+140.
 
 
 Package imakeidx Warning: Undefined index file `"prelim report"' on input line 
-121.
+140.
 
 
-Overfull \hbox (105.39366pt too wide) in paragraph at lines 152--152
+Package imakeidx Warning: Undefined index file `"prelim report"' on input line 
+140.
+
+
+Overfull \hbox (100.3752pt too wide) in paragraph at lines 177--177
 [] 
  []
 
-[6] [7] [8] [9] [10] ("prelim report.bbl") [11]
+[3]
+
+Package imakeidx Warning: Undefined index file `author' on input line 184.
+
+[4]
+
+LaTeX Warning: Float too large for page by 131.04105pt on input line 309.
+
+
+Package imakeidx Warning: Undefined index file `author' on input line 312.
+
+[5] [6] [7] [8] ("prelim report.bbl") [9]
 runsystem(makeindex terms.idx)...executed (allowed).
 
- (terms.ind) [12
+ (terms.ind) [10
 
 ]
 runsystem(makeindex authors.idx)...executed (allowed).
 
  (authors.ind)
-[13
+[11
 
 ] ("prelim report.aux") ) 
 Here is how much of TeX's memory you used:
- 13112 strings out of 493698
- 221880 string characters out of 3144412
- 344666 words of memory out of 3000000
- 16288 multiletter control sequences out of 15000+200000
- 13673 words of font info for 50 fonts, out of 3000000 for 9000
+ 12325 strings out of 493698
+ 210982 string characters out of 3144412
+ 321021 words of memory out of 3000000
+ 15495 multiletter control sequences out of 15000+200000
+ 13364 words of font info for 49 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 46i,16n,72p,10505b,416s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 46i,11n,72p,10463b,418s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-bx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on "prelim report.pdf" (13 pages, 366672 bytes).
+bx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on "prelim report.pdf" (14 pages, 373425 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
+ 105 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
