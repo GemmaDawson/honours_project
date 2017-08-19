@@ -15,7 +15,9 @@
 \usepackage{multirow} % multirows for tables
 \usepackage{array}	% vertically centre contents in table cells
 \usepackage{imakeidx} %add index
-\usepackage[linesnumbered,ruled]{algorithm2e} %pretty pseudocode
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%\usepackage[boxruled, dotocloa]{algorithm2e} %pretty pseudocode
 \lstset{language=R, basicstyle=\ttfamily} % To add R code in appendix
 \graphicspath{ {C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/02 Preliminary Report/} } %folder name where images are contained in the current directory
 \DeclareMathSymbol{,}{0}{letters}{"3B}
@@ -23,15 +25,20 @@
 \DeclareMathOperator*{\nut}{Nut}
 \newcommand{\np}{\newpage}
 \setcounter{secnumdepth}{-2} % to remove section numbering
+
+\indexsetup{level=\section}
+\makeindex[name=terms,title=Index of Terms,columns=2]
+\makeindex[name=authors,title=Index of Authors,columns=2]	%initiate the index
+\setcounter{page}{1}
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{Assignment 2: Preliminary Report\\ HONPR2C}
 \lhead{Gemma Dawson\\ Student Number: 50223909}
-\indexsetup{level=\section}
-\makeindex[name=terms,title=Index of Terms,columns=2]
-\makeindex[name=authors,title=Index of Authors,columns=2]	%initiate the index
+\cfoot{\thepage}
+
 
 \begin{document}
+
 	\title{
 		\begin{figure}[!htb]
 			\begin{center}
@@ -54,31 +61,43 @@
 	\thispagestyle{empty}
 	\np
 	
+	\section*{Signed Declaration}
+	I hereby declare that this project is my own work and that all the sources that I have used or quoted have been indicated and acknowledged by means of complete references.
 	
-	\tableofcontents
-	\np
+	Signed:
+	\begin{figure}[!htb]
+			\includegraphics[width=4cm]{signature.png}
+	\end{figure}
+
+	Gemma Dawson\\
+	Student Number: 50223909\\
 	
-	
-	\section{Signed Declaration}
 	TO DO:
 	\begin{enumerate}
 		\item extend literature study to include more details on algorithms used
 		
-		\item STINGY algorithm - code (Classic - CH)
-		
 		\item ALTERNATE algorithm - code (Classic - LS)
 		
-		\item check the rules of citations and full stops
+		\item check the rules of citations and full stops - done?
 		
-		\item add a section discussing the diff between classical and meta heuristics
+		\item add a section discussing the diff between classical and meta heuristics - needs to be completed
 		
 		\item add explanation around how choices between identical improvements are made (i.e. randomly) 
 		
+		\item add complexity for each algorithm
+		
+		\item define "free node" in greedy (or first algorithm)
+
+		
 	\end{enumerate}
-	
+	\thispagestyle{empty}
 	\np
 	
-	
+	\tableofcontents
+	\thispagestyle{empty}
+	\np
+
+\setcounter{page}{1}		
 	\section{Introduction}
 	The network facility location problem of finding a location for facilities or public services within a given space by optimising some predefined objective, is not a simple one.  Within the single-objective branch of network location problems, there is a plethora of papers exploring minisum, minimax, and covering problems.
 	
@@ -116,16 +135,22 @@
 	
 	A few years later, ReVelle\index[authors]{ReVelle, C.} and Swain \index[authors]{Swain, R.}\cite{REVE70} formulated the \emph{p}-median problem as an integer programme \index[terms]{integer programme} which provided the answers to both the question of where the optimal medians were located as well as which demand nodes should be allocated to each median.  In this paper, the solution properties of solving this problem with linear programming \index[terms]{linear programming} using the branch-and-bound technique \index[terms]{linear programme!branch-and-bound} was also discussed.
 	
-	Later that decade, it was shown that the \emph{p}-median problem is NP-hard \index[terms]{NP-hard} and as such there exists no algorithm that can find the optimal solution within polynomial time.  Since most real-world problems are very large in nature, this poses a great problem.  Well developed heuristics\index[terms]{heuristics} can provide satisfactory solutions and many such approaches have been proposed.  Mladenovi\'{c}\index[authors]{Mladenovi\'{c}, N.} et al. \cite{MLAD07} produced a comprehensive survey of the heuristics that have been used to solve the \emph{p}-median problem.  This survey divides heuristics into two groups, classical heuristics and metaheuristics\index[terms]{metaheuristics}.  The classical heuristics group consists of constructive heuristics\index[terms]{heuristics!constructive}, such as the greedy algorithm\index[terms]{greedy algorithm}\index[terms]{heuristics!greedy algorithm}, local search\index[terms]{local search}\index[terms]{heuristics!local search}, and mathematical programming\index[terms]{mathematical programming}.  The metaheuristics group lists tabu search\index[terms]{tabu search}\index[terms]{metaheuristics!tabu search}, variable neighbourhood search\index[terms]{variable neighbourhood search}\index[terms]{metaheuristics!variable neighbourhood search}, and simulated annealing\index[terms]{simulated annealing}\index[terms]{metaheuristics!simulated annealing} among others.
+	Later that decade, it was shown that the \emph{p}-median problem is NP-hard \index[terms]{NP-hard} and as such there exists no algorithm that can find the optimal solution within polynomial time.  Since most real-world problems are very large in nature, this poses a great problem.  Well developed heuristics\index[terms]{heuristic} can provide satisfactory solutions and many such approaches have been proposed.  Mladenovi\'{c}\index[authors]{Mladenovi\'{c}, N.} et al. \cite{MLAD07} produced a comprehensive survey of the heuristics that have been used to solve the \emph{p}-median problem.  This survey divides heuristics into two groups, classical heuristics and metaheuristics\index[terms]{metaheuristics}.  The classical heuristics group consists of constructive heuristics\index[terms]{heuristic!constructive}, such as the greedy algorithm\index[terms]{greedy algorithm}\index[terms]{heuristic!greedy algorithm}, local search\index[terms]{local search}\index[terms]{heuristic!local search}, and mathematical programming\index[terms]{mathematical programming}.  The metaheuristics group lists tabu search\index[terms]{tabu search}\index[terms]{metaheuristic!tabu search}, variable neighbourhood search\index[terms]{variable neighbourhood search}\index[terms]{metaheuristic!variable neighbourhood search}, and simulated annealing\index[terms]{simulated annealing}\index[terms]{metaheuristic!simulated annealing} among others.
 	
-	There do exist studies that analysis the efficiency of heuristics in solving the \emph{p}-median.  Simulated annealing\index{simulated annealing}\index[terms]{metaheuristics!simulated annealing} was analysed by Chiyoshi\index[authors]{Chiyoshi, F.}  and Galv\~{a}o \index[authors]{Galv\~{a}o, R. D.} \cite{CHIY00} while Alp\index[authors]{Alp, O.} et al. \cite{ALPO03} investigated their proposed genetic algorithm\index{genetic algorithm}.  Hansen\index{Hansen, P.} and Mladenovi\'{c}\index[authors]{Mladenovi\'{c}, N.} \cite{HANS01} applied the variable neighbourhood search algorithm\index[terms]{variable neighbourhood search}\index[terms]{metaheuristics!variable neighbourhood search} to the \emph{p}-median problem as well as heuristic concentration\index[terms]{heuristic concentration}, tabu search\index[terms]{tabu search}\index[terms]{metaheuristics!tabu search}, and the greedy interchange algorithm\index[terms]{greedy interchange algorithm}.  These studies used Beasley's test problem dataset\index[terms]{Beasley's test problem dataset} although Hansen\index[authors]{Hansen, P.}  and Mladenovi\'{c}'s\index[authors]{Mladenovi\'{c}, N.} review only used a portion of the available test problems.  
+	There do exist studies that analysis the efficiency of heuristics in solving the \emph{p}-median.  Simulated annealing\index{simulated annealing}\index[terms]{metaheuristic!simulated annealing} was analysed by Chiyoshi\index[authors]{Chiyoshi, F.}  and Galv\~{a}o \index[authors]{Galv\~{a}o, R. D.} \cite{CHIY00} while Alp\index[authors]{Alp, O.} et al. \cite{ALPO03} investigated their proposed genetic algorithm\index{genetic algorithm}.  Hansen\index{Hansen, P.} and Mladenovi\'{c}\index[authors]{Mladenovi\'{c}, N.} \cite{HANS01} applied the variable neighbourhood search algorithm\index[terms]{variable neighbourhood search}\index[terms]{metaheuristic!variable neighbourhood search} to the \emph{p}-median problem as well as heuristic concentration\index[terms]{heuristic concentration}, tabu search\index[terms]{tabu search}\index[terms]{metaheuristic!tabu search}, and the greedy interchange algorithm\index[terms]{greedy interchange algorithm}.  These studies used Beasley's test problem dataset\index[terms]{Beasley's test problem dataset} although Hansen\index[authors]{Hansen, P.}  and Mladenovi\'{c}'s\index[authors]{Mladenovi\'{c}, N.} review only used a portion of the available test problems.  
 	
-	Rolland\index[authors]{Rolland, E.} et al. \cite{ROLL97} explored the efficiency of tabu search\index[terms]{tabu search}\index[terms]{metaheuristics!tabu search} using randomly generated datasets as test problems, and this was compared to results obtained from a two-exchange heuristic\index[terms]{heuristic} and an integer programming\index[terms]{integer programming} algorithm.  A heuristic\index[terms]{heuristic} concentration was compared to tabu search by Rosing\index[authors]{Rosing, K. E.} et al. \cite{ROSI98}.  Since datasets were independently and randomly generated for each of these studies, it makes it very difficult to compare results.
+	Rolland\index[authors]{Rolland, E.} et al. \cite{ROLL97} explored the efficiency of tabu search\index[terms]{tabu search}\index[terms]{metaheuristic!tabu search} using randomly generated datasets as test problems, and this was compared to results obtained from a two-exchange heuristic\index[terms]{heuristic} and an integer programming\index[terms]{integer programming} algorithm.  A heuristic\index[terms]{heuristic} concentration was compared to tabu search by Rosing\index[authors]{Rosing, K. E.} et al. \cite{ROSI98}.  Since datasets were independently and randomly generated for each of these studies, it makes it very difficult to compare results.
 	
 	ADD MORE ABOUT THE ALGORITHMS USED IN THIS REPORT
 	
-	\section{Heuristics and Metaheuristics}
-		explain DIFFERENCES
+	\section{Classical Heuristics and Metaheuristics}
+	\subsection{Overview}
+	As previously mentioned, a review of approaches to solving the \textit{p}-median problem\index[terms]{p-median} was presented by Mladenovi\'{c}\index[authors]{Mladenovi\'{c}, N.} et al. \cite{MLAD07} in 2007.  This paper divided heuristics\index[terms]{heuristic} into one of two groups, Classical Heuristics\index[terms]{heuristic!classical heuristic} and Metaheuristics\index[terms]{heuristic!metaheuristic}.  This classification has been utilised in this study.
+	
+	A heuristic can be classified as a Classical Heuristic 
+	
+	
+	XXXXXXXXXXXXXXXXXXXXXXADD WHAT DIFFERENCE BETWEEN CLASSICAL \& META ISXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	
 	\subsection{Pseudocode Notation}
 	For each algorithm examined in this study, a pseudocode will be presented using notation given below.  This notation is the same as to that used by Whitaker \index[authors]{Whitaker, R. A.}\cite{WHIT83}.
@@ -142,7 +167,7 @@
 	\infty &: \text{an arbitrarily large number}\\
 	d_{ij} &: \text{the cost of travelling from node \emph{i} to potential median \emph{j}}\\
 	u_{i}^{k} &: \text{the cost of travelling from node \emph{i} to the closest median \emph{j} where } j \in P^{*} \text{ during iteration } k\\
-	w_{i}^{k} &: \text{the cost of travelling from node \emph{i} to the second closest median \emph{j} where } j \in P* \text{ during iteration } k\\
+	w_{i}^{k} &: \text{the cost of travelling from node \emph{i} to the second closest median \emph{j} where } j \in P^{*} \text{ during iteration } k\\
 	c_{j}^{k} &: \text{the potential value of \emph{S*} if node \emph{j} is added to the median set \emph{P*} during iteration \emph{k}}\\
 	S_{r} &: \text{the value of \emph{S*} after adding node \emph{r} to the median set \emph{P*}}\\
 	S_{rt} &: \text{the potential increase (or decrease) to S* resulting from the interchange of node \emph{r} with median \emph{t}}\\
@@ -152,90 +177,167 @@
 	\end{align*}
 	
 
-	\section{Classical Heuristics}
-	\subsection{Constructive Heuristics}
-	A constructive heuristic\index[terms]{constructive heuristic} is a technique that starts with an empty solution and each iteration extends this solution until a complete solution has been found.  Within the context of the unconstrained \emph{p}-median problem, for each iteration of the algorithm, a median is identified by some deterministic method and added to the current solution.  This process continues until the solution contains \emph{p} entries.
+	\section{Classical Heuristics: Constructive}
+	A constructive heuristic\index[terms]{constructive heuristic}\index[terms]{heuristic!constructive} is a technique that starts with an empty solution and each iteration extends this solution until a complete solution has been found.  Within the context of the unconstrained \emph{p}-median problem, for each iteration of the algorithm, a median is identified by some deterministic method and added to the current solution.  This process continues until the solution contains \emph{p} entries.
 	
-	\subsubsection{The Greedy Algorithm}
-	The greedy algorithm \index[terms]{greedy algorithm} is a simple recursive algorithm that starts with an empty median set and adds a node to the median set with each iteration of the algorithm.  The node that that is added to the median set is the one that decreases the objective function value the most when compared to the other nodes that are not already designated as a median XXXXXXXXXXREPHRASEXXXXXXXXXXXXXXXX.
+	\subsection{The Greedy Algorithm}
+	The greedy algorithm, \index[terms]{greedy algorithm}\index[terms]{heuristic!greedy algorithm} as described by Whitaker \cite{WHIT83}, \index[author]{Whitaker, R. A.} is a simple recursive algorithm that starts with an empty median set and, with each iteration of the algorithm, adds a node to the median set.  The node that that is added to the median set is the one that decreases the objective function value the most when compared to the other non-median nodes.
 	
-	The pseudocode \index[terms]{greedy algorithm! pseudocode} for this algorithm is given below:
+	\subsubsection{Pseudocode}
+	\index[terms]{greedy algorithm! pseudocode} 	
+	
+	\begin{algorithm}
+	\caption{Greedy Algorithm}
+	\begin{algorithmic}[0]
+		
+		\Statex
+		\Statex STEP 0: Initialisation	
+		\begin{equation*}
+			\text{Set } P^{*} = \emptyset \text{; } k = 1\text{; and }u_i^1 = \infty\text{ for all } i=1,2,\dots,n
+		\end{equation*}
 
-	\begin{algorithm}[H]
-		\KwData{Cost Matrix}
-		\KwResult{\emph{P}* populated with the set of nodes designated as the solution medians}
-		
-		\BlankLine
-		{\bfseries Step 0}: Initialization \\
-		Set $P^{*} = \emptyset$; \emph{k} = 1; and $u_i^1 = \infty$\\
-		
-		\BlankLine
-		{\bfseries Step 1}: For all nodes that are not already designated as a median, find the sum of the minimum between the cost of travelling to the closet node that is not a median and the cost of travelling to the closest median.
+		\Statex 
+		\Statex STEP 1: For each free node, the objective function value resulting from selecting this node as a median is determined.  This objective function value is calculated by summing the cost of travel for each node in the network to either the closest median or the free node under investigation, whichever is smallest.
 		\begin{equation*}
-		c_j^k = \sum_{i=1}^{n}\min(d_{ij} \text{, } u_i^k) \quad \forall j \in M \text{, } j \notin P^*
+			c_j^k = \sum_{i=1}^{n}\min(d_{ij} \text{, } u_i^k) \quad \forall j \in M \text{, } j \notin P^*
+		\end{equation*}
+
+		\Statex 
+		\Statex STEP 2: The free node that will result in the smallest increase to the objective function value is identified, and the objective function value is updated.
+		\begin{equation*}
+			S_r = \min_{j \notin P*}(c_j^k) \quad \text{for } r \in M \text{, } r \notin P^*
 		\end{equation*}
 		
-		\BlankLine
-		{\bfseries Step 2}: Determine which free node has the smallest objective function value, XXXXXXXXXXXXXXXXXXXX
-		\begin{equation*}
-		S_r = \min_{j \in P*}(c_j^k) \quad \text{for } r \in M \text{, } r \notin P^*
-		\end{equation*}
-		
-		\BlankLine
-		{\bfseries Step 3}: Add node \emph{r} to the set of medians and then determine if the algorithm has completed the number of required iterations.
+		\Statex 
+		\Statex STEP 3: Add node \emph{r} to the set of medians and then determine if the algorithm has completed the number of required iterations.
 		\begin{equation*}
 		P^* = P^* \cup r
-		\end{equation*}\\
-		\eIf{$k = p$}{
-			go to Step 5\;
-		}{
-			go to Step 4\;
-		}
-			
-		\BlankLine
-		{\bfseries Step 4}: Increase the value of iteration parameter and update the cost of travelling from any node to its closet median given that node $r$ has been added to the median set.
+		\end{equation*}
+		
+		\If{$k = p$}
+			\Statex go to STEP 5
+		[
+		\Else
+			\Statex go to STEP 4
+		]
+		\EndIf
+		
+		\Statex 
+		\Statex STEP 4: Increase the value of iteration parameter and update the cost of travelling from any node to its closet median given that node $r$ has been added to the median set.
 		\begin{align*}
 		k &= k+1\\
-		u_i^k &= \min(d_{ir} \text{, } u_i^{k-1}) \quad \text{for } i = 1,2,3 \dots
+		u_i^k &= \min(d_{ir} \text{, } u_i^{k-1}) \quad \text{for } i = 1,2,3 \dots,n
 		\end{align*}
+		\Statex Go to STEP 1
+		
+		\Statex 
+		\Statex STEP 5: Once \emph{p} iterations are complete, set the final objective function value equal to the current iteration's objective function value and stop the algorithm.
+		\begin{center}
+		$S^{*} = S_r$\\
+		STOP
+		\end{center}
 		
 		
-				
-		\BlankLine
-		{\bfseries Step 5}: Once \emph{p} iterations are complete, set the final objective function value equal to the current iteration's objective function value and STOP.
-		\begin{align*}
-		S^{*} = S_r 
-		\end{align*}
-				
-		\caption{The Greedy Algorithm}
+	\end{algorithmic}
 	\end{algorithm}
-		
 	
 	
+	\subsection{The Fast Greedy Algorithm}
+	Whitaker \cite{WHIT83} \index[authors]{Whitaker, R. A.} proposed the fast greedy algorithm. \index[terms]{heuristic!fast greedy algorithm}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{fast greedy algorithm} This algorithm differs from the greedy algorithm in that only the nodes that were re-assigned to a new median in the preceding iteration are investigated.  From these nodes, the new median is determined to be the one that will maximise the decrease in the objective function value.
+	
+	\subsubsection{Pseudocode}
+	\index[terms]{fast greedy algorithm! pseudocode} 	
+	\begin{algorithm}
+		\caption{Fast Greedy Algorithm}
+		\begin{algorithmic}[0]
+			
+			\Statex
+			\Statex STEP 0: Initialisation 	
+			\begin{align*}
+			\text{Set } & P^{*} = \emptyset \text{; } I = \emptyset \text{; } k = 1\\
+			& c_j^0=c_j^1 = 0 \text{ for }j\in M\\
+			& u_i^0 = 0 \text{; } u_i^1 = \infty\text{ for all } i=1,2,\dots,n\\
+			& I=I\cup i \text{ for } i=1,2,\dots,n
+			\end{align*}
+			
+			\Statex
+			\Statex STEP 1: For each free node that was reassigned to a new median in the previous iteration, the objective function value resulting from selecting this node as a median is determined.  This objective function value is calculated by summing the cost of travel for each node in the network to either the closest median or the free node under investigation, whichever is smallest.  For the first iteration, all nodes in the network are considered part of the reassigned set.
+			\begin{equation*}
+			c_j^k = \sum_{i\in I}\min(d_{ij} \text{, } u_i^k) + c_j^{k-1} - \sum_{i\in I}\min(d_{ij} \text{, } u_i^{k-1})\quad \forall j \in M \text{, } j \notin P^*
+			\end{equation*}
+			
+			\Statex
+			\Statex STEP 2: The free node that will result in the smallest increase to the objective function value is identified, and the objective function value is updated.
+			\begin{equation*}
+			S_r = \min_{j \notin P*}(c_j^k) \quad \text{for } r \in M \text{, } r \notin P^*
+			\end{equation*}
+			
+			\Statex
+			\Statex STEP 3: Add node \emph{r} to the set of medians and then determine if the algorithm has completed the number of required iterations.
+			\begin{equation*}
+			P^* = P^* \cup r
+			\end{equation*}\\
+			
+			\If{$k = p$}
+			\Statex go to STEP 5
+			[
+			\Else
+			\Statex Set $I = \emptyset$ and go to STEP 4
+			]
+			\EndIf
+			
+					
+			\Statex
+			\Statex STEP 4: Increase the value of iteration parameter and update the cost of travelling from any node to its closet median given that node $r$ has been added to the median set.
+			\begin{align*}
+			k &= k+1\\
+			u_i^k &= \min(d_{ir} \text{, } u_i^{k-1}) \quad \text{for } i = 1,2,3 \dots,n\\
+			\end{align*}
+			
+			\If{$d_{ir}<u_i^{k-1}$}{$I=I\cup i$}
+			\Statex go to STEP 1
+			\EndIf
+			
+			\Statex
+			\Statex STEP 5: Once \emph{p} iterations are complete, set the final objective function value equal to the current iteration's objective function value and stop the algorithm.
+			\begin{center}
+				$S^{*} = S_r$\\
+				STOP
+			\end{center}
+				
+		\end{algorithmic}
+	\end{algorithm}
+	
+	\subsection{The Stingy Algorithm}
+	The stingy algorithm was suggested by Feldman \index[author]{Feldman, }XXXXXXADD REFERENCE HERE - feldman 1966XXXXXXXXXXXx
+	Instead of starting with an empty median set and recursively adding a node until all \textit{p} medians are assigned, the stingy algorithm\index[terms]{heuristics!stingy algorithm}\index[terms]{stingy algorithm}\index[terms]{constructive heuristic!stingy algorithm} begins with all nodes in the network being designated as a median.  A node is removed one at a time until only \textit{p} medians remain in the median set.
+	
+	\subsubsection{Pseudocode}
 	
 	
-	\subsubsection{The Fast Greedy Algorithm}
+	\subsection{Computational Results}
 	
 	
-	\subsubsection{The Stingy Algorithm}
+	\section{Classical Heuristics: Local Search}
+	A local search heuristic\index[terms]{heuristics!local search}\index[terms]{local search} differs from a constructive heuristic in that it starts with a feasible solution and each iteration attempts to improve this solution by some deterministic method.  This process continues until there is no better solution within reach of the current solution or some predetermined time-out is reached.
+	
+	\subsection{The Interchange Algorithm}
 	
 	
-	\subsection{Computational Results - Constructive Heuristics}
+	\subsubsection{Pseudocode}
 	
 	
-	\subsection{Local Search}
-	A local search heuristic differs from a constructive heuristic in that it starts with a feasible solution and each iteration attempts to improve this solution by some deterministic method.  This process continues until there is no better solution within reach of the current solution or some predetermined time-out is reached.
+	\subsection{The Fast Interchange Algorithm}
 	
-	\subsubsection{The Interchange Algorithm}
-	
-	
-	\subsubsection{The Fast Interchange Algorithm}
+	\subsubsection{Pseudocode}
 	
 	
-	\subsubsection{The Alternate Algorithm}
+	\subsection{The Alternate Algorithm}
+	
+	\subsubsection{Pseudocode}
 	
 	
-	\subsection{Computational Results - Local Search}
+	\subsection{Computational Results}
 	
 	
 	

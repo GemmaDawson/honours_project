@@ -19,13 +19,13 @@ for (problem in 1:40){
   #load relevant list
   #New greedy solutions are going to a different folder
   x <- read_rds(str_c(pmedfolder, problem, "Greedy1", ".rds"))
-
+  
   
   #STEP 0 - Initialisation
   q <- 0
   a <- 0
   k <- 1
- 
+  
   b <- x$vertices - x$p
   M <- as.vector(1:x$vertices, mode = "numeric")
   SRT <- vector(mode = "numeric", length=x$p)
@@ -34,7 +34,7 @@ for (problem in 1:40){
   Sstar <- x$greedyS
   Pstar <- x$greedymedians
   P <-  M[-Pstar]
-
+  
   tic()
   while(q!=b | S!=Sstar){
     
@@ -88,7 +88,7 @@ for (problem in 1:40){
   
   name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions", "TeitzBart", problem, ".rds", sep="")
   write_rds(x, path = name)
-#GO GO Problem next
+  #GO GO Problem next
 }
 
 names(Solution) <- c("problem", "p", "vertices", "edges", "optimal", "solution", "time(sec)")

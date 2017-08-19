@@ -2,6 +2,9 @@ library(tidyverse)
 library(stringr)
 library(tictoc)
 
+#Define my functions
+source("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/honours_project/ranmin.R")
+
 pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
 
 ###################################
@@ -9,69 +12,68 @@ pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding
 # Implementing Greedy with CFN - Algorithm 1 (page 97 (3))
 ###################################
 
-Sstar <- data_frame()
+# Sstar <- data_frame()
 
 for (problem in 1:40){
   #load relevant list
-  datafile <- str_c(pmedfolder, problem, ".rds")
-  x <- read_rds(datafile)
-  rm(datafile)
+  x <- read_rds(str_c(pmedfolder, problem, ".rds"))
   
-  # STEP 0
-  Pstar <- vector(mode = "numeric", length=x$p)
-  u <- vector(mode = "numeric", length=x$vertices)
-  u[1:x$vertices] <- Inf
-  c <- vector(mode = "numeric", length=x$vertices)
+  Greedy_Soultion <-  vector(mode = "numeric", length=100)
+  Greedy_Percent <- vector(mode = "numeric", length=100)
+  Greedy_Time <- vector(mode = "numeric", length=100)
+
+  for(abc in seq_along(1:100)){
+    # STEP 0
+    Pstar <- vector(mode = "numeric", length=x$p)
+    u <- vector(mode = "numeric", length=x$vertices)
+    u[1:x$vertices] <- Inf
+    c <- vector(mode = "numeric", length=x$vertices)
+    
+    tic()  
+    for (k in 1:x$p){
+      #STEP 1
+      #For each vertex that is not already a median, find the minimum of d & c to every other node
+      #
+      for (j in seq(from=1, to=x$vertices)){
+        c[j] <- sum(pmin(x$distancematrix[,j], u))
+      }
+      if(k>1){
+        #Remove the vertices that belong to Pstar
+        c[Pstar]<-NA
+      }
+      
+      #STEP 2
+      #Find the smallest value in c
+      #R's which.min will return smallest index in the case of ties
+      #So slight tweak to randomly select a vertex in the case of tie for min(c)
+      r <- ranmin(y=c)
+      
+      #Add cost to S
+      #CHECK IF WORKING BEFORE RUNNING    
+      S <- c[r]
+      
+      #Step 3
+      #Add vertex to Pstar
+      Pstar[k] <- r
+      
+      #Step 4
+      #Update u
+      u <- pmin(x$distancematrix[,r], u)
+    }
+    print(str_c("Test problem ",problem, " - rep ", abc ))
+    tt <- toc()
+    
+    Greedy_Soultion[abc] <- S
+    Greedy_Percent[abc] <- (S-x$opt)/x$opt
+    Greedy_Time[abc] <- tt$toc-tt$tic
   
-tic()  
-  for (k in 1:x$p){
-    #STEP 1
-    #For each vertex that is not already a median, find the minimum of d & c to every other node
-    #
-    for (j in seq(from=1, to=x$vertices)){
-      c[j] <- sum(pmin(x$distancematrix[,j], u))
-    }
-    if(k>1){
-      #Remove the vertices that belong to Pstar
-      c[Pstar]<-NA
-    }
-    
-    #STEP 2
-    #Find the smallest value in c
-    #R's which.min will return smallest index in the case of ties
-    #So slight tweak to randomly select a vertex in the case of tie for min(c)
-    r <- ranmin(x=c)
-    
-    #Add cost to S
-#CHECK IF WORKING BEFORE RUNNING    
-    S <- c[r]
-    
-    #Step 3
-    #Add vertex to Pstar
-    Pstar[k] <- r
-    
-    #Step 4
-    #Update u
-    u <- pmin(x$distancematrix[,r], u)
   }
-print(str_c("Test problem ",problem))
-tt <- toc()
+  
+  x$Greedy_Solution <- Greedy_Solution
+  x$Greedy_percent <- Greedy_Percent
+  x$Greedy_Time <- Greedy_Time
 
-Sstar[problem,1] <- x$problem
-Sstar[problem,2] <- x$p
-Sstar[problem,3] <- x$vertices
-Sstar[problem,4] <- x$edges
-Sstar[problem,5] <- x$opt
-Sstar[problem,6] <- S
-Sstar[problem,7] <- tt$toc-tt$tic
-
-x$greedymedians <- Pstar
-x$greedyS <- S
-name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Algorithm1_Greedy/Problem", problem, "Greedy1", ".rds", sep="")
+name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions", "Greedy", problem, ".rds", sep="")
 write_rds(x, path = name)
 
-# Sstar[problem,8] <- Pstar2
- }
-names(Sstar) <- c("problem", "p", "vertices", "edges", "optimal", "solution", "time(sec)")
-# "PMedians"
-write_rds(Sstar, path = "Algorithm1_Greedy/Greedy1.rds")
+}

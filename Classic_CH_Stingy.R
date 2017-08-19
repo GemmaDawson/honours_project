@@ -8,9 +8,10 @@ pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding
 # MLAD07 page 4 (930)
 # Stingy Algorithm
 # Start with all nodes as medians and remove one at a time
+# The median 
 ###################################
 
-Sstar <- data_frame()
+# Sstar <- data_frame()
 
 for (problem in 1:40){
   #load relevant list
@@ -19,37 +20,45 @@ for (problem in 1:40){
   # STEP 0
   # Start with every node included in the median set
   Pstar <- as.vector(1:x$vertices)
+  P <- NA
   u <- vector(mode = "numeric", length=x$vertices)
+  u[1:x$vertices] <- 0
   c <- vector(mode = "numeric", length=x$vertices)
-  
+
   tic()  
   for (k in 1:(x$vertices-x$p)){
     #STEP 1
-    #For each node that is currently in the median set, 
-    #find the sum of the max/min
-    #of the distance from given node to every other node still considered a median
-    #of the distance from given node to currently assigned median
-    #distance is either the 
-    # the max of dist to every other node & current dist
-    #
-    for (j in seq_along(Pstar[!is.na(Pstar)])){
-      c[j] <- sum(pmin(x$distancematrix[,j], u))
+    #For each node that is currently in the median set,
+    # find the total cost if this node were to be excluded from the median set
+    # ie find distance for all nodes to nearest node in set excl. this node and sum
+    # look at min between dist to current closest median and dist to closest median if node j in 
+    # Pstar is removed from Pstar
+    
+    for (j in seq_along(Pstar)){
+      PPstar <- Pstar[Pstar!=Pstar[j]]
+      c[Pstar[j]] <- sum(apply(x$distancematrix[PPstar,],2,min))
     }
 
     
     #STEP 2
     #Find the largest value in c
-    #R's which.max will return largest index in the case of ties
-    #So slight tweak to randomly select a vertex in the case of tie for min(c)
-    r <- ranmax(x=c)
+    r <- ranmin(y=c)
     
     #Step 3
-    #Remove vertex to Pstar
-    Pstar[k] <- r
+    #Update P
+    #Remove vertex from Pstar
+    P[k] <- Pstar[Pstar==r]
+    Pstar <- Pstar[Pstar!=r]
     
+      
     #Step 4
     #Update u
-    u <- pmin(x$distancematrix[,r], u)
+    u <- apply(x$distancematrix[Pstar,],2,min)
+    #Update S
+    S <- c[r]
+    #update c
+    c[r] <- NA
+    
   }
   print(str_c("Test problem ",problem))
   tt <- toc()

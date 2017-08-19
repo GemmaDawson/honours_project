@@ -67,10 +67,16 @@ for (i in 1:40){
   }
   print(i)
   tt <- toc()
+  
   x$Fast_Greedy_sol <- S
+  x$Fast_Greedy_percent <- (S-x$opt)/x$opt
   x$Fast_Greedy_time <- tt$toc-tt$tic
+  x$Fast_Greedy_medians <- Pstar
   # Sstar <- data_frame(x$problem, x$p, x$vertices, x$edges, x$opt, S, tt$toc-tt$tic)
   #^^^Check this works & then add to Greedy1
+  
+  name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions", "Fast_Greedy", problem,".rds", sep="")
+  write_rds(x, path = name)
 }
 
 names(Sstar) <- c("problem", "p", "vertices", "edges", "optimal", "solution", "sec")
