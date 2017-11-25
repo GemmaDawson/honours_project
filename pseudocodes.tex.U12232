@@ -404,13 +404,13 @@
 		\Statex 
 		\Statex STEP 1: Assign each node in the network to its closest median.
 		\begin{align*}
-		K_j=\{\text{all } i \in G \text{ such that } \min (d_{ij})\} \text{ where } j \in P^*
+		K_j=\{\text{all } i \in G \text{ such that } \min d_{ij}\} \text{ where } j \in P^*
 		\end{align*}
 		
 		\Statex 
 		\Statex STEP 2: Find the median node for each current median's set of associated nodes.
 		\begin{equation*}
-		\text{Find } k_j \in K_j \text{ where } \min \bigg[ \sum_{i\in K_j} d_{ik} \bigg] 
+		\text{Find } k_j \in K_j \text{ where } \min \Large[ \sum_{i\in K_j} d_{ik} \Large] 
 		\end{equation*}
 
 		
@@ -421,15 +421,14 @@
 		\end{equation*}
 		
 		\Statex 
-		\Statex STEP 4: The algorithm must stop if either the updated $P^*$ is identical to the new $P^*$ or there has been no improvement in th value of $S^*$ during the past five iterations.\\
-		
-		\If{$P^*(k) = P^*(k - 1)$ OR $S^{*k-4}:S^{*k} = 0$}
-		\Statex STOP
+		\Statex STEP 4: The algorithm must stop if either the updated $P^*$ is identical to the new $P^*$ or there has been no improvement in th value of $S^*$ during the past five iterations.
+		\If{$P^*(k) = P^*(k - 1)$ or }
+		\Statex go to STEP 5
 		[
-		\Else
+		\ElsIf{$z,b$}
 		\begin{align*}
-		S^{*k} &= S^*\\
-		k &= k+1
+		z&=z+1\\
+		q&=q+1
 		\end{align*}
 		\Statex go to STEP 1
 		]
