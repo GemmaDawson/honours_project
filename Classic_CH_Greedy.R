@@ -1,13 +1,15 @@
-library(tidyverse)
-library(stringr)
-library(tictoc)
+library(pacman)
+p_load(tidyverse)
+p_load(stringr)
+p_load(tictoc)
 
 #Define my functions
 # source("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/honours_project/ranmin.R")
 source("E:/Project/honours_project/ranmin.R")
 
 # pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
-pmedfolder = "E:/Project/TestProblems/pmed"
+pmedfolder <- "E:/Project/TestProblems/pmed"
+# problem <- 1
 
 ###################################
 # Using Whitaker's A Fast Algorithm For The Greedy Interchange For Large-Scale Clustering And Median Location Problems
@@ -24,7 +26,7 @@ for (problem in 1:40){
   Greedy_Percent <- vector(mode = "numeric", length=100)
   Greedy_Time <- vector(mode = "numeric", length=100)
 
-  for(abc in seq_along(1:100)){
+  for(abc in seq_along(1:50)){
     # STEP 0
     Pstar <- vector(mode = "numeric", length=x$p)
     u <- vector(mode = "numeric", length=x$vertices)
