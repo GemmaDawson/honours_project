@@ -1,0 +1,269 @@
+\documentclass[11pt]{article}
+\usepackage{parskip}
+\usepackage[margin=3.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{gensymb} %for degree symbol
+\usepackage{graphicx} %to add figures to the document
+\usepackage{subfigure} %used for side by side figures
+\usepackage{url} %used for urls
+\usepackage[nottoc, numbib]{tocbibind} %include references in toc
+\usepackage[toc,page]{appendix} %used for appendix
+\usepackage{listings} % used for R code
+\usepackage{multirow} % multirows for tables
+\usepackage{array}	% vertically centre contents in table cells
+\usepackage{imakeidx} %add index
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{pdflscape}
+\usepackage[table,xcdraw]{xcolor}
+%\usepackage[boxruled, dotocloa]{algorithm2e} %pretty pseudocode
+\lstset{language=R, basicstyle=\ttfamily} % To add R code in appendix
+\graphicspath{ {C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/02 Preliminary Report/} } %folder name where images are contained in the current directory
+\DeclareMathSymbol{,}{0}{letters}{"3B}
+\DeclareMathOperator{\argh}{argh}
+\DeclareMathOperator*{\nut}{Nut}
+\newcommand{\np}{\newpage}
+\indexsetup{level=\section}
+\makeindex[name=terms,title=Index of Terms,columns=2]
+\makeindex[name=authors,title=Index of Authors,columns=2]	%initiate the index
+\setcounter{page}{1}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Assignment 2: Preliminary Report\\ HONPR2C}
+\lhead{Gemma Dawson\\ Student Number: 50223909}
+\cfoot{\thepage}
+
+
+\begin{document}
+	
+	% Please add the following required packages to your document preamble:
+	% \usepackage[table,xcdraw]{xcolor}
+	% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+	\begin{table}[]
+		\centering
+		\caption{Local Search Heuristic Results - Fast Interchange Algorithm}
+		\label{FI.Results.table}
+		\begin{tabular}{ccccccc}
+			\hline
+			&  &  & \multicolumn{2}{c}{\textbf{GREEDY}} & \multicolumn{2}{c}{\textbf{RANDOM}} \\ \cline{4-7} 
+			\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Test} \\ \small{Problem}\end{tabular}}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Medians} \\ \small{(p)}\end{tabular}}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Network} \\ \small{(nodes)}\end{tabular}}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Sol.}\\ \small{Accuracy}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Comp.} \\ \small{Time (sec)}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Sol.}\\ \small{Accuracy}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Comp.}\\ \small{Time (sec)}\end{tabular}} \\ \hline
+			\rowcolor[HTML]{EFEFEF} 
+			01 & 5 & 100 & 1.00 & 0.11 & 1.00 & 0.16 \\
+			\rowcolor[HTML]{EFEFEF} 
+			02 & 10 & 100 & 1.00 & 0.16 & 1.00 & 0.29 \\
+			\rowcolor[HTML]{EFEFEF} 
+			03 & 10 & 100 & 1.00 & 0.19 & 0.97 & 0.28 \\
+			\rowcolor[HTML]{EFEFEF} 
+			04 & 20 & 100 & 1.00 & 0.37 & 0.99 & 0.44 \\
+			\rowcolor[HTML]{EFEFEF} 
+			05 & 33 & 100 & 1.00 & 0.45 & 0.97 & 0.61 \\
+			06 & 5 & 200 & 1.00 & 0.27 & 1.00 & 0.30 \\
+			07 & 10 & 200 & 1.00 & 0.40 & 1.00 & 0.60 \\
+			08 & 20 & 200 & 1.00 & 0.71 & 1.00 & 1.06 \\
+			09 & 40 & 200 & 0.99 & 1.52 & 0.99 & 1.81 \\
+			10 & 67 & 200 & 0.99 & 2.00 & 0.98 & 2.45 \\
+			\rowcolor[HTML]{EFEFEF} 
+			11 & 5 & 300 & 1.00 & 0.36 & 1.00 & 0.44 \\
+			\rowcolor[HTML]{EFEFEF} 
+			12 & 10 & 300 & 1.00 & 0.62 & 1.00 & 0.92 \\
+			\rowcolor[HTML]{EFEFEF} 
+			13 & 30 & 300 & 1.00 & 1.99 & 0.99 & 2.30 \\
+			\rowcolor[HTML]{EFEFEF} 
+			14 & 60 & 300 & 1.00 & 3.24 & 0.99 & 4.18 \\
+			\rowcolor[HTML]{EFEFEF} 
+			15 & 100 & 300 & 0.99 & 4.93 & 0.97 & 5.64 \\
+			16 & 5 & 400 & 1.00 & 0.58 & 1.00 & 0.58 \\
+			17 & 10 & 400 & 1.00 & 0.86 & 1.00 & 1.26 \\
+			18 & 40 & 400 & 1.00 & 3.89 & 1.00 & 4.31 \\
+			19 & 80 & 400 & 0.99 & 6.76 & 0.99 & 7.56 \\
+			20 & 133 & 400 & 0.99 & 9.44 & 0.97 & 10.31 \\
+			\rowcolor[HTML]{EFEFEF} 
+			21 & 5 & 500 & 1.00 & 0.38 & 1.00 & 0.86 \\
+			\rowcolor[HTML]{EFEFEF} 
+			22 & 10 & 500 & 0.99 & 1.37 & 0.99 & 1.72 \\
+			\rowcolor[HTML]{EFEFEF} 
+			23 & 50 & 500 & 1.00 & 6.06 & 0.99 & 6.89 \\
+			\rowcolor[HTML]{EFEFEF} 
+			24 & 100 & 500 & 1.00 & 10.66 & 0.99 & 12.19 \\
+			\rowcolor[HTML]{EFEFEF} 
+			25 & 167 & 500 & 0.99 & 15.12 & 0.98 & 16.59 \\
+			26 & 5 & 600 & 1.00 & 0.76 & 1.00 & 1.15 \\
+			27 & 10 & 600 & 1.00 & 1.68 & 1.00 & 2.05 \\
+			28 & 60 & 600 & 1.00 & 8.95 & 0.99 & 10.24 \\
+			29 & 120 & 600 & 1.00 & 15.80 & 0.99 & 17.73 \\
+			30 & 200 & 600 & 0.99 & 21.16 & 0.98 & 24.51 \\
+			\rowcolor[HTML]{EFEFEF} 
+			31 & 5 & 700 & 1.00 & 0.57 & 1.00 & 1.35 \\
+			\rowcolor[HTML]{EFEFEF} 
+			32 & 10 & 700 & 1.00 & 1.93 & 1.00 & 2.49 \\
+			\rowcolor[HTML]{EFEFEF} 
+			33 & 70 & 700 & 0.99 & 12.82 & 0.99 & 14.42 \\
+			\rowcolor[HTML]{EFEFEF} 
+			34 & 140 & 700 & 0.99 & 22.89 & 0.99 & 25.48 \\
+			35 & 5 & 800 & 1.00 & 0.78 & 1.00 & 1.50 \\
+			36 & 10 & 800 & 1.00 & 1.79 & 1.00 & 3.05 \\
+			37 & 80 & 800 & 1.00 & 17.07 & 0.99 & 19.58 \\
+			\rowcolor[HTML]{EFEFEF} 
+			38 & 5 & 900 & 0.99 & 1.43 & 0.99 & 1.79 \\
+			\rowcolor[HTML]{EFEFEF} 
+			39 & 10 & 900 & 1.00 & 1.56 & 1.00 & 3.28 \\
+			\rowcolor[HTML]{EFEFEF} 
+			40 & 90 & 900 & 1.00 & 21.83 & 0.99 & 24.73
+		\end{tabular}
+	\end{table}
+	
+	% Please add the following required packages to your document preamble:
+	% \usepackage{multirow}
+	% \usepackage[table,xcdraw]{xcolor}
+	% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+	\begin{table}[]
+		\centering
+		\caption{Local Search Heuristic Results - Teitz \& Bart Algorithm}
+		\label{TB.Results.table}
+		\begin{tabular}{ccccccc}
+			\hline
+			&  &  & \multicolumn{2}{c}{\textbf{GREEDY}} & \multicolumn{2}{c}{\textbf{RANDOM}} \\ \cline{4-7} 
+			\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Test} \\ \small{Problem}\end{tabular}}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Medians} \\ \small{(p)}\end{tabular}}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Network} \\ \small{(nodes)}\end{tabular}}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Sol.}\\ \small{Accuracy}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Comp.} \\ \small{Time (sec)}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Sol.}\\ \small{Accuracy}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Comp.}\\ \small{Time (sec)}\end{tabular}} \\ \hline
+			\rowcolor[HTML]{EFEFEF} 
+			01 & 5 & 100 & 1.00 & 0.07 & 1.00 & 0.08 \\
+			\rowcolor[HTML]{EFEFEF} 
+			02 & 10 & 100 & 1.00 & 0.07 & 1.00 & 0.15 \\
+			\rowcolor[HTML]{EFEFEF} 
+			03 & 10 & 100 & 1.00 & 0.16 & 1.00 & 0.19 \\
+			\rowcolor[HTML]{EFEFEF} 
+			04 & 20 & 100 & 1.00 & 0.12 & 1.00 & 0.22 \\
+			\rowcolor[HTML]{EFEFEF} 
+			05 & 33 & 100 & 1.00 & 0.17 & 0.99 & 0.32 \\
+			06 & 5 & 200 & 1.00 & 0.15 & 1.00 & 0.16 \\
+			07 & 10 & 200 & 1.00 & 0.18 & 1.00 & 0.25 \\
+			08 & 20 & 200 & 1.00 & 0.29 & 1.00 & 0.59 \\
+			09 & 40 & 200 & 0.99 & 0.79 & 0.99 & 0.94 \\
+			10 & 67 & 200 & 0.99 & 0.71 & 0.99 & 1.39 \\
+			\rowcolor[HTML]{EFEFEF} 
+			11 & 5 & 300 & 1.00 & 0.16 & 1.00 & 0.24 \\
+			\rowcolor[HTML]{EFEFEF} 
+			12 & 10 & 300 & 1.00 & 0.30 & 1.00 & 0.41 \\
+			\rowcolor[HTML]{EFEFEF} 
+			13 & 30 & 300 & 1.00 & 0.81 & 1.00 & 1.44 \\
+			\rowcolor[HTML]{EFEFEF} 
+			14 & 60 & 300 & 1.00 & 1.41 & 1.00 & 2.89 \\
+			\rowcolor[HTML]{EFEFEF} 
+			15 & 100 & 300 & 0.99 & 2.30 & 0.99 & 4.22 \\
+			16 & 5 & 400 & 1.00 & 0.39 & 1.00 & 0.35 \\
+			17 & 10 & 400 & 1.00 & 0.49 & 1.00 & 0.70 \\
+			18 & 40 & 400 & 1.00 & 2.33 & 1.00 & 2.84 \\
+			19 & 80 & 400 & 0.99 & 4.26 & 0.99 & 4.97 \\
+			20 & 133 & 400 & 1.00 & 5.78 & 0.99 & 7.67 \\
+			\rowcolor[HTML]{EFEFEF} 
+			21 & 5 & 500 & 1.00 & 0.16 & 1.00 & 0.42 \\
+			\rowcolor[HTML]{EFEFEF} 
+			22 & 10 & 500 & 0.99 & 0.63 & 0.99 & 1.54 \\
+			\rowcolor[HTML]{EFEFEF} 
+			23 & 50 & 500 & 1.00 & 4.56 & 1.00 & 8.92 \\
+			\rowcolor[HTML]{EFEFEF} 
+			24 & 100 & 500 & 1.00 & 7.07 & 0.99 & 10.98 \\
+			\rowcolor[HTML]{EFEFEF} 
+			25 & 167 & 500 & 0.99 & 15.23 & 0.99 & 14.53 \\
+			26 & 5 & 600 & 1.00 & 0.51 & 1.00 & 0.68 \\
+			27 & 10 & 600 & 1.00 & 1.38 & 1.00 & 1.58 \\
+			28 & 60 & 600 & 1.00 & 6.32 & 1.00 & 14.04 \\
+			29 & 120 & 600 & 1.00 & 15.45 & 0.99 & 15.97 \\
+			30 & 200 & 600 & 0.99 & 15.47 & 0.99 & 20.10 \\
+			\rowcolor[HTML]{EFEFEF} 
+			31 & 5 & 700 & 1.00 & 0.28 & 1.00 & 0.79 \\
+			\rowcolor[HTML]{EFEFEF} 
+			32 & 10 & 700 & 1.00 & 1.09 & 1.00 & 2.02 \\
+			\rowcolor[HTML]{EFEFEF} 
+			33 & 70 & 700 & 0.99 & 9.91 & 1.00 & 15.23 \\
+			\rowcolor[HTML]{EFEFEF} 
+			34 & 140 & 700 & 1.00 & 21.84 & 1.00 & 20.61 \\
+			35 & 5 & 800 & 1.00 & 0.75 & 1.00 & 1.42 \\
+			36 & 10 & 800 & 1.00 & 1.49 & 1.00 & 1.91 \\
+			37 & 80 & 800 & 1.00 & 18.56 & 1.00 & 21.28 \\
+			\rowcolor[HTML]{EFEFEF} 
+			38 & 5 & 900 & 1.00 & 1.34 & 1.00 & 1.99 \\
+			\rowcolor[HTML]{EFEFEF} 
+			39 & 10 & 900 & 1.00 & 1.59 & 1.00 & 2.11 \\
+			\rowcolor[HTML]{EFEFEF} 
+			40 & 90 & 900 & 1.00 & 24.19 & 0.99 & 27.81
+		\end{tabular}
+	\end{table}
+	
+	\begin{table}[]
+		\centering
+		\caption{Constructive Heuristic Results}
+		\label{CH.Results.table}
+		\begin{tabular}{ccccccc}
+			\hline
+			&  &  & \multicolumn{2}{c}{\textbf{GREEDY}} & \multicolumn{2}{c}{\textbf{FAST GREEDY}} \\ \cline{4-7} 
+			\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Test} \\ \small{Problem}\end{tabular}}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Medians} \\ \small{(p)}\end{tabular}}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Network} \\ \small{(nodes)}\end{tabular}}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Sol.}\\ \small{Accuracy}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Comp.} \\ \small{Time (sec)}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Sol.}\\ \small{Accuracy}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Comp.}\\ \small{Time (sec)}\end{tabular}} \\ \hline
+			\rowcolor[HTML]{EFEFEF} 
+			01 & 5 & 100 & 0.99 & 0.01 & 0.83 & 0.26 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			02 & 10 & 100 & 0.99 & 0.02 & 0.60 & 0.29 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			03 & 10 & 100 & 0.97 & 0.02 & 0.61 & 0.32 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			04 & 20 & 100 & 0.98 & 0.03 & 0.36 & 0.32 \\
+			\rowcolor[HTML]{EFEFEF} 
+			05 & 33 & 100 & 0.98 & 0.05 & 0.21 & 0.36 \\
+			06 & 5 & 200 & 0.97 & 0.02 & 0.91 & 0.47 \\ 
+			07 & 10 & 200 & 1.00 & 0.05 & 0.71 & 0.44 \\
+			08 & 20 & 200 & 0.99 & 0.08 & 0.48 & 0.52 \\
+			09 & 40 & 200 & 0.96 & 0.14 & 0.31 & 0.63 \\
+			10 & 67 & 200 & 0.97 & 0.18 & 0.18 & 0.70 \\
+			\rowcolor[HTML]{EFEFEF} 
+			11 & 5 & 300 & 1.00 & 0.03 & 0.90 & 0.61 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			12 & 10 & 300 & 1.00 & 0.06 & 0.73 & 0.69 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			13 & 30 & 300 & 0.98 & 0.16 & 0.48 & 0.75 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			14 & 60 & 300 & 0.99 & 0.25 & 0.28 & 1.00 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			15 & 100 & 300 & 0.98 & 0.42 & 0.19 & 1.13 \\
+			16 & 5 & 400 & 0.99 & 0.03 & 0.94 & 0.82 \\ 
+			17 & 10 & 400 & 1.00 & 0.07 & 0.73 & 0.84 \\ 
+			18 & 40 & 400 & 0.99 & 0.25 & 0.45 & 1.13 \\ 
+			19 & 80 & 400 & 0.98 & 0.50 & 0.28 & 1.41 \\ 
+			20 & 133 & 400 & 0.96 & 0.84 & 0.15 & 1.62 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			21 & 5 & 500 & 1.00 & 0.05 & 0.93 & 1.02 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			22 & 10 & 500 & 0.99 & 0.09 & 0.80 & 1.13 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			23 & 50 & 500 & 0.98 & 0.44 & 0.41 & 1.52 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			24 & 100 & 500 & 0.98 & 0.85 & 0.26 & 1.80 \\
+			\rowcolor[HTML]{EFEFEF} 
+			25 & 167 & 500 & 0.96 & 1.39 & 0.17 & 1.87 \\
+			26 & 5 & 600 & 0.98 & 0.06 & 0.95 & 1.24 \\ 
+			27 & 10 & 600 & 0.99 & 0.12 & 0.81 & 1.31 \\ 
+			28 & 60 & 600 & 0.98 & 0.69 & 0.43 & 1.73 \\ 
+			29 & 120 & 600 & 0.98 & 1.35 & 0.26 & 2.31 \\ 
+			30 & 200 & 600 & 0.97 & 2.22 & 0.16 & 2.55 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			31 & 5 & 700 & 1.00 & 0.08 & 0.93 & 1.43 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			32 & 10 & 700 & 1.00 & 0.15 & 0.78 & 1.55 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			33 & 70 & 700 & 0.98 & 0.94 & 0.37 & 2.15 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			34 & 140 & 700 & 0.97 & 1.87 & 0.25 & 2.84 \\
+			35 & 5 & 800 & 1.00 & 0.10 & 0.96 & 1.68 \\ 
+			36 & 10 & 800 & 1.00 & 0.18 & 0.79 & 1.79 \\ 
+			37 & 80 & 800 & 0.99 & 1.33 & 0.37 & 2.78 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			38 & 5 & 900 & 0.99 & 0.12 & 0.94 & 1.79 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			39 & 10 & 900 & 1.00 & 0.22 & 0.81 & 1.95 \\ 
+			\rowcolor[HTML]{EFEFEF} 
+			40 & 90 & 900 & 0.99 & 1.88 & 0.37 & 3.10 \\ 
+		\end{tabular}
+	\end{table}
+
+
+\end{document}

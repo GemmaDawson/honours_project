@@ -85,4 +85,18 @@ R.~Whitaker, ``A fast algorithm for the greedy interchange for large-scale
   clustering and median location problems,'' \emph{INFOR: Information Systems
   and Operational Research}, vol.~21, no.~2, pp. 95--108, 1983.
 
+\bibitem{FELD66}
+E.~Feldman, F.~Lehrer, and T.~Ray, ``Warehouse location under continuous
+  economies of scale,'' \emph{Management Science}, vol.~12, no.~9, pp.
+  670--684, 1966.
+
+\bibitem{TEIT68}
+M.~B. Teitz and P.~Bart, ``Heuristic methods for estimating the generalized
+  vertex median of a weighted graph,'' \emph{Operations Research}, vol.~16,
+  no.~5, pp. 955--961, 1968.
+
+\bibitem{MARA64}
+F.~Maranzana, ``On the location of supply points to minimize transport costs,''
+  \emph{OR}, pp. 261--270, 1964.
+
 \end{thebibliography}

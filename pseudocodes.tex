@@ -1,0 +1,425 @@
+\documentclass[11pt]{article}
+\usepackage{parskip}
+\usepackage[margin=3.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{gensymb} %for degree symbol
+\usepackage{graphicx} %to add figures to the document
+\usepackage{subfigure} %used for side by side figures
+\usepackage{url} %used for urls
+\usepackage[nottoc]{tocbibind} %include references in toc
+\usepackage[toc,page]{appendix} %used for appendix
+\usepackage{listings} % used for R code
+\usepackage{multirow} % multirows for tables
+\usepackage{array}	% vertically centre contents in table cells
+\usepackage{imakeidx} %add index
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%\usepackage[boxruled, dotocloa]{algorithm2e} %pretty pseudocode
+\lstset{language=R, basicstyle=\ttfamily} % To add R code in appendix
+\graphicspath{ {C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/02 Preliminary Report/} } %folder name where images are contained in the current directory
+\DeclareMathSymbol{,}{0}{letters}{"3B}
+\DeclareMathOperator{\argh}{argh}
+\DeclareMathOperator*{\nut}{Nut}
+\newcommand{\np}{\newpage}
+\setcounter{secnumdepth}{-2} % to remove section numbering
+
+\indexsetup{level=\section}
+\makeindex[name=terms,title=Index of Terms,columns=2]
+\makeindex[name=authors,title=Index of Authors,columns=2]	%initiate the index
+\setcounter{page}{1}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Assignment 2: Preliminary Report\\ HONPR2C}
+\lhead{Gemma Dawson\\ Student Number: 50223909}
+\cfoot{\thepage}
+
+
+\begin{document}
+
+
+\index[terms]{greedy algorithm! pseudocode} 	
+	\begin{algorithm}
+	\caption{Greedy Algorithm}
+	\begin{algorithmic}[0]
+		
+		\Statex
+		\Statex STEP 0: Initialisation	
+		\begin{equation*}
+			\text{Set } P^{*} = \emptyset \text{; } k = 1\text{; and }u_i^1 = \infty\text{ for all } i=1,2,\dots,n
+		\end{equation*}
+
+		\Statex 
+		\Statex STEP 1: For each free node, the objective function value resulting from selecting this node as a median is determined.  This objective function value is calculated by summing the cost of travel for each node in the network to either the closest median or the free node under investigation, whichever is smallest.
+		\begin{equation*}
+			c_j^k = \sum_{i=1}^{n}\min(d_{ij} \text{, } u_i^k) \quad \forall j \in M \text{, } j \notin P^*
+		\end{equation*}
+
+		\Statex 
+		\Statex STEP 2: The free node that will result in the smallest increase to the objective function value is identified, and the objective function value is updated.
+		\begin{equation*}
+			S_r = \min_{j \notin P*}(c_j^k) \quad \text{for } r \in M \text{, } r \notin P^*
+		\end{equation*}
+		
+		\Statex 
+		\Statex STEP 3: Add node \emph{r} to the set of medians and then determine if the algorithm has completed the number of required iterations.
+		\begin{equation*}
+		P^* = P^* \cup r
+		\end{equation*}
+		
+		\If{$k = p$}
+			\Statex go to STEP 5
+		[
+		\Else
+			\Statex go to STEP 4
+		]
+		\EndIf
+		
+		\Statex 
+		\Statex STEP 4: Increase the value of iteration parameter and update the cost of travelling from any node to its closet median given that node $r$ has been added to the median set.
+		\begin{align*}
+		k &= k+1\\
+		u_i^k &= \min(d_{ir} \text{, } u_i^{k-1}) \quad \text{for } i = 1,2,3 \dots,n
+		\end{align*}
+		\Statex Go to STEP 1
+		
+		\Statex 
+		\Statex STEP 5: Once \emph{p} iterations are complete, set the final objective function value equal to the current iteration's objective function value and stop the algorithm.
+		\begin{center}
+		$S^{*} = S_r$\\
+		STOP
+		\end{center}
+		
+		
+	\end{algorithmic}
+	\end{algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\index[terms]{fast greedy algorithm! pseudocode} 	
+\begin{algorithm}
+	\caption{Fast Greedy Algorithm}
+	\begin{algorithmic}[0]
+		
+		\Statex
+		\Statex STEP 0: Initialisation 	
+		\begin{align*}
+			\text{Set } & P^{*} = \emptyset \text{; } I = \emptyset \text{; } k = 1\\
+			& c_j^0=c_j^1 = 0 \text{ for }j\in M\\
+			& u_i^0 = 0 \text{; } u_i^1 = \infty\text{ for all } i=1,2,\dots,n\\
+			& I=I\cup i \text{ for } i=1,2,\dots,n
+		\end{align*}
+		
+		\Statex
+		\Statex STEP 1: For each free node that was reassigned to a new median in the previous iteration, the objective function value resulting from selecting this node as a median is determined.  This objective function value is calculated by summing the cost of travel for each node in the network to either the closest median or the free node under investigation, whichever is smallest.  For the first iteration, all nodes in the network are considered part of the reassigned set.
+		\begin{equation*}
+			c_j^k = \sum_{i\in I}\min(d_{ij} \text{, } u_i^k) + c_j^{k-1} - \sum_{i\in I}\min(d_{ij} \text{, } u_i^{k-1})\quad \forall j \in M \text{, } j \notin P^*
+		\end{equation*}
+		
+		\Statex
+		\Statex STEP 2: The free node that will result in the smallest increase to the objective function value is identified, and the objective function value is updated.
+		\begin{equation*}
+			S_r = \min_{j \notin P*}(c_j^k) \quad \text{for } r \in M \text{, } r \notin P^*
+		\end{equation*}
+		
+		\Statex
+		\Statex STEP 3: Add node \emph{r} to the set of medians and then determine if the algorithm has completed the number of required iterations.
+		\begin{equation*}
+			P^* = P^* \cup r
+		\end{equation*}
+		
+		\If{$k = p$}
+		\Statex go to STEP 5
+		[
+		\Else
+		\Statex Set $I = \emptyset$ and go to STEP 4
+		]
+		\EndIf
+		
+		
+		\Statex
+		\Statex STEP 4: Increase the value of iteration parameter and update the cost of travelling from any node to its closet median given that node $r$ has been added to the median set.
+		\begin{align*}
+			k &= k+1\\
+			u_i^k &= \min(d_{ir} \text{, } u_i^{k-1}) \quad \text{for } i = 1,2,3 \dots,n\\
+		\end{align*}
+		
+		\If{$d_{ir}<u_i^{k-1}$}{$I=I\cup i$}
+		\Statex go to STEP 1
+		\EndIf
+		
+		\Statex
+		\Statex STEP 5: Once \emph{p} iterations are complete, set the final objective function value equal to the current iteration's objective function value and stop the algorithm.
+		\begin{center}
+			$S^{*} = S_r$\\
+			STOP
+		\end{center}
+		
+	\end{algorithmic}
+\end{algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{algorithm}
+	\caption{Stingy Algorithm}
+	\begin{algorithmic}[0] %0= no line numbers, 1 = line numbers
+		\Statex 
+		\Statex STEP 0: Initialisation 	
+		\begin{equation*}
+			\text{Set } P^*=M \text{; } P=\emptyset \text{ and } u_i=0 \text{ for all } i=1,2,\dots,n
+		\end{equation*}
+		
+		\Statex 
+		\Statex STEP 1: For each node that belong to the median set, find the value of the objective function if this node were to be removed from the median set.
+		\begin{equation*}
+		c_j^* = \sum_{i=1}^{n} \min_{j\in P^*, j\neq i} d_{ij}
+		\end{equation*}
+		
+		\Statex 
+		\Statex STEP 2: Identify which node results in the smallest increase in the objective function.
+		\Statex Find node $r$ such that 
+		\begin{equation*}
+		S_r = \min_{j \in P*}(c_j^k) \quad \text{for } r \in P^* \text{, } r \notin P
+		\end{equation*}
+		
+		
+		\Statex 
+		\Statex STEP 3: Remove this node from the set of medians.
+		\begin{align*}
+		P^* &= P^* \backslash {r}\\
+		P &= P \in {r}
+		\end{align*}
+		
+		\Statex 
+		\Statex STEP 4: Update the iteration parameter.
+		\begin{equation*}
+		k = k+1
+		\end{equation*}
+		
+		
+		\Statex 
+		\Statex STEP 5: Once \emph{p} iterations are complete, set the final objective function value equal to the current iteration's objective function value and stop the algorithm.
+		\begin{center}
+			$S^{*} = S_r$\\
+			STOP
+		\end{center}
+		
+		
+	\end{algorithmic}
+\end{algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+\index[terms]{interchange algorithm of Teitz and Bart! pseudocode} 	
+\begin{algorithm}
+	\caption{Interchange Algorithm of Teitz and Bart}
+	\begin{algorithmic}[0]
+		\Statex 
+		\Statex INPUT: Cost Matrix, $P^*$, a set of medians, and $S^*$, objective function value that corresponds with $P^*$
+		
+		\Statex 
+		\Statex STEP 0: Initialisation 	
+		\begin{equation*}
+			\text{Set } q=a=0 \text{; } k=1 \text{; } b=m-p \text{; } S=S^* \text{ and } P = M - P
+		\end{equation*}
+		
+		\Statex 
+		\Statex STEP 1: For all nodes, find the closest and second closest nodes that belong to the median set.
+		\begin{align*}
+			u_i^k &= d_{ix} = \min_{j\in P^*}\\
+			w_i^k &= d_{iy} = \min_{j\in P^*, j\neq x}
+		\end{align*} 
+		
+		\Statex 
+		\Statex STEP 2: The value of $q$ is updated until it is equal to the number of nodes in the network minus the number of nodes required for the median.
+		\If{$q = b$}
+		\Statex go to STEP 5
+		[
+		\Else
+		\Statex Set $q=q+1$ and go to STEP 3
+		]
+		\EndIf
+		
+		\Statex 
+		\Statex STEP 3: Determine which node currently in the median set, $P^*$, should possibly be interchanged with the $q^{\text{th}}$ node in the set of free nodes.  The change in the objective function value if this interchange were to proceed is calculated.
+		\begin{align*}
+			r &= P_q\\
+			S_{rt} & = \min_{j\in P^*}\big[\sum_{i\in I}[\min(d_{ir},u_i^k)-u_i^k] + \sum_{i\in J}\in I[\min(d_{ir},w_i^k)-u_i^k] \big]
+		\end{align*}
+		\begin{align*}
+			\text{where } I & = \{\text{all } i \in G: d_{ij} > u_i^k\}\\
+			\text{and } J & = \{\text{all } i \in G: d_{ij} = u_i^k\}
+		\end{align*}
+		
+		\Statex 
+		\Statex STEP 4: If the proposed node switch from STEP 3 results in a decrease of the objective function value, then proceed with the interchange and update the objective function value as well as the  iteration parameter.  If the interchange would result in an increase in the objective function value, then go back to STEP 2 and update q.
+		\If{$S_{rt} \geq 0$}
+		\Statex go to STEP 2
+		[
+		\ElsIf{$S_{rt} < 0$}
+		\begin{align*}
+			k &= k+1\\
+			S^* &= S* + S_{rt}\\
+			P_q &= t
+			P^* & = P^*\backslash {t} \cup {r}		
+		\end{align*}
+		\Statex go to STEP 1				
+		]
+		\EndIf
+		
+		\Statex 
+		\Statex STEP 5: If, after all nodes in the free node set have been investigated (i.e. $q=b$), increase the value of $a$ by one and then assess whether the objective function improved in the prior iteration.  If there was an improvement, then repeat the algorithm again but if there was no improvement stop.
+		\begin{equation*}
+			a = a+1
+		\end{equation*}
+		\If{$S > S^*$}
+		\Statex Set $q=0$ and go to STEP 2
+		[
+		\ElsIf{$S \leq S^*$}
+		\Statex Set $S=S^*$ and STOP
+		]
+		\EndIf
+		
+		
+	\end{algorithmic}
+\end{algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\index[terms]{fast interchange! pseudocode} 	
+\begin{algorithm}
+	\caption{Fast Interchange Algorithm}
+	\begin{algorithmic}[0]
+		\Statex 
+		\Statex INPUT: Cost Matrix, $P^*$, a set of medians, and $S^*$, objective function value that corresponds with $P^*$
+		
+		\Statex 
+		\Statex STEP 0: Initialisation
+		\begin{equation*}
+		\text{Set } k = z = q = 1 \text{ and } b=m-p
+		\end{equation*}
+		\begin{equation*}
+		\text{Define } P=M-P^*
+		\end{equation*}
+		\Statex For each node in the network, determine the distance to both the closest node in the median set as well as the second closest node in the median set.
+		\Statex For $i=1,2,\dots,n ,$ find \emph{x} and \emph{y} where \emph{x}, $y \in P^*$ such that
+		\begin{align*}
+		u_i^1 & = d_{ix} = \min_{j\in P^*}d_{ij}\\
+		w_i^1 & = d_{iy} = \min_{j\in P^*, j\neq x}d_{ij}
+		\end{align*}
+		
+		\Statex
+		\Statex STEP 1: Calculate the change in the objective function if one node from the median set where to be interchanged with a free node.
+		\Statex Set $r=P_q$ and find some node \emph{t}, $t \in P^*$ such that
+		\begin{align*}
+		S_{rt} &= \big[\sum_{i \in I}d_{ir}-u_i^k\big] + \min_{j\in P^*}\big[\sum_{i \in K_j}[\min(d_{ir}, w_i^k)-u_i^k]\big]\\
+		\text{where } I &= \{\text{all } i \in G: d_{ir}<u_i^k\}\\
+		\text{and } K_j &= \{\text{all } i \in G: d_{ir}\geq u_i^k\text{ and } d_{ij} - u_i^k\}
+		\end{align*}
+		
+		\Statex
+		\Statex STEP 2: If the objective function value where to increase by the proposed interchange of nodes, then go to STEP 4.  If the proposed change of nodes results in a decrease of the objective function value, then make the change, update iterative parameters and the objective function and go to STEP 3.
+		\If{$S_{rt} \geq 0$}
+		\Statex go to STEP 4
+		[
+		\ElsIf{$S_{rt} < 0$}
+		\begin{align*}
+		k &= k+1\\
+		S^* &= S* + S_{rt}\\
+		P_q &= t
+		P^* & = P^*\backslash {t} \cup {r}		
+		\end{align*}
+		\Statex go to STEP 3				
+		]
+		\EndIf
+		
+		\Statex
+		\Statex STEP 3: Update the cost of travel for each node in the network to the closest and second closest medians.
+		\If{$d_{it} > u_i^{k-1}$}
+		\begin{align*}
+		u_i^k & = \min(d_{ir},u_k^{k-1})
+		\end{align*}
+		\Statex let $s \in P^*$ be a median for node $i$ such that $d_{is} = u_i^k$
+		\begin{align*}
+		\text{set } w_i^k & = u_i^{k-1} \text{ if } d_{ir} \leq u_i^{k-1}\\
+		\text{or set } w_i^k & = \min(d_{ir},w_i^{k-1}) \text{ if } d_{ir} > u_i^{k-1} \text{ and } d_{it} > w_i^{k-1}\\
+		\text{or set } w_i^k & = \min_{j\in P^*,j\neq s}d_{ij} \text{ if } d_{ir} > u_i^{k-1} \text{ and } d_{it} = w_i^{k-1}
+		\end{align*}
+		[
+		\ElsIf{$d_{it}=u_i^{k-1}$}
+		\begin{align*}
+		u_i^k & = \min(d_{ir},w_k^{k-1})
+		\end{align*}
+		\Statex let $s \in P^*$ be a median for node $i$ such that $d_{is} = u_i^k$
+		\begin{align*}
+		\text{set } w_i^k & = w_i^{k-1} \text{ if } d_{ir} \leq w_i^{k-1}\\
+		\text{or set } w_i^k & = \min_{j\in P^*,j\neq s}d_{ij} \text{ if }d_{ir} > w_i^{k-1}
+		\end{align*}
+		]
+		\EndIf
+		
+		
+		\Statex
+		\Statex STEP 4: Once the algorithm has assessed all free nodes, go to STEP 5. Otherwise, increase the iterative parameters and go back to STEP 1.
+		\If{$z=b$}
+		\Statex go to STEP 5
+		[
+		\ElsIf{$z,b$}
+		\begin{align*}
+		z&=z+1\\
+		q&=q+1
+		\end{align*}
+		\Statex go to STEP 1
+		]
+		\EndIf
+		
+		
+		\Statex
+		\Statex STEP 5: If the algorithm finds that the current median set cannot be improved upon, then find the percent of free nodes that were assessed for a possible exchange from the free node set to the median set.
+		\begin{center}
+			$a=\frac{q}{b}$
+			STOP
+		\end{center}
+	
+	\end{algorithmic}
+\end{algorithm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+\index[terms]{alternate! pseudocode} 	
+\begin{algorithm}
+	\caption{Alternate Algorithm}
+	\begin{algorithmic}[0]
+		\Statex 
+		\Statex INPUT: Cost Matrix
+		
+		\Statex 
+		\Statex STEP 0: Initialisation
+		\Statex Randomly assign $p$ nodes to $P^*$ and set $P = M \backslash P^*$
+		
+		\Statex 
+		\Statex STEP 1: Assign each node in the network to its closest median.
+		\begin{align*}
+		K_j=\{\text{all } i \in G \text{ such that } \min d_{ij}\} \text{ where } j \in P^*
+		\end{align*}
+		
+		\Statex 
+		\Statex STEP 2: Find the median node for each current median's set of associated nodes.
+		\begin{equation*}
+		\text{Find } k_j \in K_j \text{ where } \min \Large[ \sum_{i\in K_j} d_{ik} \arge] 
+		\end{equation*}
+
+		
+		\Statex 
+		\Statex STEP 3: Update $P^*$ with the new set of medians.
+		\begin{equation*}
+		P^{*} = \{\text{all } k_j  \} \text{ for } j \in P^*
+		\end{equation*}
+		
+		
+	\end{algorithmic}
+\end{algorithm}
+		
+		
+\end{document}
