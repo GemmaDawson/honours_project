@@ -167,7 +167,7 @@
 	A constructive heuristic\index[terms]{constructive heuristic}\index[terms]{heuristic!constructive} is a technique that starts with an empty solution and each iteration extends this solution until a complete solution has been found.  Within the context of the unconstrained \emph{p}-median problem, for each iteration of the algorithm, a median is identified by some deterministic method and added to the current solution.  This process continues until the median set contains \emph{p} elements.
 	
 	\subsection{The Greedy Algorithm}\label{greedyalgo}
-	The greedy algorithm,\index[terms]{greedy algorithm}\index[terms]{heuristic!greedy algorithm} as described by Whitaker \cite{WHIT83}, \index[author]{Whitaker, R.} is a simple recursive algorithm that starts with an empty median set and, with each iteration of the algorithm, adds a node to the median set.  The node that that is added to the median set is the one that decreases the objective function value the most when compared to the other non-median nodes.
+	The greedy algorithm,\index[terms]{greedy algorithm}\index[terms]{heuristic!greedy algorithm} as described by Whitaker \cite{WHIT83}, \index[author]{Whitaker, R.} is a simple recursive algorithm that starts with an empty median set and, with each iteration of the algorithm, adds a node to the median set.  The node that is added to the median set is the one that decreases the objective function value the most when compared to the other non-median nodes.
 	
 	\subsubsection{Pseudocode}
 	\index[terms]{greedy algorithm! pseudocode} 	
@@ -937,7 +937,7 @@
 		\caption{Alternate Algorithm}
 		\begin{algorithmic}[0]
 			\Statex 
-			\Statex INPUT: Cost Matrix
+			\Statex INPUT: Cost Matrix; $P^*$; $S^*$
 			
 			\Statex 
 			\Statex STEP 0: Initialisation
