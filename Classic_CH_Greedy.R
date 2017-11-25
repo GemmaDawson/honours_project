@@ -3,9 +3,11 @@ library(stringr)
 library(tictoc)
 
 #Define my functions
-source("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/honours_project/ranmin.R")
+# source("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/honours_project/ranmin.R")
+source("E:/Project/honours_project/ranmin.R")
 
-pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
+# pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
+pmedfolder = "E:/Project/TestProblems/pmed"
 
 ###################################
 # Using Whitaker's A Fast Algorithm For The Greedy Interchange For Large-Scale Clustering And Median Location Problems
@@ -18,7 +20,7 @@ for (problem in 1:40){
   #load relevant list
   x <- read_rds(str_c(pmedfolder, problem, ".rds"))
   
-  Greedy_Soultion <-  vector(mode = "numeric", length=100)
+  Greedy_Solution <-  vector(mode = "numeric", length=100)
   Greedy_Percent <- vector(mode = "numeric", length=100)
   Greedy_Time <- vector(mode = "numeric", length=100)
 
@@ -63,17 +65,24 @@ for (problem in 1:40){
     print(str_c("Test problem ",problem, " - rep ", abc ))
     tt <- toc()
     
-    Greedy_Soultion[abc] <- S
+    Greedy_Solution[abc] <- S
     Greedy_Percent[abc] <- (S-x$opt)/x$opt
     Greedy_Time[abc] <- tt$toc-tt$tic
   
   }
   
-  x$Greedy_Solution <- Greedy_Solution
-  x$Greedy_percent <- Greedy_Percent
-  x$Greedy_Time <- Greedy_Time
+  sol = list(problem = x$problem, 
+           p = x$p, 
+           vertices = x$vertices, 
+           edges = x$edges,
+           opt = x$opt,
+           Greedy_Soultions = Greedy_Solution,
+           Greedy_Percents <- Greedy_Percent,
+           Greedy_Times <- Greedy_Time)
 
-name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions", "Greedy", problem, ".rds", sep="")
-write_rds(x, path = name)
+
+# name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions", "Greedy", problem, ".rds", sep="")
+name=str_c("E:/Project/Greedy Solutions/Greedy", problem, ".rds", sep="")
+write_rds(sol, path = name)
 
 }
