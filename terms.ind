@@ -1,0 +1,87 @@
+\begin{theindex}
+
+  \item algorithm, 1, 2
+
+  \indexspace
+
+  \item Beasley's test problem dataset, 2, 3
+
+  \indexspace
+
+  \item constructive heuristic, 4
+    \subitem fast greedy algorithm, 5
+    \subitem stingy algorithm, 5
+
+  \indexspace
+
+  \item fast greedy algorithm, 5
+    \subitem  pseudocode, 5
+
+  \indexspace
+
+  \item greedy algorithm, 2, 4
+    \subitem  pseudocode, 5
+  \item greedy interchange algorithm, 3
+
+  \indexspace
+
+  \item heuristic, 1--3
+    \subitem classical heuristic, 3
+    \subitem constructive, 2, 4
+    \subitem fast greedy algorithm, 5
+    \subitem greedy algorithm, 2, 4
+    \subitem local search, 2
+    \subitem metaheuristic, 3
+  \item heuristic concentration, 3
+  \item heuristics
+    \subitem local search, 5
+    \subitem stingy algorithm, 5
+
+  \indexspace
+
+  \item integer programme, 2
+  \item integer programming, 3
+
+  \indexspace
+
+  \item linear programme
+    \subitem branch-and-bound, 2
+  \item linear programming, 2
+  \item local search, 2, 5
+
+  \indexspace
+
+  \item mathematical programming, 3
+  \item metaheuristic, 1
+    \subitem simulated annealing, 3
+    \subitem tabu search, 3
+    \subitem variable neighbourhood search, 3
+  \item metaheuristics, 2
+
+  \indexspace
+
+  \item NP-hard, 2
+
+  \indexspace
+
+  \item p-median, 3
+  \item p-median problem, 1
+
+  \indexspace
+
+  \item R (programming language), 2
+
+  \indexspace
+
+  \item simulated annealing, 3
+  \item stingy algorithm, 5
+
+  \indexspace
+
+  \item tabu search, 3
+
+  \indexspace
+
+  \item variable neighbourhood search, 3
+
+\end{theindex}

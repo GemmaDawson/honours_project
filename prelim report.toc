@@ -1,0 +1,27 @@
+\contentsline {section}{Introduction}{1}
+\contentsline {section}{Description of the Problem}{1}
+\contentsline {section}{Methodology}{2}
+\contentsline {section}{Literature Study}{2}
+\contentsline {section}{Classical Heuristics and Metaheuristics}{3}
+\contentsline {subsection}{Overview}{3}
+\contentsline {subsection}{Pseudocode Notation}{4}
+\contentsline {section}{Classical Heuristics: Constructive}{4}
+\contentsline {subsection}{The Greedy Algorithm}{4}
+\contentsline {subsubsection}{Pseudocode}{5}
+\contentsline {subsection}{The Fast Greedy Algorithm}{5}
+\contentsline {subsubsection}{Pseudocode}{5}
+\contentsline {subsection}{The Stingy Algorithm}{5}
+\contentsline {subsubsection}{Pseudocode}{5}
+\contentsline {subsection}{Computational Results}{5}
+\contentsline {section}{Classical Heuristics: Local Search}{5}
+\contentsline {subsection}{The Interchange Algorithm}{8}
+\contentsline {subsubsection}{Pseudocode}{8}
+\contentsline {subsection}{The Fast Interchange Algorithm}{8}
+\contentsline {subsubsection}{Pseudocode}{8}
+\contentsline {subsection}{The Alternate Algorithm}{8}
+\contentsline {subsubsection}{Pseudocode}{8}
+\contentsline {subsection}{Computational Results}{8}
+\contentsline {section}{Conclusion}{8}
+\contentsline {section}{References}{9}
+\contentsline {section}{Index of Terms}{10}
+\contentsline {section}{Index of Authors}{11}
