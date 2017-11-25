@@ -10,7 +10,7 @@ source("E:/Project/honours_project/ranmin.R")
 # pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
 pmedfolder <- "E:/Project/TestProblems/pmed"
 
-problem <- 1
+# problem <- 1
 
 ###############################################################################
 # Alternate Algorithm to solve p-median problem
@@ -24,13 +24,14 @@ problem <- 1
 # 6. STOP if median set is not updated.
 ###############################################################################
 
-for (problem in 1:40){
+for (problem in 5:5){
   #load relevant list
   x <- read_rds(str_c(pmedfolder, problem, "_SOL.rds"))
   
   Alt_Solution <-  vector(mode = "numeric", length=50)
   Alt_Percent <- vector(mode = "numeric", length=50)
   Alt_Time <- vector(mode = "numeric", length=50)
+  Alt_Iteration <- vector(mode = "numeric", length=50)
   Alt_S_Change <- list()
 
   for(abc in seq_along(1:50)){
@@ -67,9 +68,14 @@ for (problem in 1:40){
                               select(nodes), use.names = F)
         
         # which node should become the new median
-        Pstarnew[set.ind] <- set.nodes[ranmin(apply(x$distancematrix[set.nodes, set.nodes], 
-                                                    2, 
-                                                    FUN = sum))]
+        if (length(set.nodes) > 1){
+          Pstarnew[set.ind] <- set.nodes[ranmin(apply(x$distancematrix[set.nodes, set.nodes], 
+                                                      2, 
+                                                      FUN = sum))]
+        } else {
+          Pstarnew[set.ind] <- set.nodes
+          }
+        
       }
       
       # Value of updated Sstar
@@ -85,12 +91,14 @@ for (problem in 1:40){
       k <- k + 1
   } #end of algorithm
     tt <- toc()
+    k
     print(str_c("ALTERNATE (RAND) Test problem ",problem, " - rep ", abc ))
     
     
-    Alt_Solution[abc] <- S
-    Alt_Percent[abc] <- (S-x$opt)/x$opt
+    Alt_Solution[abc] <- Sstar
+    Alt_Percent[abc] <- (Sstar-x$opt)/x$opt
     Alt_Time[abc] <- tt$toc-tt$tic
+    Alt_Iteration[abc] <- k
     Alt_S_Change[[abc]] <- Sstar.value.change
     
   }
@@ -101,13 +109,14 @@ for (problem in 1:40){
              edges = x$edges,
              opt = x$opt,
              Alt_Solutions = Alt_Solution,
-             Alt_Percents <- Alt_Percent,
-             Alt_Times <- Alt_Time,
-             Alt_S_Changes <- Alt_S_Change)
+             Alt_Percents = Alt_Percent,
+             Alt_Times = Alt_Time,
+             Alt_Iterations = Alt_Iteration,
+             Alt_S_Changes = Alt_S_Change)
   
   
   # name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions/Fast Interchange Solutions/FInt", problem, ".rds", sep="")
-  name=str_c("E:/Project/Fast Interchange Solutions/Rand_Fast", problem, ".rds", sep="")
+  name=str_c("E:/Project/Alternate Solutions/Rand_Alt", problem, ".rds", sep="")
   write_rds(sol, path = name)
   
 }
