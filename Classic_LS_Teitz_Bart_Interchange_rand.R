@@ -9,7 +9,7 @@ source("E:/Project/honours_project/ranmin.R")
 # pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
 pmedfolder = "E:/Project/TestProblems/pmed"
 
-# problem=1
+# problem=40
 
 ###################################
 # Using Whitaker's A Fast Algorithm For The Greedy Interchange For Large-Scale Clustering And Median Location Problems
@@ -34,10 +34,10 @@ for (problem in 1:40){
     k <- 1
     
     b <- x$vertices - x$p
-    M <- as.vector(1:x$vertices, mode = "numeric")
-    SRT <- vector(mode = "numeric", length=x$p)
-    u <- vector(mode = "numeric", length=x$vertices)
-    w <- vector(mode = "numeric", length=x$vertices)
+    M <- c(1:x$vertices)
+    SRT <- rep(0, length=x$p)
+    u <- rep(0, length=x$vertices)
+    w <- rep(0, length=x$vertices)
     
     #Starting solution
     S <- x$random_S
@@ -52,21 +52,31 @@ for (problem in 1:40){
     while(q!=b | S!=Sstar){
       
       #STEP 1
-      for (i in seq(from=1, to=x$vertices)){
-        u[i] <- min(x$distancematrix[Pstar,i])
-        w[i] <- min(x$distancematrix[Pstar[-ranmin(x$distancematrix[Pstar,i])],i])
-      }
+      u <- apply(x$distancematrix[Pstar,], 2, min)
+      
+      r.min <- Pstar[apply(x$distancematrix[Pstar,], 2, ranmin)]
+      r.min <- cbind(r.min, c(1:ncol(x$distancematrix[Pstar,])))
+      dm <- x$distancematrix
+      dm[r.min] <- NA
+      w <- apply(dm[Pstar,], 2, min, na.rm = T)
+      
       Srt <- 0.5
       
       #STEP 2 & 3
       while(q < b & Srt >= 0){
         q <- q + 1
         r <- P[q]
-        for(j in 1:length(Pstar)){
-          I <- which(x$distancematrix[,Pstar[j]] > u)
-          J <- which(x$distancematrix[,Pstar[j]] == u)
-          SRT[j] <- sum(pmin(x$distancematrix[I,r],u[I])-u[I]) + sum(pmin(x$distancematrix[J,r],w[J])-u[J])
+        
+        I <- apply(x$distancematrix[,Pstar] > u, 2, which)
+        J <- apply(x$distancematrix[,Pstar] == u, 2, which)
+        
+        tic()
+        for(j in seq_along(Pstar)){
+          SRT[j] <- sum(pmin(x$distancematrix[I[[j]],r], u[I[[j]]]) - u[I[[j]]]) + 
+            sum(pmin(x$distancematrix[J[[j]],r], w[J[[j]]]) - u[J[[j]]])
         }
+        toc()
+        
         minindex <- ranmin(SRT)
         t <- Pstar[minindex]
         Srt <- SRT[minindex]
@@ -77,6 +87,7 @@ for (problem in 1:40){
       if(Srt < 0){
         k <- k + 1
         Sstar <- Sstar + Srt
+        Sstar.value.change[k] <- Srt
         Pstar[Pstar==t] <- r
         P[P==r] <- t
       }
