@@ -9,22 +9,24 @@ source("E:/Project/honours_project/ranmin.R")
 # pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
 pmedfolder = "E:/Project/TestProblems/pmed"
 
-problem=1
+# problem=1
 
 ###################################
 # Using Whitaker's A Fast Algorithm For The Greedy Interchange For Large-Scale Clustering And Median Location Problems
 # Implementing The fast interchange algorithm - Algorithm 4 (page 99 (5))
 ###################################
 
-for (problem in 3:40){
+for (problem in 1:40){
   #load relevant list
   x <- read_rds(str_c(pmedfolder, problem, "_SOL.rds"))
   
-  FInt_Solution <-  vector(mode = "numeric", length=100)
-  FInt_Percent <- vector(mode = "numeric", length=100)
-  FInt_Time <- vector(mode = "numeric", length=100)
+  FInt_Solution <-  vector(mode = "numeric", length=50)
+  FInt_Percent <- vector(mode = "numeric", length=50)
+  FInt_Time <- vector(mode = "numeric", length=50)
+  FInt_Iteration <- vector(mode = "numeric", length=50)
+  FInt_S_Change <- list()
   
-  for(abc in seq_along(1:100)){
+  for(abc in seq_along(1:50)){
     
     #STEP 0 - Initialisation
     k <- 1
@@ -46,6 +48,9 @@ for (problem in 3:40){
     Sstar <- x$random_S
     Pstar <- x$random_solution
     P <-  M[-Pstar]
+    
+    # Sstar improvement tracker
+    Sstar.value.change <- Inf
     
     for (i in seq(from=1, to=x$vertices)){
       u[i,k] <- min(x$distancematrix[Pstar,i])
@@ -131,20 +136,16 @@ for (problem in 3:40){
         a <- q/b
         S <- Sstar
       }
-      
-      
-      
-
-      }
-    
-    #end of algorithm
+       } #end of algorithm
     tt <- toc()
-    print(str_c("(RAND) Test problem ",problem, " - rep ", abc ))
+    print(str_c("FInt (rand) test problem ",problem, " - rep ", abc ))
     
     
     FInt_Solution[abc] <- S
     FInt_Percent[abc] <- (S-x$opt)/x$opt
     FInt_Time[abc] <- tt$toc-tt$tic
+    FInt_Iteration[abc] <- k
+    FInt_S_Change[[abc]] <- Sstar.value.change
     
     }
   
@@ -155,7 +156,9 @@ for (problem in 3:40){
              opt = x$opt,
              FInt_Solutions = FInt_Solution,
              FInt_Percents <- FInt_Percent,
-             FInt_Times <- FInt_Time)
+             FInt_Times <- FInt_Time,
+             FInt_Iterations = FInt_Iteration,
+             FInt = FInt_S_Change)
   
   
   # name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions/Fast Interchange Solutions/FInt", problem, ".rds", sep="")

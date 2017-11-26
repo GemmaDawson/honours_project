@@ -22,11 +22,12 @@ for (problem in 1:40){
   #load relevant list
   x <- read_rds(str_c(pmedfolder, problem, ".rds"))
   
-  Stingy_Solution <-  vector(mode = "numeric", length=100)
-  Stingy_Percent <- vector(mode = "numeric", length=100)
-  Stingy_Time <- vector(mode = "numeric", length=100)
+  Stingy_Solution <-  vector(mode = "numeric", length=50)
+  Stingy_Percent <- vector(mode = "numeric", length=50)
+  Stingy_Time <- vector(mode = "numeric", length=50)
+  Alt_S_Change <- list()
   
-  for(abc in seq_along(1:100)){
+  for(abc in seq_along(1:50)){
     # STEP 0
     # Start with every node included in the median set
     Pstar <- as.vector(1:x$vertices)
@@ -34,6 +35,7 @@ for (problem in 1:40){
     u <- vector(mode = "numeric", length=x$vertices)
     u[1:x$vertices] <- 0
     c <- vector(mode = "numeric", length=x$vertices)
+    Sstar.value.change <- Inf
     
     tic()  
     for (k in 1:(x$vertices-x$p)){
@@ -66,16 +68,18 @@ for (problem in 1:40){
       u <- apply(x$distancematrix[Pstar,],2,min)
       #Update S
       S <- c[r]
+      Sstar.value.change[k]
       #update c
       c[r] <- NA
       
     }
-    print(str_c("Test problem ",problem, " - rep ", abc ))
+    print(str_c("STINGY Test Problem ",problem, " - rep ", abc ))
     tt <- toc()
     
     Stingy_Solution[abc] <- S
     Stingy_Percent[abc] <- (S-x$opt)/x$opt
     Stingy_Time[abc] <- tt$toc-tt$tic
+    Alt_S_Change <- Sstar.value.change
     
   }
   
@@ -86,8 +90,9 @@ for (problem in 1:40){
              edges = x$edges,
              opt = x$opt,
              Stingy_Soultions = Stingy_Solution,
-             Stingy_Percents <- Stingy_Percent,
-             Stingy_Times <- Stingy_Time)
+             Stingy_Percents = Stingy_Percent,
+             Stingy_Times = Stingy_Time,
+             Alt_S_Changes = Alt_S_Change)
   
   
   # name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions/Stingy Solutions/Stingy", problem, ".rds", sep="")
