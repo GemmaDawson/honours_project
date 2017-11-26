@@ -8,11 +8,12 @@ library(stringr)
 library(tictoc)
 
 #Define my functions
-source("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/honours_project/ranmin.R")
-# source("E:/Project/honours_project/ranmin.R")
+# source("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/honours_project/ranmin.R")
+source("E:/Project/honours_project/ranmin.R")
 
-pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
-# pmedfolder = "E:/Project/TestProblems/pmed"
+# pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
+pmedfolder = "E:/Project/TestProblems/pmed"
+problem <- 40
 
 for (problem in 1:40){
   #load relevant list
@@ -24,9 +25,11 @@ for (problem in 1:40){
   FGreedy_Time <- vector(mode = "numeric", length=50)
   FGreedy_S_Change <- list()
   
-  for(abc in seq_along(1:50)){
+  for(abc in seq_along(1:10)){
     # STEP 0
-    Pstar <- vector(mode = "numeric", length=x$p)
+    M <- c(1:x$vertices)
+    Pstar <- 0
+    P <- M
     
     c <- data_frame()
     c[1:x$vertices,1] <- 0
@@ -35,7 +38,7 @@ for (problem in 1:40){
     u[1:x$vertices,1] <- 0
     u[1:x$vertices,2] <- Inf
     
-    I <- data_frame(1:x$vertices)
+    I <- as.vector(1:x$vertices)
     
     Sstar.value.change <- Inf
     
@@ -46,37 +49,46 @@ for (problem in 1:40){
       #Assess whether there could be a further decrease
       
       c[,k+1] <- c[,k] 
+
+        m1 <- pmin(x$distancematrix[I,I], u$V2[I])
+        m2 <- pmin(x$distancematrix[I,I], u$V1[I])
+        if(length(I) > 1){
+          s1 <- apply(m1, MARGIN=2, sum)
+          s2 <- apply(m2, MARGIN=2, sum)
+        } else {
+          s1 <- m1
+          s2 <- m2
+        }
+        
+        c[I,k+1] <- s1 + c[I,k] - s2
+
       
-      for (j in seq_along(1:nrow(I))){
-        v = as.numeric(I[j,1])
-        c[v,k+1] <- sum(pmin(x$distancematrix[,v], u$V2)) + c[v,k] - sum(pmin(x$distancematrix[,v], u$V1))
-      }
-      
-      #Remove all nodes that are assigned as facilities
-      c[Pstar,k+1] <- NA
+
       
       #STEP 2
       #Find the smallest value in c
       #R's which.min will return smallest index in the case of ties
       #So slight tweak to randomly select a vertex in the case of tie for min(c)
-      r <- ranmin(c[,k+1])
+      r <- ranmin(c[P,k+1])
       
       #Add cost to S
-      S <- c[r,k+1]
-      Sstar.value.change[k] <- S
+      S <- as.numeric(c[P[r],k+1])
+      Sstar.value.change[k+1] <- S
       
       #Step 3
-      #Add vertex to Pstar
-      Pstar[k] <- r
+      # Add node to Pstar
+      # Remove node from free set
+      Pstar[k] <- P[r]
+      P <- M[-Pstar]
       
       #Step 4
       #Update u
       u[,1] <- u[,2]
-      u[,2] <- pmin(u$V1, x$distancematrix[,r])
+      u[,2] <- pmin(u$V1, x$distancematrix[,P[r]])
       
       #Update I
       #I contains nodes that have been reassigned
-      I <- data_frame(which(x$distancematrix[,r] < u[,1]))
+      I <- as.vector(which(x$distancematrix[,P[r]] < u[,1]))
       
     }
     tt <- toc()
