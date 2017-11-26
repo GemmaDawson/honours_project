@@ -32,9 +32,8 @@ for (problem in 1:40){
     Pstar <- 0
     M <- c(1:x$vertices)
     P <- M
-    u <- vector(mode = "numeric", length=x$vertices)
-    u[1:x$vertices] <- Inf
-    c <- vector(mode = "numeric", length=x$vertices)
+    u <- rep(x = Inf, length = x$vertices)
+    c <- rep(x = 0, length = x$vertices)
     Sstar.value.change <- Inf
     
     tic()  

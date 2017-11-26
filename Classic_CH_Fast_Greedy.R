@@ -31,14 +31,13 @@ for (problem in 1:40){
     Pstar <- 0
     P <- M
     
-    c <- data_frame()
-    c[1:x$vertices,1] <- 0
+    c <- data_frame(k=rep(0, length = x$vertices))
     
-    u <- data_frame()
-    u[1:x$vertices,1] <- 0
-    u[1:x$vertices,2] <- Inf
+    u <- data_frame('k0' = rep(0, length = x$vertices),
+                    'k1' = rep(Inf, length = x$vertices))
     
-    I <- as.vector(1:x$vertices)
+    
+    I <- c(1:x$vertices)
     
     Sstar.value.change <- Inf
     
@@ -50,8 +49,8 @@ for (problem in 1:40){
       
       c[,k+1] <- c[,k] 
 
-        m1 <- pmin(x$distancematrix[I,I], u$V2[I])
-        m2 <- pmin(x$distancematrix[I,I], u$V1[I])
+        m1 <- pmin(x$distancematrix[I,I], u$k1[I])
+        m2 <- pmin(x$distancematrix[I,I], u$k0[I])
         if(length(I) > 1){
           s1 <- apply(m1, MARGIN=2, sum)
           s2 <- apply(m2, MARGIN=2, sum)
@@ -69,26 +68,27 @@ for (problem in 1:40){
       #Find the smallest value in c
       #R's which.min will return smallest index in the case of ties
       #So slight tweak to randomly select a vertex in the case of tie for min(c)
-      r <- ranmin(c[P,k+1])
+      r <- P[ranmin(c[P,k+1])]
+      
       
       #Add cost to S
-      S <- as.numeric(c[P[r],k+1])
+      S <- as.numeric(c[r,k+1])
       Sstar.value.change[k+1] <- S
       
       #Step 3
       # Add node to Pstar
       # Remove node from free set
-      Pstar[k] <- P[r]
+      Pstar[k] <- r
       P <- M[-Pstar]
       
       #Step 4
       #Update u
       u[,1] <- u[,2]
-      u[,2] <- pmin(u$V1, x$distancematrix[,P[r]])
+      u[,2] <- pmin(u$k0, x$distancematrix[,r])
       
       #Update I
       #I contains nodes that have been reassigned
-      I <- as.vector(which(x$distancematrix[,P[r]] < u[,1]))
+      I <- as.vector(which(x$distancematrix[,r] < u[,1]))
       
     }
     tt <- toc()
