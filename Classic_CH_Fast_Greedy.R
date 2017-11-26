@@ -22,8 +22,9 @@ for (problem in 1:40){
   FGreedy_Solution <-  vector(mode = "numeric", length=100)
   FGreedy_Percent <- vector(mode = "numeric", length=100)
   FGreedy_Time <- vector(mode = "numeric", length=100)
+  FGreedy_S_Change <- list()
   
-  for(abc in seq_along(1:100)){
+  for(abc in seq_along(1:50)){
     # STEP 0
     Pstar <- vector(mode = "numeric", length=x$p)
     
@@ -35,6 +36,8 @@ for (problem in 1:40){
     u[1:x$vertices,2] <- Inf
     
     I <- data_frame(1:x$vertices)
+    
+    Sstar.value.change <- Inf
     
     tic()  
     for (k in 1:x$p){
@@ -60,6 +63,7 @@ for (problem in 1:40){
       
       #Add cost to S
       S <- c[r,k+1]
+      Sstar.value.change[k] <- S
       
       #Step 3
       #Add vertex to Pstar
@@ -82,6 +86,7 @@ for (problem in 1:40){
     FGreedy_Solution[abc] <- S
     FGreedy_Percent[abc] <- (S-x$opt)/x$opt
     FGreedy_Time[abc] <- tt$toc-tt$tic
+    FGreedy_S_Change <- Sstar.value.change
     
   }
   
@@ -93,8 +98,9 @@ for (problem in 1:40){
              edges = x$edges,
              opt = x$opt,
              FastGreedy_Soultions = FGreedy_Solution,
-             FastGreedy_Percents <- FGreedy_Percent,
-             FastGreedy_Times <- FGreedy_Time)
+             FastGreedy_Percents = FGreedy_Percent,
+             FastGreedy_Times = FGreedy_Time,
+             Sstar.value.changes = Sstar.value.change)
   
   
   # name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions/Fast Greedy Solutions/Fast_Greedy", problem, ".rds", sep="")

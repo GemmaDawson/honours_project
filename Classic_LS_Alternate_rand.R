@@ -34,7 +34,7 @@ for (problem in 1:40){
   Alt_Iteration <- vector(mode = "numeric", length=50)
   Alt_S_Change <- list()
 
-  for(abc in seq_along(1:3)){
+  for(abc in seq_along(1:50)){
     #STEP 0 - Initialisation
     M <- data_frame(nodes = 1:x$vertices,
                     closest.median = NA)
@@ -82,7 +82,7 @@ for (problem in 1:40){
       Sstarnew <- sum(apply(x$distancematrix[, Pstarnew], 1, FUN=min))
       
       # +ive values = improvement (i.e. decrease in value)
-      Sstar.value.change[k] <- Sstar - Sstarnew
+      Sstar.value.change[k] <- Sstarnew - Sstar
       Sstar.value.change
       
       # Update P* & S*

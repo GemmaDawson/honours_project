@@ -22,9 +22,10 @@ for (problem in 1:40){
   #load relevant list
   x <- read_rds(str_c(pmedfolder, problem, ".rds"))
   
-  Greedy_Solution <-  vector(mode = "numeric", length=100)
-  Greedy_Percent <- vector(mode = "numeric", length=100)
-  Greedy_Time <- vector(mode = "numeric", length=100)
+  Greedy_Solution <-  vector(mode = "numeric", length = 100)
+  Greedy_Percent <- vector(mode = "numeric", length = 100)
+  Greedy_Time <- vector(mode = "numeric", length = 100)
+  Greedy_S_Change <- list()
 
   for(abc in seq_along(1:50)){
     # STEP 0
@@ -32,6 +33,7 @@ for (problem in 1:40){
     u <- vector(mode = "numeric", length=x$vertices)
     u[1:x$vertices] <- Inf
     c <- vector(mode = "numeric", length=x$vertices)
+    Sstar.value.change <- Inf
     
     tic()  
     for (k in 1:x$p){
@@ -55,6 +57,7 @@ for (problem in 1:40){
       #Add cost to S
       #CHECK IF WORKING BEFORE RUNNING    
       S <- c[r]
+      Sstar.value.change[k] <- S
       
       #Step 3
       #Add vertex to Pstar
@@ -63,6 +66,8 @@ for (problem in 1:40){
       #Step 4
       #Update u
       u <- pmin(x$distancematrix[,r], u)
+      
+      
     }
     print(str_c("Test problem ",problem, " - rep ", abc ))
     tt <- toc()
@@ -70,6 +75,7 @@ for (problem in 1:40){
     Greedy_Solution[abc] <- S
     Greedy_Percent[abc] <- (S-x$opt)/x$opt
     Greedy_Time[abc] <- tt$toc-tt$tic
+    Greedy_S_Change <- Sstar.value.change
   
   }
   
@@ -79,8 +85,9 @@ for (problem in 1:40){
            edges = x$edges,
            opt = x$opt,
            Greedy_Soultions = Greedy_Solution,
-           Greedy_Percents <- Greedy_Percent,
-           Greedy_Times <- Greedy_Time)
+           Greedy_Percents = Greedy_Percent,
+           Greedy_Times = Greedy_Time,
+           Greedy_S_Changes = Greedy_S_Change)
 
 
 # name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions", "Greedy", problem, ".rds", sep="")
