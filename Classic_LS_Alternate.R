@@ -10,7 +10,7 @@ source("E:/Project/honours_project/ranmin.R")
 # pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
 pmedfolder <- "E:/Project/TestProblems/pmed"
 
-# problem <- 1
+# problem <- 5
 
 ###############################################################################
 # Alternate Algorithm to solve p-median problem
@@ -50,10 +50,10 @@ for (problem in 5:5){
     k = 1
     
     # Sstar improvement tracker
-    Sstar.value.change <- 0
+    Sstar.value.change <- Inf
     
     tic()
-    while(!setequal(Pstarold, Pstarnew)){
+    while (!setequal(Pstarold, Pstarnew) & !(k > 3 & all(tail(Sstar.value.change, n=3) == 0)) ) {
       
       # Find closest median for every node
       M$closest.median <- Pstar[apply(x$distancematrix[, Pstar], 1, which.min)]
@@ -74,7 +74,7 @@ for (problem in 5:5){
                                                       FUN = sum))]
         } else {
           Pstarnew[set.ind] <- set.nodes
-          }
+        }
         
       }
       
@@ -83,6 +83,7 @@ for (problem in 5:5){
       
       # +ive values = improvement (i.e. decrease in value)
       Sstar.value.change[k] <- Sstar - Sstarnew
+      Sstar.value.change
       
       # Update P* & S*
       Pstarold <- Pstar
