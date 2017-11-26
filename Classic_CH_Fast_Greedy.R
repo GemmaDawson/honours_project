@@ -13,7 +13,7 @@ source("E:/Project/honours_project/ranmin.R")
 
 # pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
 pmedfolder = "E:/Project/TestProblems/pmed"
-problem <- 40
+# problem <- 40
 
 for (problem in 1:40){
   #load relevant list
@@ -25,7 +25,7 @@ for (problem in 1:40){
   FGreedy_Time <- vector(mode = "numeric", length=50)
   FGreedy_S_Change <- list()
   
-  for(abc in seq_along(1:10)){
+  for(abc in seq_along(1:50)){
     # STEP 0
     M <- c(1:x$vertices)
     Pstar <- 0
