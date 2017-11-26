@@ -423,14 +423,13 @@
 		\Statex 
 		\Statex STEP 4: The algorithm must stop if either the updated $P^*$ is identical to the new $P^*$ or there has been no improvement in th value of $S^*$ during the past five iterations.\\
 		
-		\If{$P^*(k) = P^*(k - 1)$ OR $S^{*k-4}:S^{*k} = 0$}
+		\If{$P^*(k) = P^*(k - 1)$ OR $S^{k-2} = S^{k-1} = S^k = 0$}
 		\Statex STOP
 		[
 		\Else
-		\begin{align*}
-		S^{*k} &= S^*\\
-		k &= k+1
-		\end{align*}
+		\begin{equation*}
+		S^k = S^* \text{ and } k = k+1
+		\end{equation*}
 		\Statex go to STEP 1
 		]
 		\EndIf

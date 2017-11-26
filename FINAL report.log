@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.6)  25 NOV 2017 16:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.6)  26 NOV 2017 07:24
 entering extended mode
 **"./FINAL report.tex"
 ("FINAL report.tex"
@@ -569,170 +569,170 @@ Package imakeidx Warning: Undefined index file `"FINAL report"' on input line 1
 Package imakeidx Warning: Undefined index file `"FINAL report"' on input line 1
 14.
 
-[2] [3]
+[2] [3] [4]
 
-Package imakeidx Warning: Undefined index file `author' on input line 170.
+Package imakeidx Warning: Undefined index file `author' on input line 171.
 
-[4] [5] [6] [7]
+[5] [6] [7] [8]
 
-Package imakeidx Warning: Undefined index file `author' on input line 327.
-
-
-Package imakeidx Warning: Undefined index file `author' on input line 327.
+Package imakeidx Warning: Undefined index file `author' on input line 328.
 
 
-Package imakeidx Warning: Undefined index file `author' on input line 327.
+Package imakeidx Warning: Undefined index file `author' on input line 328.
 
-[8] <CHavacc.png, id=55, 1011.78pt x 484.81125pt>
+
+Package imakeidx Warning: Undefined index file `author' on input line 328.
+
+[9] <CHavacc.png, id=58, 1011.78pt x 484.81125pt>
 File: CHavacc.png Graphic file (type png)
  <use CHavacc.png>
-Package pdftex.def Info: CHavacc.png used on input line 394.
+Package pdftex.def Info: CHavacc.png used on input line 395.
 (pdftex.def)             Requested size: 398.33858pt x 190.87325pt.
 
-<CHavtime.png, id=56, 1011.78pt x 484.81125pt>
+<CHavtime.png, id=59, 1011.78pt x 484.81125pt>
 File: CHavtime.png Graphic file (type png)
  <use CHavtime.png>
-Package pdftex.def Info: CHavtime.png used on input line 404.
+Package pdftex.def Info: CHavtime.png used on input line 405.
 (pdftex.def)             Requested size: 398.33858pt x 190.87325pt.
- [9 <./CHavacc.png>] <Greedy.png, id=61, 1011.78pt x 484.81125pt>
+ [10 <./CHavacc.png>] <Greedy.png, id=65, 1011.78pt x 484.81125pt>
 File: Greedy.png Graphic file (type png)
  <use Greedy.png>
-Package pdftex.def Info: Greedy.png used on input line 414.
+Package pdftex.def Info: Greedy.png used on input line 415.
 (pdftex.def)             Requested size: 426.79134pt x 204.50705pt.
 
-Overfull \hbox (11.66562pt too wide) in paragraph at lines 414--415
+Overfull \hbox (11.66562pt too wide) in paragraph at lines 415--416
  [] 
  []
 
-[10 <./CHavtime.png> <./Greedy.png>]
-<FastGreedy.png, id=68, 1011.78pt x 484.81125pt>
+[11 <./CHavtime.png> <./Greedy.png>]
+<FastGreedy.png, id=71, 1011.78pt x 484.81125pt>
 File: FastGreedy.png Graphic file (type png)
  <use FastGreedy.png>
-Package pdftex.def Info: FastGreedy.png used on input line 424.
+Package pdftex.def Info: FastGreedy.png used on input line 425.
 (pdftex.def)             Requested size: 426.79134pt x 204.50705pt.
 
-Overfull \hbox (11.66562pt too wide) in paragraph at lines 424--425
+Overfull \hbox (11.66562pt too wide) in paragraph at lines 425--426
  [] 
  []
 
 
-Package imakeidx Warning: Undefined index file `author' on input line 431.
+Package imakeidx Warning: Undefined index file `author' on input line 432.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 435.
+               Default added (so using `tbp') on input line 436.
 
 
-Overfull \hbox (3.11694pt too wide) in paragraph at lines 440--507
+Overfull \hbox (3.11694pt too wide) in paragraph at lines 441--508
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 8.40305pt on input line 507.
+LaTeX Warning: Float too large for page by 8.40305pt on input line 508.
 
-[11 <./FastGreedy.png>] [12] [13] [14]
+[12 <./FastGreedy.png>] [13] [14] [15]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 618.
+               Default added (so using `tbp') on input line 619.
 
 
-Overfull \hbox (3.11694pt too wide) in paragraph at lines 623--690
+Overfull \hbox (3.11694pt too wide) in paragraph at lines 624--691
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 10.53221pt on input line 690.
+LaTeX Warning: Float too large for page by 10.53221pt on input line 691.
 
-<TBGreedy.png, id=82, 1011.78pt x 484.81125pt>
+<TBGreedy.png, id=85, 1011.78pt x 484.81125pt>
 File: TBGreedy.png Graphic file (type png)
  <use TBGreedy.png>
-Package pdftex.def Info: TBGreedy.png used on input line 696.
+Package pdftex.def Info: TBGreedy.png used on input line 697.
 (pdftex.def)             Requested size: 426.79134pt x 204.50705pt.
 
-Overfull \hbox (11.66562pt too wide) in paragraph at lines 696--697
+Overfull \hbox (11.66562pt too wide) in paragraph at lines 697--698
  [] 
  []
 
-[15] [16] <TBRand.png, id=90, 1011.78pt x 484.81125pt>
+[16] [17] <TBRand.png, id=93, 1011.78pt x 484.81125pt>
 File: TBRand.png Graphic file (type png)
  <use TBRand.png>
-Package pdftex.def Info: TBRand.png used on input line 706.
+Package pdftex.def Info: TBRand.png used on input line 707.
 (pdftex.def)             Requested size: 426.79134pt x 204.50705pt.
 
-Overfull \hbox (11.66562pt too wide) in paragraph at lines 706--707
+Overfull \hbox (11.66562pt too wide) in paragraph at lines 707--708
  [] 
  []
 
-[17 <./TBGreedy.png> <./TBRand.png>]
+[18 <./TBGreedy.png> <./TBRand.png>]
 
-Package imakeidx Warning: Undefined index file `author' on input line 715.
+Package imakeidx Warning: Undefined index file `author' on input line 716.
 
-[18] [19] <FintGreedy.png, id=103, 1011.78pt x 484.81125pt>
+[19] [20] <FintGreedy.png, id=106, 1011.78pt x 484.81125pt>
 File: FintGreedy.png Graphic file (type png)
 
 <use FintGreedy.png>
-Package pdftex.def Info: FintGreedy.png used on input line 840.
+Package pdftex.def Info: FintGreedy.png used on input line 841.
 (pdftex.def)             Requested size: 426.79134pt x 204.50705pt.
 
-Overfull \hbox (11.66562pt too wide) in paragraph at lines 840--841
+Overfull \hbox (11.66562pt too wide) in paragraph at lines 841--842
  [] 
  []
 
-[20] <FintRand.png, id=107, 1011.78pt x 484.81125pt>
+[21] <FintRand.png, id=110, 1011.78pt x 484.81125pt>
 File: FintRand.png Graphic file (type png)
  <use FintRand.png>
-Package pdftex.def Info: FintRand.png used on input line 848.
+Package pdftex.def Info: FintRand.png used on input line 849.
 (pdftex.def)             Requested size: 426.79134pt x 204.50705pt.
 
-Overfull \hbox (11.66562pt too wide) in paragraph at lines 848--849
+Overfull \hbox (11.66562pt too wide) in paragraph at lines 849--850
  [] 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 856.
+               Default added (so using `tbp') on input line 857.
 
 
-Overfull \hbox (3.11694pt too wide) in paragraph at lines 861--928
+Overfull \hbox (3.11694pt too wide) in paragraph at lines 862--929
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 10.53221pt on input line 928.
+LaTeX Warning: Float too large for page by 10.53221pt on input line 929.
 
 
-Package imakeidx Warning: Undefined index file `author' on input line 932.
+Package imakeidx Warning: Undefined index file `author' on input line 933.
 
-[21 <./FintGreedy.png> <./FintRand.png>] [22] [23]
-<LSavacc.png, id=120, 1011.78pt x 484.81125pt>
+[22 <./FintGreedy.png> <./FintRand.png>] [23] [24]
+<LSavacc.png, id=123, 1011.78pt x 484.81125pt>
 File: LSavacc.png Graphic file (type png)
  <use LSavacc.png>
-Package pdftex.def Info: LSavacc.png used on input line 977.
+Package pdftex.def Info: LSavacc.png used on input line 978.
 (pdftex.def)             Requested size: 398.33858pt x 190.87325pt.
 
-<LSavtime.png, id=121, 1011.78pt x 484.81125pt>
+<LSavtime.png, id=124, 1011.78pt x 484.81125pt>
 File: LSavtime.png Graphic file (type png)
  <use LSavtime.png>
-Package pdftex.def Info: LSavtime.png used on input line 988.
+Package pdftex.def Info: LSavtime.png used on input line 989.
 (pdftex.def)             Requested size: 398.33858pt x 190.87325pt.
- [24 <./LSavacc.png>] [25 <./LSavtime.png>] [26] ("FINAL report.bbl" [27]) [28]
+ [25 <./LSavacc.png>] [26 <./LSavtime.png>] [27] ("FINAL report.bbl" [28]) [29]
 runsystem(makeindex terms.idx)...executed (allowed).
 
  (terms.ind)
-[29
+[30
 
 ]
 runsystem(makeindex authors.idx)...executed (allowed).
 
- (authors.ind) [30
+ (authors.ind) [31
 
 ] ("FINAL report.aux") ) 
 Here is how much of TeX's memory you used:
- 6888 strings out of 493333
- 95955 string characters out of 3139174
+ 6893 strings out of 493333
+ 96001 string characters out of 3139174
  241913 words of memory out of 3000000
- 10245 multiletter control sequences out of 15000+200000
- 13672 words of font info for 50 fonts, out of 3000000 for 9000
+ 10248 multiletter control sequences out of 15000+200000
+ 14317 words of font info for 53 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,19n,72p,1472b,426s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
@@ -749,9 +749,9 @@ sfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on "FINAL report.pdf" (33 pages, 623405 bytes).
+Output written on "FINAL report.pdf" (34 pages, 625019 bytes).
 PDF statistics:
- 193 PDF objects out of 1000 (max. 8388607)
+ 196 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

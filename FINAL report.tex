@@ -134,7 +134,7 @@
 		
 	
 	\subsection{Pseudocode Notation} \label{pseudocode.notation}
-	For each algorithm examined in this study, a pseudocode will be presented using notation given below.  This notation is the same as to that used by Whitaker \index[authors]{Whitaker, R.}\cite{WHIT83}.
+	For each algorithm examined in this study, a pseudocode will be presented using notation given below.  This notation is similar to that used by Whitaker \index[authors]{Whitaker, R.}\cite{WHIT83}.
 	\begin{align*}
 	G &: \text{the problem network}\\
 	n &: \text{the number of nodes within the network}\\
@@ -155,8 +155,9 @@
 	c_{j}^{k} &: \text{the potential value of \emph{S*} if node \emph{j} is added to the median set \emph{P*} during}\\
 			& \quad \text{ iteration \emph{k}}\\
 	S_{r} &: \text{the value of \emph{S*} after adding node \emph{r} to the median set \emph{P*}}\\
-	S_{rt} &: \text{the potential increase (or decrease) to S* resulting from the interchange of}\\
-			& \quad \text{ node \emph{r} with median \emph{t}}\\
+	S_{rt} &: \text{the potential change to S* resulting from the interchange of node \emph{r} with}\\
+		& \quad \text{median \emph{t}}\\
+	S^k &: \text{the change in the value of $S^*$ during iteration $k$}\\
 	I \text{, } J \text{, } K_{j} &: \text{subsets of the \emph{n} nodes defined as needed in the pseudocode}\\
 	a \text{, } b \text{, } z \text{, } q &: \text{indices and parameters defined as needed in the pseudocode}\\
 	\emptyset &: \text{an empty set}	
@@ -578,7 +579,7 @@
 			\ElsIf{$S_{rt} < 0$}
 			\begin{align*}
 			k &= k+1\\
-			S^* &= S* + S_{rt}\\
+			S^* &= S^* + S_{rt}\\
 			P_q &= t\\
 			P^* & = P^*\backslash \{t\} \cup \{r\}		
 			\end{align*}
