@@ -19,9 +19,9 @@ for (problem in 1:40){
   
   x <- read_rds(str_c(pmedfolder, problem, ".rds"))
   
-  FGreedy_Solution <-  vector(mode = "numeric", length=100)
-  FGreedy_Percent <- vector(mode = "numeric", length=100)
-  FGreedy_Time <- vector(mode = "numeric", length=100)
+  FGreedy_Solution <-  vector(mode = "numeric", length=50)
+  FGreedy_Percent <- vector(mode = "numeric", length=50)
+  FGreedy_Time <- vector(mode = "numeric", length=50)
   FGreedy_S_Change <- list()
   
   for(abc in seq_along(1:50)){
@@ -80,13 +80,13 @@ for (problem in 1:40){
       
     }
     tt <- toc()
-    print(str_c("Test problem ",problem, " - rep ", abc ))
+    print(str_c("FAST GREEDY Test Problem ",problem, " - rep ", abc ))
     
     
     FGreedy_Solution[abc] <- S
     FGreedy_Percent[abc] <- (S-x$opt)/x$opt
     FGreedy_Time[abc] <- tt$toc-tt$tic
-    FGreedy_S_Change <- Sstar.value.change
+    FGreedy_S_Change[[abc]] <- Sstar.value.change
     
   }
   

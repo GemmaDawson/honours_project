@@ -93,7 +93,7 @@ for (problem in 1:40){
   } #end of algorithm
     tt <- toc()
     k
-    print(str_c("ALTERNATE (greedy) Test problem ",problem, " - rep ", abc ))
+    print(str_c("ALTERNATE (greedy) Test Problem ",problem, " - rep ", abc ))
     
     
     Alt_Solution[abc] <- Sstar
