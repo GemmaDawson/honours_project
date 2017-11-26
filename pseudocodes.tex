@@ -404,13 +404,13 @@
 		\Statex 
 		\Statex STEP 1: Assign each node in the network to its closest median.
 		\begin{align*}
-		K_j=\{\text{all } i \in G \text{ such that } \min (d_{ij})\} \text{ where } j \in P^*
+		K_j=\{\text{all } i \in G \text{ such that }\min (d_{ij})\} \text{ where } j \in P^*
 		\end{align*}
 		
 		\Statex 
 		\Statex STEP 2: Find the median node for each current median's set of associated nodes.
 		\begin{equation*}
-		\text{Find } k_j \in K_j \text{ where } \min \bigg[ \sum_{i\in K_j} d_{ik} \bigg] 
+		\text{Find } i \in K_j \text{ where } \min \bigg[ \sum_{i\in K_j} d_{ij} \bigg] 
 		\end{equation*}
 
 		
@@ -433,8 +433,7 @@
 		\Statex go to STEP 1
 		]
 		\EndIf
-		
-		
+				
 	\end{algorithmic}
 \end{algorithm}
 		
