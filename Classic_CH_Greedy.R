@@ -29,7 +29,9 @@ for (problem in 1:40){
 
   for(abc in seq_along(1:50)){
     # STEP 0
-    Pstar <- vector(mode = "numeric", length=x$p)
+    Pstar <- 0
+    M <- c(1:x$vertices)
+    P <- M
     u <- vector(mode = "numeric", length=x$vertices)
     u[1:x$vertices] <- Inf
     c <- vector(mode = "numeric", length=x$vertices)
@@ -40,19 +42,16 @@ for (problem in 1:40){
       #STEP 1
       #For each vertex that is not already a median, find the minimum of d & c to every other node
       #
-      for (j in seq(from=1, to=x$vertices)){
-        c[j] <- sum(pmin(x$distancematrix[,j], u))
-      }
-      if(k>1){
-        #Remove the vertices that belong to Pstar
-        c[Pstar]<-NA
-      }
+      c[P] <- apply(X = pmin(x$distancematrix[P,P], u[P]),
+                    MARGIN = 2,
+                    FUN = sum)
+      c[Pstar] <- NA
       
       #STEP 2
       #Find the smallest value in c
       #R's which.min will return smallest index in the case of ties
       #So slight tweak to randomly select a vertex in the case of tie for min(c)
-      r <- ranmin(y=c)
+      r <- P[ranmin(y=c[P])]
       
       #Add cost to S
       #CHECK IF WORKING BEFORE RUNNING    
@@ -60,8 +59,10 @@ for (problem in 1:40){
       Sstar.value.change[k] <- S
       
       #Step 3
-      #Add vertex to Pstar
+      #Add median to Pstar
+      # Remove median from free set
       Pstar[k] <- r
+      P <- P[-r]
       
       #Step 4
       #Update u
