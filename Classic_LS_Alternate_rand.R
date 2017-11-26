@@ -93,7 +93,7 @@ for (problem in 1:40){
   } #end of algorithm
     tt <- toc()
     k
-    print(str_c("ALTERNATE (RAND) Test problem ",problem, " - rep ", abc ))
+    print(str_c("ALTERNATE (random) Test problem ",problem, " - rep ", abc ))
     
     
     Alt_Solution[abc] <- Sstar
@@ -117,7 +117,7 @@ for (problem in 1:40){
   
   
   # name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions/Fast Interchange Solutions/FInt", problem, ".rds", sep="")
-  name=str_c("E:/Project/Alternate Solutions/Rand_Alt", problem, ".rds", sep="")
+  name=str_c("E:/Project/Alternate Solutions/ALT_rand", problem, ".rds", sep="")
   write_rds(sol, path = name)
   
 }

@@ -10,7 +10,7 @@ source("E:/Project/honours_project/ranmin.R")
 # pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
 pmedfolder <- "E:/Project/TestProblems/pmed"
 
-# problem <- 40
+# problem <- 30
 
 ###############################################################################
 # Alternate Algorithm to solve p-median problem
@@ -40,9 +40,9 @@ for (problem in 1:40){
                     closest.median = NA)
     
     #Starting solution
-    Sstar <- x$random_S
-    Pstar <- x$random_solution
-    Pstarold <- x$random_solution
+    Sstar <- x$Greedy_S
+    Pstar <- x$greedy_solution
+    Pstarold <- x$greedy_solution
     Pstarnew <- vector(mode = "numeric", length=x$p)
     # P <-  M[-Pstar]
     
@@ -93,7 +93,7 @@ for (problem in 1:40){
   } #end of algorithm
     tt <- toc()
     k
-    print(str_c("ALTERNATE (RAND) Test problem ",problem, " - rep ", abc ))
+    print(str_c("ALTERNATE (greedy) Test problem ",problem, " - rep ", abc ))
     
     
     Alt_Solution[abc] <- Sstar
@@ -117,7 +117,7 @@ for (problem in 1:40){
   
   
   # name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions/Fast Interchange Solutions/FInt", problem, ".rds", sep="")
-  name=str_c("E:/Project/Alternate Solutions/Rand_Alt", problem, ".rds", sep="")
+  name=str_c("E:/Project/Alternate Solutions/ALT_greedy", problem, ".rds", sep="")
   write_rds(sol, path = name)
   
 }
