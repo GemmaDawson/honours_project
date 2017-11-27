@@ -25,7 +25,7 @@ for (problem in 1:40){
   Stingy_Solution <-  vector(mode = "numeric", length=50)
   Stingy_Percent <- vector(mode = "numeric", length=50)
   Stingy_Time <- vector(mode = "numeric", length=50)
-  Alt_S_Change <- list()
+  Stingy_S_Change <- list()
   
   for(abc in seq_along(1:50)){
     # STEP 0
@@ -79,7 +79,7 @@ for (problem in 1:40){
     Stingy_Solution[abc] <- S
     Stingy_Percent[abc] <- (S-x$opt)/x$opt
     Stingy_Time[abc] <- tt$toc-tt$tic
-    Alt_S_Change <- Sstar.value.change
+    Stingy_S_Change <- Sstar.value.change
     
   }
   
@@ -92,7 +92,7 @@ for (problem in 1:40){
              Stingy_Soultions = Stingy_Solution,
              Stingy_Percents = Stingy_Percent,
              Stingy_Times = Stingy_Time,
-             Alt_S_Changes = Alt_S_Change)
+             Stingy_S_Changes = Alt_S_Change)
   
   
   # name=str_c("C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/Classic Solutions/Stingy Solutions/Stingy", problem, ".rds", sep="")
