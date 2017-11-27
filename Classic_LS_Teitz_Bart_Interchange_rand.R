@@ -70,12 +70,12 @@ for (problem in 1:40){
         I <- apply(x$distancematrix[,Pstar] > u, 2, which)
         J <- apply(x$distancematrix[,Pstar] == u, 2, which)
         
-        tic()
+        
         for(j in seq_along(Pstar)){
           SRT[j] <- sum(pmin(x$distancematrix[I[[j]],r], u[I[[j]]]) - u[I[[j]]]) + 
             sum(pmin(x$distancematrix[J[[j]],r], w[J[[j]]]) - u[J[[j]]])
         }
-        toc()
+        
         
         minindex <- ranmin(SRT)
         t <- Pstar[minindex]
