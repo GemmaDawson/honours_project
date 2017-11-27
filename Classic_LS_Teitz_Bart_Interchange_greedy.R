@@ -79,6 +79,7 @@ for (problem in 1:40){
         Sstar <- Sstar + Srt
         Pstar[Pstar==t] <- r
         P[P==r] <- t
+        Sstar.value.change[k] <- Srt
       }
       
       #STEP 5
