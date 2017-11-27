@@ -84,7 +84,7 @@ for (problem in 1:40){
            vertices = x$vertices, 
            edges = x$edges,
            opt = x$opt,
-           Greedy_Soultions = Greedy_Solution,
+           Greedy_Solutions = Greedy_Solution,
            Greedy_Percents = Greedy_Percent,
            Greedy_Times = Greedy_Time,
            Greedy_S_Changes = Greedy_S_Change)

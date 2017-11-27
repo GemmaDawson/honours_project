@@ -109,7 +109,7 @@ for (problem in 1:40){
              vertices = x$vertices, 
              edges = x$edges,
              opt = x$opt,
-             FastGreedy_Soultions = FGreedy_Solution,
+             FastGreedy_Solutions = FGreedy_Solution,
              FastGreedy_Percents = FGreedy_Percent,
              FastGreedy_Times = FGreedy_Time,
              Sstar.value.changes = Sstar.value.change)
