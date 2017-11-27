@@ -18,7 +18,7 @@ pmedfolder <- "E:/Project/TestProblems/pmed"
 
 # Sstar <- data_frame()
 
-for (problem in 1:1){
+for (problem in 1:40){
   #load relevant list
   x <- read_rds(str_c(pmedfolder, problem, ".rds"))
   
