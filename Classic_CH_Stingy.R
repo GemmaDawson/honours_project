@@ -30,11 +30,11 @@ for (problem in 1:40){
   for(abc in seq_along(1:50)){
     # STEP 0
     # Start with every node included in the median set
-    Pstar <- as.vector(1:x$vertices)
-    P <- NA
-    u <- vector(mode = "numeric", length=x$vertices)
-    u[1:x$vertices] <- 0
-    c <- vector(mode = "numeric", length=x$vertices)
+    Pstar <- c(1:x$vertices)
+    M <- c(1:x$vertices)
+    P <- 0
+    u <- rep(0, length=x$vertices)
+    c <- rep(0, length=x$vertices)
     Sstar.value.change <- Inf
     
     tic()  
@@ -46,9 +46,14 @@ for (problem in 1:40){
       # look at min between dist to current closest median and dist to closest median if node j in 
       # Pstar is removed from Pstar
       
+      dm2 <- x$distancematrix
+      diag(dm2) <- NA
+      apply(x$distancematrix[Pstar,], 2, min, na.rm = T)
+      
+      
       for (j in seq_along(Pstar)){
         PPstar <- Pstar[Pstar!=Pstar[j]]
-        c[Pstar[j]] <- sum(apply(x$distancematrix[PPstar,],2,min))
+        c[Pstar[j]] <- sum(apply(x$distancematrix[PPstar,], 2, min))
       }
       
       
@@ -65,7 +70,7 @@ for (problem in 1:40){
       
       #Step 4
       #Update u
-      u <- apply(x$distancematrix[Pstar,],2,min)
+      u <- apply(x$distancematrix[Pstar,], 2, min)
       #Update S
       S <- c[r]
       Sstar.value.change[k]

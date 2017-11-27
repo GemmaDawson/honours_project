@@ -18,7 +18,7 @@ pmedfolder <- "E:/Project/TestProblems/pmed"
 
 # Sstar <- data_frame()
 
-for (problem in 1:40){
+for (problem in 1:1){
   #load relevant list
   x <- read_rds(str_c(pmedfolder, problem, ".rds"))
   
@@ -29,39 +29,38 @@ for (problem in 1:40){
 
   for(abc in seq_along(1:50)){
     # STEP 0
-    Pstar <- vector(mode = "numeric", length=x$p)
-    u <- vector(mode = "numeric", length=x$vertices)
-    u[1:x$vertices] <- Inf
-    c <- vector(mode = "numeric", length=x$vertices)
+    Pstar <- 0
+    M <- c(1:x$vertices)
+    P <- M
+    u <- rep(x = Inf, length = x$vertices)
+    c <- rep(x = 0, length = x$vertices)
+    S <- 0
     Sstar.value.change <- Inf
     
     tic()  
     for (k in 1:x$p){
       #STEP 1
       #For each vertex that is not already a median, find the minimum of d & c to every other node
-      #
-      for (j in seq(from=1, to=x$vertices)){
-        c[j] <- sum(pmin(x$distancematrix[,j], u))
-      }
-      if(k>1){
-        #Remove the vertices that belong to Pstar
-        c[Pstar]<-NA
-      }
+      c <- apply(X = pmin(x$distancematrix, u),
+                    MARGIN = 2,
+                    FUN = sum)
+      c[Pstar] <- NA
       
       #STEP 2
       #Find the smallest value in c
       #R's which.min will return smallest index in the case of ties
       #So slight tweak to randomly select a vertex in the case of tie for min(c)
-      r <- ranmin(y=c)
+      r <- P[ranmin(y=c[P])]
       
       #Add cost to S
-      #CHECK IF WORKING BEFORE RUNNING    
       S <- c[r]
       Sstar.value.change[k] <- S
       
       #Step 3
-      #Add vertex to Pstar
+      #Add median to Pstar
+      # Remove median from free set
       Pstar[k] <- r
+      P <- P[-r]
       
       #Step 4
       #Update u
@@ -84,7 +83,7 @@ for (problem in 1:40){
            vertices = x$vertices, 
            edges = x$edges,
            opt = x$opt,
-           Greedy_Soultions = Greedy_Solution,
+           Greedy_Solutions = Greedy_Solution,
            Greedy_Percents = Greedy_Percent,
            Greedy_Times = Greedy_Time,
            Greedy_S_Changes = Greedy_S_Change)
