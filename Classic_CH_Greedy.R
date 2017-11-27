@@ -18,7 +18,7 @@ pmedfolder <- "E:/Project/TestProblems/pmed"
 
 # Sstar <- data_frame()
 
-for (problem in 1:40){
+for (problem in 1:1){
   #load relevant list
   x <- read_rds(str_c(pmedfolder, problem, ".rds"))
   
@@ -34,14 +34,14 @@ for (problem in 1:40){
     P <- M
     u <- rep(x = Inf, length = x$vertices)
     c <- rep(x = 0, length = x$vertices)
+    S <- 0
     Sstar.value.change <- Inf
     
     tic()  
     for (k in 1:x$p){
       #STEP 1
       #For each vertex that is not already a median, find the minimum of d & c to every other node
-      #
-      c[P] <- apply(X = pmin(x$distancematrix[P,P], u[P]),
+      c <- apply(X = pmin(x$distancematrix, u),
                     MARGIN = 2,
                     FUN = sum)
       c[Pstar] <- NA
@@ -53,7 +53,6 @@ for (problem in 1:40){
       r <- P[ranmin(y=c[P])]
       
       #Add cost to S
-      #CHECK IF WORKING BEFORE RUNNING    
       S <- c[r]
       Sstar.value.change[k] <- S
       
