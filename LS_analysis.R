@@ -106,7 +106,7 @@ names(Alt.Random_solutions)[2:41] <- str_c("PROB", 1:40)
 names(Alt.Random_accuracy)[2:41] <- str_c("PROB", 1:40)
 
 
-CH_Results <- list(Problem_summary,
+LS_Results <- list(Problem_summary,
                    FInt.Greedy_times,
                    FInt.Greedy_solutions,
                    FInt.Greedy_accuracy,
