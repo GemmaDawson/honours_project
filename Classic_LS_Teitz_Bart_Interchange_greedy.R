@@ -9,7 +9,7 @@ source("E:/Project/honours_project/ranmin.R")
 # pmedfolder = "C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/HONPR2C Coding/TestProblems/pmed"
 pmedfolder = "E:/Project/TestProblems/pmed"
 
-# problem=1
+# problem=28
 
 ###################################
 # Using Whitaker's A Fast Algorithm For The Greedy Interchange For Large-Scale Clustering And Median Location Problems
