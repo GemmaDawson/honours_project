@@ -1,0 +1,250 @@
+\documentclass[11pt]{article}
+\usepackage{parskip}
+\usepackage[margin=3.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{gensymb} %for degree symbol
+\usepackage{graphicx} %to add figures to the document
+\usepackage{subfigure} %used for side by side figures
+\usepackage{url} %used for urls
+\usepackage[nottoc, numbib]{tocbibind} %include references in toc
+\usepackage[toc,page]{appendix} %used for appendix
+\usepackage{listings} % used for R code
+\usepackage{multirow} % multirows for tables
+\usepackage{array}	% vertically centre contents in table cells
+\usepackage{imakeidx} %add index
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[table,xcdraw]{xcolor}
+% \usepackage{lscape}
+% \usepackage{longtable}
+%\usepackage[boxruled, dotocloa]{algorithm2e} %pretty pseudocode
+\lstset{language=R, basicstyle=\ttfamily} % To add R code in appendix
+\graphicspath{ {C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/02 Preliminary Report/} } %folder name where images are contained in the current directory
+\DeclareMathSymbol{,}{0}{letters}{"3B}
+\DeclareMathOperator{\argh}{argh}
+\DeclareMathOperator*{\nut}{Nut}
+\newcommand{\np}{\newpage}
+\indexsetup{level=\section}
+\makeindex[name=terms,title=Index of Terms,columns=2]
+\makeindex[name=authors,title=Index of Authors,columns=2]	%initiate the index
+\setcounter{page}{1}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Assignment 2: Preliminary Report\\ HONPR2C}
+\lhead{Gemma Dawson\\ Student Number: 50223909}
+\cfoot{\thepage}
+
+
+\begin{document}
+	
+	
+\begin{table}[]
+	\centering
+	\caption{Results for the 40 \emph{p}-median test problems using th Greedy algorithm}
+	\label{greedy.results}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{ccccc|cccc|cccc}
+			\hline
+			&  &  &  &  & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Computational Time\\ (seconds)\end{tabular}}} & \multicolumn{4}{|c}{\textbf{\begin{tabular}[c]{@{}c@{}}Gap to\\ Optimal (\%)\end{tabular}}} \\ \cline{6-13}
+			\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}}} & \multirow{-2}{*}{\textbf{n}} & \multirow{-2}{*}{\textbf{p}} & \multirow{-2}{*}{\textbf{Edges}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Solution\end{tabular}}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Best} & \textbf{Worst} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} \\ \hline
+			\rowcolor[HTML]{EFEFEF} 
+			1 & 5 & 100 & 198 & 5819 & 0 & 0 & 0.1 & 0.01 & 1.2 & 1.2 & 1.2 & 0 \\
+			\rowcolor[HTML]{EFEFEF} 
+			2 & 10 & 100 & 193 & 4093 & 0 & 0 & 0 & 0.01 & 0.6 & 0.6 & 0.6 & 0 \\
+			\rowcolor[HTML]{EFEFEF} 
+			3 & 10 & 100 & 198 & 4250 & 0 & 0 & 0.1 & 0.01 & 3.5 & 3.5 & 3.5 & 0 \\
+			\rowcolor[HTML]{EFEFEF} 
+			4 & 20 & 100 & 196 & 3034 & 0 & 0 & 0.1 & 0.01 & 2 & 1.8 & 2.2 & 0.2 \\
+			\rowcolor[HTML]{EFEFEF} 
+			5 & 33 & 100 & 196 & 1355 & 0 & 0 & 0.1 & 0.01 & 2.6 & 1.7 & 4.4 & 0.69 \\
+			6 & 5 & 200 & 786 & 7824 & 0 & 0 & 0.1 & 0.02 & 2.6 & 2.6 & 2.6 & 0 \\
+			7 & 10 & 200 & 779 & 5631 & 0 & 0 & 0.1 & 0.02 & 0.3 & 0.3 & 0.3 & 0 \\
+			8 & 20 & 200 & 792 & 4445 & 0 & 0 & 0.1 & 0.02 & 1.6 & 1.5 & 2.3 & 0.16 \\
+			9 & 40 & 200 & 785 & 2734 & 0.1 & 0 & 0.1 & 0.02 & 4.9 & 4.1 & 5.2 & 0.48 \\
+			10 & 67 & 200 & 786 & 1255 & 0.1 & 0.1 & 0.2 & 0.02 & 5.5 & 3.6 & 7.8 & 1.6 \\
+			\rowcolor[HTML]{EFEFEF} 
+			11 & 5 & 300 & 1772 & 7696 & 0 & 0 & 0.1 & 0.02 & 0.3 & 0.3 & 0.3 & 0 \\
+			\rowcolor[HTML]{EFEFEF} 
+			12 & 10 & 300 & 1758 & 6634 & 0.1 & 0 & 0.1 & 0.03 & 0.3 & 0.3 & 0.3 & 0 \\
+			\rowcolor[HTML]{EFEFEF} 
+			13 & 30 & 300 & 1760 & 4374 & 0.2 & 0.1 & 0.2 & 0.03 & 2.3 & 2.3 & 2.3 & 0 \\
+			\rowcolor[HTML]{EFEFEF} 
+			14 & 60 & 300 & 1771 & 2968 & 0.3 & 0.2 & 0.4 & 0.03 & 2.5 & 2.1 & 3.1 & 0.26 \\
+			\rowcolor[HTML]{EFEFEF} 
+			15 & 100 & 300 & 1754 & 1729 & 0.5 & 0.4 & 0.6 & 0.04 & 6.2 & 4.5 & 7.9 & 0.83 \\
+			16 & 5 & 400 & 3153 & 8162 & 0.1 & 0 & 0.1 & 0.03 & 0.9 & 0.9 & 0.9 & 0 \\
+			17 & 10 & 400 & 3142 & 6999 & 0.1 & 0.1 & 0.2 & 0.04 & 0.3 & 0.3 & 0.3 & 0 \\
+			18 & 40 & 400 & 3134 & 4809 & 0.4 & 0.3 & 0.6 & 0.07 & 1.4 & 1.3 & 1.5 & 0.07 \\
+			19 & 80 & 400 & 3134 & 2845 & 0.8 & 0.6 & 0.9 & 0.06 & 3.9 & 3.6 & 4.3 & 0.19 \\
+			20 & 133 & 400 & 3144 & 1789 & 1.4 & 1.3 & 1.6 & 0.07 & 7.6 & 5.8 & 8.9 & 0.69 \\
+			\rowcolor[HTML]{EFEFEF} 
+			21 & 5 & 500 & 4909 & 9138 & 0.1 & 0 & 0.2 & 0.04 & 0 & 0 & 0 & 0 \\
+			\rowcolor[HTML]{EFEFEF} 
+			22 & 10 & 500 & 4896 & 8579 & 0.2 & 0.1 & 0.2 & 0.04 & 1.1 & 1.1 & 1.1 & 0 \\
+			\rowcolor[HTML]{EFEFEF} 
+			23 & 50 & 500 & 4903 & 4619 & 0.7 & 0.5 & 0.8 & 0.05 & 1.6 & 1.5 & 1.8 & 0.11 \\
+			\rowcolor[HTML]{EFEFEF} 
+			24 & 100 & 500 & 4914 & 2961 & 1.9 & 1.4 & 2.5 & 0.36 & 2.2 & 1.8 & 2.5 & 0.16 \\
+			\rowcolor[HTML]{EFEFEF} 
+			25 & 167 & 500 & 4894 & 1828 & 2.8 & 2.6 & 3.2 & 0.12 & 7.9 & 6.6 & 9.6 & 0.65 \\
+			26 & 5 & 600 & 7069 & 9917 & 0.1 & 0.1 & 0.2 & 0.03 & 1.8 & 1.8 & 1.8 & 0 \\
+			27 & 10 & 600 & 7072 & 8307 & 0.2 & 0.2 & 0.3 & 0.04 & 0.8 & 0.8 & 0.8 & 0 \\
+			28 & 60 & 600 & 7054 & 4498 & 1.5 & 1.2 & 1.7 & 0.1 & 1.8 & 1.7 & 2.2 & 0.12 \\
+			29 & 120 & 600 & 7042 & 3033 & 3 & 2.7 & 3.5 & 0.17 & 3.5 & 2.5 & 4.5 & 0.53 \\
+			30 & 200 & 600 & 7042 & 1989 & 5.2 & 4.9 & 5.8 & 0.22 & 9.1 & 7.1 & 10.1 & 0.55 \\
+			\rowcolor[HTML]{EFEFEF} 
+			31 & 5 & 700 & 9601 & 10086 & 0.1 & 0.1 & 0.2 & 0.03 & 0 & 0 & 0 & 0 \\
+			\rowcolor[HTML]{EFEFEF} 
+			32 & 10 & 700 & 9584 & 9297 & 0.2 & 0.1 & 0.3 & 0.04 & 0.4 & 0.4 & 0.4 & 0 \\
+			\rowcolor[HTML]{EFEFEF} 
+			33 & 70 & 700 & 9616 & 4700 & 1.8 & 1.6 & 2 & 0.1 & 2.1 & 2 & 2.3 & 0.11 \\
+			\rowcolor[HTML]{EFEFEF} 
+			34 & 140 & 700 & 9585 & 3013 & 3.7 & 3.5 & 4.1 & 0.13 & 2.9 & 2 & 3.8 & 0.56 \\
+			35 & 5 & 800 & 12548 & 10400 & 0.2 & 0.1 & 0.4 & 0.06 & 0.1 & 0.1 & 0.1 & 0 \\
+			36 & 10 & 800 & 12560 & 9934 & 0.6 & 0.5 & 0.7 & 0.03 & 0.2 & 0.2 & 0.2 & 0 \\
+			37 & 80 & 800 & 12564 & 5057 & 2.8 & 2.4 & 3.9 & 0.25 & 1.5 & 1.2 & 1.9 & 0.2 \\
+			\rowcolor[HTML]{EFEFEF} 
+			38 & 5 & 900 & 15898 & 11060 & 0.3 & 0.3 & 0.4 & 0.02 & 0.8 & 0.8 & 0.8 & 0 \\
+			\rowcolor[HTML]{EFEFEF} 
+			39 & 10 & 900 & 15896 & 9423 & 0.6 & 0.5 & 0.7 & 0.04 & 0.3 & 0.3 & 0.3 & 0 \\
+			\rowcolor[HTML]{EFEFEF} 
+			40 & 90 & 900 & 15879 & 5128 & 3.6 & 3.2 & 4.1 & 0.22 & 1.8 & 1.3 & 2 & 0.18 \\ \hline
+		\end{tabular}%
+	}
+\end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+	\centering
+	\caption{Results for the 40 \emph{p}-median test problems using the Fast Greedy algorithm}
+	\label{fast.greedy.results}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{ccccc|cccc|cccc}
+			\hline
+			&  &  &  &  & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Computational Time\\ (seconds)\end{tabular}}} & \multicolumn{4}{|c}{\textbf{\begin{tabular}[c]{@{}c@{}}Gap to\\ Optimal (\%)\end{tabular}}} \\ \cline{6-13}
+			\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}}} & \multirow{-2}{*}{\textbf{n}} & \multirow{-2}{*}{\textbf{p}} & \multirow{-2}{*}{\textbf{Edges}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Solution\end{tabular}}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Best} & \textbf{Worst} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} \\ \hline
+			\rowcolor[HTML]{EFEFEF} 
+			1  & 5   & 100 & 198   & 5819  & 0   & 0   & 0.1 & 0.01 & 20.3  & 20.3  & 20.3  & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			2  & 10  & 100 & 193   & 4093  & 0   & 0   & 0.1 & 0.01 & 66.3  & 66.3  & 66.3  & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			3  & 10  & 100 & 198   & 4250  & 0   & 0   & 0.1 & 0.01 & 64.9  & 64.9  & 64.9  & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			4  & 20  & 100 & 196   & 3034  & 0.1 & 0.1 & 0.1 & 0.01 & 178.3 & 178.3 & 178.3 & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			5  & 33  & 100 & 196   & 1355  & 0.1 & 0.1 & 0.1 & 0.01 & 376.4 & 376.4 & 376.4 & 0    \\
+			6  & 5   & 200 & 786   & 7824  & 0   & 0   & 0.1 & 0.01 & 10.1  & 10.1  & 10.1  & 0    \\
+			7  & 10  & 200 & 779   & 5631  & 0   & 0   & 0.1 & 0.01 & 41.8  & 41.8  & 41.8  & 0    \\
+			8  & 20  & 200 & 792   & 4445  & 0.1 & 0.1 & 0.1 & 0.01 & 108.4 & 108.4 & 108.4 & 0    \\
+			9  & 40  & 200 & 785   & 2734  & 0.1 & 0.1 & 0.2 & 0.01 & 221.2 & 221.2 & 221.2 & 0    \\
+			10 & 67  & 200 & 786   & 1255  & 0.2 & 0.2 & 0.3 & 0.02 & 457.9 & 457.9 & 457.9 & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			11 & 5   & 300 & 1772  & 7696  & 0   & 0   & 0.1 & 0.01 & 11.1  & 11.1  & 11.1  & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			12 & 10  & 300 & 1758  & 6634  & 0.1 & 0   & 0.1 & 0.02 & 36.2  & 36.2  & 36.2  & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			13 & 30  & 300 & 1760  & 4374  & 0.1 & 0.1 & 0.2 & 0.02 & 110.1 & 110.1 & 110.1 & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			14 & 60  & 300 & 1771  & 2968  & 0.2 & 0.2 & 0.3 & 0.02 & 262.5 & 262.5 & 262.5 & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			15 & 100 & 300 & 1754  & 1729  & 0.4 & 0.3 & 0.5 & 0.03 & 417.7 & 417.4 & 418.2 & 0.4  \\
+			16 & 5   & 400 & 3153  & 8162  & 0.1 & 0   & 0.1 & 0.03 & 6.8   & 6.8   & 6.8   & 0    \\
+			17 & 10  & 400 & 3142  & 6999  & 0.1 & 0   & 0.1 & 0.03 & 37.1  & 37.1  & 37.1  & 0    \\
+			18 & 40  & 400 & 3134  & 4809  & 0.2 & 0.1 & 0.2 & 0.03 & 122.7 & 122.7 & 122.7 & 0    \\
+			19 & 80  & 400 & 3134  & 2845  & 0.3 & 0.3 & 0.4 & 0.03 & 262.5 & 262.5 & 262.5 & 0    \\
+			20 & 133 & 400 & 3144  & 1789  & 0.5 & 0.5 & 0.7 & 0.05 & 547   & 547   & 547   & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			21 & 5   & 500 & 4909  & 9138  & 0.1 & 0   & 0.2 & 0.04 & 7.6   & 7.6   & 7.6   & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			22 & 10  & 500 & 4896  & 8579  & 0.1 & 0.1 & 0.2 & 0.02 & 24.9  & 24.8  & 24.9  & 0.06 \\
+			\rowcolor[HTML]{EFEFEF} 
+			23 & 50  & 500 & 4903  & 4619  & 0.3 & 0.2 & 0.3 & 0.03 & 142.3 & 142.3 & 142.3 & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			24 & 100 & 500 & 4914  & 2961  & 0.5 & 0.4 & 0.8 & 0.08 & 286.1 & 285.9 & 286.3 & 0.2  \\
+			\rowcolor[HTML]{EFEFEF} 
+			25 & 167 & 500 & 4894  & 1828  & 0.6 & 0.6 & 0.8 & 0.04 & 499   & 499   & 499   & 0    \\
+			26 & 5   & 600 & 7069  & 9917  & 0.1 & 0.1 & 0.2 & 0.04 & 5.4   & 5.4   & 5.4   & 0    \\
+			27 & 10  & 600 & 7072  & 8307  & 0.1 & 0.1 & 0.2 & 0.02 & 24.1  & 24.1  & 24.1  & 0    \\
+			28 & 60  & 600 & 7054  & 4498  & 0.3 & 0.3 & 0.4 & 0.04 & 132.7 & 132.2 & 133.3 & 0.55 \\
+			29 & 120 & 600 & 7042  & 3033  & 0.5 & 0.5 & 0.6 & 0.04 & 279.7 & 279.7 & 279.7 & 0    \\
+			30 & 200 & 600 & 7042  & 1989  & 0.8 & 0.7 & 0.9 & 0.04 & 542.6 & 542.6 & 542.6 & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			31 & 5   & 700 & 9601  & 10086 & 0.2 & 0.1 & 0.2 & 0.03 & 7.4   & 7.4   & 7.4   & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			32 & 10  & 700 & 9584  & 9297  & 0.2 & 0.1 & 0.2 & 0.03 & 28.5  & 28.5  & 28.5  & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			33 & 70  & 700 & 9616  & 4700  & 0.4 & 0.3 & 0.5 & 0.04 & 167.8 & 167.8 & 167.8 & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			34 & 140 & 700 & 9585  & 3013  & 0.6 & 0.6 & 0.9 & 0.05 & 302.9 & 302.9 & 302.9 & 0    \\
+			35 & 5   & 800 & 12548 & 10400 & 0.2 & 0.1 & 0.3 & 0.04 & 4.3   & 4.3   & 4.3   & 0    \\
+			36 & 10  & 800 & 12560 & 9934  & 0.2 & 0.2 & 0.3 & 0.04 & 26.4  & 26.4  & 26.4  & 0    \\
+			37 & 80  & 800 & 12564 & 5057  & 0.5 & 0.4 & 0.5 & 0.03 & 172.2 & 172.2 & 172.2 & 0.02 \\
+			\rowcolor[HTML]{EFEFEF} 
+			38 & 5   & 900 & 15898 & 11060 & 0.2 & 0.2 & 0.3 & 0.03 & 5.9   & 5.9   & 5.9   & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			39 & 10  & 900 & 15896 & 9423  & 0.2 & 0.2 & 0.3 & 0.03 & 23.3  & 23.3  & 23.3  & 0    \\
+			\rowcolor[HTML]{EFEFEF} 
+			40 & 90  & 900 & 15879 & 5128  & 0.6 & 0.5 & 0.7 & 0.04 & 167.6 & 167.6 & 167.6 & 0   
+		\end{tabular}%
+	}
+\end{table}
+
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+	\centering
+\caption{Results for the 40 \emph{p}-median test problems using the Stingy algorithm}
+\label{stingy.results}
+\resizebox{\textwidth}{!}{%
+	\begin{tabular}{ccccc|cccc|cccc}
+		\hline
+		&  &  &  &  & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Computational Time\\ (seconds)\end{tabular}}} & \multicolumn{4}{|c}{\textbf{\begin{tabular}[c]{@{}c@{}}Gap to\\ Optimal (\%)\end{tabular}}} \\ \cline{6-13}
+		\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}}} & \multirow{-2}{*}{\textbf{n}} & \multirow{-2}{*}{\textbf{p}} & \multirow{-2}{*}{\textbf{Edges}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Solution\end{tabular}}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Best} & \textbf{Worst} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} \\ \hline
+		\rowcolor[HTML]{EFEFEF} 
+			1  & 5   & 100 & 198  & 5819 & 3.3   & 3.2   & 4.2   & 0.16 & 116.1 & 116.1 & 116.1 & 0     \\
+			\rowcolor[HTML]{EFEFEF} 
+			2  & 10  & 100 & 193  & 4093 & 3.3   & 3.2   & 3.6   & 0.11 & 131.9 & 126.3 & 138.1 & 3.4   \\
+			\rowcolor[HTML]{EFEFEF} 
+			3  & 10  & 100 & 198  & 4250 & 3.3   & 3.2   & 3.6   & 0.11 & 130.6 & 130.4 & 131   & 0.29  \\
+			\rowcolor[HTML]{EFEFEF} 
+			4  & 20  & 100 & 196  & 3034 & 3.1   & 3     & 3.7   & 0.12 & 108.5 & 106.7 & 110.2 & 1.78  \\
+			\rowcolor[HTML]{EFEFEF} 
+			5  & 33  & 100 & 196  & 1355 & 2.9   & 2.8   & 3.4   & 0.15 & 145   & 138.5 & 155.6 & 8.07  \\
+			6  & 5   & 200 & 786  & 7824 & 28.2  & 27.8  & 30.2  & 0.47 & 99.2  & 99.2  & 99.2  & 0     \\
+			7  & 10  & 200 & 779  & 5631 & 28.1  & 27.6  & 28.7  & 0.36 & 125.3 & 124.5 & 126.1 & 0.81  \\
+			8  & 20  & 200 & 792  & 4445 & 27.8  & 27.4  & 28.4  & 0.34 & 131.3 & 128.7 & 133   & 2.1   \\
+			9  & 40  & 200 & 785  & 2734 & 26.9  & 26.5  & 27.5  & 0.37 & 135.3 & 132.2 & 137.1 & 2.34  \\
+			10 & 67  & 200 & 786  & 1255 & 25    & 24.4  & 28.5  & 0.77 & 173.2 & 173.2 & 173.2 & 0     \\
+			\rowcolor[HTML]{EFEFEF} 
+			11 & 5   & 300 & 1772 & 7696 & 131.8 & 131.5 & 132.3 & 0.38 & 154.2 & 148.2 & 172.4 & 12.12 \\
+			\rowcolor[HTML]{EFEFEF} 
+			12 & 10  & 300 & 1758 & 6634 & 131.4 & 131.1 & 131.6 & 0.23 & 163   & 163   & 163   & 0     \\
+			\rowcolor[HTML]{EFEFEF} 
+			13 & 30  & 300 & 1760 & 4374 & 130.1 & 129.7 & 130.7 & 0.44 & 149.6 & 149.6 & 149.6 & 0     \\
+			\rowcolor[HTML]{EFEFEF} 
+			14 & 60  & 300 & 1771 & 2968 & 125.5 & 125.2 & 125.9 & 0.26 & 138.7 & 137   & 140.6 & 1.97  \\
+			\rowcolor[HTML]{EFEFEF} 
+			15 & 100 & 300 & 1754 & 1729 & 116.4 & 115.8 & 117.4 & 0.38 & 125.8 & 123.7 & 127.3 & 1.03  \\
+			16 & 5   & 400 & 3153 & 8162 & 406.3 & 406.1 & 406.5 & 0.17 & 149.7 & 149.7 & 149.7 & 0     \\
+			17 & 10  & 400 & 3142 & 6999 & 406.8 & 405.4 & 408.1 & 1.41 & 136.8 & 135.4 & 141   & 2.79  \\
+			18 & 40  & 400 & 3134 & 4809 & 402.4 & 400.1 & 408.2 & 3.86 & 135.7 & 134.2 & 136.9 & 1.26  \\
+			19 & 80  & 400 & 3134 & 2845 & 389.6 & 388.9 & 390.5 & 0.69 & 124.3 & 124   & 124.7 & 0.33  \\
+			20 & 133 & 400 & 3144 & 1789 & 359   & 358.8 & 359.2 & 0.19 & 128.2 & 128.2 & 128.2 & 0    
+		\end{tabular}%
+	}
+\end{table}			
+			
+			
+	
+	
+\end{document}
