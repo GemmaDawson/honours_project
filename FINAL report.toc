@@ -5,26 +5,43 @@
 \contentsline {section}{\numberline {5}Classical Heuristics and Metaheuristics}{3}
 \contentsline {subsection}{\numberline {5.1}Overview}{3}
 \contentsline {subsection}{\numberline {5.2}Pseudocode Notation}{4}
-\contentsline {section}{\numberline {6}Classical Heuristics: Constructive}{4}
+\contentsline {section}{\numberline {6}Classical Heuristics: Constructive}{5}
 \contentsline {subsection}{\numberline {6.1}The Greedy Algorithm}{5}
 \contentsline {subsubsection}{\numberline {6.1.1}Pseudocode}{5}
-\contentsline {subsection}{\numberline {6.2}The Fast Greedy Algorithm}{5}
-\contentsline {subsubsection}{\numberline {6.2.1}Pseudocode}{5}
-\contentsline {subsection}{\numberline {6.3}The Stingy Algorithm}{9}
-\contentsline {subsubsection}{\numberline {6.3.1}Pseudocode}{9}
-\contentsline {subsection}{\numberline {6.4}Computational Results}{10}
-\contentsline {section}{\numberline {7}Classical Heuristics: Local Search}{15}
-\contentsline {subsection}{\numberline {7.1}The Interchange Algorithm of Teitz and Bart}{15}
-\contentsline {subsubsection}{\numberline {7.1.1}Pseudocode}{15}
-\contentsline {subsubsection}{\numberline {7.1.2}Results}{15}
-\contentsline {subsection}{\numberline {7.2}The Fast Interchange Algorithm}{21}
-\contentsline {subsubsection}{\numberline {7.2.1}Pseudocode}{21}
-\contentsline {subsubsection}{\numberline {7.2.2}Results}{21}
-\contentsline {subsection}{\numberline {7.3}The Alternate Algorithm}{26}
+\contentsline {subsubsection}{\numberline {6.1.2}Complexity}{6}
+\contentsline {subsubsection}{\numberline {6.1.3}Results}{6}
+\contentsline {subsection}{\numberline {6.2}The Fast Greedy Algorithm}{9}
+\contentsline {subsubsection}{\numberline {6.2.1}Pseudocode}{9}
+\contentsline {subsubsection}{\numberline {6.2.2}Complexity}{10}
+\contentsline {subsubsection}{\numberline {6.2.3}Results}{10}
+\contentsline {subsection}{\numberline {6.3}The Stingy Algorithm}{13}
+\contentsline {subsubsection}{\numberline {6.3.1}Pseudocode}{13}
+\contentsline {subsubsection}{\numberline {6.3.2}Complexity}{14}
+\contentsline {subsubsection}{\numberline {6.3.3}Results}{14}
+\contentsline {subsection}{\numberline {6.4}Comparison of Results from Constructive Heuristics}{15}
+\contentsline {section}{\numberline {7}Classical Heuristics: Local Search}{18}
+\contentsline {subsection}{\numberline {7.1}The Interchange Algorithm of Teitz and Bart}{18}
+\contentsline {subsubsection}{\numberline {7.1.1}Pseudocode}{19}
+\contentsline {subsubsection}{\numberline {7.1.2}complexity}{20}
+\contentsline {subsubsection}{\numberline {7.1.3}Results}{20}
+\contentsline {subsection}{\numberline {7.2}The Fast Interchange Algorithm}{23}
+\contentsline {subsubsection}{\numberline {7.2.1}Pseudocode}{23}
+\contentsline {subsubsection}{\numberline {7.2.2}Results}{23}
+\contentsline {subsection}{\numberline {7.3}The Alternate Algorithm}{24}
 \contentsline {subsubsection}{\numberline {7.3.1}Pseudocode}{26}
 \contentsline {subsubsection}{\numberline {7.3.2}Results}{26}
-\contentsline {subsection}{\numberline {7.4}Computational Results}{27}
-\contentsline {section}{\numberline {8}Conclusion}{28}
-\contentsline {section}{\numberline {9}Remaining Work}{28}
-\contentsline {section}{\numberline {10}Index of Terms}{30}
-\contentsline {section}{\numberline {11}Index of Authors}{31}
+\contentsline {subsection}{\numberline {7.4}Computational Results}{26}
+\contentsline {section}{\numberline {8}Conclusion}{27}
+\contentsline {section}{\numberline {9}Remaining Work}{27}
+\contentsline {section}{\numberline {10}References}{29}
+\contentsline {section}{\numberline {11}Index of Terms}{31}
+\contentsline {section}{\numberline {12}Index of Authors}{32}
+\contentsline {section}{Appendices}{33}
+\contentsline {section}{\numberline {A}Constructive Heuristics Results}{33}
+\contentsline {subsection}{\numberline {A.1}Greedy Algorithm}{33}
+\contentsline {subsection}{\numberline {A.2}Fast Greedy Algorithm}{36}
+\contentsline {subsection}{\numberline {A.3}Stingy Algorithm}{39}
+\contentsline {section}{\numberline {B}Local Search Heuristics Results}{41}
+\contentsline {subsection}{\numberline {B.1}Interchange Algorithm of Teitz and Bart}{41}
+\contentsline {subsection}{\numberline {B.2}Fast Interchange Algorithm}{46}
+\contentsline {subsection}{\numberline {B.3}Alternate Algorithm}{51}

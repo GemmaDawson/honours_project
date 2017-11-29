@@ -1,6 +1,9 @@
 \indexentry{p-median problem}{1}
 \indexentry{heuristic}{1}
-\indexentry{metaheuristic}{1}
+\indexentry{constructive heuristic}{1}
+\indexentry{heuristic!constructive}{1}
+\indexentry{heuristic!local search}{1}
+\indexentry{local search}{1}
 \indexentry{p-median problem}{1}
 \indexentry{algorithm}{1}
 \indexentry{integer programme}{2}
@@ -42,60 +45,25 @@
 \indexentry{heuristic}{3}
 \indexentry{heuristic!classical heuristic}{3}
 \indexentry{heuristic!metaheuristic}{3}
-\indexentry{constructive heuristic}{4}
-\indexentry{heuristic!constructive}{4}
+\indexentry{constructive heuristic}{5}
+\indexentry{heuristic!constructive}{5}
 \indexentry{greedy algorithm}{5}
 \indexentry{heuristic!greedy algorithm}{5}
 \indexentry{greedy algorithm! pseudocode}{5}
-\indexentry{heuristic!fast greedy algorithm}{5}
-\indexentry{constructive heuristic!fast greedy algorithm}{5}
-\indexentry{fast greedy algorithm}{5}
-\indexentry{fast greedy algorithm! pseudocode}{5}
-\indexentry{heuristic!stingy algorithm}{9}
-\indexentry{stingy algorithm}{9}
-\indexentry{constructive heuristic!stingy algorithm}{9}
-\indexentry{stingy algorithm! pseudocode}{9}
-\indexentry{greedy algorithm}{10}
-\indexentry{greedy algorithm! results}{10}
-\indexentry{constructive heuristic!greedy algorithm}{10}
-\indexentry{heuristic!greedy algorithm}{10}
-\indexentry{fast greedy algorithm! results}{10}
-\indexentry{fast greedy algorithm}{10}
-\indexentry{constructive heuristic!fast greedy algorithm}{10}
-\indexentry{heuristic!fast greedy algorithm}{10}
-\indexentry{greedy algorithm}{11}
-\indexentry{greedy algorithm! results}{11}
-\indexentry{constructive heuristic!greedy algorithm}{11}
-\indexentry{heuristic!greedy algorithm}{11}
-\indexentry{fast greedy algorithm}{11}
-\indexentry{fast greedy algorithm! results}{11}
-\indexentry{constructive heuristic!fast greedy algorithm}{11}
-\indexentry{heuristic!fast greedy algorithm}{11}
-\indexentry{fast greedy algorithm}{13}
-\indexentry{fast greedy algorithm! results}{13}
-\indexentry{constructive heuristic!fast greedy algorithm}{13}
-\indexentry{heuristic!fast greedy algorithm}{13}
-\indexentry{greedy algorithm}{13}
-\indexentry{greedy algorithm! results}{13}
-\indexentry{constructive heuristic!greedy algorithm}{13}
-\indexentry{heuristic!greedy algorithm}{13}
-\indexentry{fast greedy algorithm}{14}
-\indexentry{fast greedy algorithm! results}{14}
-\indexentry{constructive heuristic!fast greedy algorithm}{14}
-\indexentry{heuristic!fast greedy algorithm}{14}
-\indexentry{heuristic!local search}{15}
-\indexentry{local search}{15}
-\indexentry{heuristic!interchange algorithm of Teitz and Bart}{15}
-\indexentry{interchange algorithm of Teitz and Bart}{15}
-\indexentry{interchange algorithm of Teitz and Bart! pseudocode}{15}
-\indexentry{interchange algorithm of Teitz and Bart}{15}
-\indexentry{interchange algorithm of Teitz and Bart! results}{15}
-\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{15}
-\indexentry{heuristic!interchange algorithm of Teitz and Bart}{15}
-\indexentry{interchange algorithm of Teitz and Bart}{15}
-\indexentry{interchange algorithm of Teitz and Bart! results}{15}
-\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{15}
-\indexentry{heuristic!interchange algorithm of Teitz and Bart}{15}
+\indexentry{complexity analysis!greedy algorithm}{6}
+\indexentry{greedy algorithm! complexity analysis}{6}
+\indexentry{heuristic!fast greedy algorithm}{9}
+\indexentry{constructive heuristic!fast greedy algorithm}{9}
+\indexentry{fast greedy algorithm}{9}
+\indexentry{fast greedy algorithm! pseudocode}{9}
+\indexentry{complexity analysis!fast greedy algorithm}{10}
+\indexentry{fast greedy algorithm! complexity analysis}{10}
+\indexentry{heuristic!stingy algorithm}{13}
+\indexentry{stingy algorithm}{13}
+\indexentry{constructive heuristic!stingy algorithm}{13}
+\indexentry{stingy algorithm! pseudocode}{13}
+\indexentry{complexity analysis!stingy algorithm}{14}
+\indexentry{stingy algorithm! complexity analysis}{14}
 \indexentry{greedy algorithm}{16}
 \indexentry{greedy algorithm! results}{16}
 \indexentry{constructive heuristic!greedy algorithm}{16}
@@ -104,34 +72,53 @@
 \indexentry{fast greedy algorithm! results}{16}
 \indexentry{constructive heuristic!fast greedy algorithm}{16}
 \indexentry{heuristic!fast greedy algorithm}{16}
-\indexentry{interchange algorithm of Teitz and Bart}{17}
-\indexentry{interchange algorithm of Teitz and Bart! results}{17}
-\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{17}
-\indexentry{heuristic!interchange algorithm of Teitz and Bart}{17}
+\indexentry{stingy algorithm}{16}
+\indexentry{stingy algorithm! results}{16}
+\indexentry{constructive heuristic!stingy algorithm}{16}
+\indexentry{heuristic!stingy algorithm}{16}
+\indexentry{fast greedy algorithm}{18}
+\indexentry{fast greedy algorithm! results}{18}
+\indexentry{constructive heuristic!fast greedy algorithm}{18}
+\indexentry{heuristic!fast greedy algorithm}{18}
+\indexentry{heuristic!local search}{18}
+\indexentry{local search}{18}
+\indexentry{heuristic!interchange algorithm of Teitz and Bart}{18}
+\indexentry{interchange algorithm of Teitz and Bart}{18}
+\indexentry{interchange algorithm of Teitz and Bart! pseudocode}{19}
 \indexentry{interchange algorithm of Teitz and Bart}{20}
 \indexentry{interchange algorithm of Teitz and Bart! results}{20}
 \indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{20}
 \indexentry{heuristic!interchange algorithm of Teitz and Bart}{20}
-\indexentry{heuristic!fast interchange}{21}
-\indexentry{fast interchange}{21}
-\indexentry{local search}{21}
-\indexentry{heuristic!interchange algorithm of Teitz and Bart}{21}
+\indexentry{interchange algorithm of Teitz and Bart}{20}
+\indexentry{interchange algorithm of Teitz and Bart! results}{20}
+\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{20}
+\indexentry{heuristic!interchange algorithm of Teitz and Bart}{20}
 \indexentry{interchange algorithm of Teitz and Bart}{21}
-\indexentry{fast interchange! pseudocode}{21}
-\indexentry{heuristic!fast interchange}{21}
-\indexentry{fast interchange}{21}
-\indexentry{fast interchange!results}{21}
-\indexentry{local search}{21}
+\indexentry{interchange algorithm of Teitz and Bart! results}{21}
+\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{21}
+\indexentry{heuristic!interchange algorithm of Teitz and Bart}{21}
+\indexentry{interchange algorithm of Teitz and Bart}{22}
+\indexentry{interchange algorithm of Teitz and Bart! results}{22}
+\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{22}
+\indexentry{heuristic!interchange algorithm of Teitz and Bart}{22}
+\indexentry{heuristic!fast interchange}{23}
+\indexentry{fast interchange}{23}
+\indexentry{local search}{23}
+\indexentry{heuristic!interchange algorithm of Teitz and Bart}{23}
+\indexentry{interchange algorithm of Teitz and Bart}{23}
+\indexentry{heuristic!fast interchange}{23}
+\indexentry{fast interchange}{23}
+\indexentry{fast interchange!results}{23}
+\indexentry{local search}{23}
+\indexentry{heuristic!alternate algorithm}{24}
+\indexentry{alternate algorithm}{24}
+\indexentry{local search}{24}
 \indexentry{heuristic!fast interchange}{25}
 \indexentry{fast interchange}{25}
 \indexentry{fast interchange!results}{25}
-\indexentry{heuristic!alternate algorithm}{26}
-\indexentry{alternate algorithm}{26}
-\indexentry{local search}{26}
-\indexentry{alternate! pseudocode}{26}
-\indexentry{heuristic!fast interchange}{27}
-\indexentry{fast interchange}{27}
-\indexentry{fast interchange!results}{27}
-\indexentry{heuristic!interchange algorithm of Teitz and Bart}{27}
-\indexentry{interchange algorithm of Teitz and Bart}{27}
-\indexentry{interchange algorithm of Teitz and Bart! results}{27}
+\indexentry{heuristic!fast interchange}{26}
+\indexentry{fast interchange}{26}
+\indexentry{fast interchange!results}{26}
+\indexentry{heuristic!interchange algorithm of Teitz and Bart}{26}
+\indexentry{interchange algorithm of Teitz and Bart}{26}
+\indexentry{interchange algorithm of Teitz and Bart! results}{26}

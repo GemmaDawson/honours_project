@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 \usepackage{parskip}
-\usepackage[margin=3.5cm]{geometry}
+\usepackage[a4paper, margin=3.5cm, headsep=24pt, headheight=2cm]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[shortlabels]{enumitem}
@@ -18,6 +18,9 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage[table,xcdraw]{xcolor}
+\usepackage{lscape}
+\usepackage{longtable}
+\usepackage{caption}
 %\usepackage[boxruled, dotocloa]{algorithm2e} %pretty pseudocode
 \lstset{language=R, basicstyle=\ttfamily} % To add R code in appendix
 \graphicspath{ {C:/Users/Gemma/Documents/UNISA/Honours/Project 2017/02 Preliminary Report/} } %folder name where images are contained in the current directory
@@ -48,14 +51,14 @@
 		HONPR2C\\
 		Project II \\[2cm]		
 		{\Huge \textbf{An analysis of heuristics for the \emph{p}-median problem}}\\[15mm]
-		Assignment 2: Preliminary Report\\[3mm]
-		Assignment Unique Number: 650898\\[2cm]
+		Assignment 3: Final Report\\[3mm]
+		Assignment Unique Number: 705004\\[2cm]
 	}
 	\author{\textbf{\Large Gemma Dawson}\\[3mm]
 		\textbf{\Large 50223909}\\[3mm]
 		\textbf{Study Leader: Ms J L le Roux}
 	}
-	\date{\Large 30 August 2017}	
+	\date{\Large 29 November 2017}	
 	\maketitle
 	\thispagestyle{empty}
 	\np
@@ -93,7 +96,7 @@
 	\section{Description of the Problem} \label{problem.statement}
 	The uncapacitated \emph{p}-median problem has been widely studied and many different approaches to finding an acceptable, if not optimal, solution have been presented over the past fifty years.
 	
-	The focus of this study is to statistically analyse and compare the results obtained from various heuristic\index[terms]{heuristic} and metaheuristic\index[terms]{metaheuristic} algorithms applied to the \emph{p}-median problem\index[terms]{p-median problem}.
+	The focus of this study is to statistically analyse and compare the results obtained from various constructive and local search heuristic\index[terms]{heuristic}\index[terms]{constructive heuristic}\index[terms]{heuristic!constructive}\index[terms]{heuristic!local search}\index[terms]{local search} algorithms applied to the \emph{p}-median problem\index[terms]{p-median problem}.
 	
 	Different heuristics applied to \emph{p}-median problems can produce varying quality of results dependant on the size of the original problem.  As algorithms\index[terms]{algorithm} take a considerable amount of time and research to be suitably set-up and run, it may be of benefit to have some prior knowledge of which heuristics may be suitable for the problem on hand.
 	
@@ -123,7 +126,7 @@
 	
 	Beasley's library also provides the optimal solution's weighted total cost objective function value for each of the forty instances in the dataset.  This allows the results obtained from the algorithms to be objectively assessed against the optimal solution.  
 	
-	As all algorithms require nodes associated with an the minimum cost to be identified, a function in R \index[terms]{R (programming language)} was written to deal with the issue when more than one nodes offer the same minimum cost.  R's base package offers a minimum function, but if more than one element in the vector that is passed to this function equals the minimum value, only the first of such elements will be returned and all subsequent elements will be ignored.  However, the new function will return a randomly selected element.  A direct consequence of introducing this element of randomness is that an algorithm may produce different results and as such, for every problem in the forty-instance dataset, each algorithm will be run 100 times and the resulting objective function value was recorded, which allowed the deviation of each algorithm's solution from the optimal solution to be analysed.  In addition, the computational time required for each of the 100 runs was timed.
+	As all algorithms require nodes associated with a minimum cost to be identified, a function in R \index[terms]{R (programming language)} was written to deal with the issue when more than one nodes offer the same minimum cost.  R's base package offers a minimum function, but if more than one element in the vector that is passed to this function equals the minimum value, only the first of such elements will be returned and all subsequent elements will be ignored.  However, the new function will return a randomly selected element.  A direct consequence of having this element of randomness is that an algorithm may produce different results and as such, for every problem in the forty-instance dataset, each algorithm will be run 50 times and the resulting objective function value was recorded, which allowed the deviation of each algorithm's solution from the optimal solution to be analysed.  In addition, the computational time required for each of the 50 runs was timed.
 	
 		
 	\section{Classical Heuristics and Metaheuristics} \label{classical.meta.heuristics}
@@ -162,6 +165,7 @@
 	a \text{, } b \text{, } z \text{, } q &: \text{indices and parameters defined as needed in the pseudocode}\\
 	\emptyset &: \text{an empty set}	
 	\end{align*}
+	\np
 	
 
 	\section{Classical Heuristics: Constructive} \label{classicheuristics.constructive}
@@ -178,7 +182,7 @@
 			
 			\Statex 
 			\Statex INPUT: Cost Matrix
-						
+			
 			\Statex
 			\Statex STEP 0: Initialisation	
 			\begin{equation*}
@@ -196,6 +200,15 @@
 			\begin{equation*}
 			S_r = \min_{j \notin P*}(c_j^k) \quad \text{for } r \in M \text{, } r \notin P^*
 			\end{equation*}
+
+			\algstore{greedy}
+		\end{algorithmic}
+	\end{algorithm}
+\np	
+	\begin{algorithm}
+		%\caption{Greedy Algorithm (continued)}
+		\begin{algorithmic}[0]
+			\algrestore{greedy}
 			
 			\Statex 
 			\Statex STEP 3: Add node \emph{r} to the set of medians and then determine if the algorithm has completed the number of required iterations.
@@ -211,16 +224,7 @@
 			]
 			\EndIf
 			
-\Statex	
-
-\algstore{greedy}
-\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-%\caption{Greedy Algorithm (continued)}
-\begin{algorithmic}[0]
-\algrestore{greedy}
+			\Statex	
 			
 			\Statex 
 			\Statex STEP 4: Increase the value of iteration parameter and update the cost of travelling from any node to its closet median given that node $r$ has been added to the median set.
@@ -240,8 +244,111 @@
 		\end{algorithmic}
 	\end{algorithm}
 
+	\subsubsection{Complexity}
+	The greedy algorithm\index[terms]{complexity analysis!greedy algorithm}\index[terms]{greedy algorithm! complexity analysis} has a complexity of $\mathcal{O}(n.p)$ since for each median that is required, the algorithm will assess the network of $n$ nodes until a set of $p$ medians have been found.
 	
+	\subsubsection{Results}
+	The results from running the greedy algorithm for each of the forty test problems can be seen in table \ref{greedy.results.simple}.
 	
+	As can be seen, the computational time is very quick for the test problems that require a small number of medians.  The problem that took the longest to run was pmed30 which took on average over 5 seconds to find a solution.  This problem requires that two-thirds of the 600 nodes in its network be assigned as medians.  It can be seen from figure \ref{percentmedvstime_greedy} that the ratio network size to the number of required medians affects the computational time of the algorithm.
+	
+	Computational time will obviously increase as the network size increases as there are simply more nodes that need to be assessed and as the number of medians required increases in addition to this, it can quickly become a time-consuming algorithm.
+	
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=14cm]{percentmedvstime_greedy.png}
+			\caption{Percentage of Medians required in a Network versus Computational Time}
+			\label{percentmedvstime_greedy}
+		\end{center}
+	\end{figure}
+	
+	The results obtained from using the greedy algorithm are reasonably good for problems that require a low number of medians.  As expected, the accuracy declines as the number of medians required increases.  This can be seen in figure \ref{percentmedvsaccuracy_greedy}.  This can be attributed to a constructive heuristic never reassessing whether medians found in previous iterations should remain in the median set.
+	
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=14cm]{medvsaccuracy_greedy.png}
+			\caption{Percentage of Medians required in a Network versus Average Gap to the Optimal Solution}
+			\label{medvsaccuracy_greedy}
+		\end{center}
+	\end{figure}
+	
+	Overall, the greedy algorithm appears to be a good method to obtain a starting solution which can be improved upon by using a local search algorithm.
+	
+	\begin{table}[]
+		\centering
+		\caption{Results of Greedy Algorithm (50 Runs)}
+		\label{greedy.results.simple}
+		\resizebox{\textwidth}{!}{%
+			\begin{tabular}{ccccccc}
+				\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}} & \textbf{p} & \textbf{n} & \textbf{Edges} & \textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Value\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Computational Time \\ (seconds)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal \\ (\%)\end{tabular}} \\ 
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0 $\pm$ 0.01 & 1.2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0 $\pm$ 0.01 & 0.6 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0 $\pm$ 0.01 & 3.5 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0 $\pm$ 0.01 & 2 $\pm$ 0.2 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 0 $\pm$ 0.01 & 2.6 $\pm$ 0.69 \\
+				6 & 5 & 200 & 786 & 7824 & 0 $\pm$ 0.02 & 2.6 $\pm$ 0 \\ 
+				7 & 10 & 200 & 779 & 5631 & 0 $\pm$ 0.02 & 0.3 $\pm$ 0 \\
+				8 & 20 & 200 & 792 & 4445 & 0 $\pm$ 0.02 & 1.6 $\pm$ 0.16 \\
+				9 & 40 & 200 & 785 & 2734 & 0.1 $\pm$ 0.02 & 4.9 $\pm$ 0.48 \\
+				10 & 67 & 200 & 786 & 1255 & 0.1 $\pm$ 0.02 & 5.5 $\pm$ 1.6 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0 $\pm$ 0.02 & 0.3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.1 $\pm$ 0.03 & 0.3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 0.2 $\pm$ 0.03 & 2.3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 0.3 $\pm$ 0.03 & 2.5 $\pm$ 0.26 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 0.5 $\pm$ 0.04 & 6.2 $\pm$ 0.83 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.1 $\pm$ 0.03 & 0.9 $\pm$ 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.1 $\pm$ 0.04 & 0.3 $\pm$ 0 \\
+				18 & 40 & 400 & 3134 & 4809 & 0.4 $\pm$ 0.07 & 1.4 $\pm$ 0.07 \\
+				19 & 80 & 400 & 3134 & 2845 & 0.8 $\pm$ 0.06 & 3.9 $\pm$ 0.19 \\
+				20 & 133 & 400 & 3144 & 1789 & 1.4 $\pm$ 0.07 & 7.6 $\pm$ 0.69 \\
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.1 $\pm$ 0.04 & 0 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 0.2 $\pm$ 0.04 & 1.1 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 0.7 $\pm$ 0.05 & 1.6 $\pm$ 0.11 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 1.9 $\pm$ 0.36 & 2.2 $\pm$ 0.16 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 2.8 $\pm$ 0.12 & 7.9 $\pm$ 0.65 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.1 $\pm$ 0.03 & 1.8 $\pm$ 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 0.2 $\pm$ 0.04 & 0.8 $\pm$ 0 \\
+				28 & 60 & 600 & 7054 & 4498 & 1.5 $\pm$ 0.1 & 1.8 $\pm$ 0.12 \\
+				29 & 120 & 600 & 7042 & 3033 & 3 $\pm$ 0.17 & 3.5 $\pm$ 0.53 \\
+				30 & 200 & 600 & 7042 & 1989 & 5.2 $\pm$ 0.22 & 9.1 $\pm$ 0.55 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0.1 $\pm$ 0.03 & 0 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 0.2 $\pm$ 0.04 & 0.4 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 1.8 $\pm$ 0.1 & 2.1 $\pm$ 0.11 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 3.7 $\pm$ 0.13 & 2.9 $\pm$ 0.56 \\
+				\rowcolor[HTML]{EFEFEF} 
+				35 & 5 & 800 & 12548 & 10400 & 0.2 $\pm$ 0.06 & 0.1 $\pm$ 0 \\
+				36 & 10 & 800 & 12560 & 9934 & 0.6 $\pm$ 0.03 & 0.2 $\pm$ 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 2.8 $\pm$ 0.25 & 1.5 $\pm$ 0.2 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 0.3 $\pm$ 0.02 & 0.8 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 0.6 $\pm$ 0.04 & 0.3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 3.6 $\pm$ 0.22 & 1.8 $\pm$ 0.18
+			\end{tabular}%
+		}
+	\end{table}
+	
+	\np
 	\subsection{The Fast Greedy Algorithm} \label{fastgreedyalgo}
 	Whitaker \cite{WHIT83} \index[authors]{Whitaker, R.} proposed the fast greedy algorithm.\index[terms]{heuristic!fast greedy algorithm}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{fast greedy algorithm} This algorithm differs from the greedy algorithm in that only the nodes that were re-assigned to a new median in the preceding iteration are investigated.  From these nodes, the new median is determined to be the one that will maximise the decrease in the objective function value.
 	
@@ -253,7 +360,7 @@
 			
 			\Statex 
 			\Statex INPUT: Cost Matrix
-						
+			
 			\Statex
 			\Statex STEP 0: Initialisation 	
 			\begin{align*}
@@ -262,28 +369,31 @@
 			& u_i^0 = 0 \text{; } u_i^1 = \infty\text{ for all } i=1,2,\dots,n\\
 			& I=I\cup i \text{ for } i=1,2,\dots,n
 			\end{align*}
-\Statex	
-\algstore{bkbreak}
-\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-%\caption{Greedy Algorithm (continued)}
-\begin{algorithmic}[0]
-\algrestore{bkbreak}
+			\Statex	
 			
 			\Statex
 			\Statex STEP 1: For each free node that was reassigned to a new median in the previous iteration, the objective function value resulting from selecting this node as a median is determined.  This objective function value is calculated by summing the cost of travel for each node in the network to either the closest median or the free node under investigation, whichever is smallest.  For the first iteration, all nodes in the network are considered part of the reassigned set.
 			\begin{equation*}
 			c_j^k = \sum_{i\in I}\min(d_{ij} \text{, } u_i^k) + c_j^{k-1} - \sum_{i\in I}\min(d_{ij} \text{, } u_i^{k-1})\quad \forall j \in M \text{, } j \notin P^*
 			\end{equation*}
-
+			
 			
 			\Statex
 			\Statex STEP 2: The free node that will result in the smallest possible objective function value is identified, and the objective function value is updated.
 			\begin{equation*}
 			S_r = \min_{j \notin P*}(c_j^k) \quad \text{for } r \in M \text{, } r \notin P^*
 			\end{equation*}
+			
+			\algstore{bkbreak}
+		\end{algorithmic}
+	\end{algorithm}
+	
+\np
+	
+	\begin{algorithm}
+		%\caption{Greedy Algorithm (continued)}
+		\begin{algorithmic}[0]
+			\algrestore{bkbreak}
 			
 			\Statex
 			\Statex STEP 3: Add node \emph{r} to the set of medians and then determine if the algorithm has completed the number of required iterations.
@@ -301,7 +411,7 @@
 			
 			
 			\Statex
-			\Statex STEP 4: Increase the value of iteration parameter and update the cost of travelling from any node to its closet median given that node $r$ has been added to the median set.
+			\Statex STEP 4: Increase the value of iteration parameter and update the cost of travel from any node to its closet median given that node $r$ has been added to the median set.
 			\begin{align*}
 			k &= k+1\\
 			u_i^k &= \min(d_{ir} \text{, } u_i^{k-1}) \quad \text{for } i = 1,2,3 \dots,n\\
@@ -321,9 +431,100 @@
 			
 		\end{algorithmic}
 	\end{algorithm}
-
-
-\np
+	
+	\subsubsection{Complexity}
+	The fast greedy algorithm\index[terms]{complexity analysis!fast greedy algorithm}\index[terms]{fast greedy algorithm! complexity analysis} has a complexity of at most $\mathcal{O}(n.p)$, since it is possible that almost all nodes are assigned to the set $I$ during each iteration.  It is expected that the performance of this algorithm would be better than that of the greedy algorithm as the $I$ set from which a new median is selected each iteration would be typically be smaller than the network.
+	
+	
+	\subsubsection{Results}
+	The fast greedy algorithm proves true to its name and even for very large networks and networks requiring a high number of medians, the algorithm produces a solution set on average of less than 1 second.
+	
+	Where the fast greedy fails in the the quality of the solution.  At best, the algorithm provide a solution set with an associated objective function value that was 4.3\% worse than the optimal objective function value and at worst the solution set's objective function value was over 500\% worse.
+	
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=14cm]{percentmedvstime_fast.png}
+			\caption{Percentage of Medians required in a Network versus Computational Time}
+			\label{percentmedvstime_fast}
+		\end{center}
+	\end{figure}
+	
+	This poor performance may not be an issue if these results are used as a starting solution for a local search heuristic but these solutions are certainly not to be used as a final solution unless there are legitimate reasons for doing so.
+	
+	\begin{table}[]
+		\centering
+		\caption{Results of Fast Greedy Algorithm (50 Runs)}
+		\label{fast.results.simple}
+		\resizebox{\textwidth}{!}{%
+			\begin{tabular}{ccccccc}
+				\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}} & \textbf{p} & \textbf{n} & \textbf{Edges} & \textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Value\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Computational Time \\ (seconds)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal \\ (\%)\end{tabular}} \\ 
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0 $\pm$ 0.01 & 20.3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0 $\pm$ 0.01 & 66.3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0 $\pm$ 0.01 & 64.9 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.1 $\pm$ 0.01 & 178.3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 0.1 $\pm$ 0.01 & 376.4 $\pm$ 0 \\
+				6 & 5 & 200 & 786 & 7824 & 0 $\pm$ 0.01 & 10.1 $\pm$ 0 \\
+				7 & 10 & 200 & 779 & 5631 & 0 $\pm$ 0.01 & 41.8 $\pm$ 0 \\
+				8 & 20 & 200 & 792 & 4445 & 0.1 $\pm$ 0.01 & 108.4 $\pm$ 0 \\
+				9 & 40 & 200 & 785 & 2734 & 0.1 $\pm$ 0.01 & 221.2 $\pm$ 0 \\
+				10 & 67 & 200 & 786 & 1255 & 0.2 $\pm$ 0.02 & 457.9 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0 $\pm$ 0.01 & 11.1 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.1 $\pm$ 0.02 & 36.2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 0.1 $\pm$ 0.02 & 110.1 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 0.2 $\pm$ 0.02 & 262.5 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 0.4 $\pm$ 0.03 & 417.7 $\pm$ 0.4 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.1 $\pm$ 0.03 & 6.8 $\pm$ 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.1 $\pm$ 0.03 & 37.1 $\pm$ 0 \\
+				18 & 40 & 400 & 3134 & 4809 & 0.2 $\pm$ 0.03 & 122.7 $\pm$ 0 \\
+				19 & 80 & 400 & 3134 & 2845 & 0.3 $\pm$ 0.03 & 262.5 $\pm$ 0 \\
+				20 & 133 & 400 & 3144 & 1789 & 0.5 $\pm$ 0.05 & 547 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.1 $\pm$ 0.04 & 7.6 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 0.1 $\pm$ 0.02 & 24.9 $\pm$ 0.06 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 0.3 $\pm$ 0.03 & 142.3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 0.5 $\pm$ 0.08 & 286.1 $\pm$ 0.2 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 0.6 $\pm$ 0.04 & 499 $\pm$ 0 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.1 $\pm$ 0.04 & 5.4 $\pm$ 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 0.1 $\pm$ 0.02 & 24.1 $\pm$ 0 \\
+				28 & 60 & 600 & 7054 & 4498 & 0.3 $\pm$ 0.04 & 132.7 $\pm$ 0.55 \\
+				29 & 120 & 600 & 7042 & 3033 & 0.5 $\pm$ 0.04 & 279.7 $\pm$ 0 \\
+				30 & 200 & 600 & 7042 & 1989 & 0.8 $\pm$ 0.04 & 542.6 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0.2 $\pm$ 0.03 & 7.4 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 0.2 $\pm$ 0.03 & 28.5 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 0.4 $\pm$ 0.04 & 167.8 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 0.6 $\pm$ 0.05 & 302.9 $\pm$ 0 \\
+				35 & 5 & 800 & 12548 & 10400 & 0.2 $\pm$ 0.04 & 4.3 $\pm$ 0 \\
+				36 & 10 & 800 & 12560 & 9934 & 0.2 $\pm$ 0.04 & 26.4 $\pm$ 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 0.5 $\pm$ 0.03 & 172.2 $\pm$ 0.02 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 0.2 $\pm$ 0.03 & 5.9 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 0.2 $\pm$ 0.03 & 23.3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 0.6 $\pm$ 0.04 & 167.6 $\pm$ 0
+			\end{tabular}%
+		}
+	\end{table}
+	
+	\np
 	\subsection{The Stingy Algorithm} \label{stingyalgo}
 	The stingy algorithm was suggested by Feldman, \index[author]{Feldman, E.} Lehrer, \index[author]{Lehrer, F.} and Ray \index[author]{Ray, T.} in their paper \cite{FELD66} published in 1966.  
 	Instead of starting with an empty median set and recursively adding a node until all \textit{p} medians are assigned, the stingy algorithm\index[terms]{heuristic!stingy algorithm}\index[terms]{stingy algorithm}\index[terms]{constructive heuristic!stingy algorithm} begins with all nodes in the network being designated as a median.  Nodes are removed one at a time until only required \textit{p} medians remain in the median set.
@@ -381,131 +582,128 @@
 			
 		\end{algorithmic}
 	\end{algorithm}
+	
+	
+	\subsubsection{Complexity}
+	Like the greedy algorithm, there are $\mathcal{O}(n)$ lookups in each iteration of the stingy algorithm.\index[terms]{complexity analysis!stingy algorithm}\index[terms]{stingy algorithm! complexity analysis}  There will be $n-p$ iterations and as such this algorithm will have a complexity of $\mathcal{O}(n.(n-p))$.
+	
+	For problems with a low number of required medians, this will be much slower than the greedy algorithm but for problems with a high number of required medians, this algorithm may prove useful.
+	
+	\subsubsection{Results}
+	The time required by the stingy algorithm to find a feasible solution increased dramatically as the network size of the problem increased.  This can be seen in figure \ref{percentmedvstime_stingy}.  The expected decrease in computational time as the number of medians increases is visible, particularly in the test problem with 400 nodes, but does not offer much of a saving to justify the use of this algorithm to solve the $p$-median problem.	
+	
+		\begin{figure}[H]
+			\begin{center}
+				\includegraphics[width=14cm]{percentmedvstime_stingy.png}
+				\caption{Percentage of Medians required in a Network versus Computational Time}
+				\label{percentmedvstime_stingy}
+			\end{center}
+		\end{figure}
+		
+		Due to the excessive computational time taken by this algorithm when solving large networks, only the first twenty test problems were run and the results thereof ca nbe seen in table \ref{stingy.results.simple}.
+		
+		The value of the objective function from the solution set found by the stingy algorithm is at best 99.2\% worse than the optimal value and at worse, it is 173.2\% worse than the optimal.  So, like the fast greedy algorithm, the stingy algorithm is not useful in any situation other than a problem with a small network size that requires a large number of medians.
+		
+		
+		\begin{table}[]
+			\centering
+			\caption{Results of Stingy Algorithm (50 Runs)}
+			\label{stingy.results.simple}
+			\resizebox{\textwidth}{!}{%
+				\begin{tabular}{ccccccc}
+					\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}} & \textbf{p} & \textbf{n} & \textbf{Edges} & \textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Value\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Computational Time \\ (seconds)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal \\ (\%)\end{tabular}} \\ 
+					\rowcolor[HTML]{EFEFEF} 
+					1 & 5 & 100 & 198 & 5819 & 3.3 $\pm$ 0.16 & 116.1 $\pm$ 0 \\
+					\rowcolor[HTML]{EFEFEF} 
+					2 & 10 & 100 & 193 & 4093 & 3.3 $\pm$ 0.11 & 131.9 $\pm$ 3.4 \\
+					\rowcolor[HTML]{EFEFEF} 
+					3 & 10 & 100 & 198 & 4250 & 3.3 $\pm$ 0.11 & 130.6 $\pm$ 0.29 \\
+					\rowcolor[HTML]{EFEFEF} 
+					4 & 20 & 100 & 196 & 3034 & 3.1 $\pm$ 0.12 & 108.5 $\pm$ 1.78 \\
+					\rowcolor[HTML]{EFEFEF} 
+					5 & 33 & 100 & 196 & 1355 & 2.9 $\pm$ 0.15 & 145 $\pm$ 8.07 \\
+					6 & 5 & 200 & 786 & 7824 & 28.2 $\pm$ 0.47 & 99.2 $\pm$ 0 \\
+					7 & 10 & 200 & 779 & 5631 & 28.1 $\pm$ 0.36 & 125.3 $\pm$ 0.81 \\
+					8 & 20 & 200 & 792 & 4445 & 27.8 $\pm$ 0.34 & 131.3 $\pm$ 2.1 \\
+					9 & 40 & 200 & 785 & 2734 & 26.9 $\pm$ 0.37 & 135.3 $\pm$ 2.34 \\
+					10 & 67 & 200 & 786 & 1255 & 25 $\pm$ 0.77 & 173.2 $\pm$ 0 \\
+					\rowcolor[HTML]{EFEFEF} 
+					11 & 5 & 300 & 1772 & 7696 & 131.8 $\pm$ 0.38 & 154.2 $\pm$ 12.12 \\
+					\rowcolor[HTML]{EFEFEF} 
+					12 & 10 & 300 & 1758 & 6634 & 131.4 $\pm$ 0.23 & 163 $\pm$ 0 \\
+					\rowcolor[HTML]{EFEFEF} 
+					13 & 30 & 300 & 1760 & 4374 & 130.1 $\pm$ 0.44 & 149.6 $\pm$ 0 \\
+					\rowcolor[HTML]{EFEFEF} 
+					14 & 60 & 300 & 1771 & 2968 & 125.5 $\pm$ 0.26 & 138.7 $\pm$ 1.97 \\
+					\rowcolor[HTML]{EFEFEF} 
+					15 & 100 & 300 & 1754 & 1729 & 116.4 $\pm$ 0.38 & 125.8 $\pm$ 1.03 \\
+					16 & 5 & 400 & 3153 & 8162 & 406.3 $\pm$ 0.17 & 149.7 $\pm$ 0 \\
+					17 & 10 & 400 & 3142 & 6999 & 406.8 $\pm$ 1.41 & 136.8 $\pm$ 2.79 \\
+					18 & 40 & 400 & 3134 & 4809 & 402.4 $\pm$ 3.86 & 135.7 $\pm$ 1.26 \\
+					19 & 80 & 400 & 3134 & 2845 & 389.6 $\pm$ 0.69 & 124.3 $\pm$ 0.33 \\
+					20 & 133 & 400 & 3144 & 1789 & 359 $\pm$ 0.19 & 128.2 $\pm$ 0
+				\end{tabular}%
+			}
+		\end{table}
+
+	\subsection{Comparison of Results from Constructive Heuristics} \label{classicheuristics.constructive.results}
 
 	
-	\subsection{Computational Results} \label{classicheuristics.constructive.results}
-	The average solution accuracy for each of the forty test problems from both the greedy algorithm\index[terms]{greedy algorithm}\index[terms]{greedy algorithm! results}\index[terms]{constructive heuristic!greedy algorithm}\index[terms]{heuristic!greedy algorithm} and the fast greedy algorithm\index[terms]{fast greedy algorithm! results}\index[terms]{fast greedy algorithm}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{heuristic!fast greedy algorithm} as well as the average computational time can be seen in table \ref{CH.Results.table}.  
+	Figure \ref{CH.av.acc} shows the average gap between the solution's objective function value and the optimal solutions objective function for each of the forty test problems.  It can be seen that the greedy algorithm was able to produce results that were very close to the optimal value with very slight decreases as the number of medians required increased. 
 	
-	Figure \ref{CH.av.acc} shows the average accuracy of the solution's objective function value for each of the forty test problems.  It can be seen that the greedy algorithm was able to produce results that were very close to the optimal value with slight decreases as the number of medians required increased.  In table \ref{CH.Results.table}, you can see that all the average objective function value was at most 4\% less than the optimal objective function value.
-	
-	The fast greedy algorithm produced results for about twenty problems that were 50\% worse than the true optimal.  The test problems with the highest accuracy rate when using the fast greedy correspond to the test problems that demanded five medians.  The massive difference in accuracy for the fast greedy algorithm is clearly visible in figure \ref{CH.av.acc} and as such the code for this algorithm needs to be reviewed.
+	The fast greedy algorithm produced adequate results for the test problems that demanded five medians.  The massive difference in accuracy for the fast greedy algorithm is clearly visible in figure \ref{CH.av.acc}.
 	
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=14cm]{CHavacc.png}
-			\caption{Average Solution Accuracy per Test Problem}
+			\caption{Average Gap to Optimal per Test Problem}
 			\label{CH.av.acc}
 		\end{center}
 	\end{figure}
 
-	In figure \ref{CH.av.time}, the average computational time for both the greedy algorithm\index[terms]{greedy algorithm}\index[terms]{greedy algorithm! results}\index[terms]{constructive heuristic!greedy algorithm}\index[terms]{heuristic!greedy algorithm} and the fast greedy algorithm\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm! results}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{heuristic!fast greedy algorithm} increases as the number of medians demanded by the test problem increases.  It can be seen in figure \ref{CH.av.time} that the fast greedy algorithm takes longer than the greedy algorithm for every test problem.
+	In figure \ref{CH.av.time}, the average computational time for the greedy algorithm\index[terms]{greedy algorithm}\index[terms]{greedy algorithm! results}\index[terms]{constructive heuristic!greedy algorithm}\index[terms]{heuristic!greedy algorithm}, the fast greedy algorithm\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm! results}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{heuristic!fast greedy algorithm} and the stingy algorithm\index[terms]{stingy algorithm}\index[terms]{stingy algorithm! results}\index[terms]{constructive heuristic!stingy algorithm}\index[terms]{heuristic!stingy algorithm} is shown.  It can clearly be seen that the stingy algorithm takes far longer than the other two algorithm and increases dramatically as the network size increases.  It can be seen that the computational time for the stingy algorithm does decrease as the value of $p$ increases.
 	
 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[width=14cm]{CHavtime.png}
-			\caption{Average Computational Time per Test Problem}
+			\includegraphics[width=14cm]{CHavtime1.png}
+			\caption{Average Computational Time per Test Problem for Greedy, Fast Greedy and Stingy Algorithms5}
 			\label{CH.av.time}
 		\end{center}
 	\end{figure}
-
-	Figures \ref{greedymediantime} and \ref{fastgreedymediantime} show the number of medians demanded by a test problem against the average computational time for the greedy algorithm and the fast greedy algorithm respectively.  For the nine test problems with $p=5$, the greedy algorithm produces a solution between 0.01 and 0.12 seconds where the increase in time can be attributed to the number of nodes in the network and this relatively small increase in time can be seen in figure \ref{greedymediantime}.  As the network size increases, so does the spread between the average computational time required by the greedy algorithm to return a solution.    
-
+	
+	The computational times for the greedy algorithm and the fast greedy algorithm can be better compared in figure \ref{CH.av.time2}.  In this graph, it can be seen that the fast greedy algorithm usually solves faster than the greedy algorithm especially as the network size and value of the required number of medians, $p$, increases.
+	
 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[width=15cm]{Greedy.png}
-			\caption{Greedy Algorithm}
-			\label{greedymediantime}
+			\includegraphics[width=14cm]{CHavtime2.png}
+			\caption{Average Computational Time per Test Problem for Greedy and Fast Greedy Algorithms}
+			\label{CH.av.time2}
 		\end{center}
 	\end{figure}
 	
-	It can be seen in figure \ref{fastgreedymediantime} that the fast greedy algorithm has not lived up to its name.  The average time taken to produce results for the $p=5$ test problems was between 0.26 and 1.79 seconds.  This spread can be seen in figure \ref{fastgreedymediantime} and can be attributed to the size of the network.  This may be due to the additional step of identifying the nodes that were reassigned to a new median in the previous iteration.  The design of the fast greedy algorithm's code needs to be reviewed to determine if the full power of R is being exploited.  The algorithmic complexity of both the greedy algorithm and the fast greedy algorithm \index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm! results}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{heuristic!fast greedy algorithm} need to be evaluated in order to determine if it is possible for this algorithm to be faster than the greedy algorithm. \index[terms]{greedy algorithm}\index[terms]{greedy algorithm! results}\index[terms]{constructive heuristic!greedy algorithm}\index[terms]{heuristic!greedy algorithm}
-
+	Figure \ref{CHtimevacc1} compares the average computational time for each test problem against the average accuracy of the solution produced.  Figure \ref{CHtimevacc2} removes the results from the stingy algorithm to allow for the performance of the greedy and the fast greedy algorithms to be assessed easily.
+	
 	\begin{figure}[H]
 		\begin{center}
-		\includegraphics[width=15cm]{FastGreedy.png}
-			\caption{Fast Greedy Algorithm}
-			\label{fastgreedymediantime}
+			\includegraphics[width=14cm]{CHtimevacc1.png}
+			\caption{Average Computational Time against Average Gap to the Optimal Solution}
+			\label{CHtimevacc1}
 		\end{center}
 	\end{figure}
-
-
-	Based on the work done by Whitaker \cite{WHIT83}, \index[author]{Whitaker, R.} it was expected that the fast greedy algorithm\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm! results}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{heuristic!fast greedy algorithm} would produce results quicker than the greedy algorithm.  The trade-off in finding a solution faster would be an objective function value that is less accurate when compared to the optimal objective function value.  The substantial drop in accuracy as the number of medians demanded increases is far too large to accept, even if the algorithm were producing results faster than the greedy algorithm.
 	
-	The code for the stingy algorithm has been completed, but still needs to be thoroughly reviewed before running the 100 iterations for each of the forty test problems.  Once this has been completed, the results along with the computational time will be included in the final report of this study.  These results will also be analysed and compared to both the greedy algorithm and the fast greedy algorithm.  The expectation is that this algorithm will take longer to run for the small median problems, but for test problems requiring a large number of medians, the computational time may be comparable.  
+	It can be seen that the greedy algorithm provides a very accurate solution but does require more time to complete than the faster greedy algorithm when solving problems with large networks.  The faster greedy algorithm completes the required number of iterations far quicker but at the loss of the accuracy of the solution.
 	
-	\begin{table}[]
-		\centering
-		\caption{Constructive Heuristic Results}
-		\label{CH.Results.table} \index[terms]{greedy algorithm}\index[terms]{greedy algorithm! results}\index[terms]{constructive heuristic!greedy algorithm}\index[terms]{heuristic!greedy algorithm}
-		\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm! results}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{heuristic!fast greedy algorithm}
-		\begin{tabular}{ccccccc}
-			\hline
-			&  &  & \multicolumn{2}{c}{\textbf{GREEDY}} & \multicolumn{2}{c}{\textbf{FAST GREEDY}} \\ \cline{4-7} 
-			\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Test} \\ \small{Problem}\end{tabular}}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Medians} \\ \small{(p)}\end{tabular}}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Network} \\ \small{(nodes)}\end{tabular}}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Sol.}\\ \small{Accuracy}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Comp.} \\ \small{Time (sec)}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Sol.}\\ \small{Accuracy}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Comp.}\\ \small{Time (sec)}\end{tabular}} \\ \hline
-			\rowcolor[HTML]{EFEFEF} 
-			01 & 5 & 100 & 0.99 & 0.01 & 0.83 & 0.26 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			02 & 10 & 100 & 0.99 & 0.02 & 0.60 & 0.29 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			03 & 10 & 100 & 0.97 & 0.02 & 0.61 & 0.32 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			04 & 20 & 100 & 0.98 & 0.03 & 0.36 & 0.32 \\
-			\rowcolor[HTML]{EFEFEF} 
-			05 & 33 & 100 & 0.98 & 0.05 & 0.21 & 0.36 \\
-			06 & 5 & 200 & 0.97 & 0.02 & 0.91 & 0.47 \\ 
-			07 & 10 & 200 & 1.00 & 0.05 & 0.71 & 0.44 \\
-			08 & 20 & 200 & 0.99 & 0.08 & 0.48 & 0.52 \\
-			09 & 40 & 200 & 0.96 & 0.14 & 0.31 & 0.63 \\
-			10 & 67 & 200 & 0.97 & 0.18 & 0.18 & 0.70 \\
-			\rowcolor[HTML]{EFEFEF} 
-			11 & 5 & 300 & 1.00 & 0.03 & 0.90 & 0.61 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			12 & 10 & 300 & 1.00 & 0.06 & 0.73 & 0.69 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			13 & 30 & 300 & 0.98 & 0.16 & 0.48 & 0.75 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			14 & 60 & 300 & 0.99 & 0.25 & 0.28 & 1.00 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			15 & 100 & 300 & 0.98 & 0.42 & 0.19 & 1.13 \\
-			16 & 5 & 400 & 0.99 & 0.03 & 0.94 & 0.82 \\ 
-			17 & 10 & 400 & 1.00 & 0.07 & 0.73 & 0.84 \\ 
-			18 & 40 & 400 & 0.99 & 0.25 & 0.45 & 1.13 \\ 
-			19 & 80 & 400 & 0.98 & 0.50 & 0.28 & 1.41 \\ 
-			20 & 133 & 400 & 0.96 & 0.84 & 0.15 & 1.62 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			21 & 5 & 500 & 1.00 & 0.05 & 0.93 & 1.02 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			22 & 10 & 500 & 0.99 & 0.09 & 0.80 & 1.13 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			23 & 50 & 500 & 0.98 & 0.44 & 0.41 & 1.52 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			24 & 100 & 500 & 0.98 & 0.85 & 0.26 & 1.80 \\
-			\rowcolor[HTML]{EFEFEF} 
-			25 & 167 & 500 & 0.96 & 1.39 & 0.17 & 1.87 \\
-			26 & 5 & 600 & 0.98 & 0.06 & 0.95 & 1.24 \\ 
-			27 & 10 & 600 & 0.99 & 0.12 & 0.81 & 1.31 \\ 
-			28 & 60 & 600 & 0.98 & 0.69 & 0.43 & 1.73 \\ 
-			29 & 120 & 600 & 0.98 & 1.35 & 0.26 & 2.31 \\ 
-			30 & 200 & 600 & 0.97 & 2.22 & 0.16 & 2.55 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			31 & 5 & 700 & 1.00 & 0.08 & 0.93 & 1.43 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			32 & 10 & 700 & 1.00 & 0.15 & 0.78 & 1.55 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			33 & 70 & 700 & 0.98 & 0.94 & 0.37 & 2.15 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			34 & 140 & 700 & 0.97 & 1.87 & 0.25 & 2.84 \\
-			35 & 5 & 800 & 1.00 & 0.10 & 0.96 & 1.68 \\ 
-			36 & 10 & 800 & 1.00 & 0.18 & 0.79 & 1.79 \\ 
-			37 & 80 & 800 & 0.99 & 1.33 & 0.37 & 2.78 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			38 & 5 & 900 & 0.99 & 0.12 & 0.94 & 1.79 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			39 & 10 & 900 & 1.00 & 0.22 & 0.81 & 1.95 \\ 
-			\rowcolor[HTML]{EFEFEF} 
-			40 & 90 & 900 & 0.99 & 1.88 & 0.37 & 3.10 \\ 
-		\end{tabular}
-	\end{table}
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=14cm]{CHtimevacc2.png}
+			\caption{Average Computational Time against Average Gap to the Optimal Solution}
+			\label{CHtimevacc2}
+		\end{center}
+	\end{figure}
+	
+	
+
+	Based on the work done by Whitaker \cite{WHIT83},\index[author]{Whitaker, R.} it was expected that the fast greedy algorithm\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm! results}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{heuristic!fast greedy algorithm} would produce results quicker than the greedy algorithm.  The trade-off in finding a solution faster would be an objective function value that is less accurate when compared to the optimal objective function value.  This trade-off may be acceptable in certain situations.
 	
 	
 	\section{Classical Heuristics: Local Search} \label{classicheuristics.localsearch}
@@ -519,7 +717,6 @@
 	
 	Using the input solution, the algorithm assesses what the change in objective function would be if one of the free nodes was changed with one of the median nodes.  If this change results in a decreased objective function value, then the switch is made, and the algorithm then starts assessing whether there exist any free nodes that should be interchanged with the new median set.  The process continues until no improvement in the objective function can be found.
 	
-	
 	\subsubsection{Pseudocode}
 	\index[terms]{interchange algorithm of Teitz and Bart! pseudocode} 	
 	\begin{algorithm}
@@ -527,7 +724,7 @@
 		\begin{algorithmic}[0]
 			\Statex 
 			\Statex INPUT: Cost Matrix; $P^*$; $S^*$
-						
+			
 			\Statex 
 			\Statex STEP 0: Initialisation 	
 			\begin{equation*}
@@ -540,17 +737,10 @@
 			u_i^k &= d_{ix} = \min_{j\in P^*}\\
 			w_i^k &= d_{iy} = \min_{j\in P^*, j\neq x}
 			\end{align*} 
-
-\Statex	
-\algstore{tbbreak}
-\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-\begin{algorithmic}[0]
-\algrestore{tbbreak}
-
 			
+			\Statex	
+
+
 			\Statex 
 			\Statex STEP 2: The value of $q$ is updated until it is equal to the number of nodes in the network minus the number of nodes required for the median.
 			\If{$q = b$}
@@ -570,6 +760,14 @@
 			\begin{equation*}
 			\text{where } I = \{\text{all } i \in G: d_{ij} > u_i^k\} \text{ and } J = \{\text{all } i \in G: d_{ij} = u_i^k\}
 			\end{equation*}
+
+			\algstore{tbbreak}
+		\end{algorithmic}
+	\end{algorithm}
+\np	
+	\begin{algorithm}
+		\begin{algorithmic}[0]
+			\algrestore{tbbreak}
 			
 			\Statex 
 			\Statex STEP 4: If the proposed node switch from STEP 3 results in a decrease of the objective function value, then proceed with the interchange and update the objective function value as well as the  iteration parameter.  If the interchange would result in an increase in the objective function value, then go back to STEP 2 and update q.
@@ -586,15 +784,8 @@
 			\Statex go to STEP 1				
 			]
 			\EndIf
-
-\Statex	
-\algstore{tbbreak}
-\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-\begin{algorithmic}[0]
-\algrestore{tbbreak}
+			
+			\Statex	
 			
 			\Statex 
 			\Statex STEP 5: If, after all nodes in the free node set have been investigated (i.e. $q=b$), increase the value of $a$ by one and then assess whether the objective function improved in the prior iteration.  If there was an improvement, then repeat the algorithm again but if there was no improvement stop.
@@ -612,6 +803,9 @@
 			
 		\end{algorithmic}
 	\end{algorithm}
+	
+	\subsubsection{Complexity}
+
 
 	\subsubsection{Results}
 	The average accuracy of the solution obtained from the interchange algorithm of Teitz and Bart\index[terms]{interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart! results}\index[terms]{local search heuristic!interchange algorithm of Teitz and Bart}\index[terms]{heuristic!interchange algorithm of Teitz and Bart} when presented with a solution from the greedy algorithm from section \ref{classicheuristics.constructive} as opposed to a feasible random solution can be seen in table \ref{TB.Results.table}.  This table also presents the average computational time the algorithm took to complete given the two different input solutions.
@@ -716,118 +910,7 @@
 	The fast interchange algorithm,\index[terms]{heuristic!fast interchange}\index[terms]{fast interchange}\index[terms]{local search} proposed by Whitaker\index[author]{Whitaker, R.} \cite{WHIT83}, is based on the Teitz and Bart algorithm\index[terms]{heuristic!interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart}  from subsection \ref{tbalgo}.  When searching for a free node that should be swapped with a node in the median set, only free nodes that have yet to be examined are considered.
 	
 	\subsubsection{Pseudocode}
-	\index[terms]{fast interchange! pseudocode} 	
-	\begin{algorithm}
-		\caption{Fast Interchange Algorithm}
-		\begin{algorithmic}[0]
-			\Statex 
-			\Statex INPUT: Cost Matrix; $P^*$; $S^*$
-			
-			\Statex 
-			\Statex STEP 0: Initialisation
-			\begin{equation*}
-			\text{Set } k = z = q = 1 \text{ and } b=m-p
-			\end{equation*}
-			\begin{equation*}
-			\text{Define } P=M-P^*
-			\end{equation*}
-			\Statex For each node in the network, determine the distance to both the closest node in the median set as well as the second closest node in the median set.
-			\Statex For $i=1,2,\dots,n ,$ find \emph{x} and \emph{y} where \emph{x}, $y \in P^*$ such that
-			\begin{align*}
-			u_i^1 & = d_{ix} = \min_{j\in P^*}d_{ij}\\
-			w_i^1 & = d_{iy} = \min_{j\in P^*, j\neq x}d_{ij}
-			\end{align*}
 
-			
-			\Statex
-			\Statex STEP 1: Calculate the change in the objective function if one node from the median set were to be interchanged with a free node.
-			\Statex Set $r=P_q$ and find some node \emph{t}, $t \in P^*$ such that
-			\begin{align*}
-			S_{rt} &= \bigg[\sum_{i \in I}d_{ir}-u_i^k\bigg] + \min_{j\in P^*}\bigg[\sum_{i \in K_j}[\min(d_{ir}, w_i^k)-u_i^k]\bigg]\\
-			\text{where } I &= \{\text{all } i \in G: d_{ir}<u_i^k\}\\
-			\text{and } K_j &= \{\text{all } i \in G: d_{ir}\geq u_i^k\text{ and } d_{ij} - u_i^k\}
-			\end{align*}
-
-\Statex	
-\algstore{fintbreak}
-\end{algorithmic}
-\end{algorithm}
-
-
-\begin{algorithm}
-\begin{algorithmic}[0]
-\algrestore{fintbreak}
-
-
-			\Statex
-			\Statex STEP 2: If the objective function value were to increase by the proposed interchange of nodes, then go to STEP 4.  If the proposed change of nodes results in a decrease of the objective function value, then make the change, update iterative parameters and the objective function and go to STEP 3.
-			\If{$S_{rt} \geq 0$}
-			\Statex go to STEP 4
-			[
-			\ElsIf{$S_{rt} < 0$}
-			\begin{equation*}
-			k = k+1 \quad  S^*= S* + S_{rt} \quad P_q = \{t\} \quad P^*= P^*\backslash \{t\} \cup \{r\} \text{ and  go to STEP 3}
-			\end{equation*}				
-			]
-			\EndIf
-
-
-			\Statex
-			\Statex STEP 3: Update the cost of travel for each node in the network to the closest and second closest medians.
-			\If{$d_{it} > u_i^{k-1}$}
-			\begin{align*}
-			u_i^k & = \min(d_{ir},u_k^{k-1})
-			\end{align*}
-			\Statex let $s \in P^*$ be a median for node $i$ such that $d_{is} = u_i^k$
-			\begin{align*}
-			\text{set } w_i^k & = u_i^{k-1} \text{ if } d_{ir} \leq u_i^{k-1}\\
-			\text{or set } w_i^k & = \min(d_{ir},w_i^{k-1}) \text{ if } d_{ir} > u_i^{k-1} \text{ and } d_{it} > w_i^{k-1}\\
-			\text{or set } w_i^k & = \min_{j\in P^*,j\neq s}d_{ij} \text{ if } d_{ir} > u_i^{k-1} \text{ and } d_{it} = w_i^{k-1}
-			\end{align*}
-			[
-			\ElsIf{$d_{it}=u_i^{k-1}$}
-			\begin{align*}
-			u_i^k & = \min(d_{ir},w_k^{k-1})
-			\end{align*}
-			\Statex let $s \in P^*$ be a median for node $i$ such that $d_{is} = u_i^k$
-			\begin{equation*}
-			\text{set } w_i^k  = w_i^{k-1} \text{ if } d_{ir} \leq w_i^{k-1}
-			\text{ or set } w_i^k = \min_{j\in P^*,j\neq s}d_{ij} \text{ if }d_{ir} > w_i^{k-1}
-			\end{equation*}
-			]
-			\EndIf			
-			
-\Statex	
-\algstore{fintbreak}
-\end{algorithmic}
-\end{algorithm}
-
-
-\begin{algorithm}
-\begin{algorithmic}[0]
-\algrestore{fintbreak}
-			
-			\Statex
-			\Statex STEP 4: Once the algorithm has assessed all free nodes, go to STEP 5. Otherwise, increase the iterative parameters and go back to STEP 1.
-			\If{$z=b$}
-			\Statex go to STEP 5
-			[
-			\ElsIf{$z < b$}
-			\begin{equation*}
-			z=z+1 \text{, } q=q+1 \text{ and go to STEP 1}
-			\end{equation*}
-			]
-			\EndIf
-
-			
-			\Statex
-			\Statex STEP 5: If the algorithm finds that the current median set cannot be improved upon, then find the percent of free nodes that were assessed for a possible exchange from the free node set to the median set and stop.
-			\begin{center}
-				$a=\frac{q}{b}$ and STOP
-			\end{center}
-			
-		\end{algorithmic}
-	\end{algorithm}
 
 	\subsubsection{Results}
 	Table \ref{FI.Results.table} presents the average solution accuracy and the average computational time for the fast interchange algorithm.\index[terms]{heuristic!fast interchange}\index[terms]{fast interchange}\index[terms]{fast interchange!results}\index[terms]{local search}  The results from using a solution obtained from the greedy algorithm given in section \ref{classicheuristics.constructive} as well as a randomly created feasible solution are provided alongside one another for comparison.
@@ -933,39 +1016,6 @@
 	The alternate algorithm\index[terms]{heuristic!alternate algorithm}\index[terms]{alternate algorithm}\index[terms]{local search} was presented in a paper by Maranzana \index[author]{Maranzana, F.} in 1964 \cite{MARA64} and begins with creating a random median set and assigning all nodes in the network to one of these median nodes.  The group of free nodes associated with each median node is evaluated and the median for this group is determined and replaces the node in the median set if different from the current median.  All nodes in the network are then reassigned to the closest median in the new median set and once again each group's true median is determined and replaces the current node in the median set.  This process continues until there is an iteration with no changes to the median set.
 	
 	\subsubsection{Pseudocode}
-	\index[terms]{alternate! pseudocode} 	
-	\begin{algorithm}
-		\caption{Alternate Algorithm}
-		\begin{algorithmic}[0]
-			\Statex 
-			\Statex INPUT: Cost Matrix; $P^*$; $S^*$
-			
-			\Statex 
-			\Statex STEP 0: Initialisation
-			\Statex Randomly assign $p$ nodes to $P^*$ and set $P = M - P^*$
-			
-			\Statex 
-			\Statex STEP 1: Assign each node in the network to its closest median.
-			\begin{align*}
-			K_j=\{\text{all } i \in G \text{ such that } \min (d_{ij})\} \text{ where } j \in P^*
-			\end{align*}
-			
-			\Statex 
-			\Statex STEP 2: Find the median node for each current median's set of associated nodes.
-			\begin{equation*}
-			\text{Find } k_j \in K_j \text{ where } \min \bigg[ \sum_{i\in K_j} d_{ik} \bigg] 
-			\end{equation*}
-			
-			
-			\Statex 
-			\Statex STEP 3: Update $P^*$ with the new set of medians.
-			\begin{equation*}
-			P^{*} = \{\text{all } k_j  \} \text{ for } j \in P^*
-			\end{equation*}
-			
-			
-		\end{algorithmic}
-	\end{algorithm}
 
 	\subsubsection{Results}
 	The code for this algorithm has not been completed and as such there are no results that can be presented at this time.
@@ -1010,7 +1060,6 @@
 	
 	Given time, a section on metaheuristics used to solve the $p$-median problem will also be added.  At least two metaheuristics will be coded and used to solve the forty test problems.  These results will also be added to the final report and compared to those produced in the classic heuristic sections.
 		
-		
 	\np
 	\bibliography{finalbib}
 	\bibliographystyle{IEEEtran}
@@ -1019,6 +1068,648 @@
 	\printindex[terms]
 	\printindex[authors]
 	
+	\np
+	\begin{appendices}
+		\section{Constructive Heuristics Results}
+		\subsection{Greedy Algorithm}
+		\begin{landscape}
+			\begin{longtable}[c]{ccccc|cccc|cccc}
+				\caption{Greedy Algorithm (50 Runs)}
+				\label{greedy.results}\\ \hline
+				&  &  &  &  & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Computational Time\\ (seconds)\end{tabular}}} & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (\%) \end{tabular}}} \\ \cline{6-13}
+				\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}}} & \multirow{-2}{*}{\textbf{p}} & \multirow{-2}{*}{\textbf{n}} & \multirow{-2}{*}{\textbf{Edges}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Solution\end{tabular}}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} \\ \hline
+				\endhead
+				%
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0 & 0 & 0.1 & 0.01 & 1.2 & 1.2 & 1.2 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0 & 0 & 0.0 & 0.01 & 0.6 & 0.6 & 0.6 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0 & 0 & 0.1 & 0.01 & 3.5 & 3.5 & 3.5 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0 & 0 & 0.1 & 0.01 & 2 & 1.8 & 2.2 & 0.2 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 0 & 0 & 0.1 & 0.01 & 2.6 & 1.7 & 4.4 & 0.69 \\
+				6 & 5 & 200 & 786 & 7824 & 0 & 0 & 0.1 & 0.02 & 2.6 & 2.6 & 2.6 & 0 \\
+				7 & 10 & 200 & 779 & 5631 & 0 & 0 & 0.1 & 0.02 & 0.3 & 0.3 & 0.3 & 0 \\
+				8 & 20 & 200 & 792 & 4445 & 0 & 0 & 0.1 & 0.02 & 1.6 & 1.5 & 2.3 & 0.16 \\
+				9 & 40 & 200 & 785 & 2734 & 0.1 & 0 & 0.1 & 0.02 & 4.9 & 4.1 & 5.2 & 0.48 \\
+				10 & 67 & 200 & 786 & 1255 & 0.1 & 0.1 & 0.2 & 0.02 & 5.5 & 3.6 & 7.8 & 1.6 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0 & 0 & 0.1 & 0.02 & 0.3 & 0.3 & 0.3 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.1 & 0 & 0.1 & 0.03 & 0.3 & 0.3 & 0.3 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 0.2 & 0.1 & 0.2 & 0.03 & 2.3 & 2.3 & 2.3 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 0.3 & 0.2 & 0.4 & 0.03 & 2.5 & 2.1 & 3.1 & 0.26 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 0.5 & 0.4 & 0.6 & 0.04 & 6.2 & 4.5 & 7.9 & 0.83 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.1 & 0 & 0.1 & 0.03 & 0.9 & 0.9 & 0.9 & 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.1 & 0.1 & 0.2 & 0.04 & 0.3 & 0.3 & 0.3 & 0 \\
+				18 & 40 & 400 & 3134 & 4809 & 0.4 & 0.3 & 0.6 & 0.07 & 1.4 & 1.3 & 1.5 & 0.07 \\
+				19 & 80 & 400 & 3134 & 2845 & 0.8 & 0.6 & 0.9 & 0.06 & 3.9 & 3.6 & 4.3 & 0.19 \\
+				20 & 133 & 400 & 3144 & 1789 & 1.4 & 1.3 & 1.6 & 0.07 & 7.6 & 5.8 & 8.9 & 0.69 \\ \np
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.1 & 0 & 0.2 & 0.04 & 0 & 0 & 0 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 0.2 & 0.1 & 0.2 & 0.04 & 1.1 & 1.1 & 1.1 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 0.7 & 0.5 & 0.8 & 0.05 & 1.6 & 1.5 & 1.8 & 0.11 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 1.9 & 1.4 & 2.5 & 0.36 & 2.2 & 1.8 & 2.5 & 0.16 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 2.8 & 2.6 & 3.2 & 0.12 & 7.9 & 6.6 & 9.6 & 0.65 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.1 & 0.1 & 0.2 & 0.03 & 1.8 & 1.8 & 1.8 & 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 0.2 & 0.2 & 0.3 & 0.04 & 0.8 & 0.8 & 0.8 & 0 \\
+				28 & 60 & 600 & 7054 & 4498 & 1.5 & 1.2 & 1.7 & 0.1 & 1.8 & 1.7 & 2.2 & 0.12 \\
+				29 & 120 & 600 & 7042 & 3033 & 3 & 2.7 & 3.5 & 0.17 & 3.5 & 2.5 & 4.5 & 0.53 \\
+				30 & 200 & 600 & 7042 & 1989 & 5.2 & 4.9 & 5.8 & 0.22 & 9.1 & 7.1 & 10.1 & 0.55 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0.1 & 0.1 & 0.2 & 0.03 & 0 & 0 & 0 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 0.2 & 0.1 & 0.3 & 0.04 & 0.4 & 0.4 & 0.4 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 1.8 & 1.6 & 2.0 & 0.1 & 2.1 & 2 & 2.3 & 0.11 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 3.7 & 3.5 & 4.1 & 0.13 & 2.9 & 2 & 3.8 & 0.56 \\
+				35 & 5 & 800 & 12548 & 10400 & 0.2 & 0.1 & 0.4 & 0.06 & 0.1 & 0.1 & 0.1 & 0 \\
+				36 & 10 & 800 & 12560 & 9934 & 0.6 & 0.5 & 0.7 & 0.03 & 0.2 & 0.2 & 0.2 & 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 2.8 & 2.4 & 3.9 & 0.25 & 1.5 & 1.2 & 1.9 & 0.2 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 0.3 & 0.3 & 0.4 & 0.02 & 0.8 & 0.8 & 0.8 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 0.6 & 0.5 & 0.7 & 0.04 & 0.3 & 0.3 & 0.3 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 3.6 & 3.2 & 4.1 & 0.22 & 1.8 & 1.3 & 2 & 0.18
+			\end{longtable}
+		\end{landscape}
+		
+		\subsection{Fast Greedy Algorithm}
+		\begin{landscape}
+			\begin{longtable}[c]{ccccc|cccc|cccc}
+				\caption{Fast Greedy Algorithm Results (50 Runs)}
+				\label{fast.results}\\ \hline
+				&  &  &  &  & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Computational Time\\ (seconds)\end{tabular}}} & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (\%) \end{tabular}}} \\ \cline{6-13}
+				\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}}} & \multirow{-2}{*}{\textbf{p}} & \multirow{-2}{*}{\textbf{n}} & \multirow{-2}{*}{\textbf{Edges}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Solution\end{tabular}}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} \\ \hline
+				\endhead
+				%
+				\rowcolor[HTML]{EFEFEF} 
+				1  & 5   & 100 & 198   & 5819  & 0   & 0   & 0.1 & 0.01 & 20.3  & 20.3  & 20.3  & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				2  & 10  & 100 & 193   & 4093  & 0   & 0   & 0.1 & 0.01 & 66.3  & 66.3  & 66.3  & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				3  & 10  & 100 & 198   & 4250  & 0   & 0   & 0.1 & 0.01 & 64.9  & 64.9  & 64.9  & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				4  & 20  & 100 & 196   & 3034  & 0.1 & 0.1 & 0.1 & 0.01 & 178.3 & 178.3 & 178.3 & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				5  & 33  & 100 & 196   & 1355  & 0.1 & 0.1 & 0.1 & 0.01 & 376.4 & 376.4 & 376.4 & 0    \\
+				6  & 5   & 200 & 786   & 7824  & 0   & 0   & 0.1 & 0.01 & 10.1  & 10.1  & 10.1  & 0    \\
+				7  & 10  & 200 & 779   & 5631  & 0   & 0   & 0.1 & 0.01 & 41.8  & 41.8  & 41.8  & 0    \\
+				8  & 20  & 200 & 792   & 4445  & 0.1 & 0.1 & 0.1 & 0.01 & 108.4 & 108.4 & 108.4 & 0    \\
+				9  & 40  & 200 & 785   & 2734  & 0.1 & 0.1 & 0.2 & 0.01 & 221.2 & 221.2 & 221.2 & 0    \\
+				10 & 67  & 200 & 786   & 1255  & 0.2 & 0.2 & 0.3 & 0.02 & 457.9 & 457.9 & 457.9 & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5   & 300 & 1772  & 7696  & 0   & 0   & 0.1 & 0.01 & 11.1  & 11.1  & 11.1  & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10  & 300 & 1758  & 6634  & 0.1 & 0   & 0.1 & 0.02 & 36.2  & 36.2  & 36.2  & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30  & 300 & 1760  & 4374  & 0.1 & 0.1 & 0.2 & 0.02 & 110.1 & 110.1 & 110.1 & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60  & 300 & 1771  & 2968  & 0.2 & 0.2 & 0.3 & 0.02 & 262.5 & 262.5 & 262.5 & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754  & 1729  & 0.4 & 0.3 & 0.5 & 0.03 & 417.7 & 417.4 & 418.2 & 0.4  \\
+				16 & 5   & 400 & 3153  & 8162  & 0.1 & 0   & 0.1 & 0.03 & 6.8   & 6.8   & 6.8   & 0    \\
+				17 & 10  & 400 & 3142  & 6999  & 0.1 & 0   & 0.1 & 0.03 & 37.1  & 37.1  & 37.1  & 0    \\
+				18 & 40  & 400 & 3134  & 4809  & 0.2 & 0.1 & 0.2 & 0.03 & 122.7 & 122.7 & 122.7 & 0    \\
+				19 & 80  & 400 & 3134  & 2845  & 0.3 & 0.3 & 0.4 & 0.03 & 262.5 & 262.5 & 262.5 & 0    \\
+				20 & 133 & 400 & 3144  & 1789  & 0.5 & 0.5 & 0.7 & 0.05 & 547   & 547   & 547   & 0    \\ 
+				\np
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5   & 500 & 4909  & 9138  & 0.1 & 0   & 0.2 & 0.04 & 7.6   & 7.6   & 7.6   & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10  & 500 & 4896  & 8579  & 0.1 & 0.1 & 0.2 & 0.02 & 24.9  & 24.8  & 24.9  & 0.06 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50  & 500 & 4903  & 4619  & 0.3 & 0.2 & 0.3 & 0.03 & 142.3 & 142.3 & 142.3 & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914  & 2961  & 0.5 & 0.4 & 0.8 & 0.08 & 286.1 & 285.9 & 286.3 & 0.2  \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894  & 1828  & 0.6 & 0.6 & 0.8 & 0.04 & 499   & 499   & 499   & 0    \\
+				26 & 5   & 600 & 7069  & 9917  & 0.1 & 0.1 & 0.2 & 0.04 & 5.4   & 5.4   & 5.4   & 0    \\
+				27 & 10  & 600 & 7072  & 8307  & 0.1 & 0.1 & 0.2 & 0.02 & 24.1  & 24.1  & 24.1  & 0    \\
+				28 & 60  & 600 & 7054  & 4498  & 0.3 & 0.3 & 0.4 & 0.04 & 132.7 & 132.2 & 133.3 & 0.55 \\
+				29 & 120 & 600 & 7042  & 3033  & 0.5 & 0.5 & 0.6 & 0.04 & 279.7 & 279.7 & 279.7 & 0    \\
+				30 & 200 & 600 & 7042  & 1989  & 0.8 & 0.7 & 0.9 & 0.04 & 542.6 & 542.6 & 542.6 & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5   & 700 & 9601  & 10086 & 0.2 & 0.1 & 0.2 & 0.03 & 7.4   & 7.4   & 7.4   & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10  & 700 & 9584  & 9297  & 0.2 & 0.1 & 0.2 & 0.03 & 28.5  & 28.5  & 28.5  & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70  & 700 & 9616  & 4700  & 0.4 & 0.3 & 0.5 & 0.04 & 167.8 & 167.8 & 167.8 & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585  & 3013  & 0.6 & 0.6 & 0.9 & 0.05 & 302.9 & 302.9 & 302.9 & 0    \\
+				35 & 5   & 800 & 12548 & 10400 & 0.2 & 0.1 & 0.3 & 0.04 & 4.3   & 4.3   & 4.3   & 0    \\
+				36 & 10  & 800 & 12560 & 9934  & 0.2 & 0.2 & 0.3 & 0.04 & 26.4  & 26.4  & 26.4  & 0    \\
+				37 & 80  & 800 & 12564 & 5057  & 0.5 & 0.4 & 0.5 & 0.03 & 172.2 & 172.2 & 172.2 & 0.02 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5   & 900 & 15898 & 11060 & 0.2 & 0.2 & 0.3 & 0.03 & 5.9   & 5.9   & 5.9   & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10  & 900 & 15896 & 9423  & 0.2 & 0.2 & 0.3 & 0.03 & 23.3  & 23.3  & 23.3  & 0    \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90  & 900 & 15879 & 5128  & 0.6 & 0.5 & 0.7 & 0.04 & 167.6 & 167.6 & 167.6 & 0   
+			\end{longtable}
+		\end{landscape}
+		
+		\subsection{Stingy Algorithm}
+		\begin{landscape}
+			\begin{longtable}[c]{ccccc|cccc|cccc}
+				\caption{Stingy Algorithm Results (50 Runs)}
+				\label{stingy.results}\\ \hline
+				&  &  &  &  & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Computational Time\\ (seconds)\end{tabular}}} & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (\%) \end{tabular}}} \\ \cline{6-13}
+				\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}}} & \multirow{-2}{*}{\textbf{p}} & \multirow{-2}{*}{\textbf{n}} & \multirow{-2}{*}{\textbf{Edges}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Solution\end{tabular}}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} \\ \hline
+				\endhead
+				%
+				\rowcolor[HTML]{EFEFEF} 
+				1  & 5   & 100 & 198  & 5819 & 3.3   & 3.2   & 4.2   & 0.16 & 116.1 & 116.1 & 116.1 & 0     \\
+				\rowcolor[HTML]{EFEFEF} 
+				2  & 10  & 100 & 193  & 4093 & 3.3   & 3.2   & 3.6   & 0.11 & 131.9 & 126.3 & 138.1 & 3.4   \\
+				\rowcolor[HTML]{EFEFEF} 
+				3  & 10  & 100 & 198  & 4250 & 3.3   & 3.2   & 3.6   & 0.11 & 130.6 & 130.4 & 131   & 0.29  \\
+				\rowcolor[HTML]{EFEFEF} 
+				4  & 20  & 100 & 196  & 3034 & 3.1   & 3     & 3.7   & 0.12 & 108.5 & 106.7 & 110.2 & 1.78  \\
+				\rowcolor[HTML]{EFEFEF} 
+				5  & 33  & 100 & 196  & 1355 & 2.9   & 2.8   & 3.4   & 0.15 & 145   & 138.5 & 155.6 & 8.07  \\
+				6  & 5   & 200 & 786  & 7824 & 28.2  & 27.8  & 30.2  & 0.47 & 99.2  & 99.2  & 99.2  & 0     \\
+				7  & 10  & 200 & 779  & 5631 & 28.1  & 27.6  & 28.7  & 0.36 & 125.3 & 124.5 & 126.1 & 0.81  \\
+				8  & 20  & 200 & 792  & 4445 & 27.8  & 27.4  & 28.4  & 0.34 & 131.3 & 128.7 & 133   & 2.1   \\
+				9  & 40  & 200 & 785  & 2734 & 26.9  & 26.5  & 27.5  & 0.37 & 135.3 & 132.2 & 137.1 & 2.34  \\
+				10 & 67  & 200 & 786  & 1255 & 25    & 24.4  & 28.5  & 0.77 & 173.2 & 173.2 & 173.2 & 0     \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5   & 300 & 1772 & 7696 & 131.8 & 131.5 & 132.3 & 0.38 & 154.2 & 148.2 & 172.4 & 12.12 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10  & 300 & 1758 & 6634 & 131.4 & 131.1 & 131.6 & 0.23 & 163   & 163   & 163   & 0     \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30  & 300 & 1760 & 4374 & 130.1 & 129.7 & 130.7 & 0.44 & 149.6 & 149.6 & 149.6 & 0     \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60  & 300 & 1771 & 2968 & 125.5 & 125.2 & 125.9 & 0.26 & 138.7 & 137   & 140.6 & 1.97  \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 116.4 & 115.8 & 117.4 & 0.38 & 125.8 & 123.7 & 127.3 & 1.03  \\
+				16 & 5   & 400 & 3153 & 8162 & 406.3 & 406.1 & 406.5 & 0.17 & 149.7 & 149.7 & 149.7 & 0     \\
+				17 & 10  & 400 & 3142 & 6999 & 406.8 & 405.4 & 408.1 & 1.41 & 136.8 & 135.4 & 141   & 2.79  \\
+				18 & 40  & 400 & 3134 & 4809 & 402.4 & 400.1 & 408.2 & 3.86 & 135.7 & 134.2 & 136.9 & 1.26  \\
+				19 & 80  & 400 & 3134 & 2845 & 389.6 & 388.9 & 390.5 & 0.69 & 124.3 & 124   & 124.7 & 0.33  \\
+				20 & 133 & 400 & 3144 & 1789 & 359   & 358.8 & 359.2 & 0.19 & 128.2 & 128.2 & 128.2 & 0    
+			\end{longtable}
+		\end{landscape}
+		
+		
+		\section{Local Search Heuristics Results}
+		\subsection{Interchange Algorithm of Teitz and Bart}
+		\captionsetup{width=15cm}
+		\begin{landscape}
+			\begin{longtable}[c]{ccccc|cccc|cccc|cccc}
+				\caption{Interchange Algorithm of Teitz and Bart - Greedy (50 Runs)}
+				\label{TB.greedy}\\ \hline
+				&  &  &  &  & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Computational Time\\ (seconds)\end{tabular}}} & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (percent)\end{tabular}}} & \multicolumn{4}{c}{\textbf{Iterations}} \\ \cline{6-17}
+				\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}}} & \multirow{-2}{*}{\textbf{p}} & \multirow{-2}{*}{\textbf{n}} & \multirow{-2}{*}{\textbf{Edges}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Solution\end{tabular}}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} \\ \hline
+				\endhead
+				%
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0.1 & 0 & 0.1 & 0.02 & 0 & 0 & 0 & 0 & 0.1 & 0 & 6 & 0.85 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0.1 & 0 & 0.1 & 0.01 & 0.3 & 0.3 & 0.3 & 0 & 0.1 & 0 & 3 & 0.42 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 0.1 & 0 & 7 & 0.99 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.1 & 0.1 & 0.2 & 0.02 & 0.4 & 0.4 & 0.4 & 0 & 0.1 & 0 & 3 & 0.42 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 0.1 & 0.1 & 0.2 & 0.02 & 0.4 & 0.4 & 0.4 & 0 & 0.1 & 0 & 3 & 0.42 \\
+				6 & 5 & 200 & 786 & 7824 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 0.2 & 0 & 8 & 1.13 \\
+				7 & 10 & 200 & 779 & 5631 & 0.2 & 0.1 & 0.2 & 0.02 & 0.2 & 0.2 & 0.2 & 0 & 0 & 0 & 2 & 0.28 \\
+				8 & 20 & 200 & 792 & 4445 & 0.3 & 0.2 & 0.3 & 0.02 & 0.3 & 0.3 & 0.3 & 0 & 0.1 & 0 & 4 & 0.57 \\
+				9 & 40 & 200 & 785 & 2734 & 0.7 & 0.7 & 0.9 & 0.04 & 0.7 & 0.7 & 0.7 & 0 & 0.2 & 0 & 12 & 1.7 \\
+				10 & 67 & 200 & 786 & 1255 & 0.6 & 0.6 & 0.7 & 0.02 & 0.6 & 0.6 & 0.6 & 0 & 0.2 & 0 & 10 & 1.41 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 0.1 & 0 & 3 & 0.42 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.3 & 0.2 & 0.4 & 0.03 & 0 & 0 & 0 & 0 & 0.1 & 0 & 4 & 0.57 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 0.7 & 0.7 & 0.9 & 0.04 & 0 & 0 & 0 & 0 & 0.2 & 0 & 10 & 1.41 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 1.2 & 1.2 & 1.5 & 0.07 & 0.1 & 0.1 & 0.1 & 0 & 0.3 & 0 & 16 & 2.26 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 1.7 & 1.6 & 2 & 0.07 & 0.6 & 0.6 & 0.6 & 0 & 0.2 & 0 & 12 & 1.7 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.4 & 0.3 & 0.5 & 0.03 & 0 & 0 & 0 & 0 & 0.1 & 0 & 6 & 0.85 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.4 & 0.4 & 0.5 & 0.02 & 0 & 0 & 0 & 0 & 0.1 & 0 & 3 & 0.42 \\
+				18 & 40 & 400 & 3134 & 4809 & 2.1 & 2 & 2.4 & 0.08 & 0 & 0 & 0 & 0 & 0.2 & 0 & 12 & 1.7 \\
+				19 & 80 & 400 & 3134 & 2845 & 3.7 & 3.6 & 4.1 & 0.12 & 0.6 & 0.6 & 0.6 & 0 & 0.4 & 0 & 21 & 2.97 \\
+				20 & 133 & 400 & 3144 & 1789 & 5.1 & 5 & 5.9 & 0.19 & 0.1 & 0.1 & 0.1 & 0 & 0.6 & 0 & 30 & 4.24 \\ \np
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.2 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0.14 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 0.6 & 0.5 & 0.7 & 0.04 & 1 & 1 & 1 & 0 & 0 & 0 & 2 & 0.28 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 3.7 & 3.6 & 4.1 & 0.1 & 0 & 0 & 0 & 0 & 0.4 & 0 & 18 & 2.55 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 6.3 & 6.2 & 6.9 & 0.19 & 0.3 & 0.3 & 0.3 & 0 & 0.4 & 0 & 18 & 2.55 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 10.1 & 8.6 & 12.3 & 1.43 & 0.9 & 0.7 & 1 & 0.07 & 0.6 & 0 & 29 & 4.1 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.4 & 0.4 & 0.6 & 0.03 & 0.1 & 0.1 & 0.1 & 0 & 0.1 & 0 & 7 & 0.99 \\
+				27 & 10 & 600 & 7072 & 8307 & 1.2 & 1.1 & 1.4 & 0.06 & 0 & 0 & 0 & 0 & 0.2 & 0 & 8 & 1.13 \\
+				28 & 60 & 600 & 7054 & 4498 & 5.8 & 5.7 & 6.5 & 0.2 & 0.2 & 0.2 & 0.2 & 0 & 0.3 & 0 & 17 & 2.4 \\
+				29 & 120 & 600 & 7042 & 3033 & 11.8 & 10 & 14 & 1.65 & 0.2 & 0.2 & 0.2 & 0 & 0.6 & 0 & 28 & 3.96 \\
+				30 & 200 & 600 & 7042 & 1989 & 13.9 & 13.7 & 15.6 & 0.44 & 1.1 & 1.1 & 1.1 & 0 & 0.3 & 0 & 17 & 2.4 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0.3 & 0.2 & 0.3 & 0.02 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0.14 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 1 & 1 & 1.2 & 0.05 & 0 & 0 & 0 & 0 & 0.1 & 0 & 6 & 0.85 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 8.8 & 8.6 & 9.4 & 0.21 & 0.5 & 0.5 & 0.5 & 0 & 0.5 & 0 & 23 & 3.25 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 19.5 & 15.2 & 20.9 & 1.88 & 0.4 & 0.4 & 0.5 & 0.01 & 0.8 & 0 & 38 & 5.37 \\
+				35 & 5 & 800 & 12548 & 10400 & 0.7 & 0.6 & 0.7 & 0.03 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0.28 \\
+				36 & 10 & 800 & 12560 & 9934 & 1.2 & 1.2 & 1.4 & 0.05 & 0 & 0 & 0 & 0 & 0.1 & 0 & 4 & 0.57 \\
+				37 & 80 & 800 & 12564 & 5057 & 17.9 & 12.4 & 21.2 & 3.65 & 0.2 & 0.2 & 0.3 & 0.01 & 0.6 & 0 & 28 & 3.96 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 1.3 & 1.2 & 1.5 & 0.06 & 0 & 0 & 0 & 0 & 0.2 & 0 & 9 & 1.27 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 1.5 & 1.5 & 1.7 & 0.05 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0.28 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 22.9 & 22.6 & 23.6 & 0.3 & 0.3 & 0.3 & 0.3 & 0 & 0.5 & 0 & 24 & 3.39
+			\end{longtable}
+		\end{landscape}
+		
+		\captionsetup{width=15cm}
+		\begin{landscape}
+			\begin{longtable}[c]{ccccc|cccc|cccc|cccc}
+				\caption{Interchange Algorithm of Teitz and Bart - Random (50 Runs)}
+				\label{TB.random}\\ \hline
+				&  &  &  &  & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Computational Time\\ (seconds)\end{tabular}}} & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (percent)\end{tabular}}} & \multicolumn{4}{c}{\textbf{Iterations}} \\ \cline{6-17}
+				\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}}} & \multirow{-2}{*}{\textbf{p}} & \multirow{-2}{*}{\textbf{n}} & \multirow{-2}{*}{\textbf{Edges}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Solution\end{tabular}}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} \\ \hline
+				\endhead
+				%
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0.1 & 0.1 & 0.1 & 0.01 & 0 & 0 & 0 & 0 & 0.3 & 0 & 17 & 2.4 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 0.6 & 0 & 31 & 4.38 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0.2 & 0.1 & 0.2 & 0.01 & 0 & 0 & 0 & 0 & 0.6 & 0 & 30 & 4.24 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.2 & 0.2 & 0.3 & 0.02 & 0.4 & 0.4 & 0.4 & 0 & 0.6 & 0 & 32 & 4.53 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 0.3 & 0.2 & 0.3 & 0.02 & 1.3 & 1.3 & 1.3 & 0 & 0.8 & 0 & 40 & 5.66 \\
+				6 & 5 & 200 & 786 & 7824 & 0.2 & 0.1 & 0.2 & 0.03 & 0 & 0 & 0 & 0 & 0.5 & 0 & 24 & 3.39 \\
+				7 & 10 & 200 & 779 & 5631 & 0.2 & 0.2 & 0.3 & 0.02 & 0 & 0 & 0 & 0 & 0.6 & 0 & 32 & 4.53 \\
+				8 & 20 & 200 & 792 & 4445 & 0.6 & 0.5 & 0.6 & 0.03 & 0.2 & 0.2 & 0.2 & 0 & 1 & 0 & 50 & 7.07 \\
+				9 & 40 & 200 & 785 & 2734 & 0.9 & 0.9 & 1.1 & 0.06 & 0.7 & 0.7 & 0.7 & 0.02 & 1.1 & 0 & 57 & 8.06 \\
+				10 & 67 & 200 & 786 & 1255 & 1.4 & 1.2 & 1.8 & 0.19 & 1.1 & 0.8 & 1.2 & 0.16 & 1.3 & 0 & 66 & 9.33 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0.2 & 0.2 & 0.3 & 0.02 & 0 & 0 & 0 & 0 & 0.4 & 0 & 21 & 2.97 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.4 & 0.4 & 0.5 & 0.02 & 0 & 0 & 0 & 0 & 0.7 & 0 & 33 & 4.67 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 1.5 & 1.4 & 1.7 & 0.08 & 0.3 & 0.3 & 0.3 & 0 & 1.3 & 0 & 63 & 8.91 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 2.6 & 2.4 & 3.4 & 0.27 & 0.2 & 0.1 & 0.2 & 0.05 & 2 & 0 & 100 & 14.14 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 4.2 & 3.3 & 5.7 & 0.78 & 0.8 & 0.5 & 1.2 & 0.17 & 2.3 & 0 & 116 & 16.4 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.3 & 0.3 & 0.4 & 0.02 & 0.3 & 0.3 & 0.3 & 0 & 0.4 & 0 & 20 & 2.83 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.6 & 0.5 & 0.6 & 0.02 & 0.2 & 0.2 & 0.2 & 0 & 0.7 & 0 & 33 & 4.67 \\
+				18 & 40 & 400 & 3134 & 4809 & 2.7 & 2.6 & 3.1 & 0.1 & 0 & 0 & 0 & 0 & 1.6 & 0 & 82 & 11.6 \\
+				19 & 80 & 400 & 3134 & 2845 & 4.7 & 4.6 & 6 & 0.25 & 0.6 & 0.4 & 0.6 & 0.09 & 2.5 & 0 & 123 & 17.39 \\
+				20 & 133 & 400 & 3144 & 1789 & 7.5 & 6.3 & 8.9 & 0.83 & 0.6 & 0.4 & 1 & 0.13 & 2.7 & 0 & 134 & 18.95 \\ \np
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.4 & 0.4 & 0.5 & 0.02 & 0 & 0 & 0 & 0 & 0.3 & 0 & 17 & 2.4 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 1.5 & 1.5 & 1.8 & 0.06 & 1 & 1 & 1 & 0 & 1 & 0 & 49 & 6.93 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 8.7 & 8.5 & 9.3 & 0.21 & 0.1 & 0.1 & 0.1 & 0 & 2.3 & 0 & 113 & 15.98 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 10.8 & 10.4 & 12.8 & 0.65 & 0.5 & 0.3 & 0.7 & 0.13 & 3 & 0 & 152 & 21.5 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 13.8 & 11 & 17.3 & 1.62 & 1 & 0.6 & 1.4 & 0.2 & 3.1 & 0 & 155 & 21.92 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.6 & 0.6 & 0.7 & 0.03 & 0 & 0 & 0 & 0 & 0.6 & 0 & 28 & 3.96 \\
+				27 & 10 & 600 & 7072 & 8307 & 1.6 & 1.5 & 1.8 & 0.05 & 0 & 0 & 0 & 0 & 0.9 & 0 & 43 & 6.08 \\
+				28 & 60 & 600 & 7054 & 4498 & 10.3 & 9.8 & 12.3 & 0.8 & 0.3 & 0.2 & 0.4 & 0.08 & 2.8 & 0 & 140 & 19.8 \\
+				29 & 120 & 600 & 7042 & 3033 & 15.5 & 13.4 & 18 & 1.9 & 1 & 0.9 & 1.1 & 0.07 & 3.8 & 0 & 189 & 26.73 \\
+				30 & 200 & 600 & 7042 & 1989 & 20.6 & 18.1 & 28.4 & 2.98 & 0.9 & 0.5 & 1.3 & 0.2 & 4.1 & 0 & 204 & 28.85 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0.7 & 0.7 & 0.8 & 0.03 & 0 & 0 & 0 & 0 & 0.5 & 0 & 25 & 3.54 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 1.9 & 1.8 & 2.3 & 0.09 & 0 & 0 & 0 & 0 & 0.9 & 0 & 47 & 6.65 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 13.9 & 10.9 & 16.8 & 0.74 & 0.2 & 0.1 & 0.5 & 0.08 & 3.4 & 0 & 168 & 23.76 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 19.6 & 18.8 & 24.8 & 1.63 & 0.4 & 0.2 & 0.5 & 0.07 & 4.3 & 0 & 213 & 30.12 \\
+				\rowcolor[HTML]{EFEFEF} 
+				35 & 5 & 800 & 12548 & 10400 & 1.3 & 1.2 & 1.5 & 0.06 & 0 & 0 & 0 & 0 & 0.5 & 0 & 25 & 3.54 \\
+				36 & 10 & 800 & 12560 & 9934 & 1.8 & 1.7 & 2.1 & 0.08 & 0 & 0 & 0 & 0 & 1 & 0 & 52 & 7.35 \\
+				37 & 80 & 800 & 12564 & 5057 & 21.2 & 15.6 & 25.1 & 3.31 & 0.1 & 0 & 0.2 & 0.04 & 3.7 & 0 & 186 & 26.3 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 1.9 & 1.8 & 2.2 & 0.06 & 0 & 0 & 0 & 0 & 0.6 & 0 & 30 & 4.24 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 2 & 1.9 & 2.3 & 0.09 & 0 & 0 & 0 & 0 & 0.9 & 0 & 46 & 6.51 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 28.4 & 19.7 & 43.1 & 7.87 & 0.7 & 0.3 & 1.1 & 0.24 & 3.9 & 0 & 196 & 27.72
+			\end{longtable}
+		\end{landscape}
+		
+		\subsection{Fast Interchange Algorithm}
+		\begin{landscape}
+			\begin{longtable}[c]{ccccc|cccc|cccc|cccc}
+				\caption{Fast Interchange Algorithm - Greedy (50 Runs)}
+				\label{Fint.greedy}\\ \hline
+				&  &  &  &  & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Computational Time\\ (seconds)\end{tabular}}} & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (percent)\end{tabular}}} & \multicolumn{4}{c}{\textbf{Iterations}} \\ \cline{6-17}
+				\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}}} & \multirow{-2}{*}{\textbf{p}} & \multirow{-2}{*}{\textbf{n}} & \multirow{-2}{*}{\textbf{Edges}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Solution\end{tabular}}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} \\ \hline
+				\endhead
+				%
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 5 & 5 & 5 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0.2 & 0.1 & 0.2 & 0.02 & 0.3 & 0.3 & 0.3 & 0 & 3 & 3 & 3 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0.2 & 0.1 & 0.2 & 0.02 & 0.1 & 0.1 & 0.1 & 0 & 5 & 5 & 5 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.2 & 0.2 & 0.3 & 0.02 & 0.4 & 0.4 & 0.4 & 0 & 3 & 3 & 3 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 0.3 & 0.3 & 0.4 & 0.03 & 0.4 & 0.4 & 0.4 & 0 & 3 & 3 & 3 & 0 \\
+				6 & 5 & 200 & 786 & 7824 & 0.2 & 0.2 & 0.3 & 0.02 & 0.3 & 0.3 & 0.3 & 0 & 7 & 7 & 7 & 0 \\
+				7 & 10 & 200 & 779 & 5631 & 0.3 & 0.3 & 0.4 & 0.02 & 0.2 & 0.2 & 0.2 & 0 & 2 & 2 & 2 & 0 \\
+				8 & 20 & 200 & 792 & 4445 & 0.5 & 0.5 & 0.7 & 0.03 & 0.3 & 0.3 & 0.3 & 0 & 4 & 4 & 4 & 0 \\
+				9 & 40 & 200 & 785 & 2734 & 0.9 & 0.9 & 1.2 & 0.05 & 0.7 & 0.7 & 0.7 & 0 & 11 & 11 & 11 & 0 \\
+				10 & 67 & 200 & 786 & 1255 & 1.2 & 1.2 & 1.4 & 0.05 & 0.6 & 0.6 & 0.6 & 0 & 10 & 10 & 10 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0.3 & 0.3 & 0.4 & 0.02 & 0 & 0 & 0 & 0 & 3 & 3 & 3 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.5 & 0.5 & 0.6 & 0.04 & 0 & 0 & 0 & 0 & 4 & 4 & 4 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 1.2 & 1.2 & 1.5 & 0.06 & 0 & 0 & 0 & 0 & 10 & 10 & 10 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 2 & 2 & 2.4 & 0.08 & 0.1 & 0.1 & 0.1 & 0 & 16 & 16 & 16 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 2.7 & 2.6 & 3.1 & 0.11 & 0.6 & 0.6 & 0.6 & 0 & 12 & 12 & 12 & 0 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.5 & 0.4 & 0.6 & 0.03 & 0 & 0 & 0 & 0 & 5 & 5 & 5 & 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.7 & 0.6 & 0.7 & 0.02 & 0 & 0 & 0 & 0 & 3 & 3 & 3 & 0 \\
+				18 & 40 & 400 & 3134 & 4809 & 2.1 & 2 & 2.4 & 0.09 & 0.1 & 0.1 & 0.1 & 0 & 11 & 11 & 11 & 0 \\
+				19 & 80 & 400 & 3134 & 2845 & 3.6 & 3.5 & 4.1 & 0.11 & 0.8 & 0.8 & 0.8 & 0 & 16 & 16 & 16 & 0 \\
+				20 & 133 & 400 & 3144 & 1789 & 4.9 & 4.8 & 5.6 & 0.15 & 0.8 & 0.8 & 0.8 & 0 & 24 & 24 & 24 & 0 \\ \np
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.5 & 0.5 & 0.7 & 0.04 & \cellcolor[HTML]{EFEFEF}0 & 0 & 0 & 0 &1 & 1 & 1 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 0.8 & 0.8 & 0.9 & 0.02 & 1 & 1 & 1 & 0 & 2 & 2 & 2 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 3.3 & 3.2 & 3.9 & 0.14 & 0.1 & 0.1 & 0.1 & 0 & 16 & 16 & 16 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 5.6 & 5.5 & 6.3 & 0.2 & 0.4 & 0.4 & 0.5 & 0.03 & 14 & 14 & 14 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 7.8 & 7.6 & 8.4 & 0.22 & 1.2 & 1 & 1.3 & 0.08 & 23.8 & 23 & 25 & 0.48 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.7 & 0.7 & 0.9 & 0.04 & 0.1 & 0.1 & 0.1 & 0 & 7 & 7 & 7 & 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 1.1 & 1 & 1.3 & 0.07 & 0.1 & 0.1 & 0.1 & 0 & 6 & 6 & 6 & 0 \\
+				28 & 60 & 600 & 7054 & 4498 & 4.8 & 4.6 & 5.6 & 0.22 & 0.3 & 0.3 & 0.3 & 0 & 16.5 & 16 & 17 & 0.51 \\
+				29 & 120 & 600 & 7042 & 3033 & 8.3 & 8.1 & 9 & 0.22 & 0.5 & 0.5 & 0.5 & 0 & 21.9 & 21 & 22 & 0.35 \\
+				30 & 200 & 600 & 7042 & 1989 & 11.2 & 11 & 11.9 & 0.25 & 1.1 & 1.1 & 1.1 & 0 & 16 & 16 & 16 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0.7 & 0.7 & 0.9 & 0.04 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 1.3 & 1.2 & 1.5 & 0.06 & 0 & 0 & 0 & 0 & 6 & 6 & 6 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 6.7 & 6.5 & 7.2 & 0.18 & 0.5 & 0.5 & 0.5 & 0 & 22 & 22 & 22 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 11.5 & 11.3 & 12.2 & 0.29 & 1 & 0.9 & 1 & 0.03 & 28.3 & 28 & 29 & 0.47 \\
+				35 & 5 & 800 & 12548 & 10400 & 0.9 & 0.8 & 0.9 & 0.03 & 0 & 0 & 0 & 0 & 2 & 2 & 2 & 0 \\
+				36 & 10 & 800 & 12560 & 9934 & 1.5 & 1.4 & 1.7 & 0.08 & 0 & 0 & 0 & 0 & 4 & 4 & 4 & 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 8.8 & 8.6 & 9.6 & 0.24 & 0.5 & 0.4 & 0.6 & 0.07 & 20.8 & 19 & 22 & 1.33 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 1.1 & 1 & 1.2 & 0.05 & 0.6 & 0.6 & 0.6 & 0 & 4 & 4 & 4 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 1.7 & 1.6 & 1.9 & 0.07 & 0 & 0 & 0 & 0 & 2 & 2 & 2 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 11.2 & 11 & 11.7 & 0.21 & 0.5 & 0.4 & 0.5 & 0.02 & 18.5 & 18 & 19 & 0.5
+			\end{longtable}
+		\end{landscape}
+		
+		\begin{landscape}
+			\begin{longtable}[c]{ccccc|cccc|cccc|cccc}
+				\caption{Fast Interchange Algorithm - Random (50 Runs)}
+				\label{Fint.random}\\ \hline
+				&  &  &  &  & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Computational Time\\ (seconds)\end{tabular}}} & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (percent)\end{tabular}}} & \multicolumn{4}{c}{\textbf{Iterations}} \\ \cline{6-17}
+				\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}}} & \multirow{-2}{*}{\textbf{p}} & \multirow{-2}{*}{\textbf{n}} & \multirow{-2}{*}{\textbf{Edges}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Solution\end{tabular}}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} \\ \hline
+				\endhead
+				%
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0.2 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 16 & 16 & 16 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0.2 & 0.2 & 0.3 & 0.02 & 0.2 & 0.2 & 0.2 & 0 & 30 & 30 & 30 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0.2 & 0.2 & 0.3 & 0.02 & 2.7 & 2.3 & 3.1 & 0.38 & 24.9 & 24 & 26 & 1 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.3 & 0.3 & 0.4 & 0.02 & 1.2 & 1.2 & 1.2 & 0 & 31 & 31 & 31 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 0.4 & 0.4 & 0.5 & 0.02 & 3.1 & 3.1 & 3.1 & 0 & 37 & 37 & 37 & 0 \\
+				6 & 5 & 200 & 786 & 7824 & 0.3 & 0.3 & 0.4 & 0.02 & 0 & 0 & 0 & 0 & 24 & 24 & 24 & 0 \\
+				7 & 10 & 200 & 779 & 5631 & 0.5 & 0.4 & 0.6 & 0.03 & 0 & 0 & 0 & 0 & 32 & 32 & 32 & 0 \\
+				8 & 20 & 200 & 792 & 4445 & 0.7 & 0.7 & 0.8 & 0.03 & 0.4 & 0.4 & 0.4 & 0 & 47 & 47 & 47 & 0 \\
+				9 & 40 & 200 & 785 & 2734 & 1.1 & 1 & 1.3 & 0.06 & 1.3 & 1.2 & 1.3 & 0.02 & 54.5 & 54 & 55 & 0.5 \\
+				10 & 67 & 200 & 786 & 1255 & 1.4 & 1.4 & 1.7 & 0.06 & 2.2 & 2.2 & 2.2 & 0 & 61 & 61 & 61 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0.4 & 0.4 & 0.6 & 0.04 & 0 & 0 & 0 & 0 & 21 & 21 & 21 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.7 & 0.7 & 0.7 & 0.02 & 0 & 0 & 0 & 0 & 33 & 33 & 33 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 1.5 & 1.4 & 1.7 & 0.06 & 1 & 0.9 & 1.1 & 0.07 & 61.2 & 60 & 62 & 0.98 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 2.5 & 2.4 & 2.9 & 0.12 & 1.1 & 1.1 & 1.2 & 0.04 & 93.4 & 90 & 95 & 1.3 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 3.2 & 3.1 & 3.6 & 0.13 & 2.6 & 2 & 3.3 & 0.33 & 95.8 & 94 & 98 & 1.02 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.6 & 0.6 & 0.6 & 0.02 & 0.3 & 0.3 & 0.3 & 0 & 20 & 20 & 20 & 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.9 & 0.9 & 1.1 & 0.04 & 0.2 & 0.2 & 0.2 & 0 & 33 & 33 & 33 & 0 \\
+				18 & 40 & 400 & 3134 & 4809 & 2.6 & 2.5 & 3.3 & 0.16 & 0.3 & 0.2 & 0.3 & 0.01 & 78.3 & 78 & 79 & 0.46 \\
+				19 & 80 & 400 & 3134 & 2845 & 4.3 & 4.2 & 4.8 & 0.13 & 1.5 & 1.3 & 1.7 & 0.12 & 112.7 & 110 & 116 & 1.5 \\
+				20 & 133 & 400 & 3144 & 1789 & 5.6 & 5.5 & 6.3 & 0.17 & 3 & 2.8 & 3.4 & 0.16 & 119.2 & 117 & 122 & 1.13 \\ \np
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.7 & 0.7 & 0.9 & 0.04 & 0 & 0 & 0 & 0 & 17 & 17 & 17 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 1.3 & 1.2 & 1.5 & 0.06 & 1.4 & 1.4 & 1.4 & 0 & 45 & 45 & 45 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 4 & 3.9 & 4.6 & 0.14 & 0.6 & 0.5 & 0.7 & 0.1 & 101.4 & 100 & 102 & 0.93 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 6.7 & 6.6 & 7.5 & 0.2 & 1.4 & 1.3 & 1.5 & 0.07 & 141.2 & 138 & 144 & 1.84 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 8.9 & 8.8 & 9.6 & 0.25 & 2.2 & 1.8 & 2.8 & 0.24 & 142.3 & 139 & 144 & 1.24 \\
+				26 & 5 & 600 & 7069 & 9917 & 1 & 1 & 1.2 & 0.05 & 0 & 0 & 0 & 0 & 28 & 28 & 28 & 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 1.5 & 1.4 & 1.8 & 0.08 & 0 & 0 & 0 & 0 & 42 & 42 & 42 & 0 \\
+				28 & 60 & 600 & 7054 & 4498 & 5.9 & 5.8 & 6.6 & 0.2 & 0.8 & 0.7 & 0.9 & 0.07 & 131.3 & 129 & 133 & 1.25 \\
+				29 & 120 & 600 & 7042 & 3033 & 9.9 & 9.8 & 10.7 & 0.24 & 1.4 & 1.2 & 1.6 & 0.1 & 183 & 180 & 187 & 1.95 \\
+				30 & 200 & 600 & 7042 & 1989 & 13.2 & 13 & 13.8 & 0.22 & 2.4 & 2 & 2.9 & 0.22 & 179.1 & 176 & 184 & 2 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 1.2 & 1.1 & 1.3 & 0.05 & 0 & 0 & 0 & 0 & 25 & 25 & 25 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 1.8 & 1.8 & 2.1 & 0.07 & 0.1 & 0.1 & 0.1 & 0 & 46 & 46 & 46 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 8.1 & 8 & 8.7 & 0.15 & 0.6 & 0.5 & 1 & 0.12 & 156.4 & 155 & 161 & 0.99 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 13.8 & 13.5 & 14.4 & 0.25 & 1 & 0.7 & 1.4 & 0.17 & 204.7 & 200 & 211 & 2.8 \\
+				35 & 5 & 800 & 12548 & 10400 & 1.3 & 1.3 & 1.5 & 0.05 & 0.3 & 0.3 & 0.3 & 0 & 24 & 24 & 24 & 0 \\
+				36 & 10 & 800 & 12560 & 9934 & 2.3 & 2.2 & 2.7 & 0.1 & 0 & 0 & 0 & 0 & 52 & 52 & 52 & 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 10.7 & 10.5 & 11.4 & 0.25 & 0.9 & 0.7 & 1 & 0.1 & 171.4 & 169 & 178 & 2.69 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 1.6 & 1.5 & 1.9 & 0.06 & 0.7 & 0.7 & 0.7 & 0 & 26 & 26 & 26 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 2.4 & 2.3 & 2.7 & 0.1 & 0 & 0 & 0 & 0 & 46 & 46 & 46 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 13.5 & 13.2 & 14 & 0.25 & 1.2 & 1 & 1.3 & 0.07 & 175 & 173 & 178 & 1.7
+			\end{longtable}
+		\end{landscape}
+		
+		\subsection{Alternate Algorithm}
+		\begin{landscape}
+			\begin{longtable}[c]{ccccc|cccc|cccc|cccc}
+				\caption{\textbf{Alternate Algorithm - Greedy (50 Runs)}}
+				\label{Alt.greedy}\\ \hline
+				&  &  &  &  & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Computational Time\\ (seconds)\end{tabular}}} & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (percent)\end{tabular}}} & \multicolumn{4}{c}{\textbf{Iterations}} \\ \cline{6-17}
+				\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}}} & \multirow{-2}{*}{\textbf{p}} & \multirow{-2}{*}{\textbf{n}} & \multirow{-2}{*}{\textbf{Edges}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Solution\end{tabular}}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} \\ \hline
+				\endhead
+				%
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0 & 0 & 0.1 & 0.01 & 1.2 & 1.2 & 1.2 & 0 & 2 & 2 & 2 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0.2 & 0.1 & 0.3 & 0.06 & 0.3 & 0.3 & 0.3 & 0 & 3.9 & 3 & 5 & 0.81 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0.2 & 0.1 & 0.4 & 0.09 & 2 & 2 & 2 & 0.03 & 4.4 & 3 & 7 & 1.31 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.4 & 0.1 & 0.5 & 0.09 & 1.8 & 1.8 & 1.8 & 0 & 3.7 & 2 & 4 & 0.56 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 1.1 & 0.8 & 1.6 & 0.21 & 0.5 & 0.4 & 0.6 & 0.04 & 6.1 & 5 & 8 & 0.95 \\
+				6 & 5 & 200 & 786 & 7824 & 0 & 0 & 0.1 & 0.01 & 2.6 & 2.6 & 2.6 & 0 & 2 & 2 & 2 & 0 \\
+				7 & 10 & 200 & 779 & 5631 & 0.1 & 0 & 0.2 & 0.04 & 0.3 & 0.2 & 0.3 & 0.01 & 2.4 & 2 & 3 & 0.5 \\
+				8 & 20 & 200 & 792 & 4445 & 0.5 & 0.2 & 0.6 & 0.11 & 0.3 & 0.3 & 0.3 & 0 & 4.3 & 3 & 5 & 0.84 \\
+				9 & 40 & 200 & 785 & 2734 & 1.3 & 1 & 1.9 & 0.25 & 1.9 & 1.9 & 2.4 & 0.07 & 5.8 & 5 & 8 & 0.94 \\
+				10 & 67 & 200 & 786 & 1255 & 2.9 & 1.8 & 4.4 & 0.7 & 1.9 & 1.8 & 3 & 0.3 & 7.5 & 5 & 11 & 1.55 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0.1 & 0.1 & 0.1 & 0.01 & 0.2 & 0.2 & 0.2 & 0 & 3 & 3 & 3 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.1 & 0.1 & 0.1 & 0.01 & 0.3 & 0.3 & 0.3 & 0 & 2 & 2 & 2 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 0.7 & 0.4 & 1 & 0.17 & 1.9 & 1.9 & 1.9 & 0 & 4.4 & 3 & 5 & 0.78 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 2.2 & 1.6 & 3.7 & 0.55 & 0.9 & 0.9 & 1 & 0.02 & 6.4 & 5 & 10 & 1.35 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 4.5 & 2.6 & 7.2 & 1.12 & 0.8 & 0.8 & 1.3 & 0.08 & 7.8 & 5 & 12 & 1.71 \\
+				16 & 5 & 400 & 3153 & 8162 & 0 & 0 & 0.1 & 0.01 & 0.9 & 0.9 & 0.9 & 0 & 2 & 2 & 2 & 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.1 & 0.1 & 0.2 & 0.01 & 0.2 & 0.2 & 0.2 & 0 & 3 & 3 & 3 & 0 \\
+				18 & 40 & 400 & 3134 & 4809 & 1.3 & 0.8 & 1.6 & 0.13 & 0.5 & 0.5 & 0.5 & 0 & 5.9 & 4 & 6 & 0.48 \\
+				19 & 80 & 400 & 3134 & 2845 & 3.4 & 2.1 & 4.8 & 0.67 & 0.8 & 0.8 & 1.2 & 0.08 & 7.3 & 5 & 10 & 1.25 \\
+				20 & 133 & 400 & 3144 & 1789 & 7 & 3.5 & 11.3 & 1.7 & 1.7 & 1.1 & 2.3 & 0.35 & 8.9 & 5 & 13 & 1.87 \\ \np
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0 & 0 & 0.1 & 0.01 & 0 & 0 & 0 & 0 & 2 & 2 & 2 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 0.1 & 0.1 & 0.1 & 0.01 & 1.1 & 1.1 & 1.1 & 0 & 2 & 2 & 2 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 1.2 & 0.7 & 2.4 & 0.33 & 1 & 1 & 1.1 & 0.03 & 4.6 & 3 & 8 & 0.99 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 4.1 & 2.7 & 5.8 & 0.87 & 1 & 0.9 & 1.1 & 0.04 & 7.1 & 5 & 9 & 1.25 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 7.3 & 4.4 & 10.5 & 1.45 & 1.8 & 1.8 & 1.9 & 0.04 & 7.5 & 5 & 10 & 1.31 \\
+				26 & 5 & 600 & 7069 & 9917 & 0 & 0 & 0.1 & 0.01 & 1.8 & 1.8 & 1.8 & 0 & 2 & 2 & 2 & 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 0.1 & 0.1 & 0.2 & 0.01 & 0.6 & 0.6 & 0.6 & 0 & 3 & 3 & 3 & 0 \\
+				28 & 60 & 600 & 7054 & 4498 & 2 & 0.8 & 3.5 & 0.56 & 0.6 & 0.5 & 0.6 & 0.03 & 5.9 & 3 & 9 & 1.34 \\
+				29 & 120 & 600 & 7042 & 3033 & 4.8 & 3.1 & 7.1 & 1.13 & 1.1 & 1.1 & 1.4 & 0.05 & 7 & 5 & 10 & 1.4 \\
+				30 & 200 & 600 & 7042 & 1989 & 8.4 & 5.3 & 11.9 & 1.61 & 1.5 & 1.5 & 1.7 & 0.06 & 7.3 & 5 & 10 & 1.19 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0 & 0 & 0.1 & 0.01 & 0 & 0 & 0 & 0 & 2 & 2 & 2 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 0.2 & 0.1 & 0.2 & 0.02 & 0.2 & 0.2 & 0.2 & 0.02 & 3 & 3 & 3 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 2.8 & 1.4 & 5.2 & 0.65 & 1.3 & 1.3 & 1.4 & 0.03 & 6.8 & 4 & 11 & 1.33 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 6.3 & 3.9 & 10.2 & 1.53 & 1.5 & 1.5 & 1.6 & 0.05 & 7.8 & 5 & 12 & 1.64 \\
+				35 & 5 & 800 & 12548 & 10400 & 0 & 0 & 0.1 & 0.01 & 0.1 & 0.1 & 0.1 & 0 & 2 & 2 & 2 & 0 \\
+				36 & 10 & 800 & 12560 & 9934 & 0.2 & 0.1 & 0.2 & 0.02 & 0.1 & 0.1 & 0.1 & 0 & 3 & 3 & 3 & 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 3.1 & 2.1 & 5.2 & 0.65 & 1.1 & 1.1 & 1.1 & 0.01 & 6.7 & 5 & 10 & 1.16 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 0 & 0 & 0.1 & 0.01 & 0.8 & 0.8 & 0.8 & 0 & 2 & 2 & 2 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 0.1 & 0.1 & 0.1 & 0.01 & 0.3 & 0.3 & 0.3 & 0 & 2 & 2 & 2 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 2.8 & 1.2 & 4.5 & 0.69 & 0.9 & 0.9 & 0.9 & 0.02 & 5.6 & 3 & 8 & 1.13
+			\end{longtable}
+		\end{landscape}
+		
+		
+		\begin{landscape}
+			\begin{longtable}[c]{ccccc|cccc|cccc|cccc}
+				\caption{Alternate Algorithm - Random (50 Runs)}
+				\label{Alt.random}\\ \hline
+				&  &  &  &  & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Computational Time\\ (seconds)\end{tabular}}} & \multicolumn{4}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (percent)\end{tabular}}} & \multicolumn{4}{c}{\textbf{Iterations}} \\ \cline{6-17}
+				\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}}} & \multirow{-2}{*}{\textbf{p}} & \multirow{-2}{*}{\textbf{n}} & \multirow{-2}{*}{\textbf{Edges}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Solution\end{tabular}}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} & \textbf{Mean} & \textbf{Min} & \textbf{Max} & \textbf{\begin{tabular}[c]{@{}c@{}}Std\\ Dev\end{tabular}} \\ \hline
+				\endhead
+				%
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0.1 & 0.1 & 0.2 & 0.03 & 2.9 & 2.9 & 2.9 & 0 & 4.3 & 4 & 5 & 0.44 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0.3 & 0.2 & 0.5 & 0.09 & 22.8 & 21.8 & 26.4 & 1.78 & 5.2 & 4 & 8 & 1.2 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0.3 & 0.1 & 0.5 & 0.1 & 13.5 & 11.4 & 22.6 & 3.08 & 5.8 & 3 & 9 & 1.49 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.9 & 0.5 & 1.5 & 0.26 & 16.8 & 7.2 & 25 & 3.57 & 7.4 & 5 & 12 & 1.89 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 2.1 & 1.1 & 3.3 & 0.53 & 23.4 & 14.4 & 33.1 & 5.87 & 10.7 & 6 & 16 & 2.43 \\
+				6 & 5 & 200 & 786 & 7824 & 0.1 & 0.1 & 0.3 & 0.05 & 14.8 & 13.8 & 17.6 & 1.66 & 4.6 & 3 & 9 & 1.26 \\
+				7 & 10 & 200 & 779 & 5631 & 0.3 & 0.2 & 0.5 & 0.06 & 13.5 & 12 & 19 & 2.42 & 4.9 & 4 & 7 & 0.77 \\
+				8 & 20 & 200 & 792 & 4445 & 0.9 & 0.4 & 1.6 & 0.25 & 10.4 & 9.1 & 11.8 & 0.98 & 7.6 & 4 & 13 & 1.86 \\
+				9 & 40 & 200 & 785 & 2734 & 1.9 & 1.3 & 3.2 & 0.37 & 22.2 & 20.8 & 23.8 & 1.37 & 8 & 6 & 13 & 1.37 \\
+				10 & 67 & 200 & 786 & 1255 & 4.4 & 2.2 & 7 & 0.99 & 39.1 & 38.3 & 45.6 & 1.24 & 10.8 & 6 & 17 & 2.2 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0.2 & 0.1 & 0.2 & 0.02 & 2.1 & 2.1 & 2.1 & 0 & 5 & 5 & 5 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.3 & 0.3 & 0.5 & 0.07 & 14 & 13.1 & 14.6 & 0.73 & 5.6 & 5 & 7 & 0.84 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 2 & 0.8 & 4 & 0.74 & 14.6 & 11.5 & 19.2 & 2.43 & 10.6 & 5 & 21 & 3.69 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 4 & 2.4 & 6 & 0.94 & 25.2 & 22.5 & 28.2 & 1.3 & 11 & 7 & 16 & 2.31 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 6.4 & 3.9 & 9.1 & 1.12 & 34.3 & 29 & 37.7 & 1.88 & 10.7 & 7 & 14 & 1.64 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.1 & 0.1 & 0.2 & 0.02 & 3.2 & 3.2 & 3.2 & 0 & 5 & 5 & 5 & 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.3 & 0.2 & 0.4 & 0.05 & 12.6 & 12.4 & 12.9 & 0.22 & 4.8 & 4 & 6 & 0.77 \\
+				18 & 40 & 400 & 3134 & 4809 & 2.4 & 1.3 & 4.8 & 0.66 & 14.6 & 9.6 & 19.5 & 3.06 & 10 & 6 & 19 & 2.33 \\
+				19 & 80 & 400 & 3134 & 2845 & 5.7 & 3.7 & 8.1 & 1.04 & 22.7 & 19.3 & 26.1 & 1.74 & 11.6 & 8 & 16 & 1.88 \\
+				20 & 133 & 400 & 3144 & 1789 & 10.2 & 6.1 & 14.9 & 1.88 & 26 & 23.5 & 28.7 & 1.45 & 12.5 & 8 & 18 & 2.13 \\ \np
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.2 & 0.1 & 0.2 & 0.04 & 12.4 & 12.4 & 12.4 & 0 & 5.8 & 5 & 7 & 0.93 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 0.2 & 0.2 & 0.3 & 0.03 & 15.5 & 15.5 & 15.5 & 0 & 4 & 4 & 4 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 2.6 & 1.6 & 4.3 & 0.56 & 13.8 & 11.6 & 16.2 & 1.2 & 8.7 & 6 & 14 & 1.62 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 6.9 & 4.6 & 11.4 & 1.23 & 18.8 & 17.3 & 20.5 & 0.66 & 11.4 & 8 & 17 & 1.74 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 13.4 & 7.6 & 20.9 & 2.42 & 29.1 & 24.7 & 32.8 & 2.03 & 13.1 & 8 & 20 & 2.15 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.1 & 0.1 & 0.1 & 0.02 & 4.3 & 4.3 & 4.3 & 0 & 3 & 3 & 3 & 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 0.3 & 0.2 & 0.4 & 0.08 & 11.9 & 11.7 & 12.2 & 0.22 & 5.4 & 4 & 7 & 1.03 \\
+				28 & 60 & 600 & 7054 & 4498 & 3.6 & 1.6 & 5.2 & 0.73 & 17.3 & 16 & 18.7 & 0.79 & 9.8 & 5 & 14 & 1.8 \\
+				29 & 120 & 600 & 7042 & 3033 & 9.1 & 5 & 13 & 1.52 & 20 & 17.9 & 23.1 & 1.15 & 12.3 & 7 & 17 & 1.86 \\
+				30 & 200 & 600 & 7042 & 1989 & 15.5 & 10.6 & 19.9 & 2.18 & 29 & 25.8 & 31.9 & 1.49 & 12.6 & 9 & 16 & 1.62 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0.2 & 0.1 & 0.3 & 0.05 & 13.5 & 13 & 15.1 & 0.86 & 6 & 4 & 8 & 1.37 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 0.3 & 0.3 & 0.4 & 0.03 & 14.2 & 14.1 & 14.2 & 0.04 & 5.2 & 5 & 6 & 0.43 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 4.4 & 2.8 & 6.6 & 0.97 & 19.1 & 17.7 & 21.1 & 0.85 & 10.1 & 7 & 15 & 1.91 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 11.3 & 8.3 & 15.8 & 1.82 & 20.9 & 19.3 & 22.9 & 0.88 & 13.1 & 10 & 18 & 1.94 \\
+				35 & 5 & 800 & 12548 & 10400 & 0.1 & 0.1 & 0.2 & 0.03 & 1.4 & 1.4 & 1.4 & 0 & 4.5 & 4 & 5 & 0.5 \\
+				36 & 10 & 800 & 12560 & 9934 & 0.2 & 0.2 & 0.3 & 0.02 & 15.5 & 15.5 & 15.5 & 0 & 4 & 4 & 4 & 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 5.1 & 2.2 & 9.1 & 1.46 & 13.2 & 11.6 & 15.1 & 0.81 & 10.5 & 5 & 18 & 2.76 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 0.2 & 0.2 & 0.3 & 0.03 & 4.4 & 4.4 & 4.4 & 0 & 6 & 6 & 6 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 0.5 & 0.4 & 0.6 & 0.03 & 13.8 & 13.6 & 14.2 & 0.26 & 7 & 7 & 7 & 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 7.1 & 4.8 & 9 & 1.02 & 14.3 & 12.4 & 15.6 & 0.93 & 12.7 & 9 & 16 & 1.73
+			\end{longtable}
+		\end{landscape}	
+		
+	\end{appendices}
 
 
 \end{document}
