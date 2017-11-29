@@ -13,19 +13,18 @@
 \contentsline {subsection}{\numberline {6.3}The Stingy Algorithm}{9}
 \contentsline {subsubsection}{\numberline {6.3.1}Pseudocode}{9}
 \contentsline {subsection}{\numberline {6.4}Computational Results}{10}
-\contentsline {section}{\numberline {7}Classical Heuristics: Local Search}{14}
-\contentsline {subsection}{\numberline {7.1}The Interchange Algorithm of Teitz and Bart}{14}
-\contentsline {subsubsection}{\numberline {7.1.1}Pseudocode}{14}
-\contentsline {subsubsection}{\numberline {7.1.2}Results}{16}
-\contentsline {subsection}{\numberline {7.2}The Fast Interchange Algorithm}{19}
-\contentsline {subsubsection}{\numberline {7.2.1}Pseudocode}{19}
+\contentsline {section}{\numberline {7}Classical Heuristics: Local Search}{15}
+\contentsline {subsection}{\numberline {7.1}The Interchange Algorithm of Teitz and Bart}{15}
+\contentsline {subsubsection}{\numberline {7.1.1}Pseudocode}{15}
+\contentsline {subsubsection}{\numberline {7.1.2}Results}{15}
+\contentsline {subsection}{\numberline {7.2}The Fast Interchange Algorithm}{21}
+\contentsline {subsubsection}{\numberline {7.2.1}Pseudocode}{21}
 \contentsline {subsubsection}{\numberline {7.2.2}Results}{21}
-\contentsline {subsection}{\numberline {7.3}The Alternate Algorithm}{24}
-\contentsline {subsubsection}{\numberline {7.3.1}Pseudocode}{24}
-\contentsline {subsubsection}{\numberline {7.3.2}Results}{24}
-\contentsline {subsection}{\numberline {7.4}Computational Results}{25}
-\contentsline {section}{\numberline {8}Conclusion}{26}
-\contentsline {section}{\numberline {9}Remaining Work}{26}
-\contentsline {section}{\numberline {10}References}{28}
-\contentsline {section}{\numberline {11}Index of Terms}{30}
-\contentsline {section}{\numberline {12}Index of Authors}{31}
+\contentsline {subsection}{\numberline {7.3}The Alternate Algorithm}{26}
+\contentsline {subsubsection}{\numberline {7.3.1}Pseudocode}{26}
+\contentsline {subsubsection}{\numberline {7.3.2}Results}{26}
+\contentsline {subsection}{\numberline {7.4}Computational Results}{27}
+\contentsline {section}{\numberline {8}Conclusion}{28}
+\contentsline {section}{\numberline {9}Remaining Work}{28}
+\contentsline {section}{\numberline {10}Index of Terms}{30}
+\contentsline {section}{\numberline {11}Index of Authors}{31}

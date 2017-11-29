@@ -2,8 +2,8 @@
 
   \item algorithm, 1, 3
   \item alternate
-    \subitem  pseudocode, 24
-  \item alternate algorithm, 24
+    \subitem  pseudocode, 26
+  \item alternate algorithm, 26
 
   \indexspace
 
@@ -12,37 +12,38 @@
   \indexspace
 
   \item constructive heuristic, 4
-    \subitem fast greedy algorithm, 5, 10, 12, 13
-    \subitem greedy algorithm, 10, 12, 13
+    \subitem fast greedy algorithm, 5, 10, 11, 13, 14, 16
+    \subitem greedy algorithm, 10, 11, 13, 16
     \subitem stingy algorithm, 9
 
   \indexspace
 
-  \item fast greedy algorithm, 5, 10, 12, 13
+  \item fast greedy algorithm, 5, 10, 11, 13, 14, 16
     \subitem  pseudocode, 5
-    \subitem  results, 10, 12, 13
-  \item fast interchange, 19, 21, 23, 25
-    \subitem  pseudocode, 19
-    \subitem results, 21, 23, 25
+    \subitem  results, 10, 11, 13, 14, 16
+  \item fast interchange, 21, 25, 27
+    \subitem  pseudocode, 21
+    \subitem results, 21, 25, 27
 
   \indexspace
 
-  \item greedy algorithm, 2, 5, 10, 12, 13
+  \item greedy algorithm, 2, 5, 10, 11, 13, 16
     \subitem  pseudocode, 5
-    \subitem  results, 10, 12, 13
+    \subitem  results, 10, 11, 13, 16
   \item greedy interchange algorithm, 2
 
   \indexspace
 
   \item heuristic, 1--3
-    \subitem alternate algorithm, 24
+    \subitem alternate algorithm, 26
     \subitem classical heuristic, 3
     \subitem constructive, 2, 4
-    \subitem fast greedy algorithm, 5, 10, 12, 13
-    \subitem fast interchange, 19, 21, 23, 25
-    \subitem greedy algorithm, 2, 5, 10, 12, 13
-    \subitem interchange algorithm of Teitz and Bart, 14, 16--19, 25
-    \subitem local search, 2, 14
+    \subitem fast greedy algorithm, 5, 10, 11, 13, 14, 16
+    \subitem fast interchange, 21, 25, 27
+    \subitem greedy algorithm, 2, 5, 10, 11, 13, 16
+    \subitem interchange algorithm of Teitz and Bart, 15, 17, 20, 21, 
+		27
+    \subitem local search, 2, 15
     \subitem metaheuristic, 3
     \subitem stingy algorithm, 9
   \item heuristic concentration, 2
@@ -51,18 +52,18 @@
 
   \item integer programme, 2
   \item integer programming, 2
-  \item interchange algorithm of Teitz and Bart, 14, 16--19, 25
-    \subitem  pseudocode, 14
-    \subitem  results, 16--18, 25
+  \item interchange algorithm of Teitz and Bart, 15, 17, 20, 21, 27
+    \subitem  pseudocode, 15
+    \subitem  results, 15, 17, 20, 27
 
   \indexspace
 
   \item linear programme
     \subitem branch-and-bound, 2
   \item linear programming, 2
-  \item local search, 2, 14, 19, 21, 24
+  \item local search, 2, 15, 21, 26
   \item local search heuristic
-    \subitem interchange algorithm of Teitz and Bart, 16--18
+    \subitem interchange algorithm of Teitz and Bart, 15, 17, 20
 
   \indexspace
 
