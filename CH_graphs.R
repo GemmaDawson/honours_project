@@ -95,17 +95,36 @@ Gr <- data_frame(Algorithm = "Greedy",
 FG <- data_frame(Algorithm = "Fast Greedy",
                  Problem = c(1:40), 
                  Gap.to.Optimal = `CH Fast Greedy Solutions`$GAP.MEAN,
-                 Time =`CH Fast Greedy Solutions`$Time.MEAN)
+                 Time =`CH Fast Greedy Solutions`$TIME.MEAN)
 
 St <- data_frame(Algorithm = "Stingy Greedy",
                  Problem = c(1:20), 
                  Gap.to.Optimal = `CH Stingy Solutions`$GAP.MEAN[1:20],
-                 Time = `CH Stingy Solutions`$Time.MEAN[1:20])
+                 Time = `CH Stingy Solutions`$TIME.MEAN[1:20])
 
 
 accuracy.compare <- rbind(Gr, FG, St)
 
 accuracy.compare$Algorithm <- as.factor(accuracy.compare$Algorithm)
+
+ggplot(accuracy.compare, aes(x = as.numeric(Time), y = as.numeric(Gap.to.Optimal), 
+                             colour = Algorithm, 
+                             group = Algorithm)) +
+  geom_point(shape=16, size = 4) +
+  geom_line(size = 1) +
+  ylab("Gap to Optimal (%)") +
+  xlab("Compuational Time (seconds)") + 
+  theme(legend.position = "bottom") +
+  guides(colour = guide_legend(title.position="top", 
+                               title.hjust = 0.5, 
+                               nrow=1, byrow=TRUE)) +
+  scale_colour_hue(l=40, breaks=c("Greedy", "Fast Greedy", "Stingy Greedy")) 
+
+
++
+  scale_x_continuous(breaks=seq(1:40))
+
+
 
 ggplot(accuracy.compare, aes(x = Problem, y = as.numeric(Gap.to.Optimal), 
                              colour = Algorithm, 

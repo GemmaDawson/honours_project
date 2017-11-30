@@ -22,26 +22,24 @@
 \contentsline {section}{\numberline {7}Classical Heuristics: Local Search}{18}
 \contentsline {subsection}{\numberline {7.1}The Interchange Algorithm of Teitz and Bart}{18}
 \contentsline {subsubsection}{\numberline {7.1.1}Pseudocode}{19}
-\contentsline {subsubsection}{\numberline {7.1.2}complexity}{20}
-\contentsline {subsubsection}{\numberline {7.1.3}Results}{20}
-\contentsline {subsection}{\numberline {7.2}The Fast Interchange Algorithm}{23}
-\contentsline {subsubsection}{\numberline {7.2.1}Pseudocode}{23}
-\contentsline {subsubsection}{\numberline {7.2.2}Results}{23}
-\contentsline {subsection}{\numberline {7.3}The Alternate Algorithm}{24}
-\contentsline {subsubsection}{\numberline {7.3.1}Pseudocode}{26}
-\contentsline {subsubsection}{\numberline {7.3.2}Results}{26}
-\contentsline {subsection}{\numberline {7.4}Computational Results}{26}
-\contentsline {section}{\numberline {8}Conclusion}{27}
-\contentsline {section}{\numberline {9}Remaining Work}{27}
-\contentsline {section}{\numberline {10}References}{29}
-\contentsline {section}{\numberline {11}Index of Terms}{31}
-\contentsline {section}{\numberline {12}Index of Authors}{32}
-\contentsline {section}{Appendices}{33}
-\contentsline {section}{\numberline {A}Constructive Heuristics Results}{33}
-\contentsline {subsection}{\numberline {A.1}Greedy Algorithm}{33}
-\contentsline {subsection}{\numberline {A.2}Fast Greedy Algorithm}{36}
-\contentsline {subsection}{\numberline {A.3}Stingy Algorithm}{39}
-\contentsline {section}{\numberline {B}Local Search Heuristics Results}{41}
-\contentsline {subsection}{\numberline {B.1}Interchange Algorithm of Teitz and Bart}{41}
-\contentsline {subsection}{\numberline {B.2}Fast Interchange Algorithm}{46}
-\contentsline {subsection}{\numberline {B.3}Alternate Algorithm}{51}
+\contentsline {subsubsection}{\numberline {7.1.2}Results}{20}
+\contentsline {subsection}{\numberline {7.2}The Fast Interchange Algorithm}{25}
+\contentsline {subsubsection}{\numberline {7.2.1}Pseudocode}{25}
+\contentsline {subsubsection}{\numberline {7.2.2}Results}{27}
+\contentsline {subsection}{\numberline {7.3}The Alternate Algorithm}{31}
+\contentsline {subsubsection}{\numberline {7.3.1}Pseudocode}{31}
+\contentsline {subsubsection}{\numberline {7.3.2}Results}{32}
+\contentsline {subsection}{\numberline {7.4}Comparison of Results of Local Search Heuristics}{36}
+\contentsline {section}{\numberline {8}Conclusion}{38}
+\contentsline {section}{\numberline {9}References}{39}
+\contentsline {section}{\numberline {10}Index of Terms}{41}
+\contentsline {section}{\numberline {11}Index of Authors}{42}
+\contentsline {section}{Appendices}{43}
+\contentsline {section}{\numberline {A}Constructive Heuristics Results}{43}
+\contentsline {subsection}{\numberline {A.1}Greedy Algorithm}{43}
+\contentsline {subsection}{\numberline {A.2}Fast Greedy Algorithm}{46}
+\contentsline {subsection}{\numberline {A.3}Stingy Algorithm}{49}
+\contentsline {section}{\numberline {B}Local Search Heuristics Results}{51}
+\contentsline {subsection}{\numberline {B.1}Interchange Algorithm of Teitz and Bart}{51}
+\contentsline {subsection}{\numberline {B.2}Fast Interchange Algorithm}{56}
+\contentsline {subsection}{\numberline {B.3}Alternate Algorithm}{61}

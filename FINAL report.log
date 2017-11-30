@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.6)  29 NOV 2017 17:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.6)  29 NOV 2017 23:30
 entering extended mode
 **"./FINAL report.tex"
 ("FINAL report.tex"
@@ -651,10 +651,6 @@ File: percentmedvstime_greedy.png Graphic file (type png)
 Package pdftex.def Info: percentmedvstime_greedy.png used on input line 259.
 (pdftex.def)             Requested size: 398.33858pt x 205.58395pt.
  [6]
-
-LaTeX Warning: Reference `percentmedvsaccuracy_greedy' on page 7 undefined on i
-nput line 265.
-
 <medvsaccuracy_greedy.png, id=52, 1028.34187pt x 530.73282pt>
 File: medvsaccuracy_greedy.png Graphic file (type png)
 
@@ -667,321 +663,419 @@ LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 277.
 
 [7 <./percentmedvstime_greedy.png> <./medvsaccuracy_greedy.png>] [8] [9]
-<percentmedvstime_fast.png, id=63, 1028.34187pt x 530.73282pt>
+[10] <percentmedvstime_fast.png, id=66, 1028.34187pt x 530.73282pt>
 File: percentmedvstime_fast.png Graphic file (type png)
 
 <use percentmedvstime_fast.png>
-Package pdftex.def Info: percentmedvstime_fast.png used on input line 446.
+Package pdftex.def Info: percentmedvstime_fast.png used on input line 447.
 (pdftex.def)             Requested size: 398.33858pt x 205.58395pt.
- [10]
+
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 454.
+               Default added (so using `tbp') on input line 455.
 
 [11 <./percentmedvstime_fast.png>] [12]
 
-Package imakeidx Warning: Undefined index file `author' on input line 529.
+Package imakeidx Warning: Undefined index file `author' on input line 530.
 
 
-Package imakeidx Warning: Undefined index file `author' on input line 529.
+Package imakeidx Warning: Undefined index file `author' on input line 530.
 
 
-Package imakeidx Warning: Undefined index file `author' on input line 529.
+Package imakeidx Warning: Undefined index file `author' on input line 530.
 
 [13] <percentmedvstime_stingy.png, id=77, 1028.34187pt x 530.73282pt>
 File: percentmedvstime_stingy.png Graphic file (type png)
 
 <use percentmedvstime_stingy.png>
-Package pdftex.def Info: percentmedvstime_stingy.png used on input line 597.
+Package pdftex.def Info: percentmedvstime_stingy.png used on input line 600.
 (pdftex.def)             Requested size: 398.33858pt x 205.58395pt.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 608.
+               Default added (so using `tbp') on input line 611.
 
 [14 <./percentmedvstime_stingy.png>]
-<CHavacc.png, id=81, 1028.34187pt x 530.73282pt>
+<CHavacc.png, id=81, 538.6524pt x 278.4804pt>
 File: CHavacc.png Graphic file (type png)
  <use CHavacc.png>
-Package pdftex.def Info: CHavacc.png used on input line 658.
-(pdftex.def)             Requested size: 398.33858pt x 205.58395pt.
+Package pdftex.def Info: CHavacc.png used on input line 660.
+(pdftex.def)             Requested size: 398.33858pt x 205.94478pt.
  [15]
-<CHavtime1.png, id=86, 1028.34187pt x 530.73282pt>
+<CHavtime1.png, id=86, 538.1706pt x 277.9986pt>
 File: CHavtime1.png Graphic file (type png)
  <use CHavtime1.png>
-Package pdftex.def Info: CHavtime1.png used on input line 668.
-(pdftex.def)             Requested size: 398.33858pt x 205.58395pt.
+Package pdftex.def Info: CHavtime1.png used on input line 670.
+(pdftex.def)             Requested size: 398.33858pt x 205.77087pt.
 
 <CHavtime2.png, id=87, 1028.34187pt x 530.73282pt>
 File: CHavtime2.png Graphic file (type png)
  <use CHavtime2.png>
-Package pdftex.def Info: CHavtime2.png used on input line 678.
+Package pdftex.def Info: CHavtime2.png used on input line 680.
 (pdftex.def)             Requested size: 398.33858pt x 205.58395pt.
  [16 <./CHavacc.png> <./CHavtime1.png>]
-<CHtimevacc1.png, id=91, 1028.34187pt x 530.73282pt>
+<CHtimevacc1.png, id=93, 538.1706pt x 277.9986pt>
 File: CHtimevacc1.png Graphic file (type png)
  <use CHtimevacc1.png>
-Package pdftex.def Info: CHtimevacc1.png used on input line 688.
-(pdftex.def)             Requested size: 398.33858pt x 205.58395pt.
+Package pdftex.def Info: CHtimevacc1.png used on input line 690.
+(pdftex.def)             Requested size: 398.33858pt x 205.77087pt.
 
-<CHtimevacc2.png, id=92, 1028.34187pt x 530.73282pt>
+<CHtimevacc2.png, id=94, 1028.34187pt x 530.73282pt>
 File: CHtimevacc2.png Graphic file (type png)
  <use CHtimevacc2.png>
-Package pdftex.def Info: CHtimevacc2.png used on input line 698.
+Package pdftex.def Info: CHtimevacc2.png used on input line 700.
 (pdftex.def)             Requested size: 398.33858pt x 205.58395pt.
 
 [17 <./CHavtime2.png> <./CHtimevacc1.png>]
 
-Package imakeidx Warning: Undefined index file `author' on input line 706.
+Package imakeidx Warning: Undefined index file `author' on input line 708.
 
 
-Overfull \hbox (4.45966pt too wide) in paragraph at lines 716--717
+Overfull \hbox (4.45966pt too wide) in paragraph at lines 718--719
 \OT1/cmr/m/n/10.95 amended al-go-rithm was pre-sented by Whitaker [[]][] fif-te
 en years later. It is Whitaker's
  []
 
-[18 <./CHtimevacc2.png>] [19]
+[18 <./CHtimevacc2.png>] [19] <TBtime.png, id=105, 1025.33063pt x 530.73282pt>
+File: TBtime.png Graphic file (type png)
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 813.
+<use TBtime.png>
+Package pdftex.def Info: TBtime.png used on input line 816.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
+ [20] <TBgap.png, id=109, 1025.33063pt x 530.73282pt>
+File: TBgap.png Graphic file (type png)
 
-
-Overfull \hbox (19.90407pt too wide) in paragraph at lines 818--885
- [][] 
- []
-
-[20] [21] <TBGreedy.png, id=109, 1011.78pt x 484.81125pt>
-File: TBGreedy.png Graphic file (type png)
- <use TBGreedy.png>
-Package pdftex.def Info: TBGreedy.png used on input line 891.
-(pdftex.def)             Requested size: 426.79134pt x 204.50705pt.
-
-Overfull \hbox (28.45274pt too wide) in paragraph at lines 891--892
- [] 
- []
-
-<TBRand.png, id=110, 1011.78pt x 484.81125pt>
-File: TBRand.png Graphic file (type png)
- <use TBRand.png>
-Package pdftex.def Info: TBRand.png used on input line 901.
-(pdftex.def)             Requested size: 426.79134pt x 204.50705pt.
-
-Overfull \hbox (28.45274pt too wide) in paragraph at lines 901--902
- [] 
- []
-
-[22 <./TBGreedy.png> <./TBRand.png>]
-
-Package imakeidx Warning: Undefined index file `author' on input line 910.
-
-<FintGreedy.png, id=116, 1011.78pt x 484.81125pt>
-File: FintGreedy.png Graphic file (type png)
- <use FintGreedy.png>
-Package pdftex.def Info: FintGreedy.png used on input line 924.
-(pdftex.def)             Requested size: 426.79134pt x 204.50705pt.
-
-Overfull \hbox (28.45274pt too wide) in paragraph at lines 924--925
- [] 
- []
-
-[23] <FintRand.png, id=120, 1011.78pt x 484.81125pt>
-File: FintRand.png Graphic file (type png)
- <use FintRand.png>
-Package pdftex.def Info: FintRand.png used on input line 932.
-(pdftex.def)             Requested size: 426.79134pt x 204.50705pt.
-
-Overfull \hbox (28.45274pt too wide) in paragraph at lines 932--933
- [] 
- []
+<use TBgap.png>
+Package pdftex.def Info: TBgap.png used on input line 826.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
+ [21 <./TBtime.png> <./TBgap.png>]
+<TBiterations.png, id=114, 1025.33063pt x 530.73282pt>
+File: TBiterations.png Graphic file (type png)
+ <use TBiterations.png>
+Package pdftex.def Info: TBiterations.png used on input line 839.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 940.
+               Default added (so using `tbp') on input line 846.
 
 
-Overfull \hbox (19.90407pt too wide) in paragraph at lines 945--1012
- [][] 
- []
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 919.
+
+[22 <./TBiterations.png>] [23] [24]
+
+Package imakeidx Warning: Undefined index file `author' on input line 995.
+
+[25] [26] <FintTime.png, id=131, 1025.33063pt x 530.73282pt>
+File: FintTime.png Graphic file (type png)
+
+<use FintTime.png>
+Package pdftex.def Info: FintTime.png used on input line 1117.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
+ <Fintgap.png, id=132, 1025.33063pt x 530.73282pt>
+File: Fintgap.png Graphic file (type png)
+
+<use Fintgap.png>
+Package pdftex.def Info: Fintgap.png used on input line 1130.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
+ [27 <./FintTime.png>]
+<Fintiterations.png, id=137, 1025.33063pt x 530.73282pt>
+File: Fintiterations.png Graphic file (type png)
+
+<use Fintiterations.png>
+Package pdftex.def Info: Fintiterations.png used on input line 1141.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
 
 
-Package imakeidx Warning: Undefined index file `author' on input line 1016.
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 1148.
 
-[24 <./FintGreedy.png> <./FintRand.png>] [25]
-<LSavacc.png, id=129, 1011.78pt x 484.81125pt>
-File: LSavacc.png Graphic file (type png)
- <use LSavacc.png>
-Package pdftex.def Info: LSavacc.png used on input line 1028.
-(pdftex.def)             Requested size: 398.33858pt x 190.87325pt.
 
-<LSavtime.png, id=130, 1011.78pt x 484.81125pt>
-File: LSavtime.png Graphic file (type png)
- <use LSavtime.png>
-Package pdftex.def Info: LSavtime.png used on input line 1039.
-(pdftex.def)             Requested size: 398.33858pt x 190.87325pt.
- [26 <./LSavacc.png>] [27 <./LSavtime.png>] [28] ("FINAL report.bbl" [29]) [30]
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 1221.
+
+
+Package imakeidx Warning: Undefined index file `author' on input line 1297.
+
+[28 <./Fintgap.png> <./Fintiterations.png>] [29] [30] [31]
+<Alttime.png, id=150, 1025.33063pt x 530.73282pt>
+File: Alttime.png Graphic file (type png)
+ <use Alttime.png>
+Package pdftex.def Info: Alttime.png used on input line 1359.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
+
+<Altgap.png, id=151, 1025.33063pt x 530.73282pt>
+File: Altgap.png Graphic file (type png)
+ <use Altgap.png>
+Package pdftex.def Info: Altgap.png used on input line 1369.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
+ [32 <./Alttime.png>] <Altiterations.png, id=155, 1025.33063pt x 530.73282pt>
+File: Altiterations.png Graphic file (type png)
+
+<use Altiterations.png>
+Package pdftex.def Info: Altiterations.png used on input line 1379.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 1385.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 1459.
+
+[33 <./Altgap.png> <./Altiterations.png>] [34] [35]
+<greedytime.png, id=166, 1025.33063pt x 530.73282pt>
+File: greedytime.png Graphic file (type png)
+ <use greedytime.png>
+Package pdftex.def Info: greedytime.png used on input line 1540.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
+
+<randomtime.png, id=167, 1025.33063pt x 530.73282pt>
+File: randomtime.png Graphic file (type png)
+ <use randomtime.png>
+Package pdftex.def Info: randomtime.png used on input line 1551.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
+
+[36 <./greedytime.png>] <greedygap.png, id=171, 1025.33063pt x 530.73282pt>
+File: greedygap.png Graphic file (type png)
+
+<use greedygap.png>
+Package pdftex.def Info: greedygap.png used on input line 1561.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
+ <randomgap.png, id=172, 1025.33063pt x 530.73282pt>
+File: randomgap.png Graphic file (type png)
+
+<use randomgap.png>
+Package pdftex.def Info: randomgap.png used on input line 1571.
+(pdftex.def)             Requested size: 398.33858pt x 206.19133pt.
+ [37 <./randomtime.png> <./greedygap.png>] [38 <./randomgap.png>] ("FINAL repor
+t.bbl" [39]) [40]
 runsystem(makeindex terms.idx)...executed (allowed).
 
- (terms.ind)
-[31
+ (terms.ind) [41
 
 ]
 runsystem(makeindex authors.idx)...executed (allowed).
 
- (authors.ind) [32
-
-] [33] [34
-
-] [35] [36
-
-] [37
-
-] [38] [39
-
-] [40
-
-] [41
+ (authors.ind) [42
 
 ]
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1270--1275
- [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
- []
+[43
+\indexentry{greedy algorithm}{43}
+\indexentry{greedy algorithm!results}{43}
+\indexentry{constructive heuristic!greedy algorithm}{43}
+] [44
 
 
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1275--1306
- [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1306--1339
- [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
- []
-
-[42
-
-] [43]
-Overfull \hbox (19.9211pt too wide) in alignment at lines 1344--1349
- [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (19.9211pt too wide) in alignment at lines 1349--1380
- [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (19.9211pt too wide) in alignment at lines 1380--1414
- [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
- []
-
-[44
-
-
+\indexentry{greedy algorithm}{44}
+\indexentry{greedy algorithm!results}{44}
+\indexentry{constructive heuristic!greedy algorithm}{44}
 ] [45] [46
 
-]
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1419--1424
- [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
- []
+
+\indexentry{fast greedy algorithm}{46}
+\indexentry{fast greedy algorithm!results}{46}
+\indexentry{constructive heuristic!fast greedy algorithm}{46}
+] [47
 
 
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1424--1455
- [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
- []
+\indexentry{fast greedy algorithm}{47}
+\indexentry{fast greedy algorithm!results}{47}
+\indexentry{constructive heuristic!fast greedy algorithm}{47}
+] [48] [49
 
 
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1455--1488
- [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
- []
-
-[47
-
-] [48]
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1492--1497
- [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
- []
+\indexentry{stingy algorithm}{49}
+\indexentry{stingy algorithm!results}{49}
+\indexentry{constructive heuristic!stingy algorithm}{49}
+] [50
 
 
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1497--1528
- [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
- []
+\indexentry{stingy algorithm}{50}
+\indexentry{stingy algorithm!results}{50}
+\indexentry{constructive heuristic!stingy algorithm}{50}
+] [51
 
 
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1528--1561
- [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
- []
-
-[49
-
-
-] [50] [51
+\indexentry{interchange algorithm of Teitz and Bart}{51}
+\indexentry{interchange algorithm of Teitz and Bart!results}{51}
+\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{51}
 
 ]
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1566--1571
+Overfull \hbox (17.05415pt too wide) in alignment at lines 1828--1833
  [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1571--1602
+Overfull \hbox (17.05415pt too wide) in alignment at lines 1833--1865
  [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1602--1635
+Overfull \hbox (17.05415pt too wide) in alignment at lines 1865--1898
  [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 [52
 
+
+\indexentry{interchange algorithm of Teitz and Bart}{52}
+\indexentry{interchange algorithm of Teitz and Bart!results}{52}
+\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{52}
+
 ] [53]
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1640--1645
+Overfull \hbox (17.05415pt too wide) in alignment at lines 1903--1908
  [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1645--1676
+Overfull \hbox (17.05415pt too wide) in alignment at lines 1908--1939
  [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (17.05415pt too wide) in alignment at lines 1676--1709
+Overfull \hbox (17.05415pt too wide) in alignment at lines 1939--1972
  [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 [54
 
 
-] [55] ("FINAL report.aux")
 
-LaTeX Warning: There were undefined references.
+\indexentry{interchange algorithm of Teitz and Bart}{54}
+\indexentry{interchange algorithm of Teitz and Bart!results}{54}
+\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{54}
 
+] [55] [56
+
+
+\indexentry{fast interchange algorithm}{56}
+\indexentry{fast interchange algorithm!results}{56}
+\indexentry{local search heuristic!fast interchange algorithm}{56}
+]
+Overfull \hbox (17.05415pt too wide) in alignment at lines 1990--1995
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (17.05415pt too wide) in alignment at lines 1995--2026
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (17.05415pt too wide) in alignment at lines 2026--2059
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+[57
+
+
+\indexentry{fast interchange algorithm}{57}
+\indexentry{fast interchange algorithm!results}{57}
+\indexentry{local search heuristic!fast interchange algorithm}{57}
+] [58]
+Overfull \hbox (17.05415pt too wide) in alignment at lines 2063--2068
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (17.05415pt too wide) in alignment at lines 2068--2099
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (17.05415pt too wide) in alignment at lines 2099--2132
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+[59
+
+
+
+\indexentry{fast interchange algorithm}{59}
+\indexentry{fast interchange algorithm!results}{59}
+\indexentry{local search heuristic!fast interchange algorithm}{59}
+] [60] [61
+
+
+\indexentry{f}{61}
+\indexentry{alternate algorithm!results}{61}
+\indexentry{local search heuristic!alternate interchange algorithm}{61}
+]
+Overfull \hbox (17.05415pt too wide) in alignment at lines 2149--2154
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (17.05415pt too wide) in alignment at lines 2154--2185
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (17.05415pt too wide) in alignment at lines 2185--2218
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+[62
+
+
+\indexentry{f}{62}
+\indexentry{alternate algorithm!results}{62}
+\indexentry{local search heuristic!alternate interchange algorithm}{62}
+] [63]
+Overfull \hbox (17.05415pt too wide) in alignment at lines 2223--2228
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (17.05415pt too wide) in alignment at lines 2228--2259
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (17.05415pt too wide) in alignment at lines 2259--2292
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+[64
+
+
+
+\indexentry{f}{64}
+\indexentry{alternate algorithm!results}{64}
+\indexentry{local search heuristic!alternate interchange algorithm}{64}
+] [65] ("FINAL report.aux")
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 8114 strings out of 493333
- 117868 string characters out of 3139174
- 298799 words of memory out of 3000000
- 11450 multiletter control sequences out of 15000+200000
- 14923 words of font info for 55 fonts, out of 3000000 for 9000
+ 8161 strings out of 493333
+ 118670 string characters out of 3139174
+ 318799 words of memory out of 3000000
+ 11490 multiletter control sequences out of 15000+200000
+ 14009 words of font info for 52 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,19n,92p,1472b,505s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 53i,17n,92p,1472b,517s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
-17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on "FINAL report.pdf" (59 pages, 812352 bytes).
+ype1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
+12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmti10.pfb>
+Output written on "FINAL report.pdf" (69 pages, 1241593 bytes).
 PDF statistics:
- 274 PDF objects out of 1000 (max. 8388607)
+ 314 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 86 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 121 words of extra memory for PDF output out of 10000 (max. 10000000)
 

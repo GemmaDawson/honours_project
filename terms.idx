@@ -8,7 +8,7 @@
 \indexentry{algorithm}{1}
 \indexentry{integer programme}{2}
 \indexentry{linear programming}{2}
-\indexentry{linear programme!branch-and-bound}{2}
+\indexentry{linear programming!branch-and-bound}{2}
 \indexentry{NP-hard}{2}
 \indexentry{heuristic}{2}
 \indexentry{metaheuristic}{2}
@@ -35,7 +35,6 @@
 \indexentry{tabu search}{2}
 \indexentry{metaheuristic!tabu search}{2}
 \indexentry{heuristic}{2}
-\indexentry{integer programming}{2}
 \indexentry{heuristic}{2}
 \indexentry{R (programming language)}{2}
 \indexentry{algorithm}{3}
@@ -49,76 +48,100 @@
 \indexentry{heuristic!constructive}{5}
 \indexentry{greedy algorithm}{5}
 \indexentry{heuristic!greedy algorithm}{5}
-\indexentry{greedy algorithm! pseudocode}{5}
+\indexentry{greedy algorithm!pseudocode}{5}
 \indexentry{complexity analysis!greedy algorithm}{6}
-\indexentry{greedy algorithm! complexity analysis}{6}
+\indexentry{greedy algorithm!complexity analysis}{6}
+\indexentry{greedy algorithm}{6}
+\indexentry{greedy algorithm!results}{6}
+\indexentry{constructive heuristic!greedy algorithm}{6}
+\indexentry{greedy algorithm}{8}
+\indexentry{greedy algorithm!results}{8}
+\indexentry{constructive heuristic!greedy algorithm}{8}
 \indexentry{heuristic!fast greedy algorithm}{9}
 \indexentry{constructive heuristic!fast greedy algorithm}{9}
 \indexentry{fast greedy algorithm}{9}
-\indexentry{fast greedy algorithm! pseudocode}{9}
+\indexentry{fast greedy algorithm!pseudocode}{9}
 \indexentry{complexity analysis!fast greedy algorithm}{10}
-\indexentry{fast greedy algorithm! complexity analysis}{10}
+\indexentry{fast greedy algorithm!complexity analysis}{10}
+\indexentry{fast greedy algorithm}{10}
+\indexentry{fast greedy algorithm!results}{10}
+\indexentry{constructive heuristic!fast greedy algorithm}{10}
+\indexentry{fast greedy algorithm}{12}
+\indexentry{fast greedy algorithm!results}{12}
+\indexentry{constructive heuristic!fast greedy algorithm}{12}
 \indexentry{heuristic!stingy algorithm}{13}
 \indexentry{stingy algorithm}{13}
 \indexentry{constructive heuristic!stingy algorithm}{13}
-\indexentry{stingy algorithm! pseudocode}{13}
+\indexentry{stingy algorithm!pseudocode}{13}
 \indexentry{complexity analysis!stingy algorithm}{14}
-\indexentry{stingy algorithm! complexity analysis}{14}
+\indexentry{stingy algorithm!complexity analysis}{14}
+\indexentry{stingy algorithm}{14}
+\indexentry{stingy algorithm!results}{14}
+\indexentry{constructive heuristic!stingy algorithm}{14}
+\indexentry{stingy algorithm}{15}
+\indexentry{stingy algorithm!results}{15}
+\indexentry{constructive heuristic!stingy algorithm}{15}
 \indexentry{greedy algorithm}{16}
-\indexentry{greedy algorithm! results}{16}
+\indexentry{greedy algorithm!results}{16}
 \indexentry{constructive heuristic!greedy algorithm}{16}
 \indexentry{heuristic!greedy algorithm}{16}
 \indexentry{fast greedy algorithm}{16}
-\indexentry{fast greedy algorithm! results}{16}
+\indexentry{fast greedy algorithm!results}{16}
 \indexentry{constructive heuristic!fast greedy algorithm}{16}
 \indexentry{heuristic!fast greedy algorithm}{16}
 \indexentry{stingy algorithm}{16}
-\indexentry{stingy algorithm! results}{16}
+\indexentry{stingy algorithm!results}{16}
 \indexentry{constructive heuristic!stingy algorithm}{16}
 \indexentry{heuristic!stingy algorithm}{16}
 \indexentry{fast greedy algorithm}{18}
-\indexentry{fast greedy algorithm! results}{18}
+\indexentry{fast greedy algorithm!results}{18}
 \indexentry{constructive heuristic!fast greedy algorithm}{18}
 \indexentry{heuristic!fast greedy algorithm}{18}
 \indexentry{heuristic!local search}{18}
 \indexentry{local search}{18}
 \indexentry{heuristic!interchange algorithm of Teitz and Bart}{18}
 \indexentry{interchange algorithm of Teitz and Bart}{18}
-\indexentry{interchange algorithm of Teitz and Bart! pseudocode}{19}
-\indexentry{interchange algorithm of Teitz and Bart}{20}
-\indexentry{interchange algorithm of Teitz and Bart! results}{20}
-\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{20}
+\indexentry{interchange algorithm of Teitz and Bart!pseudocode}{19}
 \indexentry{heuristic!interchange algorithm of Teitz and Bart}{20}
 \indexentry{interchange algorithm of Teitz and Bart}{20}
-\indexentry{interchange algorithm of Teitz and Bart! results}{20}
-\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{20}
-\indexentry{heuristic!interchange algorithm of Teitz and Bart}{20}
-\indexentry{interchange algorithm of Teitz and Bart}{21}
-\indexentry{interchange algorithm of Teitz and Bart! results}{21}
-\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{21}
-\indexentry{heuristic!interchange algorithm of Teitz and Bart}{21}
-\indexentry{interchange algorithm of Teitz and Bart}{22}
-\indexentry{interchange algorithm of Teitz and Bart! results}{22}
-\indexentry{local search heuristic!interchange algorithm of Teitz and Bart}{22}
-\indexentry{heuristic!interchange algorithm of Teitz and Bart}{22}
-\indexentry{heuristic!fast interchange}{23}
-\indexentry{fast interchange}{23}
-\indexentry{local search}{23}
+\indexentry{interchange algorithm of Teitz and Bart!results}{20}
 \indexentry{heuristic!interchange algorithm of Teitz and Bart}{23}
 \indexentry{interchange algorithm of Teitz and Bart}{23}
-\indexentry{heuristic!fast interchange}{23}
-\indexentry{fast interchange}{23}
-\indexentry{fast interchange!results}{23}
-\indexentry{local search}{23}
-\indexentry{heuristic!alternate algorithm}{24}
-\indexentry{alternate algorithm}{24}
-\indexentry{local search}{24}
+\indexentry{interchange algorithm of Teitz and Bart!results}{23}
+\indexentry{heuristic!interchange algorithm of Teitz and Bart}{24}
+\indexentry{interchange algorithm of Teitz and Bart}{24}
+\indexentry{interchange algorithm of Teitz and Bart!results}{24}
 \indexentry{heuristic!fast interchange}{25}
 \indexentry{fast interchange}{25}
-\indexentry{fast interchange!results}{25}
-\indexentry{heuristic!fast interchange}{26}
-\indexentry{fast interchange}{26}
-\indexentry{fast interchange!results}{26}
-\indexentry{heuristic!interchange algorithm of Teitz and Bart}{26}
-\indexentry{interchange algorithm of Teitz and Bart}{26}
-\indexentry{interchange algorithm of Teitz and Bart! results}{26}
+\indexentry{local search}{25}
+\indexentry{heuristic!interchange algorithm of Teitz and Bart}{25}
+\indexentry{interchange algorithm of Teitz and Bart}{25}
+\indexentry{fast interchange!pseudocode}{25}
+\indexentry{heuristic!fast interchange}{27}
+\indexentry{fast interchange}{27}
+\indexentry{local search}{27}
+\indexentry{fast interchange!results}{27}
+\indexentry{heuristic!fast interchange}{29}
+\indexentry{fast interchange}{29}
+\indexentry{local search}{29}
+\indexentry{fast interchange!results}{29}
+\indexentry{heuristic!fast interchange}{30}
+\indexentry{fast interchange}{30}
+\indexentry{local search}{30}
+\indexentry{fast interchange!results}{30}
+\indexentry{heuristic!alternate algorithm}{31}
+\indexentry{alternate algorithm}{31}
+\indexentry{local search}{31}
+\indexentry{alternate!pseudocode}{31}
+\indexentry{heuristic!alternate algorithm}{32}
+\indexentry{alternate algorithm}{32}
+\indexentry{local search}{32}
+\indexentry{alternate algorithm!results}{32}
+\indexentry{heuristic!alternate algorithm}{34}
+\indexentry{alternate algorithm}{34}
+\indexentry{local search}{34}
+\indexentry{alternate algorithm!results}{34}
+\indexentry{heuristic!alternate algorithm}{35}
+\indexentry{alternate algorithm}{35}
+\indexentry{local search}{35}
+\indexentry{alternate algorithm!results}{35}

@@ -50,7 +50,7 @@
 		Department of Decision Sciences\\[3mm]
 		HONPR2C\\
 		Project II \\[2cm]		
-		{\Huge \textbf{An analysis of heuristics for the \emph{p}-median problem}}\\[15mm]
+		{\huge \textbf{An analysis of classical heuristics for the \emph{p}-median problem}}\\[15mm]
 		Assignment 3: Final Report\\[3mm]
 		Assignment Unique Number: 705004\\[2cm]
 	}
@@ -110,13 +110,13 @@
 	\section{Literature Study} \label{lit.study}
 	While the \emph{p}-median problem\index{p-median problem} may have been tackled by academics before 1964, it was first formally defined and formulated by Hakimi\index[authors]{Hakimi, S.} \cite{HAKI64}.  It was also in this paper that Hakimi\index[authors]{Hakimi, S.} proved that the optimal location of a facility in a connected discrete network would always be found to correspond to the location of a demand node.  This considerably reduces the solution search space.
 	
-	A few years later, ReVelle\index[authors]{ReVelle, C.} and Swain \index[authors]{Swain, R.}\cite{REVE70} formulated the \emph{p}-median problem as an integer programme \index[terms]{integer programme} which provided the answers to both the question of where the optimal medians were located as well as which demand nodes should be allocated to each median.  In this paper, the solution properties of solving this problem with linear programming \index[terms]{linear programming} using the branch-and-bound technique \index[terms]{linear programme!branch-and-bound} was also discussed.
+	A few years later, ReVelle\index[authors]{ReVelle, C.} and Swain \index[authors]{Swain, R.}\cite{REVE70} formulated the \emph{p}-median problem as an integer programme \index[terms]{integer programme} which provided the answers to both the question of where the optimal medians were located as well as which demand nodes should be allocated to each median.  In this paper, the solution properties of solving this problem with linear programming \index[terms]{linear programming} using the branch-and-bound technique \index[terms]{linear programming!branch-and-bound} was also discussed.
 	
 	Later that decade, it was shown that the \emph{p}-median problem is NP-hard \index[terms]{NP-hard} and as such there exists no algorithm that can find the optimal solution within polynomial time.  Since most real-world problems are very large in nature, this poses a great problem.  Well developed heuristics\index[terms]{heuristic} can provide satisfactory solutions and many such approaches have been proposed.  Mladenovi\'{c}\index[authors]{Mladenovi\'{c}, N.} et al. \cite{MLAD07} produced a comprehensive survey of the heuristics that have been used to solve the \emph{p}-median problem.  This survey divides heuristics into two groups, Classical Heuristics and Metaheuristics\index[terms]{metaheuristic}.  The classical heuristics group consists of constructive heuristics\index[terms]{heuristic!constructive}, such as the greedy algorithm\index[terms]{greedy algorithm}\index[terms]{heuristic!greedy algorithm}, local search\index[terms]{local search}\index[terms]{heuristic!local search}, and mathematical programming\index[terms]{mathematical programming}.  The metaheuristics group lists tabu search\index[terms]{tabu search}\index[terms]{metaheuristic!tabu search}, variable neighbourhood search\index[terms]{variable neighbourhood search}\index[terms]{metaheuristic!variable neighbourhood search}, and simulated annealing\index[terms]{simulated annealing}\index[terms]{metaheuristic!simulated annealing} among others.
 	
 	There do exist studies that analysis the efficiency of heuristics in solving the \emph{p}-median.  Simulated annealing\index{simulated annealing}\index[terms]{metaheuristic!simulated annealing} was analysed by Chiyoshi\index[authors]{Chiyoshi, F.}  and Galv\~{a}o \index[authors]{Galv\~{a}o, R.} \cite{CHIY00} while Alp\index[authors]{Alp, O.} et al. \cite{ALPO03} investigated their proposed genetic algorithm\index{genetic algorithm}.  Hansen\index{Hansen, P.} and Mladenovi\'{c}\index[authors]{Mladenovi\'{c}, N.} \cite{HANS01} applied the variable neighbourhood search algorithm\index[terms]{variable neighbourhood search}\index[terms]{metaheuristic!variable neighbourhood search} to the \emph{p}-median problem as well as heuristic concentration\index[terms]{heuristic concentration}, tabu search\index[terms]{tabu search}\index[terms]{metaheuristic!tabu search}, and the greedy interchange algorithm\index[terms]{greedy interchange algorithm}.  These studies used Beasley's test problem dataset\index[terms]{Beasley's test problem dataset} although Hansen\index[authors]{Hansen, P.}  and Mladenovi\'{c}'s\index[authors]{Mladenovi\'{c}, N.} review only used a portion of the available test problems.  
 	
-	Rolland\index[authors]{Rolland, E.} et al. \cite{ROLL97} explored the efficiency of tabu search\index[terms]{tabu search}\index[terms]{metaheuristic!tabu search} using randomly generated datasets as test problems, and this was compared to results obtained from a two-exchange heuristic\index[terms]{heuristic} and an integer programming\index[terms]{integer programming} algorithm.  A heuristic\index[terms]{heuristic} concentration was compared to tabu search by Rosing\index[authors]{Rosing, K. E.} et al. \cite{ROSI98}.  Since datasets were independently and randomly generated for each of these studies, it makes it very difficult to compare results.
+	Rolland\index[authors]{Rolland, E.} et al. \cite{ROLL97} explored the efficiency of tabu search\index[terms]{tabu search}\index[terms]{metaheuristic!tabu search} using randomly generated datasets as test problems, and this was compared to results obtained from a two-exchange heuristic\index[terms]{heuristic} and an integer programming algorithm.  A heuristic\index[terms]{heuristic} concentration was compared to tabu search by Rosing\index[authors]{Rosing, K. E.} et al. \cite{ROSI98}.  Since datasets were independently and randomly generated for each of these studies, it makes it very difficult to compare results.
 	
 	
 	\section{Methodology} \label{methodology}
@@ -126,7 +126,7 @@
 	
 	Beasley's library also provides the optimal solution's weighted total cost objective function value for each of the forty instances in the dataset.  This allows the results obtained from the algorithms to be objectively assessed against the optimal solution.  
 	
-	As all algorithms require nodes associated with a minimum cost to be identified, a function in R \index[terms]{R (programming language)} was written to deal with the issue when more than one nodes offer the same minimum cost.  R's base package offers a minimum function, but if more than one element in the vector that is passed to this function equals the minimum value, only the first of such elements will be returned and all subsequent elements will be ignored.  However, the new function will return a randomly selected element.  A direct consequence of having this element of randomness is that an algorithm may produce different results and as such, for every problem in the forty-instance dataset, each algorithm will be run 50 times and the resulting objective function value was recorded, which allowed the deviation of each algorithm's solution from the optimal solution to be analysed.  In addition, the computational time required for each of the 50 runs was timed.
+	As all algorithms require nodes associated with a minimum cost to be identified, a function in R \index[terms]{R (programming language)} was written to deal with the issue when more than one nodes offer the same minimum cost.  R's base package offers a minimum function, but if more than one element in the vector that is passed to this function equals the minimum value, only the first of such elements will be returned and all subsequent elements will be ignored.  However, the new function will return a randomly selected element.  A direct consequence of having this element of randomness is that an algorithm may produce different results and as such, for every problem in the forty-instance dataset, each algorithm will be run 50 times and the resulting objective function value was recorded, which allowed the deviation of each algorithm's solution from the optimal solution to be analysed.  In addition, the computational time required for each of the 50 runs was timed.  In the case of the local search heuristics, the number of iterations per run was also recorded.
 	
 		
 	\section{Classical Heuristics and Metaheuristics} \label{classical.meta.heuristics}
@@ -175,7 +175,7 @@
 	The greedy algorithm,\index[terms]{greedy algorithm}\index[terms]{heuristic!greedy algorithm} as described by Whitaker \cite{WHIT83}, \index[author]{Whitaker, R.} is a simple recursive algorithm that starts with an empty median set and, with each iteration of the algorithm, adds a node to the median set.  The node that is added to the median set is the one that decreases the objective function value the most when compared to the other non-median nodes.
 	
 	\subsubsection{Pseudocode}
-	\index[terms]{greedy algorithm! pseudocode} 	
+	\index[terms]{greedy algorithm!pseudocode} 	
 	\begin{algorithm}
 		\caption{Greedy Algorithm}
 		\begin{algorithmic}[0]
@@ -245,12 +245,12 @@
 	\end{algorithm}
 
 	\subsubsection{Complexity}
-	The greedy algorithm\index[terms]{complexity analysis!greedy algorithm}\index[terms]{greedy algorithm! complexity analysis} has a complexity of $\mathcal{O}(n.p)$ since for each median that is required, the algorithm will assess the network of $n$ nodes until a set of $p$ medians have been found.
+	The greedy algorithm\index[terms]{complexity analysis!greedy algorithm}\index[terms]{greedy algorithm!complexity analysis} has a complexity of $\mathcal{O}(n.p)$ since for each median that is required, the algorithm will assess the network of $n$ nodes until a set of $p$ medians have been found.
 	
-	\subsubsection{Results}
+	\subsubsection{Results}\index[terms]{greedy algorithm}\index[terms]{greedy algorithm!results}\index[terms]{constructive heuristic!greedy algorithm}
 	The results from running the greedy algorithm for each of the forty test problems can be seen in table \ref{greedy.results.simple}.
 	
-	As can be seen, the computational time is very quick for the test problems that require a small number of medians.  The problem that took the longest to run was pmed30 which took on average over 5 seconds to find a solution.  This problem requires that two-thirds of the 600 nodes in its network be assigned as medians.  It can be seen from figure \ref{percentmedvstime_greedy} that the ratio network size to the number of required medians affects the computational time of the algorithm.
+	As can be seen in the table, the computational time is very quick for the test problems that require a small number of medians.  The problem that took the longest to run was pmed30 which took on average over 5 seconds to find a solution.  This problem requires that two-thirds of the 600 nodes in its network be assigned as medians.  It can be seen from figure \ref{percentmedvstime_greedy} that the ratio network size to the number of required medians affects the computational time of the algorithm.
 	
 	Computational time will obviously increase as the network size increases as there are simply more nodes that need to be assessed and as the number of medians required increases in addition to this, it can quickly become a time-consuming algorithm.
 	
@@ -262,7 +262,7 @@
 		\end{center}
 	\end{figure}
 	
-	The results obtained from using the greedy algorithm are reasonably good for problems that require a low number of medians.  As expected, the accuracy declines as the number of medians required increases.  This can be seen in figure \ref{percentmedvsaccuracy_greedy}.  This can be attributed to a constructive heuristic never reassessing whether medians found in previous iterations should remain in the median set.
+	The results obtained from using the greedy algorithm are reasonably good for problems that require a low number of medians.  As expected, the accuracy declines as the number of medians required increases.  This can be seen in figure \ref{medvsaccuracy_greedy}.  This can be attributed to a constructive heuristic never reassessing whether medians found in previous iterations should remain in the median set.
 	
 	\begin{figure}[H]
 		\begin{center}
@@ -272,9 +272,9 @@
 		\end{center}
 	\end{figure}
 	
-	Overall, the greedy algorithm appears to be a good method to obtain a starting solution which can be improved upon by using a local search algorithm.
+	Overall, the greedy algorithm appears to be a good method to obtain a reasonable starting solution which can be improved upon by using a local search algorithm.
 	
-	\begin{table}[]
+	\begin{table}[]\index[terms]{greedy algorithm}\index[terms]{greedy algorithm!results}\index[terms]{constructive heuristic!greedy algorithm}
 		\centering
 		\caption{Results of Greedy Algorithm (50 Runs)}
 		\label{greedy.results.simple}
@@ -349,11 +349,11 @@
 	\end{table}
 	
 	\np
-	\subsection{The Fast Greedy Algorithm} \label{fastgreedyalgo}
+	\subsection{The Fast Greedy Algorithm}\label{fastgreedyalgo}
 	Whitaker \cite{WHIT83} \index[authors]{Whitaker, R.} proposed the fast greedy algorithm.\index[terms]{heuristic!fast greedy algorithm}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{fast greedy algorithm} This algorithm differs from the greedy algorithm in that only the nodes that were re-assigned to a new median in the preceding iteration are investigated.  From these nodes, the new median is determined to be the one that will maximise the decrease in the objective function value.
 	
 	\subsubsection{Pseudocode}
-	\index[terms]{fast greedy algorithm! pseudocode} 	
+	\index[terms]{fast greedy algorithm!pseudocode} 	
 	\begin{algorithm}
 		\caption{Fast Greedy Algorithm}
 		\begin{algorithmic}[0]
@@ -433,13 +433,14 @@
 	\end{algorithm}
 	
 	\subsubsection{Complexity}
-	The fast greedy algorithm\index[terms]{complexity analysis!fast greedy algorithm}\index[terms]{fast greedy algorithm! complexity analysis} has a complexity of at most $\mathcal{O}(n.p)$, since it is possible that almost all nodes are assigned to the set $I$ during each iteration.  It is expected that the performance of this algorithm would be better than that of the greedy algorithm as the $I$ set from which a new median is selected each iteration would be typically be smaller than the network.
+	The fast greedy algorithm\index[terms]{complexity analysis!fast greedy algorithm}\index[terms]{fast greedy algorithm!complexity analysis} has a complexity of at most $\mathcal{O}(n.p)$, since it is possible that almost all nodes are assigned to the set $I$ during each iteration.  It is expected that the performance of this algorithm would be better than that of the greedy algorithm as the $I$ set from which a new median is selected each iteration would be typically be smaller than the network.
 	
 	
 	\subsubsection{Results}
-	The fast greedy algorithm proves true to its name and even for very large networks and networks requiring a high number of medians, the algorithm produces a solution set on average of less than 1 second.
+	\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm!results}\index[terms]{constructive heuristic!fast greedy algorithm}
+	The results obtained from running the fast greedy algorithm 50 times can be seen in table \ref{fast.results.simple} and this algorithm proves true to its name.  As seen in figure \ref{percentmedvstime_fast}, the fast greedy algorithm produces results, on average, in less than 1 second for all test problems.  Even test problems with very large networks, and networks requiring a high number of medians, the algorithm produces a solution set far quicker than the greedy algorithm.
 	
-	Where the fast greedy fails in the the quality of the solution.  At best, the algorithm provide a solution set with an associated objective function value that was 4.3\% worse than the optimal objective function value and at worst the solution set's objective function value was over 500\% worse.
+	Where the fast greedy fails is in the quality of the solution.  At best, the algorithm provides a solution set with an associated objective function value that was 4.3\% worse than the optimal objective function value and at worst the solution set's objective function value was over 500\% worse.
 	
 	\begin{figure}[H]
 		\begin{center}
@@ -451,7 +452,7 @@
 	
 	This poor performance may not be an issue if these results are used as a starting solution for a local search heuristic but these solutions are certainly not to be used as a final solution unless there are legitimate reasons for doing so.
 	
-	\begin{table}[]
+	\begin{table}[]\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm!results}\index[terms]{constructive heuristic!fast greedy algorithm}
 		\centering
 		\caption{Results of Fast Greedy Algorithm (50 Runs)}
 		\label{fast.results.simple}
@@ -530,7 +531,7 @@
 	Instead of starting with an empty median set and recursively adding a node until all \textit{p} medians are assigned, the stingy algorithm\index[terms]{heuristic!stingy algorithm}\index[terms]{stingy algorithm}\index[terms]{constructive heuristic!stingy algorithm} begins with all nodes in the network being designated as a median.  Nodes are removed one at a time until only required \textit{p} medians remain in the median set.
 	
 	\subsubsection{Pseudocode}
-	\index[terms]{stingy algorithm! pseudocode} 
+	\index[terms]{stingy algorithm!pseudocode} 
 	\begin{algorithm}
 		\caption{Stingy Algorithm}
 		\begin{algorithmic}[0]
@@ -585,11 +586,13 @@
 	
 	
 	\subsubsection{Complexity}
-	Like the greedy algorithm, there are $\mathcal{O}(n)$ lookups in each iteration of the stingy algorithm.\index[terms]{complexity analysis!stingy algorithm}\index[terms]{stingy algorithm! complexity analysis}  There will be $n-p$ iterations and as such this algorithm will have a complexity of $\mathcal{O}(n.(n-p))$.
+	Like the greedy algorithm, there are $\mathcal{O}(n)$ lookups in each iteration of the stingy algorithm.\index[terms]{complexity analysis!stingy algorithm}\index[terms]{stingy algorithm!complexity analysis}  There will be $n-p$ iterations and as such this algorithm will have a complexity of $\mathcal{O}(n.(n-p))$.
 	
 	For problems with a low number of required medians, this will be much slower than the greedy algorithm but for problems with a high number of required medians, this algorithm may prove useful.
 	
-	\subsubsection{Results}
+	\subsubsection{Results}\index[terms]{stingy algorithm}\index[terms]{stingy algorithm!results}\index[terms]{constructive heuristic!stingy algorithm}
+	Table \ref{stingy.results.simple} gives the results from test problems 1 to 20 over 50 runs using the stingy algorithm.  Only the first half of the test problems were able to complete before a timeout of 2 minutes was reached.
+	
 	The time required by the stingy algorithm to find a feasible solution increased dramatically as the network size of the problem increased.  This can be seen in figure \ref{percentmedvstime_stingy}.  The expected decrease in computational time as the number of medians increases is visible, particularly in the test problem with 400 nodes, but does not offer much of a saving to justify the use of this algorithm to solve the $p$-median problem.	
 	
 		\begin{figure}[H]
@@ -600,12 +603,12 @@
 			\end{center}
 		\end{figure}
 		
-		Due to the excessive computational time taken by this algorithm when solving large networks, only the first twenty test problems were run and the results thereof ca nbe seen in table \ref{stingy.results.simple}.
+		Due to the excessive computational time taken by this algorithm when solving large networks, only the first twenty test problems were run and the results thereof can be seen in table \ref{stingy.results.simple}.
 		
 		The value of the objective function from the solution set found by the stingy algorithm is at best 99.2\% worse than the optimal value and at worse, it is 173.2\% worse than the optimal.  So, like the fast greedy algorithm, the stingy algorithm is not useful in any situation other than a problem with a small network size that requires a large number of medians.
 		
 		
-		\begin{table}[]
+		\begin{table}[]\index[terms]{stingy algorithm}\index[terms]{stingy algorithm!results}\index[terms]{constructive heuristic!stingy algorithm}
 			\centering
 			\caption{Results of Stingy Algorithm (50 Runs)}
 			\label{stingy.results.simple}
@@ -648,7 +651,6 @@
 
 	\subsection{Comparison of Results from Constructive Heuristics} \label{classicheuristics.constructive.results}
 
-	
 	Figure \ref{CH.av.acc} shows the average gap between the solution's objective function value and the optimal solutions objective function for each of the forty test problems.  It can be seen that the greedy algorithm was able to produce results that were very close to the optimal value with very slight decreases as the number of medians required increased. 
 	
 	The fast greedy algorithm produced adequate results for the test problems that demanded five medians.  The massive difference in accuracy for the fast greedy algorithm is clearly visible in figure \ref{CH.av.acc}.
@@ -661,7 +663,7 @@
 		\end{center}
 	\end{figure}
 
-	In figure \ref{CH.av.time}, the average computational time for the greedy algorithm\index[terms]{greedy algorithm}\index[terms]{greedy algorithm! results}\index[terms]{constructive heuristic!greedy algorithm}\index[terms]{heuristic!greedy algorithm}, the fast greedy algorithm\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm! results}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{heuristic!fast greedy algorithm} and the stingy algorithm\index[terms]{stingy algorithm}\index[terms]{stingy algorithm! results}\index[terms]{constructive heuristic!stingy algorithm}\index[terms]{heuristic!stingy algorithm} is shown.  It can clearly be seen that the stingy algorithm takes far longer than the other two algorithm and increases dramatically as the network size increases.  It can be seen that the computational time for the stingy algorithm does decrease as the value of $p$ increases.
+	In figure \ref{CH.av.time}, the average computational time for the greedy algorithm\index[terms]{greedy algorithm}\index[terms]{greedy algorithm!results}\index[terms]{constructive heuristic!greedy algorithm}\index[terms]{heuristic!greedy algorithm}, the fast greedy algorithm\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm!results}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{heuristic!fast greedy algorithm} and the stingy algorithm\index[terms]{stingy algorithm}\index[terms]{stingy algorithm!results}\index[terms]{constructive heuristic!stingy algorithm}\index[terms]{heuristic!stingy algorithm} is shown.  It can clearly be seen that the stingy algorithm takes far longer than the other two algorithm and increases dramatically as the network size increases.  It can be seen that the computational time for the stingy algorithm does decrease as the value of $p$ increases.
 	
 	\begin{figure}[H]
 		\begin{center}
@@ -703,7 +705,7 @@
 	
 	
 
-	Based on the work done by Whitaker \cite{WHIT83},\index[author]{Whitaker, R.} it was expected that the fast greedy algorithm\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm! results}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{heuristic!fast greedy algorithm} would produce results quicker than the greedy algorithm.  The trade-off in finding a solution faster would be an objective function value that is less accurate when compared to the optimal objective function value.  This trade-off may be acceptable in certain situations.
+	Based on the work done by Whitaker \cite{WHIT83},\index[author]{Whitaker, R.} it was expected that the fast greedy algorithm\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm!results}\index[terms]{constructive heuristic!fast greedy algorithm}\index[terms]{heuristic!fast greedy algorithm} would produce results quicker than the greedy algorithm.  The trade-off in finding a solution faster would be an objective function value that is less accurate when compared to the optimal objective function value.  This trade-off may be acceptable in certain situations.
 	
 	
 	\section{Classical Heuristics: Local Search} \label{classicheuristics.localsearch}
@@ -718,7 +720,7 @@
 	Using the input solution, the algorithm assesses what the change in objective function would be if one of the free nodes was changed with one of the median nodes.  If this change results in a decreased objective function value, then the switch is made, and the algorithm then starts assessing whether there exist any free nodes that should be interchanged with the new median set.  The process continues until no improvement in the objective function can be found.
 	
 	\subsubsection{Pseudocode}
-	\index[terms]{interchange algorithm of Teitz and Bart! pseudocode} 	
+	\index[terms]{interchange algorithm of Teitz and Bart!pseudocode} 	
 	\begin{algorithm}
 		\caption{Interchange Algorithm of Teitz and Bart}
 		\begin{algorithmic}[0]
@@ -803,263 +805,785 @@
 			
 		\end{algorithmic}
 	\end{algorithm}
-	
-	\subsubsection{Complexity}
 
-
-	\subsubsection{Results}
-	The average accuracy of the solution obtained from the interchange algorithm of Teitz and Bart\index[terms]{interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart! results}\index[terms]{local search heuristic!interchange algorithm of Teitz and Bart}\index[terms]{heuristic!interchange algorithm of Teitz and Bart} when presented with a solution from the greedy algorithm from section \ref{classicheuristics.constructive} as opposed to a feasible random solution can be seen in table \ref{TB.Results.table}.  This table also presents the average computational time the algorithm took to complete given the two different input solutions.
+	\subsubsection{Results}\index[terms]{heuristic!interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart!results}
+	The results from running the interchange algorithm of Teitz and Bart for 50 times with an initial starting solution generated from the greedy algorithm is given in table \ref{teitzandbart.greedy.simple} while the results from using a random feasible solution can be seen in table \ref{teitzandbart.random.simple}.
 	
-	\begin{table}[]
+	Staring with the computational time, the figure \ref{TBtime} shows the average total time taken by each run for both starting solutions.  The random solution generally takes longer to get to a final solution for the test problems that have a high $p$-value.  This result is unsurprising as the value of $p$ increases, along the the network size, there are far more options to be considered when deciding which free node and median to swap.  It would be interesting to see how many unique swaps have been made compared to how many repetitive swaps but this has not been covered in this study.
+		
+		\begin{figure}[H]
+			\begin{center}
+				\includegraphics[width=14cm]{TBtime.png}
+				\caption{Average Computational Time of each Test Problem}
+				\label{TBtime}
+			\end{center}
+		\end{figure}
+	
+	When looking at the accuracy of the solution in figure \ref{TBgap}, there is no better starting solution.  In some cases, the greedy starting solution does well and in other cases, the random starting solution is best.  The worst case for both the greedy solution and the random is still better than results from either the fast greedy algorithm and the stingy algorithm.
+		
+		\begin{figure}[H]
+			\begin{center}
+				\includegraphics[width=14cm]{TBgap.png}
+				\caption{Average Gap to Optimal Value of each Test Problem}
+				\label{TBgap}
+			\end{center}
+		\end{figure}
+		
+	Test problem pmed28 ($n = 600$ and $p = 60$) resulted in the highest number of iterations for both starting solutions with a greedy solution requiring 38 iterations and the random solution requiring 224 iterations.  This is a remarkable difference and illustrates the importance of acquiring a good starting solution prior to using the Teitz and Bart interchange algorithm.
+	
+	On average, the random starting solution required more iterations per run than the greedy starting solution.  This can be seen in figure \ref{TBiterations}.
+
+		
+		\begin{figure}[H]
+			\begin{center}
+				\includegraphics[width=14cm]{TBiterations.png}
+				\caption{Average Number Iterations of each Test Problem}
+				\label{TBiterations}
+			\end{center}
+		\end{figure}
+
+	
+	\begin{table}[]\index[terms]{heuristic!interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart!results}
 		\centering
-		\caption{Local Search Heuristic Results - Interchange Algorithm of Teitz \& Bart}
-		\label{TB.Results.table}
-		\index[terms]{interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart! results}\index[terms]{local search heuristic!interchange algorithm of Teitz and Bart}\index[terms]{heuristic!interchange algorithm of Teitz and Bart}
-		\begin{tabular}{ccccccc}
-			\hline
-			&  &  & \multicolumn{2}{c}{\textbf{GREEDY}} & \multicolumn{2}{c}{\textbf{RANDOM}} \\ \cline{4-7} 
-			\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Test} \\ \small{Problem}\end{tabular}}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Medians} \\ \small{(p)}\end{tabular}}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Network} \\ \small{(nodes)}\end{tabular}}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Sol.}\\ \small{Accuracy}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Comp.} \\ \small{Time (sec)}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Sol.}\\ \small{Accuracy}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Comp.}\\ \small{Time (sec)}\end{tabular}} \\ \hline
-			\rowcolor[HTML]{EFEFEF} 
-			01 & 5 & 100 & 1.00 & 0.07 & 1.00 & 0.08 \\
-			\rowcolor[HTML]{EFEFEF} 
-			02 & 10 & 100 & 1.00 & 0.07 & 1.00 & 0.15 \\
-			\rowcolor[HTML]{EFEFEF} 
-			03 & 10 & 100 & 1.00 & 0.16 & 1.00 & 0.19 \\
-			\rowcolor[HTML]{EFEFEF} 
-			04 & 20 & 100 & 1.00 & 0.12 & 1.00 & 0.22 \\
-			\rowcolor[HTML]{EFEFEF} 
-			05 & 33 & 100 & 1.00 & 0.17 & 0.99 & 0.32 \\
-			06 & 5 & 200 & 1.00 & 0.15 & 1.00 & 0.16 \\
-			07 & 10 & 200 & 1.00 & 0.18 & 1.00 & 0.25 \\
-			08 & 20 & 200 & 1.00 & 0.29 & 1.00 & 0.59 \\
-			09 & 40 & 200 & 0.99 & 0.79 & 0.99 & 0.94 \\
-			10 & 67 & 200 & 0.99 & 0.71 & 0.99 & 1.39 \\
-			\rowcolor[HTML]{EFEFEF} 
-			11 & 5 & 300 & 1.00 & 0.16 & 1.00 & 0.24 \\
-			\rowcolor[HTML]{EFEFEF} 
-			12 & 10 & 300 & 1.00 & 0.30 & 1.00 & 0.41 \\
-			\rowcolor[HTML]{EFEFEF} 
-			13 & 30 & 300 & 1.00 & 0.81 & 1.00 & 1.44 \\
-			\rowcolor[HTML]{EFEFEF} 
-			14 & 60 & 300 & 1.00 & 1.41 & 1.00 & 2.89 \\
-			\rowcolor[HTML]{EFEFEF} 
-			15 & 100 & 300 & 0.99 & 2.30 & 0.99 & 4.22 \\
-			16 & 5 & 400 & 1.00 & 0.39 & 1.00 & 0.35 \\
-			17 & 10 & 400 & 1.00 & 0.49 & 1.00 & 0.70 \\
-			18 & 40 & 400 & 1.00 & 2.33 & 1.00 & 2.84 \\
-			19 & 80 & 400 & 0.99 & 4.26 & 0.99 & 4.97 \\
-			20 & 133 & 400 & 1.00 & 5.78 & 0.99 & 7.67 \\
-			\rowcolor[HTML]{EFEFEF} 
-			21 & 5 & 500 & 1.00 & 0.16 & 1.00 & 0.42 \\
-			\rowcolor[HTML]{EFEFEF} 
-			22 & 10 & 500 & 0.99 & 0.63 & 0.99 & 1.54 \\
-			\rowcolor[HTML]{EFEFEF} 
-			23 & 50 & 500 & 1.00 & 4.56 & 1.00 & 8.92 \\
-			\rowcolor[HTML]{EFEFEF} 
-			24 & 100 & 500 & 1.00 & 7.07 & 0.99 & 10.98 \\
-			\rowcolor[HTML]{EFEFEF} 
-			25 & 167 & 500 & 0.99 & 15.23 & 0.99 & 14.53 \\
-			26 & 5 & 600 & 1.00 & 0.51 & 1.00 & 0.68 \\
-			27 & 10 & 600 & 1.00 & 1.38 & 1.00 & 1.58 \\
-			28 & 60 & 600 & 1.00 & 6.32 & 1.00 & 14.04 \\
-			29 & 120 & 600 & 1.00 & 15.45 & 0.99 & 15.97 \\
-			30 & 200 & 600 & 0.99 & 15.47 & 0.99 & 20.10 \\
-			\rowcolor[HTML]{EFEFEF} 
-			31 & 5 & 700 & 1.00 & 0.28 & 1.00 & 0.79 \\
-			\rowcolor[HTML]{EFEFEF} 
-			32 & 10 & 700 & 1.00 & 1.09 & 1.00 & 2.02 \\
-			\rowcolor[HTML]{EFEFEF} 
-			33 & 70 & 700 & 0.99 & 9.91 & 1.00 & 15.23 \\
-			\rowcolor[HTML]{EFEFEF} 
-			34 & 140 & 700 & 1.00 & 21.84 & 1.00 & 20.61 \\
-			35 & 5 & 800 & 1.00 & 0.75 & 1.00 & 1.42 \\
-			36 & 10 & 800 & 1.00 & 1.49 & 1.00 & 1.91 \\
-			37 & 80 & 800 & 1.00 & 18.56 & 1.00 & 21.28 \\
-			\rowcolor[HTML]{EFEFEF} 
-			38 & 5 & 900 & 1.00 & 1.34 & 1.00 & 1.99 \\
-			\rowcolor[HTML]{EFEFEF} 
-			39 & 10 & 900 & 1.00 & 1.59 & 1.00 & 2.11 \\
-			\rowcolor[HTML]{EFEFEF} 
-			40 & 90 & 900 & 1.00 & 24.19 & 0.99 & 27.81
-		\end{tabular}
-	\end{table}	
-
-	Figure \ref{TBGreedy.median.time} shows the average computational time taken to produce a final result by the Teitz and Bart algorithm\index[terms]{interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart! results}\index[terms]{local search heuristic!interchange algorithm of Teitz and Bart}\index[terms]{heuristic!interchange algorithm of Teitz and Bart} when presented with a solution that was produced by the greedy algorithm.  When the value of $p$ is small, the computational time required is very low and this is quite likely due to the good quality of the greedy algorithm solution.  The number of interchanges required to improve the starting solution was not recorded for these results but this statistic will be included and analysed in the final report.  What is expected is that as the number of demanded medians increases, the number of interchanges required to find the final result will increase.  The number of interchanges processed will directly affect the computational time.
+		\caption{Results of the Interchange Algorithm of Teitz and Bart - Greedy (50 Runs)}
+		\label{teitzandbart.greedy.simple}
+		\resizebox{\textwidth}{!}{%
+			\begin{tabular}{cccccccc}
+				\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}} & \textbf{p} & \textbf{n} & \textbf{Edges} & \textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Value\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Computational\\ Time (seconds)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (percent)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Num. of\\ Iterations\end{tabular}} \\
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0.1 $\pm$ 0.02 & 0 $\pm$ 0 & 6 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0.1 $\pm$ 0.01 & 0.3 $\pm$ 0 & 10 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0.1 $\pm$ 0.02 & 0 $\pm$ 0 & 3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.1 $\pm$ 0.02 & 0.4 $\pm$ 0 & 4 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 0.1 $\pm$ 0.02 & 0.4 $\pm$ 0 & 10 $\pm$ 0 \\
+				6 & 5 & 200 & 786 & 7824 & 0.1 $\pm$ 0.02 & 0 $\pm$ 0 & 16 $\pm$ 0 \\
+				7 & 10 & 200 & 779 & 5631 & 0.2 $\pm$ 0.02 & 0.2 $\pm$ 0 & 12 $\pm$ 0 \\
+				8 & 20 & 200 & 792 & 4445 & 0.3 $\pm$ 0.02 & 0.3 $\pm$ 0 & 6 $\pm$ 0 \\
+				9 & 40 & 200 & 785 & 2734 & 0.7 $\pm$ 0.04 & 0.7 $\pm$ 0 & 3 $\pm$ 0 \\
+				10 & 67 & 200 & 786 & 1255 & 0.6 $\pm$ 0.02 & 0.6 $\pm$ 0 & 12 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0.1 $\pm$ 0.02 & 0 $\pm$ 0 & 21 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.3 $\pm$ 0.03 & 0 $\pm$ 0 & 3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 0.7 $\pm$ 0.04 & 0 $\pm$ 0 & 30 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 1.2 $\pm$ 0.07 & 0.1 $\pm$ 0 & 1 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 1.7 $\pm$ 0.07 & 0.6 $\pm$ 0 & 2 $\pm$ 0 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.4 $\pm$ 0.03 & 0 $\pm$ 0 & 18 $\pm$ 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.4 $\pm$ 0.02 & 0 $\pm$ 0 & 16.8 $\pm$ 1.03 \\
+				18 & 40 & 400 & 3134 & 4809 & 2.1 $\pm$ 0.08 & 0 $\pm$ 0 & 28.9 $\pm$ 1.66 \\
+				19 & 80 & 400 & 3134 & 2845 & 3.7 $\pm$ 0.12 & 0.6 $\pm$ 0 & 7 $\pm$ 0 \\
+				20 & 133 & 400 & 3144 & 1789 & 5.1 $\pm$ 0.19 & 0.1 $\pm$ 0 & 8 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.2 $\pm$ 0.02 & 0 $\pm$ 0 & 17.8 $\pm$ 0.42 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 0.6 $\pm$ 0.04 & 1 $\pm$ 0 & 27.9 $\pm$ 0.32 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 3.7 $\pm$ 0.1 & 0 $\pm$ 0 & 7 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 6.3 $\pm$ 0.19 & 0.3 $\pm$ 0 & 17 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 10.1 $\pm$ 1.43 & 0.9 $\pm$ 0.07 & 1 $\pm$ 0 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.4 $\pm$ 0.03 & 0.1 $\pm$ 0 & 6 $\pm$ 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 1.2 $\pm$ 0.06 & 0 $\pm$ 0 & 23 $\pm$ 0 \\
+				28 & 60 & 600 & 7054 & 4498 & 5.8 $\pm$ 0.2 & 0.2 $\pm$ 0 & 37.7 $\pm$ 0.48 \\
+				29 & 120 & 600 & 7042 & 3033 & 11.8 $\pm$ 1.65 & 0.2 $\pm$ 0 & 2 $\pm$ 0 \\
+				30 & 200 & 600 & 7042 & 1989 & 13.9 $\pm$ 0.44 & 1.1 $\pm$ 0 & 4 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0.3 $\pm$ 0.02 & 0 $\pm$ 0 & 29.3 $\pm$ 0.95 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 1 $\pm$ 0.05 & 0 $\pm$ 0 & 9 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 8.8 $\pm$ 0.21 & 0.5 $\pm$ 0 & 2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 19.5 $\pm$ 1.88 & 0.4 $\pm$ 0.01 & 3 $\pm$ 0 \\
+				35 & 5 & 800 & 12548 & 10400 & 0.7 $\pm$ 0.03 & 0 $\pm$ 0 & 24 $\pm$ 0 \\
+				36 & 10 & 800 & 12560 & 9934 & 1.2 $\pm$ 0.05 & 0 $\pm$ 0 & 3 $\pm$ 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 17.9 $\pm$ 3.65 & 0.2 $\pm$ 0.01 & 8 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 1.3 $\pm$ 0.06 & 0 $\pm$ 0 & 2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 1.5 $\pm$ 0.05 & 0 $\pm$ 0 & 4 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 22.9 $\pm$ 0.3 & 0.3 $\pm$ 0 & 12 $\pm$ 0
+			\end{tabular}%
+		}
+	\end{table}
 	
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=15cm]{TBGreedy.png}
-			\caption{Interchange Algorithm of Teitz and Bart with a Greedy Starting Solution}
-			\label{TBGreedy.median.time}
-		\end{center}
-	\end{figure}
-
-	Figure \ref{TBRand.median.time} shows the average computational time taken to produce the final result by the Teitz and Bart algorithm \index[terms]{interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart! results}\index[terms]{local search heuristic!interchange algorithm of Teitz and Bart}\index[terms]{heuristic!interchange algorithm of Teitz and Bart} when presented with a solution that was produced by random feasible solution.  Clearly, more interchanges will be required before the algorithm finds a good solution and stops and as such, more time is required.  This can be seen in the bigger spread in computational time for the $p=5$ test problems.
-
-	\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=15cm]{TBRand.png}
-		\caption{Interchange Algorithm of Teitz and Bart with a Random Starting Solution}
-		\label{TBRand.median.time}
-	\end{center}
-	\end{figure}
-
-	Generally, using a greedy starting solution does result in some computational time savings during the local search when compared to using a random solution.  However, there are some exceptions with test problems 25, 29, and 30.  These three problems have large networks and demand a high number of medians.
+	\begin{table}[]\index[terms]{heuristic!interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart!results}
+		\centering
+		\caption{Results of the Interchange Algorithm of Teitz and Bart - Random (50 Runs)}
+		\label{teitzandbart.random.simple}
+		\resizebox{\textwidth}{!}{%
+			\begin{tabular}{cccccccc}
+				\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}} & \textbf{p} & \textbf{n} & \textbf{Edges} & \textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Value\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Computational\\ Time (seconds)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (percent)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Num. of\\ Iterations\end{tabular}} \\
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0.1 $\pm$ 0.01 & 0 $\pm$ 0 & 17 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0.1 $\pm$ 0.02 & 0 $\pm$ 0 & 65.5 $\pm$ 0.53 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0.2 $\pm$ 0.01 & 0 $\pm$ 0 & 21 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.2 $\pm$ 0.02 & 0.4 $\pm$ 0 & 33 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 0.3 $\pm$ 0.02 & 1.3 $\pm$ 0 & 63.6 $\pm$ 0.52 \\
+				6 & 5 & 200 & 786 & 7824 & 0.2 $\pm$ 0.03 & 0 $\pm$ 0 & 101.8 $\pm$ 1.23 \\
+				7 & 10 & 200 & 779 & 5631 & 0.2 $\pm$ 0.02 & 0 $\pm$ 0 & 111.5 $\pm$ 3.14 \\
+				8 & 20 & 200 & 792 & 4445 & 0.6 $\pm$ 0.03 & 0.2 $\pm$ 0 & 20 $\pm$ 0 \\
+				9 & 40 & 200 & 785 & 2734 & 0.9 $\pm$ 0.06 & 0.7 $\pm$ 0.02 & 33 $\pm$ 0 \\
+				10 & 67 & 200 & 786 & 1255 & 1.4 $\pm$ 0.19 & 1.1 $\pm$ 0.16 & 81.8 $\pm$ 0.42 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0.2 $\pm$ 0.02 & 0 $\pm$ 0 & 122.2 $\pm$ 3.19 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.4 $\pm$ 0.02 & 0 $\pm$ 0 & 31 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 1.5 $\pm$ 0.08 & 0.3 $\pm$ 0 & 135.1 $\pm$ 1.45 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 2.6 $\pm$ 0.27 & 0.2 $\pm$ 0.05 & 17 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 4.2 $\pm$ 0.78 & 0.8 $\pm$ 0.17 & 49 $\pm$ 0 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.3 $\pm$ 0.02 & 0.3 $\pm$ 0 & 112.1 $\pm$ 1.45 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.6 $\pm$ 0.02 & 0.2 $\pm$ 0 & 151.4 $\pm$ 1.65 \\
+				18 & 40 & 400 & 3134 & 4809 & 2.7 $\pm$ 0.1 & 0 $\pm$ 0 & 154.6 $\pm$ 1.84 \\
+				19 & 80 & 400 & 3134 & 2845 & 4.7 $\pm$ 0.25 & 0.6 $\pm$ 0.09 & 28 $\pm$ 0 \\
+				20 & 133 & 400 & 3144 & 1789 & 7.5 $\pm$ 0.83 & 0.6 $\pm$ 0.13 & 43 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.4 $\pm$ 0.02 & 0 $\pm$ 0 & 139.6 $\pm$ 1.26 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 1.5 $\pm$ 0.06 & 1 $\pm$ 0 & 190.9 $\pm$ 1.6 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 8.7 $\pm$ 0.21 & 0.1 $\pm$ 0 & 31.2 $\pm$ 1.55 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 10.8 $\pm$ 0.65 & 0.5 $\pm$ 0.13 & 195.2 $\pm$ 1.81 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 13.8 $\pm$ 1.62 & 1 $\pm$ 0.2 & 25 $\pm$ 0 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.6 $\pm$ 0.03 & 0 $\pm$ 0 & 47 $\pm$ 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 1.6 $\pm$ 0.05 & 0 $\pm$ 0 & 166.7 $\pm$ 2.26 \\
+				28 & 60 & 600 & 7054 & 4498 & 10.3 $\pm$ 0.8 & 0.3 $\pm$ 0.08 & 217 $\pm$ 3.65 \\
+				29 & 120 & 600 & 7042 & 3033 & 15.5 $\pm$ 1.9 & 1 $\pm$ 0.07 & 25 $\pm$ 0 \\
+				30 & 200 & 600 & 7042 & 1989 & 20.6 $\pm$ 2.98 & 0.9 $\pm$ 0.2 & 52 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0.7 $\pm$ 0.03 & 0 $\pm$ 0 & 187.5 $\pm$ 2.95 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 1.9 $\pm$ 0.09 & 0 $\pm$ 0 & 30 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 13.9 $\pm$ 0.74 & 0.2 $\pm$ 0.08 & 46 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 19.6 $\pm$ 1.63 & 0.4 $\pm$ 0.07 & 32 $\pm$ 0 \\
+				35 & 5 & 800 & 12548 & 10400 & 1.3 $\pm$ 0.06 & 0 $\pm$ 0 & 189.5 $\pm$ 9.01 \\
+				36 & 10 & 800 & 12560 & 9934 & 1.8 $\pm$ 0.08 & 0 $\pm$ 0 & 40 $\pm$ 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 21.2 $\pm$ 3.31 & 0.1 $\pm$ 0.04 & 24 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 1.9 $\pm$ 0.06 & 0 $\pm$ 0 & 32 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 2 $\pm$ 0.09 & 0 $\pm$ 0 & 50 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 28.4 $\pm$ 7.87 & 0.7 $\pm$ 0.24 & 56.6 $\pm$ 0.52
+			\end{tabular}%
+		}
+	\end{table}
+	
+	\np
 	
 	\subsection{The Fast Interchange Algorithm} \label{fastintalgo}
 	The fast interchange algorithm,\index[terms]{heuristic!fast interchange}\index[terms]{fast interchange}\index[terms]{local search} proposed by Whitaker\index[author]{Whitaker, R.} \cite{WHIT83}, is based on the Teitz and Bart algorithm\index[terms]{heuristic!interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart}  from subsection \ref{tbalgo}.  When searching for a free node that should be swapped with a node in the median set, only free nodes that have yet to be examined are considered.
 	
 	\subsubsection{Pseudocode}
+	\index[terms]{fast interchange!pseudocode} 	
+	\begin{algorithm}
+		\caption{Fast Interchange Algorithm}
+		\begin{algorithmic}[0]
+			\Statex 
+			\Statex INPUT: Cost Matrix; $P^*$; $S^*$
+			
+			\Statex 
+			\Statex STEP 0: Initialisation
+			\begin{equation*}
+			\text{Set } k = z = q = 1 \text{ and } b=m-p
+			\end{equation*}
+			\begin{equation*}
+			\text{Define } P=M-P^*
+			\end{equation*}
+			\Statex For each node in the network, determine the distance to both the closest node in the median set as well as the second closest node in the median set.
+			\Statex For $i=1,2,\dots,n ,$ find \emph{x} and \emph{y} where \emph{x}, $y \in P^*$ such that
+			\begin{align*}
+			u_i^1 & = d_{ix} = \min_{j\in P^*}d_{ij}\\
+			w_i^1 & = d_{iy} = \min_{j\in P^*, j\neq x}d_{ij}
+			\end{align*}
+			
+			
+			\Statex
+			\Statex STEP 1: Calculate the change in the objective function if one node from the median set were to be interchanged with a free node.
+			\Statex Set $r=P_q$ and find some node \emph{t}, $t \in P^*$ such that
+			\begin{align*}
+			S_{rt} &= \bigg[\sum_{i \in I}d_{ir}-u_i^k\bigg] + \min_{j\in P^*}\bigg[\sum_{i \in K_j}[\min(d_{ir}, w_i^k)-u_i^k]\bigg]\\
+			\text{where } I &= \{\text{all } i \in G: d_{ir}<u_i^k\}\\
+			\text{and } K_j &= \{\text{all } i \in G: d_{ir}\geq u_i^k\text{ and } d_{ij} - u_i^k\}
+			\end{align*}
 
 
-	\subsubsection{Results}
-	Table \ref{FI.Results.table} presents the average solution accuracy and the average computational time for the fast interchange algorithm.\index[terms]{heuristic!fast interchange}\index[terms]{fast interchange}\index[terms]{fast interchange!results}\index[terms]{local search}  The results from using a solution obtained from the greedy algorithm given in section \ref{classicheuristics.constructive} as well as a randomly created feasible solution are provided alongside one another for comparison.
+			\Statex
+			\Statex STEP 2: If the objective function value were to increase by the proposed interchange of nodes, then go to STEP 4.  If the proposed change of nodes results in a decrease of the objective function value, then make the change, update iterative parameters and the objective function and go to STEP 3.
+			\Statex	
+				\Statex	
+				\algstore{fintbreak}
+			\end{algorithmic}
+		\end{algorithm}
+		
+		\begin{algorithm}
+			\begin{algorithmic}[0]
+				\algrestore{fintbreak}	
+			\Statex	
+			\If{$S_{rt} \geq 0$}
+			\Statex go to STEP 4
+			[
+			\ElsIf{$S_{rt} < 0$}
+			\begin{equation*}
+			k = k+1 \quad  S^*= S* + S_{rt} \quad P_q = \{t\} \quad P^*= P^*\backslash \{t\} \cup \{r\} \text{ and  go to STEP 3}
+			\end{equation*}				
+			]
+			\EndIf
+				
+			\Statex
+			\Statex STEP 3: Update the cost of travel for each node in the network to the closest and second closest medians.
+			\If{$d_{it} > u_i^{k-1}$}
+			\begin{align*}
+			u_i^k & = \min(d_{ir},u_k^{k-1})
+			\end{align*}
+			\Statex let $s \in P^*$ be a median for node $i$ such that $d_{is} = u_i^k$
+			\begin{align*}
+			\text{set } w_i^k & = u_i^{k-1} \text{ if } d_{ir} \leq u_i^{k-1}\\
+			\text{or set } w_i^k & = \min(d_{ir},w_i^{k-1}) \text{ if } d_{ir} > u_i^{k-1} \text{ and } d_{it} > w_i^{k-1}\\
+			\text{or set } w_i^k & = \min_{j\in P^*,j\neq s}d_{ij} \text{ if } d_{ir} > u_i^{k-1} \text{ and } d_{it} = w_i^{k-1}
+			\end{align*}
+			[
+			\ElsIf{$d_{it}=u_i^{k-1}$}
+			\begin{align*}
+			u_i^k & = \min(d_{ir},w_k^{k-1})
+			\end{align*}
+			\Statex let $s \in P^*$ be a median for node $i$ such that $d_{is} = u_i^k$
+			\begin{equation*}
+			\text{set } w_i^k  = w_i^{k-1} \text{ if } d_{ir} \leq w_i^{k-1}
+			\text{ or set } w_i^k = \min_{j\in P^*,j\neq s}d_{ij} \text{ if }d_{ir} > w_i^{k-1}
+			\end{equation*}
+			]
+			\EndIf			
+			
+			
+			\Statex
+			\Statex STEP 4: Once the algorithm has assessed all free nodes, go to STEP 5. Otherwise, increase the iterative parameters and go back to STEP 1.
+			\If{$z=b$}
+			\Statex go to STEP 5
+			[
+			\ElsIf{$z < b$}
+			\begin{equation*}
+			z=z+1 \text{, } q=q+1 \text{ and go to STEP 1}
+			\end{equation*}
+			]
+			\EndIf
+			
+				\Statex	
+				\algstore{fintbreak}
+			\end{algorithmic}
+		\end{algorithm}
+				
+		\np
+		\begin{algorithm}
+			\begin{algorithmic}[0]
+				\algrestore{fintbreak}		
+			\Statex
+			\Statex STEP 5: If the algorithm finds that the current median set cannot be improved upon, then find the percent of free nodes that were assessed for a possible exchange from the free node set to the median set and stop.
+			\begin{center}
+				$a=\frac{q}{b}$ and STOP
+			\end{center}
+			
+		\end{algorithmic}
+	\end{algorithm}
+
+	\subsubsection{Results}\index[terms]{heuristic!fast interchange}\index[terms]{fast interchange}\index[terms]{local search}\index[terms]{fast interchange!results}
 	
-	A comparison of the number of required medians versus the average computational time is given in figure \ref{FintGreedy.median.time} for a greedy starting solution and in figure \ref{FintRand.median.time} for a random staring solution.  Once again, when the algorithm was presented with a good solution it was quicker to find a final answer.  It can also be seen that as the size of the network and required number of medians increases, so does the computational time required by the algorithm.
+	The results obtained from running the fast interchange algorithm 50 times starting with a solution generated via the greedy algorithm can be seen in table \ref{fastint.greedy.simple} and the results obtained from the fast interchange starting with a random feasible solution are given in table \ref{fastint.rand.simple}.
 	
-	Figure \ref{FintGreedy.median.time} and figure \ref{FintRand.median.time} are very similar, but when the algorithm is presented with a random solution, it does take longer for every test problem.  Generally, the larger the number of nodes in the network along with the higher the number of required medians, the bigger the difference in time between the greedy solution and the random solution with the biggest difference occurring in test problem 30 which has the highest value of $p$ out of all the forty test problems.  When given the greedy solution for test problem 30, the fast interchange completed after 21.16 seconds compared to the 24.51 seconds for the random solution.
+	As with all algorithms thus far, the average computational time increases as the size of the network increases.  This can be seen in figure \ref{FintTime}.  Unlike the Teitz and Bart interchange algorithm the random starting solution is only marginally slower than the greedy starting solution.
 	
 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[width=15cm]{FintGreedy.png}
-			\caption{Fast Interchange Algorithm with a Greedy Starting Solution}
-			\label{FintGreedy.median.time}
+			\includegraphics[width=14cm]{FintTime.png}
+			\caption{Percentage of Medians required in a Network versus Computational Time}
+			\label{FintTime}
 		\end{center}
 	\end{figure}
 	
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=15cm]{FintRand.png}
-			\caption{Fast Interchange Algorithm with a Random Starting Solution}
-			\label{FintRand.median.time}
-		\end{center}
-	\end{figure}
+	In figure \ref{Fintgap} it can be seen that like the Teitz and Bart interchange algorithm, the quality of the final solution varied considerably.  For some test problems, the random starting solution was able to reach a near-optimal final solution when the greedy starting solution was not, but for other test problems the random starting solution was far worse than the final solution from a greedy starting solution.
+	
+	Overall, the greedy starting solution provides a final solution than the random starting solution.
 
-	Once again, this algorithm does not live up to its name with the fast interchange algorithm producing results faster than the interchange of Teitz and Bart on only four occasions.  As such, the design and code of this algorithm needs to be reviewed in order to see where possible savings can be found.
-
-	\begin{table}[]
+				
+				\begin{figure}[H]
+					\begin{center}
+						\includegraphics[width=14cm]{Fintgap.png}
+						\caption{Average Gap to Optimal Value of each Test Problem}
+						\label{Fintgap}
+					\end{center}
+				\end{figure}
+				
+	The average number of iterations required for each of the starting solutions over the 50 runs can be seen in figure \ref{Fintiterations}.  For this algorithm, the test problem that resulted in the maximum average number of iterations was pmed34 ($n=140$ and $p=700$).  The greedy starting solution required on average 28.3 iterations until a final solution was found while the random starting solution required more than 7 times the number of iterations than the greedy starting solution.  Neither starting solution resulted in finding an optimal solution in any of the 50 runs.
+				
+				
+				\begin{figure}[H]
+					\begin{center}
+						\includegraphics[width=14cm]{Fintiterations.png}
+						\caption{Average Number Iterations for each Test Problem}
+						\label{Fintiterations}
+					\end{center}
+				\end{figure}
+	
+	
+	\begin{table}[]\index[terms]{heuristic!fast interchange}\index[terms]{fast interchange}\index[terms]{local search}\index[terms]{fast interchange!results}
 		\centering
-		\caption{Local Search Heuristic Results - Fast Interchange Algorithm}
-		\index[terms]{heuristic!fast interchange}\index[terms]{fast interchange}\index[terms]{fast interchange!results}
-		\label{FI.Results.table}
-		\begin{tabular}{ccccccc}
-			\hline
-			&  &  & \multicolumn{2}{c}{\textbf{GREEDY}} & \multicolumn{2}{c}{\textbf{RANDOM}} \\ \cline{4-7} 
-			\multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Test} \\ \small{Problem}\end{tabular}}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Medians} \\ \small{(p)}\end{tabular}}} & \multirow{-2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\small{Network} \\ \small{(nodes)}\end{tabular}}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Sol.}\\ \small{Accuracy}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Comp.} \\ \small{Time (sec)}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Sol.}\\ \small{Accuracy}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}\small{Av. Comp.}\\ \small{Time (sec)}\end{tabular}} \\ \hline
-			\rowcolor[HTML]{EFEFEF} 
-			01 & 5 & 100 & 1.00 & 0.11 & 1.00 & 0.16 \\
-			\rowcolor[HTML]{EFEFEF} 
-			02 & 10 & 100 & 1.00 & 0.16 & 1.00 & 0.29 \\
-			\rowcolor[HTML]{EFEFEF} 
-			03 & 10 & 100 & 1.00 & 0.19 & 0.97 & 0.28 \\
-			\rowcolor[HTML]{EFEFEF} 
-			04 & 20 & 100 & 1.00 & 0.37 & 0.99 & 0.44 \\
-			\rowcolor[HTML]{EFEFEF} 
-			05 & 33 & 100 & 1.00 & 0.45 & 0.97 & 0.61 \\
-			06 & 5 & 200 & 1.00 & 0.27 & 1.00 & 0.30 \\
-			07 & 10 & 200 & 1.00 & 0.40 & 1.00 & 0.60 \\
-			08 & 20 & 200 & 1.00 & 0.71 & 1.00 & 1.06 \\
-			09 & 40 & 200 & 0.99 & 1.52 & 0.99 & 1.81 \\
-			10 & 67 & 200 & 0.99 & 2.00 & 0.98 & 2.45 \\
-			\rowcolor[HTML]{EFEFEF} 
-			11 & 5 & 300 & 1.00 & 0.36 & 1.00 & 0.44 \\
-			\rowcolor[HTML]{EFEFEF} 
-			12 & 10 & 300 & 1.00 & 0.62 & 1.00 & 0.92 \\
-			\rowcolor[HTML]{EFEFEF} 
-			13 & 30 & 300 & 1.00 & 1.99 & 0.99 & 2.30 \\
-			\rowcolor[HTML]{EFEFEF} 
-			14 & 60 & 300 & 1.00 & 3.24 & 0.99 & 4.18 \\
-			\rowcolor[HTML]{EFEFEF} 
-			15 & 100 & 300 & 0.99 & 4.93 & 0.97 & 5.64 \\
-			16 & 5 & 400 & 1.00 & 0.58 & 1.00 & 0.58 \\
-			17 & 10 & 400 & 1.00 & 0.86 & 1.00 & 1.26 \\
-			18 & 40 & 400 & 1.00 & 3.89 & 1.00 & 4.31 \\
-			19 & 80 & 400 & 0.99 & 6.76 & 0.99 & 7.56 \\
-			20 & 133 & 400 & 0.99 & 9.44 & 0.97 & 10.31 \\
-			\rowcolor[HTML]{EFEFEF} 
-			21 & 5 & 500 & 1.00 & 0.38 & 1.00 & 0.86 \\
-			\rowcolor[HTML]{EFEFEF} 
-			22 & 10 & 500 & 0.99 & 1.37 & 0.99 & 1.72 \\
-			\rowcolor[HTML]{EFEFEF} 
-			23 & 50 & 500 & 1.00 & 6.06 & 0.99 & 6.89 \\
-			\rowcolor[HTML]{EFEFEF} 
-			24 & 100 & 500 & 1.00 & 10.66 & 0.99 & 12.19 \\
-			\rowcolor[HTML]{EFEFEF} 
-			25 & 167 & 500 & 0.99 & 15.12 & 0.98 & 16.59 \\
-			26 & 5 & 600 & 1.00 & 0.76 & 1.00 & 1.15 \\
-			27 & 10 & 600 & 1.00 & 1.68 & 1.00 & 2.05 \\
-			28 & 60 & 600 & 1.00 & 8.95 & 0.99 & 10.24 \\
-			29 & 120 & 600 & 1.00 & 15.80 & 0.99 & 17.73 \\
-			30 & 200 & 600 & 0.99 & 21.16 & 0.98 & 24.51 \\
-			\rowcolor[HTML]{EFEFEF} 
-			31 & 5 & 700 & 1.00 & 0.57 & 1.00 & 1.35 \\
-			\rowcolor[HTML]{EFEFEF} 
-			32 & 10 & 700 & 1.00 & 1.93 & 1.00 & 2.49 \\
-			\rowcolor[HTML]{EFEFEF} 
-			33 & 70 & 700 & 0.99 & 12.82 & 0.99 & 14.42 \\
-			\rowcolor[HTML]{EFEFEF} 
-			34 & 140 & 700 & 0.99 & 22.89 & 0.99 & 25.48 \\
-			35 & 5 & 800 & 1.00 & 0.78 & 1.00 & 1.50 \\
-			36 & 10 & 800 & 1.00 & 1.79 & 1.00 & 3.05 \\
-			37 & 80 & 800 & 1.00 & 17.07 & 0.99 & 19.58 \\
-			\rowcolor[HTML]{EFEFEF} 
-			38 & 5 & 900 & 0.99 & 1.43 & 0.99 & 1.79 \\
-			\rowcolor[HTML]{EFEFEF} 
-			39 & 10 & 900 & 1.00 & 1.56 & 1.00 & 3.28 \\
-			\rowcolor[HTML]{EFEFEF} 
-			40 & 90 & 900 & 1.00 & 21.83 & 0.99 & 24.73
-		\end{tabular}
+		\caption{Results of the Fast Interchange Algorithm - Greedy (50 Runs)}
+		\label{fastint.greedy.simple}
+		\resizebox{\textwidth}{!}{%
+			\begin{tabular}{cccccccc}
+				\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}} & \textbf{p} & \textbf{n} & \textbf{Edges} & \textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Value\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Computational\\ Time (seconds)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (percent)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Num. of\\ Iterations\end{tabular}} \\
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0.1 $\pm$ 0.02 & 0 $\pm$ 0 & 5 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0.2 $\pm$ 0.02 & 0.3 $\pm$ 0 & 3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0.2 $\pm$ 0.02 & 0.1 $\pm$ 0 & 5 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.2 $\pm$ 0.02 & 0.4 $\pm$ 0 & 3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 0.3 $\pm$ 0.03 & 0.4 $\pm$ 0 & 3 $\pm$ 0 \\
+				6 & 5 & 200 & 786 & 7824 & 0.2 $\pm$ 0.02 & 0.3 $\pm$ 0 & 7 $\pm$ 0 \\
+				7 & 10 & 200 & 779 & 5631 & 0.3 $\pm$ 0.02 & 0.2 $\pm$ 0 & 2 $\pm$ 0 \\
+				8 & 20 & 200 & 792 & 4445 & 0.5 $\pm$ 0.03 & 0.3 $\pm$ 0 & 4 $\pm$ 0 \\
+				9 & 40 & 200 & 785 & 2734 & 0.9 $\pm$ 0.05 & 0.7 $\pm$ 0 & 11 $\pm$ 0 \\
+				10 & 67 & 200 & 786 & 1255 & 1.2 $\pm$ 0.05 & 0.6 $\pm$ 0 & 10 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0.3 $\pm$ 0.02 & 0 $\pm$ 0 & 3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.5 $\pm$ 0.04 & 0 $\pm$ 0 & 4 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 1.2 $\pm$ 0.06 & 0 $\pm$ 0 & 10 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 2 $\pm$ 0.08 & 0.1 $\pm$ 0 & 16 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 2.7 $\pm$ 0.11 & 0.6 $\pm$ 0 & 12 $\pm$ 0 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.5 $\pm$ 0.03 & 0 $\pm$ 0 & 5 $\pm$ 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.7 $\pm$ 0.02 & 0 $\pm$ 0 & 3 $\pm$ 0 \\
+				18 & 40 & 400 & 3134 & 4809 & 2.1 $\pm$ 0.09 & 0.1 $\pm$ 0 & 11 $\pm$ 0 \\
+				19 & 80 & 400 & 3134 & 2845 & 3.6 $\pm$ 0.11 & 0.8 $\pm$ 0 & 16 $\pm$ 0 \\
+				20 & 133 & 400 & 3144 & 1789 & 4.9 $\pm$ 0.15 & 0.8 $\pm$ 0 & 24 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.5 $\pm$ 0.04 & 0 $\pm$ 0 & 1 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 0.8 $\pm$ 0.02 & 1 $\pm$ 0 & 2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 3.3 $\pm$ 0.14 & 0.1 $\pm$ 0 & 16 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 5.6 $\pm$ 0.2 & 0.4 $\pm$ 0.03 & 14 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 7.8 $\pm$ 0.22 & 1.2 $\pm$ 0.08 & 23.8 $\pm$ 0.48 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.7 $\pm$ 0.04 & 0.1 $\pm$ 0 & 7 $\pm$ 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 1.1 $\pm$ 0.07 & 0.1 $\pm$ 0 & 6 $\pm$ 0 \\
+				28 & 60 & 600 & 7054 & 4498 & 4.8 $\pm$ 0.22 & 0.3 $\pm$ 0 & 16.5 $\pm$ 0.51 \\
+				29 & 120 & 600 & 7042 & 3033 & 8.3 $\pm$ 0.22 & 0.5 $\pm$ 0 & 21.9 $\pm$ 0.35 \\
+				30 & 200 & 600 & 7042 & 1989 & 11.2 $\pm$ 0.25 & 1.1 $\pm$ 0 & 16 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0.7 $\pm$ 0.04 & 0 $\pm$ 0 & 1 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 1.3 $\pm$ 0.06 & 0 $\pm$ 0 & 6 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 6.7 $\pm$ 0.18 & 0.5 $\pm$ 0 & 22 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 11.5 $\pm$ 0.29 & 1 $\pm$ 0.03 & 28.3 $\pm$ 0.47 \\
+				35 & 5 & 800 & 12548 & 10400 & 0.9 $\pm$ 0.03 & 0 $\pm$ 0 & 2 $\pm$ 0 \\
+				36 & 10 & 800 & 12560 & 9934 & 1.5 $\pm$ 0.08 & 0 $\pm$ 0 & 4 $\pm$ 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 8.8 $\pm$ 0.24 & 0.5 $\pm$ 0.07 & 20.8 $\pm$ 1.33 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 1.1 $\pm$ 0.05 & 0.6 $\pm$ 0 & 4 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 1.7 $\pm$ 0.07 & 0 $\pm$ 0 & 2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 11.2 $\pm$ 0.21 & 0.5 $\pm$ 0.02 & 18.5 $\pm$ 0.5
+			\end{tabular}%
+		}
 	\end{table}
+	
+	\begin{table}[]\index[terms]{heuristic!fast interchange}\index[terms]{fast interchange}\index[terms]{local search}\index[terms]{fast interchange!results}
+	\centering
+	\caption{Results of the Fast Interchange Algorithm - Random (50 Runs)}
+	\label{fastint.rand.simple}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{cccccccc}
+			\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}} & \textbf{p} & \textbf{n} & \textbf{Edges} & \textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Value\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Computational\\ Time (seconds)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (percent)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Num. of\\ Iterations\end{tabular}} \\
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0.2 $\pm$ 0.02 & 0 $\pm$ 0 & 16 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0.2 $\pm$ 0.02 & 0.2 $\pm$ 0 & 30 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0.2 $\pm$ 0.02 & 2.7 $\pm$ 0.38 & 26 $\pm$ 1 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.3 $\pm$ 0.02 & 1.2 $\pm$ 0 & 31 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 0.4 $\pm$ 0.02 & 3.1 $\pm$ 0 & 37 $\pm$ 0 \\
+				6 & 5 & 200 & 786 & 7824 & 0.3 $\pm$ 0.02 & 0 $\pm$ 0 & 24 $\pm$ 0 \\
+				7 & 10 & 200 & 779 & 5631 & 0.5 $\pm$ 0.03 & 0 $\pm$ 0 & 32 $\pm$ 0 \\
+				8 & 20 & 200 & 792 & 4445 & 0.7 $\pm$ 0.03 & 0.4 $\pm$ 0 & 47 $\pm$ 0 \\
+				9 & 40 & 200 & 785 & 2734 & 1.1 $\pm$ 0.06 & 1.3 $\pm$ 0.02 & 55 $\pm$ 0.5 \\
+				10 & 67 & 200 & 786 & 1255 & 1.4 $\pm$ 0.06 & 2.2 $\pm$ 0 & 61 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0.4 $\pm$ 0.04 & 0 $\pm$ 0 & 21 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.7 $\pm$ 0.02 & 0 $\pm$ 0 & 33 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 1.5 $\pm$ 0.06 & 1 $\pm$ 0.07 & 62 $\pm$ 0.98 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 2.5 $\pm$ 0.12 & 1.1 $\pm$ 0.04 & 95 $\pm$ 1.3 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 3.2 $\pm$ 0.13 & 2.6 $\pm$ 0.33 & 98 $\pm$ 1.02 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.6 $\pm$ 0.02 & 0.3 $\pm$ 0 & 20 $\pm$ 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.9 $\pm$ 0.04 & 0.2 $\pm$ 0 & 33 $\pm$ 0 \\
+				18 & 40 & 400 & 3134 & 4809 & 2.6 $\pm$ 0.16 & 0.3 $\pm$ 0.01 & 79 $\pm$ 0.46 \\
+				19 & 80 & 400 & 3134 & 2845 & 4.3 $\pm$ 0.13 & 1.5 $\pm$ 0.12 & 116 $\pm$ 1.5 \\
+				20 & 133 & 400 & 3144 & 1789 & 5.6 $\pm$ 0.17 & 3 $\pm$ 0.16 & 122 $\pm$ 1.13 \\
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.7 $\pm$ 0.04 & 0 $\pm$ 0 & 17 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 1.3 $\pm$ 0.06 & 1.4 $\pm$ 0 & 45 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 4 $\pm$ 0.14 & 0.6 $\pm$ 0.1 & 102 $\pm$ 0.93 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 6.7 $\pm$ 0.2 & 1.4 $\pm$ 0.07 & 144 $\pm$ 1.84 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 8.9 $\pm$ 0.25 & 2.2 $\pm$ 0.24 & 144 $\pm$ 1.24 \\
+				26 & 5 & 600 & 7069 & 9917 & 1 $\pm$ 0.05 & 0 $\pm$ 0 & 28 $\pm$ 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 1.5 $\pm$ 0.08 & 0 $\pm$ 0 & 42 $\pm$ 0 \\
+				28 & 60 & 600 & 7054 & 4498 & 5.9 $\pm$ 0.2 & 0.8 $\pm$ 0.07 & 133 $\pm$ 1.25 \\
+				29 & 120 & 600 & 7042 & 3033 & 9.9 $\pm$ 0.24 & 1.4 $\pm$ 0.1 & 187 $\pm$ 1.95 \\
+				30 & 200 & 600 & 7042 & 1989 & 13.2 $\pm$ 0.22 & 2.4 $\pm$ 0.22 & 184 $\pm$ 2 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 1.2 $\pm$ 0.05 & 0 $\pm$ 0 & 25 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 1.8 $\pm$ 0.07 & 0.1 $\pm$ 0 & 46 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 8.1 $\pm$ 0.15 & 0.6 $\pm$ 0.12 & 161 $\pm$ 0.99 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 13.8 $\pm$ 0.25 & 1 $\pm$ 0.17 & 211 $\pm$ 2.8 \\
+				35 & 5 & 800 & 12548 & 10400 & 1.3 $\pm$ 0.05 & 0.3 $\pm$ 0 & 24 $\pm$ 0 \\
+				36 & 10 & 800 & 12560 & 9934 & 2.3 $\pm$ 0.1 & 0 $\pm$ 0 & 52 $\pm$ 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 10.7 $\pm$ 0.25 & 0.9 $\pm$ 0.1 & 178 $\pm$ 2.69 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 1.6 $\pm$ 0.06 & 0.7 $\pm$ 0 & 26 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 2.4 $\pm$ 0.1 & 0 $\pm$ 0 & 46 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 13.5 $\pm$ 0.25 & 1.2 $\pm$ 0.07 & 178 $\pm$ 1.7
+			\end{tabular}%
+		}
+	\end{table}
+	
 	
 	
 	\subsection{The Alternate Algorithm} \label{alternatealgo}
 	The alternate algorithm\index[terms]{heuristic!alternate algorithm}\index[terms]{alternate algorithm}\index[terms]{local search} was presented in a paper by Maranzana \index[author]{Maranzana, F.} in 1964 \cite{MARA64} and begins with creating a random median set and assigning all nodes in the network to one of these median nodes.  The group of free nodes associated with each median node is evaluated and the median for this group is determined and replaces the node in the median set if different from the current median.  All nodes in the network are then reassigned to the closest median in the new median set and once again each group's true median is determined and replaces the current node in the median set.  This process continues until there is an iteration with no changes to the median set.
 	
 	\subsubsection{Pseudocode}
+	\index[terms]{alternate!pseudocode} 	
+	\begin{algorithm}
+		\caption{Alternate Algorithm}
+		\begin{algorithmic}[0]
+			\Statex 
+			\Statex INPUT: Cost Matrix, $P^*$, and $S^*$
+			
+			\Statex 
+			\Statex STEP 0: Initialisation
+			\Statex 
+			\begin{equation*}
+			\text{Set } k = 1
+			\end{equation*}
+			
+			\Statex 
+			\Statex STEP 1: Assign each node in the network to its closest median.
+			\begin{align*}
+			K_j=\{\text{all } i \in G \text{ such that }\min (d_{ij})\} \text{ where } j \in P^*
+			\end{align*}
+			
+			\Statex 
+			\Statex STEP 2: Find the median node for each current median's set of associated nodes.
+			\begin{equation*}
+			\text{Find } i \in K_j \text{ where } \min \bigg[ \sum_{i\in K_j} d_{ij} \bigg] 
+			\end{equation*}
+			
+			
+			\Statex 
+			\Statex STEP 3: Update $P^*$ with the new set of medians.
+			\begin{equation*}
+			P^{*} = \{\text{all } k_j  \} \text{ for } j \in P^*
+			\end{equation*}
+			
+			\Statex 
+			\Statex STEP 4: The algorithm must stop if either the updated $P^*$ is identical to the new $P^*$ or there has been no improvement in th value of $S^*$ during the past three iterations.\\
+			
+			\If{$P^*(k) = P^*(k - 1)$ OR $S^{k-2} = S^{k-1} = S^k = 0$}
+			\Statex STOP
+			[
+			\Else
+			\begin{equation*}
+			S^k = S^* \text{ and } k = k+1
+			\end{equation*}
+			\Statex go to STEP 1
+			]
+			\EndIf
+			
+		\end{algorithmic}
+	\end{algorithm}
 
-	\subsubsection{Results}
-	The code for this algorithm has not been completed and as such there are no results that can be presented at this time.
+
+	\subsubsection{Results}\index[terms]{heuristic!alternate algorithm}\index[terms]{alternate algorithm}\index[terms]{local search}\index[terms]{alternate algorithm!results}
 	
-	\subsection{Computational Results} \label{classicheuristics.localsearch.results}
-	Figure \ref{LS.av.acc} shows the average accuracy of the objective function value obtained from the two algorithms that were run for both of the different starting solutions.  The results fluctuate between returning a result that is 3\% worse than the optimal and the perfect solution.  The fast interchange algorithm using a random starting solution produced the most variation.  It is the fast interchange with a random starting solution that results in the greatest variation in accuracy, while the fast interchange\index[terms]{heuristic!fast interchange}\index[terms]{fast interchange}\index[terms]{fast interchange!results} with a greedy solution along with both variations in the interchange algorithm of Teitz and Bart\index[terms]{heuristic!interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart! results} produce consistently accurate results.
+	In table \ref{alt.greedy.simple}, the results obtained from repeating the alternate algorithm 50 times with a starting solution generated from the greedy algorithm are given and table \ref{alt.random.simple} shows the results from starting the alternate algorithm with a random feasible solution.
+	
+	Figure \ref{Alttime} gives the average computational time for all forty test problems for each of the starting solutions.  For low values of $p$, both the random starting solution and the greedy starting solution are near identical while the greatest difference can be seen when the ratio of required medians to network size is high like in pmed25 ($n = 500$ and $p=167$) and pmed30 ($n = 600$ and $p=200$)
+	
+				\begin{figure}[H]
+					\begin{center}
+						\includegraphics[width=14cm]{Alttime.png}
+						\caption{Average Computational Time of each Test Problem}
+						\label{Alttime}
+					\end{center}
+				\end{figure}
+	
+	Figure \ref{Altgap} shows that the greedy starting solution consistently results in a near-optimal final solution, while the random starting solution is far less consistent and only problems with a low value of $p$ result in good final solutions.
+				
+				\begin{figure}[H]
+					\begin{center}
+						\includegraphics[width=14cm]{Altgap.png}
+						\caption{Average Gap to Optimal Value of each Test Problem}
+						\label{Altgap}
+					\end{center}
+				\end{figure}
+				
+		It can be seen in figure \ref{Altiterations}, that a greedy starting solution requires less iterations than the random starting solution for every test problem.  
+				
+				\begin{figure}[H]
+					\begin{center}
+						\includegraphics[width=14cm]{Altiterations.png}
+						\caption{Average Number Iterations for each Test Problem}
+						\label{Altiterations}
+					\end{center}
+				\end{figure}
+	
+\begin{table}[]\index[terms]{heuristic!alternate algorithm}\index[terms]{alternate algorithm}\index[terms]{local search}\index[terms]{alternate algorithm!results}
+	\centering
+	\caption{Results of the Alternate Algorithm - Greedy (50 Runs)}
+	\label{alt.greedy.simple}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{cccccccc}
+			\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}} & \textbf{p} & \textbf{n} & \textbf{Edges} & \textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Value\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Computational\\ Time (seconds)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (percent)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Num. of\\ Iterations\end{tabular}} \\
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0 $\pm$ 0.01 & 1.2 $\pm$ 0 & 2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0.2 $\pm$ 0.06 & 0.3 $\pm$ 0 & 3.9 $\pm$ 0.81 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0.2 $\pm$ 0.09 & 2 $\pm$ 0.03 & 4.4 $\pm$ 1.31 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.4 $\pm$ 0.09 & 1.8 $\pm$ 0 & 3.7 $\pm$ 0.56 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 1.1 $\pm$ 0.21 & 0.5 $\pm$ 0.04 & 6.1 $\pm$ 0.95 \\
+				6 & 5 & 200 & 786 & 7824 & 0 $\pm$ 0.01 & 2.6 $\pm$ 0 & 2 $\pm$ 0 \\
+				7 & 10 & 200 & 779 & 5631 & 0.1 $\pm$ 0.04 & 0.3 $\pm$ 0.01 & 2.4 $\pm$ 0.5 \\
+				8 & 20 & 200 & 792 & 4445 & 0.5 $\pm$ 0.11 & 0.3 $\pm$ 0 & 4.3 $\pm$ 0.84 \\
+				9 & 40 & 200 & 785 & 2734 & 1.3 $\pm$ 0.25 & 1.9 $\pm$ 0.07 & 5.8 $\pm$ 0.94 \\
+				10 & 67 & 200 & 786 & 1255 & 2.9 $\pm$ 0.7 & 1.9 $\pm$ 0.3 & 7.5 $\pm$ 1.55 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0.1 $\pm$ 0.01 & 0.2 $\pm$ 0 & 3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.1 $\pm$ 0.01 & 0.3 $\pm$ 0 & 2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 0.7 $\pm$ 0.17 & 1.9 $\pm$ 0 & 4.4 $\pm$ 0.78 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 2.2 $\pm$ 0.55 & 0.9 $\pm$ 0.02 & 6.4 $\pm$ 1.35 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 4.5 $\pm$ 1.12 & 0.8 $\pm$ 0.08 & 7.8 $\pm$ 1.71 \\
+				16 & 5 & 400 & 3153 & 8162 & 0 $\pm$ 0.01 & 0.9 $\pm$ 0 & 2 $\pm$ 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.1 $\pm$ 0.01 & 0.2 $\pm$ 0 & 3 $\pm$ 0 \\
+				18 & 40 & 400 & 3134 & 4809 & 1.3 $\pm$ 0.13 & 0.5 $\pm$ 0 & 5.9 $\pm$ 0.48 \\
+				19 & 80 & 400 & 3134 & 2845 & 3.4 $\pm$ 0.67 & 0.8 $\pm$ 0.08 & 7.3 $\pm$ 1.25 \\
+				20 & 133 & 400 & 3144 & 1789 & 7 $\pm$ 1.7 & 1.7 $\pm$ 0.35 & 8.9 $\pm$ 1.87 \\
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0 $\pm$ 0.01 & 0 $\pm$ 0 & 2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 0.1 $\pm$ 0.01 & 1.1 $\pm$ 0 & 2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 1.2 $\pm$ 0.33 & 1 $\pm$ 0.03 & 4.6 $\pm$ 0.99 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 4.1 $\pm$ 0.87 & 1 $\pm$ 0.04 & 7.1 $\pm$ 1.25 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 7.3 $\pm$ 1.45 & 1.8 $\pm$ 0.04 & 7.5 $\pm$ 1.31 \\
+				26 & 5 & 600 & 7069 & 9917 & 0 $\pm$ 0.01 & 1.8 $\pm$ 0 & 2 $\pm$ 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 0.1 $\pm$ 0.01 & 0.6 $\pm$ 0 & 3 $\pm$ 0 \\
+				28 & 60 & 600 & 7054 & 4498 & 2 $\pm$ 0.56 & 0.6 $\pm$ 0.03 & 5.9 $\pm$ 1.34 \\
+				29 & 120 & 600 & 7042 & 3033 & 4.8 $\pm$ 1.13 & 1.1 $\pm$ 0.05 & 7 $\pm$ 1.4 \\
+				30 & 200 & 600 & 7042 & 1989 & 8.4 $\pm$ 1.61 & 1.5 $\pm$ 0.06 & 7.3 $\pm$ 1.19 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0 $\pm$ 0.01 & 0 $\pm$ 0 & 2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 0.2 $\pm$ 0.02 & 0.2 $\pm$ 0.02 & 3 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 2.8 $\pm$ 0.65 & 1.3 $\pm$ 0.03 & 6.8 $\pm$ 1.33 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 6.3 $\pm$ 1.53 & 1.5 $\pm$ 0.05 & 7.8 $\pm$ 1.64 \\
+				35 & 5 & 800 & 12548 & 10400 & 0 $\pm$ 0.01 & 0.1 $\pm$ 0 & 2 $\pm$ 0 \\
+				36 & 10 & 800 & 12560 & 9934 & 0.2 $\pm$ 0.02 & 0.1 $\pm$ 0 & 3 $\pm$ 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 3.1 $\pm$ 0.65 & 1.1 $\pm$ 0.01 & 6.7 $\pm$ 1.16 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 0 $\pm$ 0.01 & 0.8 $\pm$ 0 & 2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 0.1 $\pm$ 0.01 & 0.3 $\pm$ 0 & 2 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 2.8 $\pm$ 0.69 & 0.9 $\pm$ 0.02 & 5.6 $\pm$ 1.13
+			\end{tabular}%
+		}
+	\end{table}
+	
+
+	\begin{table}[]\index[terms]{heuristic!alternate algorithm}\index[terms]{alternate algorithm}\index[terms]{local search}\index[terms]{alternate algorithm!results}
+		\centering
+		\caption{Results of the Alternate Algorithm - Random (50 Runs)}
+		\label{alt.random.simple}
+		\resizebox{\textwidth}{!}{%
+			\begin{tabular}{cccccccc}
+				\textbf{\begin{tabular}[c]{@{}c@{}}Test\\ Problem\end{tabular}} & \textbf{p} & \textbf{n} & \textbf{Edges} & \textbf{\begin{tabular}[c]{@{}c@{}}Optimal\\ Value\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Computational\\ Time (seconds)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Gap to Optimal\\ (percent)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Num. of\\ Iterations\end{tabular}} \\
+				\rowcolor[HTML]{EFEFEF} 
+				1 & 5 & 100 & 198 & 5819 & 0.1 $\pm$ 0.03 & 2.9 $\pm$ 0 & 4.3 $\pm$ 0.44 \\
+				\rowcolor[HTML]{EFEFEF} 
+				2 & 10 & 100 & 193 & 4093 & 0.3 $\pm$ 0.09 & 22.8 $\pm$ 1.78 & 5.2 $\pm$ 1.2 \\
+				\rowcolor[HTML]{EFEFEF} 
+				3 & 10 & 100 & 198 & 4250 & 0.3 $\pm$ 0.1 & 13.5 $\pm$ 3.08 & 5.8 $\pm$ 1.49 \\
+				\rowcolor[HTML]{EFEFEF} 
+				4 & 20 & 100 & 196 & 3034 & 0.9 $\pm$ 0.26 & 16.8 $\pm$ 3.57 & 7.4 $\pm$ 1.89 \\
+				\rowcolor[HTML]{EFEFEF} 
+				5 & 33 & 100 & 196 & 1355 & 2.1 $\pm$ 0.53 & 23.4 $\pm$ 5.87 & 10.7 $\pm$ 2.43 \\
+				6 & 5 & 200 & 786 & 7824 & 0.1 $\pm$ 0.05 & 14.8 $\pm$ 1.66 & 4.6 $\pm$ 1.26 \\
+				7 & 10 & 200 & 779 & 5631 & 0.3 $\pm$ 0.06 & 13.5 $\pm$ 2.42 & 4.9 $\pm$ 0.77 \\
+				8 & 20 & 200 & 792 & 4445 & 0.9 $\pm$ 0.25 & 10.4 $\pm$ 0.98 & 7.6 $\pm$ 1.86 \\
+				9 & 40 & 200 & 785 & 2734 & 1.9 $\pm$ 0.37 & 22.2 $\pm$ 1.37 & 8 $\pm$ 1.37 \\
+				10 & 67 & 200 & 786 & 1255 & 4.4 $\pm$ 0.99 & 39.1 $\pm$ 1.24 & 10.8 $\pm$ 2.2 \\
+				\rowcolor[HTML]{EFEFEF} 
+				11 & 5 & 300 & 1772 & 7696 & 0.2 $\pm$ 0.02 & 2.1 $\pm$ 0 & 5 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				12 & 10 & 300 & 1758 & 6634 & 0.3 $\pm$ 0.07 & 14 $\pm$ 0.73 & 5.6 $\pm$ 0.84 \\
+				\rowcolor[HTML]{EFEFEF} 
+				13 & 30 & 300 & 1760 & 4374 & 2 $\pm$ 0.74 & 14.6 $\pm$ 2.43 & 10.6 $\pm$ 3.69 \\
+				\rowcolor[HTML]{EFEFEF} 
+				14 & 60 & 300 & 1771 & 2968 & 4 $\pm$ 0.94 & 25.2 $\pm$ 1.3 & 11 $\pm$ 2.31 \\
+				\rowcolor[HTML]{EFEFEF} 
+				15 & 100 & 300 & 1754 & 1729 & 6.4 $\pm$ 1.12 & 34.3 $\pm$ 1.88 & 10.7 $\pm$ 1.64 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.1 $\pm$ 0.02 & 3.2 $\pm$ 0 & 5 $\pm$ 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.3 $\pm$ 0.05 & 12.6 $\pm$ 0.22 & 4.8 $\pm$ 0.77 \\
+				18 & 40 & 400 & 3134 & 4809 & 2.4 $\pm$ 0.66 & 14.6 $\pm$ 3.06 & 10 $\pm$ 2.33 \\
+				19 & 80 & 400 & 3134 & 2845 & 5.7 $\pm$ 1.04 & 22.7 $\pm$ 1.74 & 11.6 $\pm$ 1.88 \\
+				20 & 133 & 400 & 3144 & 1789 & 10.2 $\pm$ 1.88 & 26 $\pm$ 1.45 & 12.5 $\pm$ 2.13 \\
+				\rowcolor[HTML]{EFEFEF} 
+				21 & 5 & 500 & 4909 & 9138 & 0.2 $\pm$ 0.04 & 12.4 $\pm$ 0 & 5.8 $\pm$ 0.93 \\
+				\rowcolor[HTML]{EFEFEF} 
+				22 & 10 & 500 & 4896 & 8579 & 0.2 $\pm$ 0.03 & 15.5 $\pm$ 0 & 4 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				23 & 50 & 500 & 4903 & 4619 & 2.6 $\pm$ 0.56 & 13.8 $\pm$ 1.2 & 8.7 $\pm$ 1.62 \\
+				\rowcolor[HTML]{EFEFEF} 
+				24 & 100 & 500 & 4914 & 2961 & 6.9 $\pm$ 1.23 & 18.8 $\pm$ 0.66 & 11.4 $\pm$ 1.74 \\
+				\rowcolor[HTML]{EFEFEF} 
+				25 & 167 & 500 & 4894 & 1828 & 13.4 $\pm$ 2.42 & 29.1 $\pm$ 2.03 & 13.1 $\pm$ 2.15 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.1 $\pm$ 0.02 & 4.3 $\pm$ 0 & 3 $\pm$ 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 0.3 $\pm$ 0.08 & 11.9 $\pm$ 0.22 & 5.4 $\pm$ 1.03 \\
+				28 & 60 & 600 & 7054 & 4498 & 3.6 $\pm$ 0.73 & 17.3 $\pm$ 0.79 & 9.8 $\pm$ 1.8 \\
+				29 & 120 & 600 & 7042 & 3033 & 9.1 $\pm$ 1.52 & 20 $\pm$ 1.15 & 12.3 $\pm$ 1.86 \\
+				30 & 200 & 600 & 7042 & 1989 & 15.5 $\pm$ 2.18 & 29 $\pm$ 1.49 & 12.6 $\pm$ 1.62 \\
+				\rowcolor[HTML]{EFEFEF} 
+				31 & 5 & 700 & 9601 & 10086 & 0.2 $\pm$ 0.05 & 13.5 $\pm$ 0.86 & 6 $\pm$ 1.37 \\
+				\rowcolor[HTML]{EFEFEF} 
+				32 & 10 & 700 & 9584 & 9297 & 0.3 $\pm$ 0.03 & 14.2 $\pm$ 0.04 & 5.2 $\pm$ 0.43 \\
+				\rowcolor[HTML]{EFEFEF} 
+				33 & 70 & 700 & 9616 & 4700 & 4.4 $\pm$ 0.97 & 19.1 $\pm$ 0.85 & 10.1 $\pm$ 1.91 \\
+				\rowcolor[HTML]{EFEFEF} 
+				34 & 140 & 700 & 9585 & 3013 & 11.3 $\pm$ 1.82 & 20.9 $\pm$ 0.88 & 13.1 $\pm$ 1.94 \\
+				35 & 5 & 800 & 12548 & 10400 & 0.1 $\pm$ 0.03 & 1.4 $\pm$ 0 & 4.5 $\pm$ 0.5 \\
+				36 & 10 & 800 & 12560 & 9934 & 0.2 $\pm$ 0.02 & 15.5 $\pm$ 0 & 4 $\pm$ 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 5.1 $\pm$ 1.46 & 13.2 $\pm$ 0.81 & 10.5 $\pm$ 2.76 \\
+				\rowcolor[HTML]{EFEFEF} 
+				38 & 5 & 900 & 15898 & 11060 & 0.2 $\pm$ 0.03 & 4.4 $\pm$ 0 & 6 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				39 & 10 & 900 & 15896 & 9423 & 0.5 $\pm$ 0.03 & 13.8 $\pm$ 0.26 & 7 $\pm$ 0 \\
+				\rowcolor[HTML]{EFEFEF} 
+				40 & 90 & 900 & 15879 & 5128 & 7.1 $\pm$ 1.02 & 14.3 $\pm$ 0.93 & 12.7 $\pm$ 1.73
+			\end{tabular}%
+		}
+	\end{table} 
+	
+	\np
+	
+	\subsection{Comparison of Results of Local Search Heuristics} \label{classicheuristics.localsearch.results}
+	
+	Figure \ref{greedytime} shows the average computational time for each of the three local search algorithms starting with a greedy solution.  It is clear that the computational time is highest for each network size group when the value of $p$ is the highest.  Time to completion for the Teitz and Bart interchange algorithm  along with the fast interchange algorithm increases as the network size increases while the time that the alternate algorithm takes to find a final solution is less dependant on the network size and more related to the percentage of medians within the network.
 	
 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[width=14cm]{LSavacc.png}
-			\caption{Average Solution Accuracy per Test Problem}
-			\label{LS.av.acc}
+			\includegraphics[width=14cm]{greedytime.png}
+			\caption{Average Computational Time of each Test Problem - Greedy}
+			\label{greedytime}
 		\end{center}
 	\end{figure}
-
-	The average computational time required by the two algorithms shows similar results to that of the constructive greedy algorithm when the value of $p$ is small, but as the network size increases along with the value of $p$, the computational time increases dramatically.
-
-
+	
+	Staring a local search algorithm with a random solution does not result in a drastic difference in computational time.  As in figure \ref{greedytime}, figure \ref{randomtime} shows that all three algorithms follow a similar curve and only as the size of the network increase does the variability between th algorithms begin to show.
+	
+	
 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[width=14cm]{LSavtime.png}
-			\caption{Average Computational per Test Problem}
-			\label{LS.av.time}
+			\includegraphics[width=14cm]{randomtime.png}
+			\caption{Average Computational Time of each Test Problem - Random}
+			\label{randomtime}
 		\end{center}
 	\end{figure}
-
+	
+	Figure \ref{greedygap} shows the percentage gap to the optimal value for a greedy starting solution and it is clear that the alternate algorithm produces far worse results than the Teitz and Bart interchange algorithm and the fast interchange algorithm.  Although, all three algorithms produce results far superior to those produced by the fast greedy algorithm and the stingy algorithm.
+	
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=14cm]{greedygap.png}
+			\caption{Average Gap to Optimal Value of each Test Problem - Greedy}
+			\label{greedygap}
+		\end{center}
+	\end{figure}
+	
+	Figure \ref{randomgap} displays the average percentage gap to optimal when the local search algorithms start with a random feasible solution.  It is clear that the alternate algorithm requires a good starting solution in order to produce an adequate final solution while the Teitz and Bart interchange algorithm and the fast interchange algorithm do well without the greedy starting solution.
+	
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=14cm]{randomgap.png}
+			\caption{Average Gap to Optimal Value of each Test Problem - Random}
+			\label{randomgap}
+		\end{center}
+	\end{figure}
 		
 	\section{Conclusion} \label{conclusion}
-	The results from the local search heuristics offer only a small improvement on those produced by the constructive greedy algorithm from section \ref{classicheuristics.constructive} as that algorithm produced solutions that were up to 4\% worse than the optimal value.  The increase in time between the constructive greedy algorithm and the local search algorithms are significantly large particularly for larger networks that require a lot of medians.  Test problem 30 took just over 2 seconds to produce a solution that was on average 97\% accurate while the interchange algorithm of Teitz and Bart and the fast interchange algorithm both improved this accuracy by 2\%, but at a cost of an additional 13 and 19 seconds respectively.  Of course, context is king and for many real-world problems a 2\% improvement could equate to vast amounts of savings and as such this small improvement may be worth the additional computational time that is required.
 	
-	Looking at the difference in time between both local search algorithms starting with a random solution and a greedy solution, it can be seen that the additional time taken to improve the random solution is generally greater than the time taken by the greedy algorithm to find a starting solution.
+	When selecting an algorithm to help solve the $p$-median problem, it is clear that there are a few considerations that need to be taken into account.
 	
+	If time is of the highest concern, then the fast greedy may be the best choice as it has been shown to produce feasible solutions in under 1 second.
 	
-	\section{Remaining Work}
-	In the coming weeks, the literature study in section \ref{lit.study} will be extended to give more background into the algorithms investigated in this study and the section giving an overview of heuristics may also be broadened.
+	If quality is the biggest concern, then the fast greedy will not be a good choice.  Using a constructive heuristic to find a good starting solution to be improved upon with a local search algorithm would be a better answer.
 	
-	Of the six algorithms currently included in this study, only the alternate algorithm needs to coded.  This will be done and the results from running this code will be added to the local search computational results.  The stingy algorithm code has been completed, but needs to be revised as the computational time required for even small problems is excessively high.  The results from this algorithm will also be included and analysed, even if code cannot be improved.
-	
-	The complexity of all the algorithms will be added to their respective subsections and may be referred to in the subsection comparing the results if appropriate.
-	
-	As has already been mentioned, the fast greedy algorithm and the fast interchange algorithm are taking longer to run than the original algorithm.  This goes against what was expected and the reason that this is occurring needs to be determined.  Current thoughts are that algorithm code could be improved as well as the fact that the design R language is able to determine the closest median for all nodes in the network a computationally inexpensive which makes the proposed improvements offered by the two "fast" algorithms redundant.  R code can be profiled to determine where bottlenecks slowing down the processing time exist and from this information, hopefully, the code can be improved.  Vectorisation is a key component of the R language as it allows for an increase in speed.  It is currently not known if this has been fully exploited in the code that has been written for this study and as such this needs to be assessed and applied.
-	
-	Given time, a section on metaheuristics used to solve the $p$-median problem will also be added.  At least two metaheuristics will be coded and used to solve the forty test problems.  These results will also be added to the final report and compared to those produced in the classic heuristic sections.
-		
+	There are many other classical heuristics that have not been covered in this study that may produce good results.  The also exist metaheuristics that might provide even better solutions than the six covered in this study.
+			
 	\np
 	\bibliography{finalbib}
 	\bibliographystyle{IEEEtran}
@@ -1072,7 +1596,15 @@
 	\begin{appendices}
 		\section{Constructive Heuristics Results}
 		\subsection{Greedy Algorithm}
-		\begin{landscape}
+		\index[terms]{greedy algorithm}\index[terms]{greedy algorithm!results}\index[terms]{constructive heuristic!greedy algorithm}
+		
+		The following table provides the results obtained from 50 runs of the greedy algorithm.  The first five columns provide information related to each of the forty test problems obtained from Beasley's library \cite{BEAS90} and was provided in the corresponding text file.
+		
+		The next four columns relate the to recorded computational time in seconds.
+		
+		The final four columns relate to the difference between the objective function value of the final solutions and the known optimal solution's objective function.
+		
+		\begin{landscape}		\index[terms]{greedy algorithm}\index[terms]{greedy algorithm!results}\index[terms]{constructive heuristic!greedy algorithm}
 			\begin{longtable}[c]{ccccc|cccc|cccc}
 				\caption{Greedy Algorithm (50 Runs)}
 				\label{greedy.results}\\ \hline
@@ -1146,7 +1678,13 @@
 		\end{landscape}
 		
 		\subsection{Fast Greedy Algorithm}
-		\begin{landscape}
+				\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm!results}\index[terms]{constructive heuristic!fast greedy algorithm}
+		
+		The following table provides the results obtained from 50 runs of the fast greedy algorithm.  The first five columns provide information related to each of the forty test problems obtained from Beasley's library \cite{BEAS90} and was provided in the corresponding text file.The first five columns provide information related to each of the forty test problems obtained from Beasley's library \cite{BEAS90} and was provided in the corresponding text file.
+		The next four columns relate the to recorded computational time in seconds.
+		
+		The final four columns relate to the difference between the objective function value of the final solutions and the known optimal solution's objective function.
+		\begin{landscape}\index[terms]{fast greedy algorithm}\index[terms]{fast greedy algorithm!results}\index[terms]{constructive heuristic!fast greedy algorithm}
 			\begin{longtable}[c]{ccccc|cccc|cccc}
 				\caption{Fast Greedy Algorithm Results (50 Runs)}
 				\label{fast.results}\\ \hline
@@ -1221,7 +1759,15 @@
 		\end{landscape}
 		
 		\subsection{Stingy Algorithm}
-		\begin{landscape}
+		\index[terms]{stingy algorithm}\index[terms]{stingy algorithm!results}\index[terms]{constructive heuristic!stingy algorithm}
+		
+		The following table provides the results obtained from 50 runs of the stingy algorithm.  The first five columns provide information related to each of the forty test problems obtained from Beasley's library \cite{BEAS90} and was provided in the corresponding text file.
+		
+		The next four columns relate the to recorded computational time in seconds.
+		
+		The final four columns relate to the difference between the objective function value of the final solutions and the known optimal solution's objective function.
+		
+		\begin{landscape}\index[terms]{stingy algorithm}\index[terms]{stingy algorithm!results}\index[terms]{constructive heuristic!stingy algorithm}
 			\begin{longtable}[c]{ccccc|cccc|cccc}
 				\caption{Stingy Algorithm Results (50 Runs)}
 				\label{stingy.results}\\ \hline
@@ -1265,8 +1811,20 @@
 		
 		\section{Local Search Heuristics Results}
 		\subsection{Interchange Algorithm of Teitz and Bart}
+		\index[terms]{interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart!results}\index[terms]{local search heuristic!interchange algorithm of Teitz and Bart}
+		
+		The following table provides the results obtained from 50 runs of the interchange algorithm of Teitz and Bart.  The first five columns provide information related to each of the forty test problems obtained from Beasley's library \cite{BEAS90} and was provided in the corresponding text file.
+		
+		The next four columns relate the to recorded computational time in seconds.
+		
+		The following four columns relate to the difference between the objective function value of the final solutions and the known optimal solution's objective function.
+		
+		The final four columns provide information related to the total number of iterations preformed during each run of the test problems.
+		
+		The first table gives the results from using a greedy starting solution while the second table provides the results from using a random feasible solution.
+		
 		\captionsetup{width=15cm}
-		\begin{landscape}
+		\begin{landscape}\index[terms]{interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart!results}\index[terms]{local search heuristic!interchange algorithm of Teitz and Bart}
 			\begin{longtable}[c]{ccccc|cccc|cccc|cccc}
 				\caption{Interchange Algorithm of Teitz and Bart - Greedy (50 Runs)}
 				\label{TB.greedy}\\ \hline
@@ -1275,72 +1833,73 @@
 				\endhead
 				%
 				\rowcolor[HTML]{EFEFEF} 
-				1 & 5 & 100 & 198 & 5819 & 0.1 & 0 & 0.1 & 0.02 & 0 & 0 & 0 & 0 & 0.1 & 0 & 6 & 0.85 \\
+				1 & 5 & 100 & 198 & 5819 & 0.1 & 0 & 0.1 & 0.02 & 0 & 0 & 0 & 0 & 6 & 6 & 6 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				2 & 10 & 100 & 193 & 4093 & 0.1 & 0 & 0.1 & 0.01 & 0.3 & 0.3 & 0.3 & 0 & 0.1 & 0 & 3 & 0.42 \\
+				2 & 10 & 100 & 193 & 4093 & 0.1 & 0 & 0.1 & 0.01 & 0.3 & 0.3 & 0.3 & 0 & 10 & 10 & 10 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				3 & 10 & 100 & 198 & 4250 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 0.1 & 0 & 7 & 0.99 \\
+				3 & 10 & 100 & 198 & 4250 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 3 & 3 & 3 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				4 & 20 & 100 & 196 & 3034 & 0.1 & 0.1 & 0.2 & 0.02 & 0.4 & 0.4 & 0.4 & 0 & 0.1 & 0 & 3 & 0.42 \\
+				4 & 20 & 100 & 196 & 3034 & 0.1 & 0.1 & 0.2 & 0.02 & 0.4 & 0.4 & 0.4 & 0 & 4 & 4 & 4 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				5 & 33 & 100 & 196 & 1355 & 0.1 & 0.1 & 0.2 & 0.02 & 0.4 & 0.4 & 0.4 & 0 & 0.1 & 0 & 3 & 0.42 \\
-				6 & 5 & 200 & 786 & 7824 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 0.2 & 0 & 8 & 1.13 \\
-				7 & 10 & 200 & 779 & 5631 & 0.2 & 0.1 & 0.2 & 0.02 & 0.2 & 0.2 & 0.2 & 0 & 0 & 0 & 2 & 0.28 \\
-				8 & 20 & 200 & 792 & 4445 & 0.3 & 0.2 & 0.3 & 0.02 & 0.3 & 0.3 & 0.3 & 0 & 0.1 & 0 & 4 & 0.57 \\
-				9 & 40 & 200 & 785 & 2734 & 0.7 & 0.7 & 0.9 & 0.04 & 0.7 & 0.7 & 0.7 & 0 & 0.2 & 0 & 12 & 1.7 \\
-				10 & 67 & 200 & 786 & 1255 & 0.6 & 0.6 & 0.7 & 0.02 & 0.6 & 0.6 & 0.6 & 0 & 0.2 & 0 & 10 & 1.41 \\
+				5 & 33 & 100 & 196 & 1355 & 0.1 & 0.1 & 0.2 & 0.02 & 0.4 & 0.4 & 0.4 & 0 & 10 & 10 & 10 & 0 \\
+				6 & 5 & 200 & 786 & 7824 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 16 & 16 & 16 & 0 \\
+				7 & 10 & 200 & 779 & 5631 & 0.2 & 0.1 & 0.2 & 0.02 & 0.2 & 0.2 & 0.2 & 0 & 12 & 12 & 12 & 0 \\
+				8 & 20 & 200 & 792 & 4445 & 0.3 & 0.2 & 0.3 & 0.02 & 0.3 & 0.3 & 0.3 & 0 & 6 & 6 & 6 & 0 \\
+				9 & 40 & 200 & 785 & 2734 & 0.7 & 0.7 & 0.9 & 0.04 & 0.7 & 0.7 & 0.7 & 0 & 3 & 3 & 3 & 0 \\
+				10 & 67 & 200 & 786 & 1255 & 0.6 & 0.6 & 0.7 & 0.02 & 0.6 & 0.6 & 0.6 & 0 & 12 & 12 & 12 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				11 & 5 & 300 & 1772 & 7696 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 0.1 & 0 & 3 & 0.42 \\
+				11 & 5 & 300 & 1772 & 7696 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 21 & 21 & 21 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				12 & 10 & 300 & 1758 & 6634 & 0.3 & 0.2 & 0.4 & 0.03 & 0 & 0 & 0 & 0 & 0.1 & 0 & 4 & 0.57 \\
+				12 & 10 & 300 & 1758 & 6634 & 0.3 & 0.2 & 0.4 & 0.03 & 0 & 0 & 0 & 0 & 3 & 3 & 3 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				13 & 30 & 300 & 1760 & 4374 & 0.7 & 0.7 & 0.9 & 0.04 & 0 & 0 & 0 & 0 & 0.2 & 0 & 10 & 1.41 \\
+				13 & 30 & 300 & 1760 & 4374 & 0.7 & 0.7 & 0.9 & 0.04 & 0 & 0 & 0 & 0 & 30 & 30 & 30 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				14 & 60 & 300 & 1771 & 2968 & 1.2 & 1.2 & 1.5 & 0.07 & 0.1 & 0.1 & 0.1 & 0 & 0.3 & 0 & 16 & 2.26 \\
+				14 & 60 & 300 & 1771 & 2968 & 1.2 & 1.2 & 1.5 & 0.07 & 0.1 & 0.1 & 0.1 & 0 & 1 & 1 & 1 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				15 & 100 & 300 & 1754 & 1729 & 1.7 & 1.6 & 2 & 0.07 & 0.6 & 0.6 & 0.6 & 0 & 0.2 & 0 & 12 & 1.7 \\
-				16 & 5 & 400 & 3153 & 8162 & 0.4 & 0.3 & 0.5 & 0.03 & 0 & 0 & 0 & 0 & 0.1 & 0 & 6 & 0.85 \\
-				17 & 10 & 400 & 3142 & 6999 & 0.4 & 0.4 & 0.5 & 0.02 & 0 & 0 & 0 & 0 & 0.1 & 0 & 3 & 0.42 \\
-				18 & 40 & 400 & 3134 & 4809 & 2.1 & 2 & 2.4 & 0.08 & 0 & 0 & 0 & 0 & 0.2 & 0 & 12 & 1.7 \\
-				19 & 80 & 400 & 3134 & 2845 & 3.7 & 3.6 & 4.1 & 0.12 & 0.6 & 0.6 & 0.6 & 0 & 0.4 & 0 & 21 & 2.97 \\
-				20 & 133 & 400 & 3144 & 1789 & 5.1 & 5 & 5.9 & 0.19 & 0.1 & 0.1 & 0.1 & 0 & 0.6 & 0 & 30 & 4.24 \\ \np
+				15 & 100 & 300 & 1754 & 1729 & 1.7 & 1.6 & 2 & 0.07 & 0.6 & 0.6 & 0.6 & 0 & 2 & 2 & 2 & 0 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.4 & 0.3 & 0.5 & 0.03 & 0 & 0 & 0 & 0 & 18 & 18 & 18 & 0 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.4 & 0.4 & 0.5 & 0.02 & 0 & 0 & 0 & 0 & 16.8 & 16 & 18 & 1.03 \\
+				18 & 40 & 400 & 3134 & 4809 & 2.1 & 2 & 2.4 & 0.08 & 0 & 0 & 0 & 0 & 28.9 & 26 & 30 & 1.66 \\
+				19 & 80 & 400 & 3134 & 2845 & 3.7 & 3.6 & 4.1 & 0.12 & 0.6 & 0.6 & 0.6 & 0 & 7 & 7 & 7 & 0 \\
+				20 & 133 & 400 & 3144 & 1789 & 5.1 & 5 & 5.9 & 0.19 & 0.1 & 0.1 & 0.1 & 0 & 8 & 8 & 8 & 0 \\
+				\np
 				\rowcolor[HTML]{EFEFEF} 
-				21 & 5 & 500 & 4909 & 9138 & 0.2 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0.14 \\
+				21 & 5 & 500 & 4909 & 9138 & 0.2 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 17.8 & 17 & 18 & 0.42 \\
 				\rowcolor[HTML]{EFEFEF} 
-				22 & 10 & 500 & 4896 & 8579 & 0.6 & 0.5 & 0.7 & 0.04 & 1 & 1 & 1 & 0 & 0 & 0 & 2 & 0.28 \\
+				22 & 10 & 500 & 4896 & 8579 & 0.6 & 0.5 & 0.7 & 0.04 & 1 & 1 & 1 & 0 & 27.9 & 27 & 28 & 0.32 \\
 				\rowcolor[HTML]{EFEFEF} 
-				23 & 50 & 500 & 4903 & 4619 & 3.7 & 3.6 & 4.1 & 0.1 & 0 & 0 & 0 & 0 & 0.4 & 0 & 18 & 2.55 \\
+				23 & 50 & 500 & 4903 & 4619 & 3.7 & 3.6 & 4.1 & 0.1 & 0 & 0 & 0 & 0 & 7 & 7 & 7 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				24 & 100 & 500 & 4914 & 2961 & 6.3 & 6.2 & 6.9 & 0.19 & 0.3 & 0.3 & 0.3 & 0 & 0.4 & 0 & 18 & 2.55 \\
+				24 & 100 & 500 & 4914 & 2961 & 6.3 & 6.2 & 6.9 & 0.19 & 0.3 & 0.3 & 0.3 & 0 & 17 & 17 & 17 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				25 & 167 & 500 & 4894 & 1828 & 10.1 & 8.6 & 12.3 & 1.43 & 0.9 & 0.7 & 1 & 0.07 & 0.6 & 0 & 29 & 4.1 \\
-				26 & 5 & 600 & 7069 & 9917 & 0.4 & 0.4 & 0.6 & 0.03 & 0.1 & 0.1 & 0.1 & 0 & 0.1 & 0 & 7 & 0.99 \\
-				27 & 10 & 600 & 7072 & 8307 & 1.2 & 1.1 & 1.4 & 0.06 & 0 & 0 & 0 & 0 & 0.2 & 0 & 8 & 1.13 \\
-				28 & 60 & 600 & 7054 & 4498 & 5.8 & 5.7 & 6.5 & 0.2 & 0.2 & 0.2 & 0.2 & 0 & 0.3 & 0 & 17 & 2.4 \\
-				29 & 120 & 600 & 7042 & 3033 & 11.8 & 10 & 14 & 1.65 & 0.2 & 0.2 & 0.2 & 0 & 0.6 & 0 & 28 & 3.96 \\
-				30 & 200 & 600 & 7042 & 1989 & 13.9 & 13.7 & 15.6 & 0.44 & 1.1 & 1.1 & 1.1 & 0 & 0.3 & 0 & 17 & 2.4 \\
+				25 & 167 & 500 & 4894 & 1828 & 10.1 & 8.6 & 12.3 & 1.43 & 0.9 & 0.7 & 1 & 0.07 & 1 & 1 & 1 & 0 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.4 & 0.4 & 0.6 & 0.03 & 0.1 & 0.1 & 0.1 & 0 & 6 & 6 & 6 & 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 1.2 & 1.1 & 1.4 & 0.06 & 0 & 0 & 0 & 0 & 23 & 23 & 23 & 0 \\
+				28 & 60 & 600 & 7054 & 4498 & 5.8 & 5.7 & 6.5 & 0.2 & 0.2 & 0.2 & 0.2 & 0 & 37.7 & 37 & 38 & 0.48 \\
+				29 & 120 & 600 & 7042 & 3033 & 11.8 & 10 & 14 & 1.65 & 0.2 & 0.2 & 0.2 & 0 & 2 & 2 & 2 & 0 \\
+				30 & 200 & 600 & 7042 & 1989 & 13.9 & 13.7 & 15.6 & 0.44 & 1.1 & 1.1 & 1.1 & 0 & 4 & 4 & 4 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				31 & 5 & 700 & 9601 & 10086 & 0.3 & 0.2 & 0.3 & 0.02 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0.14 \\
+				31 & 5 & 700 & 9601 & 10086 & 0.3 & 0.2 & 0.3 & 0.02 & 0 & 0 & 0 & 0 & 29.3 & 28 & 30 & 0.95 \\
 				\rowcolor[HTML]{EFEFEF} 
-				32 & 10 & 700 & 9584 & 9297 & 1 & 1 & 1.2 & 0.05 & 0 & 0 & 0 & 0 & 0.1 & 0 & 6 & 0.85 \\
+				32 & 10 & 700 & 9584 & 9297 & 1 & 1 & 1.2 & 0.05 & 0 & 0 & 0 & 0 & 9 & 9 & 9 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				33 & 70 & 700 & 9616 & 4700 & 8.8 & 8.6 & 9.4 & 0.21 & 0.5 & 0.5 & 0.5 & 0 & 0.5 & 0 & 23 & 3.25 \\
+				33 & 70 & 700 & 9616 & 4700 & 8.8 & 8.6 & 9.4 & 0.21 & 0.5 & 0.5 & 0.5 & 0 & 2 & 2 & 2 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				34 & 140 & 700 & 9585 & 3013 & 19.5 & 15.2 & 20.9 & 1.88 & 0.4 & 0.4 & 0.5 & 0.01 & 0.8 & 0 & 38 & 5.37 \\
-				35 & 5 & 800 & 12548 & 10400 & 0.7 & 0.6 & 0.7 & 0.03 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0.28 \\
-				36 & 10 & 800 & 12560 & 9934 & 1.2 & 1.2 & 1.4 & 0.05 & 0 & 0 & 0 & 0 & 0.1 & 0 & 4 & 0.57 \\
-				37 & 80 & 800 & 12564 & 5057 & 17.9 & 12.4 & 21.2 & 3.65 & 0.2 & 0.2 & 0.3 & 0.01 & 0.6 & 0 & 28 & 3.96 \\
+				34 & 140 & 700 & 9585 & 3013 & 19.5 & 15.2 & 20.9 & 1.88 & 0.4 & 0.4 & 0.5 & 0.01 & 3 & 3 & 3 & 0 \\
+				35 & 5 & 800 & 12548 & 10400 & 0.7 & 0.6 & 0.7 & 0.03 & 0 & 0 & 0 & 0 & 24 & 24 & 24 & 0 \\
+				36 & 10 & 800 & 12560 & 9934 & 1.2 & 1.2 & 1.4 & 0.05 & 0 & 0 & 0 & 0 & 3 & 3 & 3 & 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 17.9 & 12.4 & 21.2 & 3.65 & 0.2 & 0.2 & 0.3 & 0.01 & 8 & 8 & 8 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				38 & 5 & 900 & 15898 & 11060 & 1.3 & 1.2 & 1.5 & 0.06 & 0 & 0 & 0 & 0 & 0.2 & 0 & 9 & 1.27 \\
+				38 & 5 & 900 & 15898 & 11060 & 1.3 & 1.2 & 1.5 & 0.06 & 0 & 0 & 0 & 0 & 2 & 2 & 2 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				39 & 10 & 900 & 15896 & 9423 & 1.5 & 1.5 & 1.7 & 0.05 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0.28 \\
+				39 & 10 & 900 & 15896 & 9423 & 1.5 & 1.5 & 1.7 & 0.05 & 0 & 0 & 0 & 0 & 4 & 4 & 4 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				40 & 90 & 900 & 15879 & 5128 & 22.9 & 22.6 & 23.6 & 0.3 & 0.3 & 0.3 & 0.3 & 0 & 0.5 & 0 & 24 & 3.39
+				40 & 90 & 900 & 15879 & 5128 & 22.9 & 22.6 & 23.6 & 0.3 & 0.3 & 0.3 & 0.3 & 0 & 12 & 12 & 12 & 0
 			\end{longtable}
 		\end{landscape}
 		
 		\captionsetup{width=15cm}
-		\begin{landscape}
+		\begin{landscape}\index[terms]{interchange algorithm of Teitz and Bart}\index[terms]{interchange algorithm of Teitz and Bart!results}\index[terms]{local search heuristic!interchange algorithm of Teitz and Bart}
 			\begin{longtable}[c]{ccccc|cccc|cccc|cccc}
 				\caption{Interchange Algorithm of Teitz and Bart - Random (50 Runs)}
 				\label{TB.random}\\ \hline
@@ -1349,73 +1908,85 @@
 				\endhead
 				%
 				\rowcolor[HTML]{EFEFEF} 
-				1 & 5 & 100 & 198 & 5819 & 0.1 & 0.1 & 0.1 & 0.01 & 0 & 0 & 0 & 0 & 0.3 & 0 & 17 & 2.4 \\
+				1 & 5 & 100 & 198 & 5819 & 0.1 & 0.1 & 0.1 & 0.01 & 0 & 0 & 0 & 0 & 17 & 17 & 17 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				2 & 10 & 100 & 193 & 4093 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 0.6 & 0 & 31 & 4.38 \\
+				2 & 10 & 100 & 193 & 4093 & 0.1 & 0.1 & 0.2 & 0.02 & 0 & 0 & 0 & 0 & 65.5 & 65 & 66 & 0.53 \\
 				\rowcolor[HTML]{EFEFEF} 
-				3 & 10 & 100 & 198 & 4250 & 0.2 & 0.1 & 0.2 & 0.01 & 0 & 0 & 0 & 0 & 0.6 & 0 & 30 & 4.24 \\
+				3 & 10 & 100 & 198 & 4250 & 0.2 & 0.1 & 0.2 & 0.01 & 0 & 0 & 0 & 0 & 21 & 21 & 21 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				4 & 20 & 100 & 196 & 3034 & 0.2 & 0.2 & 0.3 & 0.02 & 0.4 & 0.4 & 0.4 & 0 & 0.6 & 0 & 32 & 4.53 \\
+				4 & 20 & 100 & 196 & 3034 & 0.2 & 0.2 & 0.3 & 0.02 & 0.4 & 0.4 & 0.4 & 0 & 33 & 33 & 33 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				5 & 33 & 100 & 196 & 1355 & 0.3 & 0.2 & 0.3 & 0.02 & 1.3 & 1.3 & 1.3 & 0 & 0.8 & 0 & 40 & 5.66 \\
-				6 & 5 & 200 & 786 & 7824 & 0.2 & 0.1 & 0.2 & 0.03 & 0 & 0 & 0 & 0 & 0.5 & 0 & 24 & 3.39 \\
-				7 & 10 & 200 & 779 & 5631 & 0.2 & 0.2 & 0.3 & 0.02 & 0 & 0 & 0 & 0 & 0.6 & 0 & 32 & 4.53 \\
-				8 & 20 & 200 & 792 & 4445 & 0.6 & 0.5 & 0.6 & 0.03 & 0.2 & 0.2 & 0.2 & 0 & 1 & 0 & 50 & 7.07 \\
-				9 & 40 & 200 & 785 & 2734 & 0.9 & 0.9 & 1.1 & 0.06 & 0.7 & 0.7 & 0.7 & 0.02 & 1.1 & 0 & 57 & 8.06 \\
-				10 & 67 & 200 & 786 & 1255 & 1.4 & 1.2 & 1.8 & 0.19 & 1.1 & 0.8 & 1.2 & 0.16 & 1.3 & 0 & 66 & 9.33 \\
+				5 & 33 & 100 & 196 & 1355 & 0.3 & 0.2 & 0.3 & 0.02 & 1.3 & 1.3 & 1.3 & 0 & 63.6 & 63 & 64 & 0.52 \\
+				6 & 5 & 200 & 786 & 7824 & 0.2 & 0.1 & 0.2 & 0.03 & 0 & 0 & 0 & 0 & 101.8 & 100 & 103 & 1.23 \\
+				7 & 10 & 200 & 779 & 5631 & 0.2 & 0.2 & 0.3 & 0.02 & 0 & 0 & 0 & 0 & 111.5 & 106 & 116 & 3.14 \\
+				8 & 20 & 200 & 792 & 4445 & 0.6 & 0.5 & 0.6 & 0.03 & 0.2 & 0.2 & 0.2 & 0 & 20 & 20 & 20 & 0 \\
+				9 & 40 & 200 & 785 & 2734 & 0.9 & 0.9 & 1.1 & 0.06 & 0.7 & 0.7 & 0.7 & 0.02 & 33 & 33 & 33 & 0 \\
+				10 & 67 & 200 & 786 & 1255 & 1.4 & 1.2 & 1.8 & 0.19 & 1.1 & 0.8 & 1.2 & 0.16 & 81.8 & 81 & 82 & 0.42 \\
 				\rowcolor[HTML]{EFEFEF} 
-				11 & 5 & 300 & 1772 & 7696 & 0.2 & 0.2 & 0.3 & 0.02 & 0 & 0 & 0 & 0 & 0.4 & 0 & 21 & 2.97 \\
+				11 & 5 & 300 & 1772 & 7696 & 0.2 & 0.2 & 0.3 & 0.02 & 0 & 0 & 0 & 0 & 122.2 & 119 & 128 & 3.19 \\
 				\rowcolor[HTML]{EFEFEF} 
-				12 & 10 & 300 & 1758 & 6634 & 0.4 & 0.4 & 0.5 & 0.02 & 0 & 0 & 0 & 0 & 0.7 & 0 & 33 & 4.67 \\
+				12 & 10 & 300 & 1758 & 6634 & 0.4 & 0.4 & 0.5 & 0.02 & 0 & 0 & 0 & 0 & 31 & 31 & 31 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				13 & 30 & 300 & 1760 & 4374 & 1.5 & 1.4 & 1.7 & 0.08 & 0.3 & 0.3 & 0.3 & 0 & 1.3 & 0 & 63 & 8.91 \\
+				13 & 30 & 300 & 1760 & 4374 & 1.5 & 1.4 & 1.7 & 0.08 & 0.3 & 0.3 & 0.3 & 0 & 135.1 & 133 & 137 & 1.45 \\
 				\rowcolor[HTML]{EFEFEF} 
-				14 & 60 & 300 & 1771 & 2968 & 2.6 & 2.4 & 3.4 & 0.27 & 0.2 & 0.1 & 0.2 & 0.05 & 2 & 0 & 100 & 14.14 \\
+				14 & 60 & 300 & 1771 & 2968 & 2.6 & 2.4 & 3.4 & 0.27 & 0.2 & 0.1 & 0.2 & 0.05 & 17 & 17 & 17 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				15 & 100 & 300 & 1754 & 1729 & 4.2 & 3.3 & 5.7 & 0.78 & 0.8 & 0.5 & 1.2 & 0.17 & 2.3 & 0 & 116 & 16.4 \\
-				16 & 5 & 400 & 3153 & 8162 & 0.3 & 0.3 & 0.4 & 0.02 & 0.3 & 0.3 & 0.3 & 0 & 0.4 & 0 & 20 & 2.83 \\
-				17 & 10 & 400 & 3142 & 6999 & 0.6 & 0.5 & 0.6 & 0.02 & 0.2 & 0.2 & 0.2 & 0 & 0.7 & 0 & 33 & 4.67 \\
-				18 & 40 & 400 & 3134 & 4809 & 2.7 & 2.6 & 3.1 & 0.1 & 0 & 0 & 0 & 0 & 1.6 & 0 & 82 & 11.6 \\
-				19 & 80 & 400 & 3134 & 2845 & 4.7 & 4.6 & 6 & 0.25 & 0.6 & 0.4 & 0.6 & 0.09 & 2.5 & 0 & 123 & 17.39 \\
-				20 & 133 & 400 & 3144 & 1789 & 7.5 & 6.3 & 8.9 & 0.83 & 0.6 & 0.4 & 1 & 0.13 & 2.7 & 0 & 134 & 18.95 \\ \np
+				15 & 100 & 300 & 1754 & 1729 & 4.2 & 3.3 & 5.7 & 0.78 & 0.8 & 0.5 & 1.2 & 0.17 & 49 & 49 & 49 & 0 \\
+				16 & 5 & 400 & 3153 & 8162 & 0.3 & 0.3 & 0.4 & 0.02 & 0.3 & 0.3 & 0.3 & 0 & 112.1 & 111 & 114 & 1.45 \\
+				17 & 10 & 400 & 3142 & 6999 & 0.6 & 0.5 & 0.6 & 0.02 & 0.2 & 0.2 & 0.2 & 0 & 151.4 & 149 & 154 & 1.65 \\
+				18 & 40 & 400 & 3134 & 4809 & 2.7 & 2.6 & 3.1 & 0.1 & 0 & 0 & 0 & 0 & 154.6 & 152 & 158 & 1.84 \\
+				19 & 80 & 400 & 3134 & 2845 & 4.7 & 4.6 & 6 & 0.25 & 0.6 & 0.4 & 0.6 & 0.09 & 28 & 28 & 28 & 0 \\
+				20 & 133 & 400 & 3144 & 1789 & 7.5 & 6.3 & 8.9 & 0.83 & 0.6 & 0.4 & 1 & 0.13 & 43 & 43 & 43 & 0 \\ \np
 				\rowcolor[HTML]{EFEFEF} 
-				21 & 5 & 500 & 4909 & 9138 & 0.4 & 0.4 & 0.5 & 0.02 & 0 & 0 & 0 & 0 & 0.3 & 0 & 17 & 2.4 \\
+				21 & 5 & 500 & 4909 & 9138 & 0.4 & 0.4 & 0.5 & 0.02 & 0 & 0 & 0 & 0 & 139.6 & 136 & 140 & 1.26 \\
 				\rowcolor[HTML]{EFEFEF} 
-				22 & 10 & 500 & 4896 & 8579 & 1.5 & 1.5 & 1.8 & 0.06 & 1 & 1 & 1 & 0 & 1 & 0 & 49 & 6.93 \\
+				22 & 10 & 500 & 4896 & 8579 & 1.5 & 1.5 & 1.8 & 0.06 & 1 & 1 & 1 & 0 & 190.9 & 189 & 194 & 1.6 \\
 				\rowcolor[HTML]{EFEFEF} 
-				23 & 50 & 500 & 4903 & 4619 & 8.7 & 8.5 & 9.3 & 0.21 & 0.1 & 0.1 & 0.1 & 0 & 2.3 & 0 & 113 & 15.98 \\
+				23 & 50 & 500 & 4903 & 4619 & 8.7 & 8.5 & 9.3 & 0.21 & 0.1 & 0.1 & 0.1 & 0 & 31.2 & 30 & 33 & 1.55 \\
 				\rowcolor[HTML]{EFEFEF} 
-				24 & 100 & 500 & 4914 & 2961 & 10.8 & 10.4 & 12.8 & 0.65 & 0.5 & 0.3 & 0.7 & 0.13 & 3 & 0 & 152 & 21.5 \\
+				24 & 100 & 500 & 4914 & 2961 & 10.8 & 10.4 & 12.8 & 0.65 & 0.5 & 0.3 & 0.7 & 0.13 & 195.2 & 193 & 198 & 1.81 \\
 				\rowcolor[HTML]{EFEFEF} 
-				25 & 167 & 500 & 4894 & 1828 & 13.8 & 11 & 17.3 & 1.62 & 1 & 0.6 & 1.4 & 0.2 & 3.1 & 0 & 155 & 21.92 \\
-				26 & 5 & 600 & 7069 & 9917 & 0.6 & 0.6 & 0.7 & 0.03 & 0 & 0 & 0 & 0 & 0.6 & 0 & 28 & 3.96 \\
-				27 & 10 & 600 & 7072 & 8307 & 1.6 & 1.5 & 1.8 & 0.05 & 0 & 0 & 0 & 0 & 0.9 & 0 & 43 & 6.08 \\
-				28 & 60 & 600 & 7054 & 4498 & 10.3 & 9.8 & 12.3 & 0.8 & 0.3 & 0.2 & 0.4 & 0.08 & 2.8 & 0 & 140 & 19.8 \\
-				29 & 120 & 600 & 7042 & 3033 & 15.5 & 13.4 & 18 & 1.9 & 1 & 0.9 & 1.1 & 0.07 & 3.8 & 0 & 189 & 26.73 \\
-				30 & 200 & 600 & 7042 & 1989 & 20.6 & 18.1 & 28.4 & 2.98 & 0.9 & 0.5 & 1.3 & 0.2 & 4.1 & 0 & 204 & 28.85 \\
+				25 & 167 & 500 & 4894 & 1828 & 13.8 & 11 & 17.3 & 1.62 & 1 & 0.6 & 1.4 & 0.2 & 25 & 25 & 25 & 0 \\
+				26 & 5 & 600 & 7069 & 9917 & 0.6 & 0.6 & 0.7 & 0.03 & 0 & 0 & 0 & 0 & 47 & 47 & 47 & 0 \\
+				27 & 10 & 600 & 7072 & 8307 & 1.6 & 1.5 & 1.8 & 0.05 & 0 & 0 & 0 & 0 & 166.7 & 163 & 171 & 2.26 \\
+				28 & 60 & 600 & 7054 & 4498 & 10.3 & 9.8 & 12.3 & 0.8 & 0.3 & 0.2 & 0.4 & 0.08 & 217 & 212 & 224 & 3.65 \\
+				29 & 120 & 600 & 7042 & 3033 & 15.5 & 13.4 & 18 & 1.9 & 1 & 0.9 & 1.1 & 0.07 & 25 & 25 & 25 & 0 \\
+				30 & 200 & 600 & 7042 & 1989 & 20.6 & 18.1 & 28.4 & 2.98 & 0.9 & 0.5 & 1.3 & 0.2 & 52 & 52 & 52 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				31 & 5 & 700 & 9601 & 10086 & 0.7 & 0.7 & 0.8 & 0.03 & 0 & 0 & 0 & 0 & 0.5 & 0 & 25 & 3.54 \\
+				31 & 5 & 700 & 9601 & 10086 & 0.7 & 0.7 & 0.8 & 0.03 & 0 & 0 & 0 & 0 & 187.5 & 182 & 193 & 2.95 \\
 				\rowcolor[HTML]{EFEFEF} 
-				32 & 10 & 700 & 9584 & 9297 & 1.9 & 1.8 & 2.3 & 0.09 & 0 & 0 & 0 & 0 & 0.9 & 0 & 47 & 6.65 \\
+				32 & 10 & 700 & 9584 & 9297 & 1.9 & 1.8 & 2.3 & 0.09 & 0 & 0 & 0 & 0 & 30 & 30 & 30 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				33 & 70 & 700 & 9616 & 4700 & 13.9 & 10.9 & 16.8 & 0.74 & 0.2 & 0.1 & 0.5 & 0.08 & 3.4 & 0 & 168 & 23.76 \\
+				33 & 70 & 700 & 9616 & 4700 & 13.9 & 10.9 & 16.8 & 0.74 & 0.2 & 0.1 & 0.5 & 0.08 & 46 & 46 & 46 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				34 & 140 & 700 & 9585 & 3013 & 19.6 & 18.8 & 24.8 & 1.63 & 0.4 & 0.2 & 0.5 & 0.07 & 4.3 & 0 & 213 & 30.12 \\
+				34 & 140 & 700 & 9585 & 3013 & 19.6 & 18.8 & 24.8 & 1.63 & 0.4 & 0.2 & 0.5 & 0.07 & 32 & 32 & 32 & 0 \\
+				35 & 5 & 800 & 12548 & 10400 & 1.3 & 1.2 & 1.5 & 0.06 & 0 & 0 & 0 & 0 & 189.5 & 177 & 200 & 9.01 \\
+				36 & 10 & 800 & 12560 & 9934 & 1.8 & 1.7 & 2.1 & 0.08 & 0 & 0 & 0 & 0 & 40 & 40 & 40 & 0 \\
+				37 & 80 & 800 & 12564 & 5057 & 21.2 & 15.6 & 25.1 & 3.31 & 0.1 & 0 & 0.2 & 0.04 & 24 & 24 & 24 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				35 & 5 & 800 & 12548 & 10400 & 1.3 & 1.2 & 1.5 & 0.06 & 0 & 0 & 0 & 0 & 0.5 & 0 & 25 & 3.54 \\
-				36 & 10 & 800 & 12560 & 9934 & 1.8 & 1.7 & 2.1 & 0.08 & 0 & 0 & 0 & 0 & 1 & 0 & 52 & 7.35 \\
-				37 & 80 & 800 & 12564 & 5057 & 21.2 & 15.6 & 25.1 & 3.31 & 0.1 & 0 & 0.2 & 0.04 & 3.7 & 0 & 186 & 26.3 \\
+				38 & 5 & 900 & 15898 & 11060 & 1.9 & 1.8 & 2.2 & 0.06 & 0 & 0 & 0 & 0 & 32 & 32 & 32 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				38 & 5 & 900 & 15898 & 11060 & 1.9 & 1.8 & 2.2 & 0.06 & 0 & 0 & 0 & 0 & 0.6 & 0 & 30 & 4.24 \\
+				39 & 10 & 900 & 15896 & 9423 & 2 & 1.9 & 2.3 & 0.09 & 0 & 0 & 0 & 0 & 50 & 50 & 50 & 0 \\
 				\rowcolor[HTML]{EFEFEF} 
-				39 & 10 & 900 & 15896 & 9423 & 2 & 1.9 & 2.3 & 0.09 & 0 & 0 & 0 & 0 & 0.9 & 0 & 46 & 6.51 \\
-				\rowcolor[HTML]{EFEFEF} 
-				40 & 90 & 900 & 15879 & 5128 & 28.4 & 19.7 & 43.1 & 7.87 & 0.7 & 0.3 & 1.1 & 0.24 & 3.9 & 0 & 196 & 27.72
+				40 & 90 & 900 & 15879 & 5128 & 28.4 & 19.7 & 43.1 & 7.87 & 0.7 & 0.3 & 1.1 & 0.24 & 56.6 & 56 & 57 & 0.52
 			\end{longtable}
 		\end{landscape}
 		
+		
 		\subsection{Fast Interchange Algorithm}
-		\begin{landscape}
+		\index[terms]{fast interchange algorithm}\index[terms]{fast interchange algorithm!results}\index[terms]{local search heuristic!fast interchange algorithm}
+		
+		The following table provides the results obtained from 50 runs of the fast interchange algorithm.  The first five columns provide information related to each of the forty test problems obtained from Beasley's library \cite{BEAS90} and was provided in the corresponding text file.
+		
+		The next four columns relate the to recorded computational time in seconds.
+		
+		The following four columns relate to the difference between the objective function value of the final solutions and the known optimal solution's objective function.
+		
+		The final four columns provide information related to the total number of iterations preformed during each run of the test problems.
+		
+		The first table gives the results from using a greedy starting solution while the second table provides the results from using a random feasible solution.
+		
+		\begin{landscape}\index[terms]{fast interchange algorithm}\index[terms]{fast interchange algorithm!results}\index[terms]{local search heuristic!fast interchange algorithm}
 			\begin{longtable}[c]{ccccc|cccc|cccc|cccc}
 				\caption{Fast Interchange Algorithm - Greedy (50 Runs)}
 				\label{Fint.greedy}\\ \hline
@@ -1488,7 +2059,7 @@
 			\end{longtable}
 		\end{landscape}
 		
-		\begin{landscape}
+		\begin{landscape}\index[terms]{fast interchange algorithm}\index[terms]{fast interchange algorithm!results}\index[terms]{local search heuristic!fast interchange algorithm}
 			\begin{longtable}[c]{ccccc|cccc|cccc|cccc}
 				\caption{Fast Interchange Algorithm - Random (50 Runs)}
 				\label{Fint.random}\\ \hline
@@ -1562,7 +2133,19 @@
 		\end{landscape}
 		
 		\subsection{Alternate Algorithm}
-		\begin{landscape}
+		\index[terms]fast {alternate algorithm}\index[terms]{alternate algorithm!results}\index[terms]{local search heuristic!alternate interchange algorithm}
+		
+		The following table provides the results obtained from 50 runs of the alternate algorithm.  The first five columns provide information related to each of the forty test problems obtained from Beasley's library \cite{BEAS90} and was provided in the corresponding text file.
+		
+		The next four columns relate the to recorded computational time in seconds.
+		
+		The following four columns relate to the difference between the objective function value of the final solutions and the known optimal solution's objective function.
+		
+		The final four columns provide information related to the total number of iterations preformed during each run of the test problems.
+		
+		The first table gives the results from using a greedy starting solution while the second table provides the results from using a random feasible solution.
+		
+		\begin{landscape}\index[terms]fast {alternate algorithm}\index[terms]{alternate algorithm!results}\index[terms]{local search heuristic!alternate interchange algorithm}
 			\begin{longtable}[c]{ccccc|cccc|cccc|cccc}
 				\caption{\textbf{Alternate Algorithm - Greedy (50 Runs)}}
 				\label{Alt.greedy}\\ \hline
@@ -1636,7 +2219,7 @@
 		\end{landscape}
 		
 		
-		\begin{landscape}
+		\begin{landscape}\index[terms]fast {alternate algorithm}\index[terms]{alternate algorithm!results}\index[terms]{local search heuristic!alternate interchange algorithm}
 			\begin{longtable}[c]{ccccc|cccc|cccc|cccc}
 				\caption{Alternate Algorithm - Random (50 Runs)}
 				\label{Alt.random}\\ \hline
